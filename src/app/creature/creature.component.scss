@@ -1,0 +1,18 @@
+.active-creatures {
+    padding: 10px;
+
+    .creature-cell {
+        padding:5px;
+        background-color: rgb(216, 216, 216);
+        border-radius: 5px;
+
+      .creature-name {
+          padding-left: 10px;
+          font-weight: bold;
+      }     
+    }
+
+    .creature-dead {
+        background-color: rgba(128, 0, 0, 0.418);
+    }
+}

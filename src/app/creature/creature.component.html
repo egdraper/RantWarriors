@@ -1,0 +1,33 @@
+
+    <h4>Select Creature</h4>
+    <mat-form-field>
+        <mat-label>Creatures</mat-label>
+        <mat-select
+          [placeholder]="'Creature'"
+          (selectionChange)="onCreatureChange($event)">
+            <mat-option
+              *ngFor="let creature of creatureList"
+              [value]="creature">
+                {{ creature }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <button mat-button (click)="addCreature()">AddCreature</button>
+
+
+    <div
+      class="active-creatures"
+      *ngFor="let activeCreature of activeCreatures, let i = index;">
+       <div class="creature-cell" [class.creature-dead]="activeCreature.currentHitPoints <= 0">
+          <h4 class="creature-name">{{ activeCreature.name }} {{i}}</h4>
+          <div class="creature-stat">AC: {{ activeCreature.armorClass }}</div>
+          <div class="creature-stat">Max HitPoints: {{ activeCreature.maxHitPoints }}</div>
+          <div class="creature-stat">HitPoints Remaining: {{ activeCreature.currentHitPoints }}</div>
+          <div class="creature-stat">Speed: {{ activeCreature.speed }}</div>
+
+          <input matInput type="number" [(ngModel)]="activeCreature.lastDamageTaken">
+          <button mat-button (click)="takeDamage(activeCreature)">Take Damage</button>
+          
+        </div>
+    </div>

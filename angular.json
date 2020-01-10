@@ -62,7 +62,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "rantWarriors:build"
+            "browserTarget": "rantWarriors:build",
+            "port": 4205
           },
           "configurations": {
             "production": {

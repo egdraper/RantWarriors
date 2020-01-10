@@ -1,0 +1,54 @@
+<!-- <!-- The content below is only a placeholder and can be replaced. -->
+<div style="text-align:center">
+  <!-- <h1>
+    Welcome to {{ title }}!
+  </h1>
+  <img width="300" src="../assets/DNDTime.jpg">
+
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/SAZChYZwXEM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+
+  <h2>Press the Space Bar to start and stop the power strip</h2>
+  <div
+    [style.width]="'100%'"
+    [style.display]="'flex'"
+    [style.justifyContent]="'center'"
+  >
+    <div
+      [style.width.px]="600"
+      [style.height.px]="35"
+      [style.backgroundColor]="'white'"
+    >
+      <div
+        [style.height.px]="35"
+        [style.width.px]="progress"
+        [style.backgroundColor]="'orange'"
+      ></div>
+    </div>
+  </div>
+
+  <h1>
+    {{ result }}
+  </h1>
+
+  <div
+    [style.position]="'absolute'"
+    [style.left.px]="1500"
+    [style.top.px]="350"
+    [style.height.px]="100"
+    [style.width.px]="100"
+    [style.borderColor]="'green'"
+    [style.border]="'solid'"
+    [style.borderRadius.px]="100"
+    [style.borderWidth.px]="14"
+    [style.backgroundColor]="'red'"
+  ></div>
+  <div
+    [style.position]="'absolute'"
+    [style.left.px]="currentLoc"
+    [style.top.px]="390"
+    [style.height.px]="50"
+    [style.width.px]="50"
+    [style.borderRadius.px]="100"
+    [style.backgroundColor]="'blue'"
+  ></div>
+</div>
