@@ -42,4 +42,16 @@ import { CreatureDB, Creature } from "./creature.db";
         creature.currentHitPoints = 0;
       }
     }
+
+    public doHeal(creature: Creature): void {
+      if (!creature.lastDamageTaken || isNaN(Number(creature.lastDamageTaken))) {
+        return;
+      }
+
+      creature.currentHitPoints += Number(creature.lastDamageTaken);
+
+      if (creature.currentHitPoints >= creature.maxHitPoints) {
+        creature.currentHitPoints = creature.maxHitPoints;
+      }
+    }
   }
