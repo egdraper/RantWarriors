@@ -1,18 +1,18 @@
 import { Creature, Action } from "../creature.model";
 
-export class Template implements Creature {
-  public name = "";
-  public armorClass = 0;
-  public speed = 0;
-  public challenge = 0;
-  public maxHitPoints = 0;
-  public currentHitPoints = 0;
-  public hitDice = "";
+export class Mane implements Creature {
+  public name = "Mane";
+  public armorClass = 9;
+  public speed = 20;
+  public challenge = .125;
+  public maxHitPoints = 9;
+  public currentHitPoints = 9;
+  public hitDice = "2d6+2";
   public flySpeed = 0;
   public link = "http://online.anyflip.com/duex/ixpz/mobile/index.html#p=60";
-  public page = 0;
-  public passivePerception = 0;
-  public experience = 0;
+  public page = 60;
+  public passivePerception = 9;
+  public experience = 25;
   public numberOfActions = 0;
   public size = "Small";
   public alignment = "Evil";
@@ -75,7 +75,15 @@ export class Template implements Creature {
 
   public traits = [""];
 
-  public actions: Action[] = [ ];
+  public actions: Action[] = [
+    {
+      name: "Claw",
+      attackType: "Slashing",
+      attackBonus: 2,
+      reachMax: 5,
+      dice: "2d4"
+   }
+  ];
 
   public legendaryActions = [""];
 }

@@ -20,14 +20,67 @@
       class="active-creatures"
       *ngFor="let activeCreature of activeCreatures, let i = index;">
        <div class="creature-cell" [class.creature-dead]="activeCreature.currentHitPoints <= 0">
-          <h4 class="creature-name">{{ activeCreature.name }} {{i}}</h4>
-          <div class="creature-stat">AC: {{ activeCreature.armorClass }}</div>
-          <div class="creature-stat">Max HitPoints: {{ activeCreature.maxHitPoints }}</div>
-          <div class="creature-stat">HitPoints Remaining: {{ activeCreature.currentHitPoints }}</div>
-          <div class="creature-stat">Speed: {{ activeCreature.speed }}</div>
-
-          <input matInput type="number" [(ngModel)]="activeCreature.lastDamageTaken">
-          <button mat-button (click)="takeDamage(activeCreature)">Take Damage</button>
-          <button mat-button (click)="doHeal(activeCreature)">Heal</button>
+          
+        <div class="score-area">
+          <div class="ability-score">
+            <div class="ability">Str</div>
+            <div class="score">{{ activeCreature.abilities.strength}}</div>
+          </div>
+          <div class="ability-score">
+            <div class="ability">Dex</div>
+            <div class="score">{{ activeCreature.abilities.dexterity}}</div>
+          </div>
+          <div class="ability-score">
+            <div class="ability">Con</div>
+            <div class="score">{{ activeCreature.abilities.constitution}}</div>
+          </div>
+          <div class="ability-score">
+            <div class="ability">Int</div>
+            <div class="score">{{ activeCreature.abilities.intelligence}}</div>
+          </div>
+          <div class="ability-score">
+            <div class="ability">Wis</div>
+            <div class="score">{{ activeCreature.abilities.wisdom}}</div>
+          </div>
+          <div class="ability-score" (click)="rollAbility(activeCreature.abilities.charisma, activeCreature)">
+            <div class="ability">Cha</div>
+            <div class="score">{{ activeCreature.abilities.charisma}}</div>
+          </div>    
+          <div class="ability-score">
+            <div class="ability"><strong>{{ activeCreature.abilityRoll || 0 }}</strong></div>
+          </div>  
+             
+        </div> 
+          <div class="trait-grouping">
+            <h4 class="creature-name">{{ activeCreature.name }} {{i}}</h4>
+            <div class="creature-stat">AC: {{ activeCreature.armorClass }}</div>
+            <button mat-button (click)="generateRandomHp(activeCreature)">generate</button>
+            <div class="creature-stat">Max HP: {{ activeCreature.maxHitPoints }}</div>
+            <div class="creature-stat">HP Remaining: {{ activeCreature.currentHitPoints }}</div>
+            <div class="creature-stat">Speed: {{ activeCreature.speed }}</div>
+            <form autocomplete="off">
+              <mat-form-field class="example-full-width">
+                <input
+                  matInput
+                  name="attack"
+                  type="number"
+                  [(ngModel)]="activeCreature.lastDamageTaken">
+              </mat-form-field>
+            </form>
+            <button mat-button (click)="takeDamage(activeCreature)">Take Damage</button>
+            <button mat-button (click)="doHeal(activeCreature)">Heal</button>
+          </div>
+         
+          <div class="trait-grouping">
+            <div class="Actions">AC: {{ activeCreature.armorClass }}</div>
+            <div class="ActionList" *ngFor="let action of activeCreature.actions">
+              {{action.name}}
+            </div>
+          </div>       
+          <div class="trait-grouping">
+            <div class="saving-throws" *ngIf="">
+              {{action.name}}
+            </div>
+          </div>
         </div>
     </div>

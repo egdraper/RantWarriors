@@ -1,10 +1,12 @@
-import { Creature, Action } from "../creature.db";
+import { Creature, Action } from "../creature.model";
+import { Npc } from "./npc";
 
-export class Solar implements Creature {
+export class Nataliel implements Npc {
   public challenge = 21;
-  public name = "Solar";
+  public name = "Nataliel";
   public maxHitPoints = 243;
   public currentHitPoints = 243;
+  public hitDice = "18d10+144";
   public armorClass = 21;
   public speed = 50;
   public flySpeed = 150;
@@ -13,8 +15,20 @@ export class Solar implements Creature {
   public passivePerception = 24;
   public experience = 33000;
   public numberOfActions = 2;
+  public class = "Solar";
+  public relationship = "Random";
   public size = "Large";
   public alignment = "Lawful Good";
+
+  public relations = [
+    "Angelic Solar met on the road to clayton",
+  ];
+
+  public notes = [
+    "Magical Items: upon death, she gifts the travelers with special bracelets giving them magical ability",
+    "If she kills a human, she must go into contemplation for a 1000 years",
+    "In killing the doppelganger, she also kills the human unknowingly."
+  ];
 
   public savingThrows = [
     {

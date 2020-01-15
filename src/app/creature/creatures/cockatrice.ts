@@ -1,10 +1,11 @@
-import { Creature, Action } from "../creature.db";
+import { Creature, Action } from "../creature.model";
 
-export class Template implements Creature {
+export class Cockatrice implements Creature {
   public challenge = .5;
-  public name = "";
+  public name = "Cockatrice";
   public maxHitPoints = 27;
   public currentHitPoints = 27;
+  public hitDice = "6d6+6";
   public armorClass = 11;
   public speed = 20;
   public flySpeed = 40;

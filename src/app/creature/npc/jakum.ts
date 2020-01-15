@@ -1,10 +1,12 @@
-import { Creature, Action } from "../creature.db";
+import { Creature, Action } from "../creature.model";
+import { Npc } from "./npc";
 
-export class Planetar implements Creature {
+export class Jakum implements Npc {
   public challenge = 16;
-  public name = "Planetar";
+  public name = "Jakum";
   public maxHitPoints = 200;
   public currentHitPoints = 200;
+  public hitDice = "16d10+112";
   public armorClass = 19;
   public speed = 40;
   public flySpeed = 120;
@@ -14,7 +16,18 @@ export class Planetar implements Creature {
   public experience = 15000;
   public numberOfActions = 2;
   public size = "Large";
+  public relationship = "Random";
+  public class = "Planetar";
   public alignment = "Lawful Good";
+
+  public relations = [
+    "Angelic Solar met on the road to clayton",
+  ];
+
+  public notes = [
+    "Finds and brings Lycos to the group",
+    "Watches over the group from a distance, if the group ever finds themselves in a unescapable situation above ground, during the day, he will save them one time."
+  ];
 
   public abilities = {
     strength: 7,

@@ -1,10 +1,11 @@
-import { Creature, Action } from "../creature.db";
+import { Creature, Action } from "../creature.model";
 
 export class Dretch implements Creature {
   public challenge = .25;
   public name = "Dretch";
   public maxHitPoints = 18;
   public currentHitPoints = 18;
+  public hitDice = "4d6+4";
   public armorClass = 11;
   public speed = 20;
   public flySpeed = 0;

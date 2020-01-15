@@ -1,18 +1,48 @@
 .active-creatures {
-    padding: 10px;
+  padding: 10px;
 
-    .creature-cell {
-        padding:5px;
-        background-color: rgb(216, 216, 216);
-        border-radius: 5px;
+  .creature-cell {
+    padding: 5px;
+    background-color: rgb(216, 216, 216);
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: nowrap;
 
-      .creature-name {
-          padding-left: 10px;
-          font-weight: bold;
-      }     
+    .trait-grouping {
+      min-width: 150px;
+      max-width: 300px;
+      padding-left: 25px;
     }
 
-    .creature-dead {
-        background-color: rgba(128, 0, 0, 0.418);
+    .creature-name {
+      padding-left: 10px;
+      font-weight: bold;
     }
+
+    .ability-score {
+      display: flex;
+      padding: 9px;
+      background-color: ghostwhite;
+      width: 45px;
+      border-radius: 4px;
+      border: solid;
+      cursor: pointer;
+
+      &:hover {
+        background-color: blanchedalmond;
+      }
+
+      &:active {
+        background-color: rgb(163, 139, 79);
+      }
+
+      .ability {
+        width: 40px;
+      }
+    }
+  }
+
+  .creature-dead {
+    background-color: rgba(128, 0, 0, 0.418);
+  }
 }
