@@ -33,36 +33,8 @@ import { Dice } from "./dice.service";
       remove(this.activeCreatures, activeCreature => activeCreature.name === creature.name);
     }
 
-    public takeDamage(creature: Creature): void {
-      if (!creature.lastDamageTaken || isNaN(Number(creature.lastDamageTaken))) {
-        return;
-      }
 
-      creature.currentHitPoints -= Number(creature.lastDamageTaken);
 
-      if (creature.currentHitPoints < 0) {
-        creature.currentHitPoints = 0;
-      }
-    }
-
-    public generateRandomHp(creature: Creature): void {
-      const dice = new Dice();
-      const roll = dice.roll(creature.hitDice);
-      creature.maxHitPoints = roll.modifiedRollValue;
-      creature.currentHitPoints = roll.modifiedRollValue;
-    }
-
-    public doHeal(creature: Creature): void {
-      if (!creature.lastDamageTaken || isNaN(Number(creature.lastDamageTaken))) {
-        return;
-      }
-
-      creature.currentHitPoints += Number(creature.lastDamageTaken);
-
-      if (creature.currentHitPoints >= creature.maxHitPoints) {
-        creature.currentHitPoints = creature.maxHitPoints;
-      }
-    }
 
     public rollAbility(abilityModifier: number, creature: Creature): void {
       const dice = new Dice();

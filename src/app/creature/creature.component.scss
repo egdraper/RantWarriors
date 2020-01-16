@@ -9,9 +9,11 @@
     flex-wrap: nowrap;
 
     .trait-grouping {
-      min-width: 150px;
-      max-width: 300px;
       padding-left: 25px;
+      padding-right: 25px;
+      margin-left: 5px;
+      border: solid grey;
+      border-radius: 5px;
     }
 
     .creature-name {

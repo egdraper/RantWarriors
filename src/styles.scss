@@ -1,1 +1,7 @@
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+// Overrides
+
+.mat-form-field-infix {
+    border-top: 1px;
+}
