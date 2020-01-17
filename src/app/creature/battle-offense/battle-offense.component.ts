@@ -1,7 +1,6 @@
 import { Component, Input } from "@angular/core";
-import { Creature } from "../creature.model";
+import { Creature, Action } from "../creature.model";
 import { Dice } from "../dice.service";
-
 
 @Component({
     selector: "battle-offense",
@@ -23,19 +22,19 @@ import { Dice } from "../dice.service";
       this.activeCreature.currentHitPoints = roll.modifiedRollValue;
     }
 
-    public rollAttack(attackBonus: number): void {
+    public rollAttack(action: Action): void {
       const dice = new Dice();
       dice.withAdvantage = this.advantage;
       dice.withDisadvantage = this.disadvantage;
 
-      const roll = dice.roll(`d20+${attackBonus}`);
-      this.attack = roll.modifiedRollValue;
+      const roll = dice.roll(`d20+${action.attackBonus}`);
+      action.attackRoll = roll.modifiedRollValue;
     }
 
-    public rollDamage(diceEquation: string): void {
+    public rollDamage(action: Action): void {
       const dice = new Dice();
-      const roll = dice.roll(diceEquation);
-      this.damage = roll.modifiedRollValue;
+      const roll = dice.roll(action.dice);
+      action.damageRoll = roll.modifiedRollValue;
     }
 
 

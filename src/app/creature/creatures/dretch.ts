@@ -29,38 +29,13 @@ export class Dretch implements Creature {
   public savingThrows = [
     {
       ability: "Str",
-      value: 0
+      value: 1
     },
-    {
-      ability: "Dex",
-      value: 0
-    },
-    {
-      ability: "Con",
-      value: 0
-    },
-    {
-      ability: "Int",
-      value: 0
-    },
-    {
-      ability: "Wis",
-      value: 0
-    },
-    {
-      ability: "Cha",
-      value: 0
-    }
   ];
 
-  public skillProficiencies = [
-    {
-      ability: "Const",
-      value: 0
-    }
-  ];
+  public skillProficiencies = [ ];
 
-  public resistances = ["Cold, Fire, Lightning"];
+  public resistances = ["Cold", "Fire", "Lightning"];
 
   public immunities = ["Poison"];
 
@@ -82,6 +57,7 @@ export class Dretch implements Creature {
       dice: "1d6",
       attackType: "Piercing",
       reachMax: 5,
+      allowedInMultipleAttacks: true,
     },
     {
       name: "Claws",
@@ -89,6 +65,7 @@ export class Dretch implements Creature {
       dice: "2d4",
       attackType: "Slashing",
       reachMax: 5,
+      allowedInMultipleAttacks: true,
     },
     {
       name: "Fetid Cloud",

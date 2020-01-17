@@ -8,6 +8,8 @@ export class Action {
   reachMax?: number;
   numberOfTargets?: number;
   allowedInMultipleAttacks?: boolean;
+  attackRoll?: number;
+  damageRoll?: number;
 }
 
 export class Abilities {

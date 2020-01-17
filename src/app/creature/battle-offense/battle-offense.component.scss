@@ -1,11 +1,17 @@
 :host {
   position: relative;
+  width: 400px;
 }
 
 h1,
 h4 {
   margin-bottom: 8px;
   margin-top: 7px;
+}
+
+h5 {
+  margin-top: 8px;
+  margin-bottom: 0px;
 }
 
 h3 {
@@ -34,5 +40,13 @@ h3 {
 
 .damage-action, .healing-action {
  padding-left: 10px;
+}
+
+ .hit-roll {
+  padding-left: 15px;
+}
+
+.hit-dice, .hit-text {
+  padding-left: 4px;;
 }
 

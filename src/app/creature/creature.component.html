@@ -63,8 +63,33 @@
           </battle-offense>
         </div>
             
-          <div class="trait-grouping">
-         
+          <div class="trait-grouping" *ngIf="activeCreature.immunities.length !== 0 || activeCreature.resistances.length !== 0">
+              <h1>Immunities</h1>
+              <h4 *ngFor="let immunity of activeCreature.immunities"> {{ immunity }}</h4>
+              <hr/>
+              <h1>Resistances</h1>
+              <h4 *ngFor="let resistance of activeCreature.resistances"> {{ resistance }}</h4>
           </div>
+
+          <div class="trait-grouping" *ngIf="activeCreature.savingThrows.length > 0">
+            <h1>Saving Throws</h1>
+            <div *ngFor="let savingThrow of activeCreature.savingThrows">
+              <h4> {{ savingThrow.ability }}: {{ savingThrow.value }}</h4>
+            </div>
         </div>
+      
     </div>
+
+    
+<!-- <mat-icon 
+class="collapse"
+(click)="shrink = true"
+*ngIf="!shrink">
+chevron_left
+</mat-icon>
+<mat-icon 
+class="collapse"
+*ngIf="shrink"
+(click)="shrink = false">
+chevron_right
+</mat-icon> -->

@@ -1,19 +1,6 @@
 
-<mat-icon 
-  class="collapse"
-  (click)="shrink = true"
-  *ngIf="!shrink">
-  chevron_left
-</mat-icon>
-<mat-icon 
-  class="collapse"
-  *ngIf="shrink"
-  (click)="shrink = false">
-  chevron_right
-</mat-icon>
-    
 <div *ngIf="!shrink">
-  <h1 class="creature-name">{{ activeCreature.name }}</h1>
+  <h1 class="defense-title">Defense</h1>
   <h4 class="creature-stat">AC: {{ activeCreature.armorClass }}</h4>
   <h4 class="creature-stat">Speed: {{ activeCreature.speed }}</h4>
   <h4 class="passive-perception">Passive Perception: {{ activeCreature.passivePerception }} </h4>

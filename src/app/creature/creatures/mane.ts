@@ -26,32 +26,7 @@ export class Mane implements Creature {
     charisma: 0
   };
 
-  public savingThrows = [
-    {
-      ability: "Str",
-      value: 0
-    },
-    {
-      ability: "Dex",
-      value: 0
-    },
-    {
-      ability: "Con",
-      value: 0
-    },
-    {
-      ability: "Int",
-      value: 0
-    },
-    {
-      ability: "Wis",
-      value: 0
-    },
-    {
-      ability: "Cha",
-      value: 0
-    }
-  ];
+  public savingThrows = [ ];
 
   public skillProficiencies = [
     {
@@ -60,9 +35,9 @@ export class Mane implements Creature {
     }
   ];
 
-  public resistances = [""];
+  public resistances = [];
 
-  public immunities = [""];
+  public immunities = [];
 
   public senses = [
     {
