@@ -1,0 +1,23 @@
+   
+<div *ngIf="!shrink">
+  <h1 class="creature-name">Actions</h1>
+  <div *ngFor="let action of activeNpc.actions">
+    <div class="hc-speed">
+      <div *ngIf="action.allowedInMultipleAttacks" class="multi-attack-icon">*</div>
+      <mat-icon (click)="rollAttack(action)">center_focus_weak</mat-icon>
+      <h4 class="hit-text"> Hit </h4>
+      <h5 class="hit-dice"> (d20+{{ action.attackBonus && action.attackBonus > 0 ? action.attackBonus : 0 }}): </h5>
+      <h4 class="hit-roll"> {{ action.attackRoll || 0}}</h4>
+    </div>
+    <div class="hc-speed">
+      <mat-icon (click)="rollDamage(action)">brightness_7</mat-icon>
+      <h4 class="hit-text">{{ action.name }}</h4>
+      <h5 class="hit-dice"> ({{ action.dice }}) </h5>
+      <h4 class="hit-roll"> {{ action.damageRoll || 0 }} </h4>
+    </div>
+    <hr/>
+  </div>
+  
+  
+
+</div>

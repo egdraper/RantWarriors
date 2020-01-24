@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CreatureComponent } from "./creature/creature.component";
 import { HomeComponent } from "./home/home.component";
+import { DmScreenComponent } from "./dm/dm-screen.component";
 
 const routes: Routes = [
     {
@@ -9,7 +9,7 @@ const routes: Routes = [
       path: "",
     },
     {
-      component: CreatureComponent,
+      component: DmScreenComponent,
       path: "creature"
     }
 ];

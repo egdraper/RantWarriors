@@ -1,0 +1,38 @@
+
+<div *ngIf="!shrink">
+  <h1 class="defense-title">Defense</h1>
+  <h4 class="creature-stat">AC: {{ activeNpc.armorClass }}</h4>
+  <h4 class="creature-stat">Speed: {{ activeNpc.speed }}</h4>
+  <h4 class="passive-perception">Passive Perception: {{ activeNpc.passivePerception }} </h4>
+  <hr/>
+  <div class="hc-speed">
+    <h4 class="creature-stat">Max HP: {{ activeNpc.maxHitPoints }}</h4>
+    <!-- <h4 class="hit-dice"> - </h4> -->
+    <h4 class="hit-dice"> ({{ activeNpc.hitDice }}) </h4>
+    <mat-icon 
+      (click)="generateRandomHp()"
+      aria-label="Example home icon">
+      refresh
+    </mat-icon>
+  </div>
+
+  <h3 class="creature-stat">HP: {{ activeNpc.currentHitPoints }}</h3>
+  <div class="hc-speed">
+    <form autocomplete="off">
+      <mat-form-field class="example-full-width">
+      <input
+        placeholder="Damage"
+        matInput
+        name="attack"
+        type="number"
+        [(ngModel)]="activeNpc.lastDamageTaken">
+      </mat-form-field>
+    </form>   
+    <mat-icon class="damage-action" (click)="takeDamage()">remove_circle</mat-icon> 
+    <mat-icon class="healing-action" (click)="doHeal()">add_circle</mat-icon> 
+  </div>
+</div>
+
+<div *ngIf="shrink">
+
+</div>
