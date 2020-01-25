@@ -20,13 +20,14 @@ export class Glover implements Npc {
   public class = "Veteran";
   public relationship = "Random";
   public homeTown = "Clayton";
-  public age = 55;
+  public age = 32;
+  public imgUrl = "../../../assets/img/glover.jpg";
 
-  public relations = ["Bartender in Winswich"];
+  public relations = ["Leader of the East Scourge"];
 
   public notes = [
-    "Task: Has a task for the adventures, to collect a creature from a ruin to the north",
-    "Has an collection of weapons for sale, will allow others to have weapons for free if you they will perform the task"
+    "Task: Help him hunt down a witch",
+    "Personality: Very capable, leader of the west army"
   ];
 
   public abilities = {
@@ -41,28 +42,12 @@ export class Glover implements Npc {
   public savingThrows = [
     {
       ability: "Str",
-      value: 0
-    },
-    {
-      ability: "Dex",
-      value: 0
+      value: 6
     },
     {
       ability: "Con",
-      value: 2
+      value: 4
     },
-    {
-      ability: "Int",
-      value: 0
-    },
-    {
-      ability: "Wis",
-      value: 0
-    },
-    {
-      ability: "Cha",
-      value: 0
-    }
   ];
 
   public skillProficiencies = [
@@ -76,12 +61,7 @@ export class Glover implements Npc {
 
   public immunities = [""];
 
-  public senses = [
-    {
-      sense: "",
-      value: 0
-    }
-  ];
+  public senses = [ ];
 
   public languages = ["Common"];
 
@@ -89,38 +69,19 @@ export class Glover implements Npc {
 
   public actions: Action[] = [
     {
-      name: "Longsword One Handed",
-      dice: "1d8+3",
+      name: "Longsword",
+      dice: "1d10+7",
       reachMax: 5,
-      attackBonus: 5,
-      attackType: "Slashing Damage",
-      allowedInMultipleAttacks: true
-    },
-    {
-      name: "Longsword Two Handed",
-      dice: "1d10+3",
-      reachMax: 5,
-      attackBonus: 5,
+      attackBonus: 7,
       attackType: "Slashing",
       allowedInMultipleAttacks: true
-    },
-    {
-      name: "Shortsword",
-      dice: "1d6+3",
-      reachMax: 5,
-      attackBonus: 2,
-      attackType: "Slashing",
-      allowedInMultipleAttacks: true,
-      actionBonus: [
-        "If shortsword is drawn, he can also make a shortsword attack (along with double longs sword attacks)."
-      ]
     },
     {
       name: "Heavy Crossbow",
       dice: "1d10",
       reachMax: 400,
       reachMin: 100,
-      attackBonus: 3,
+      attackBonus: 7,
       attackType: "Piercing"
     }
   ];

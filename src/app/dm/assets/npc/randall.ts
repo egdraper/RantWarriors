@@ -21,6 +21,7 @@ export class Randall implements Npc {
   public relationship = "Random";
   public homeTown = "Farm Lands";
   public age = 16;
+  public imgUrl = "../../../assets/img/randall.jpg";
 
   public relations = [
     "Young boy found at Farm",

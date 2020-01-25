@@ -72,6 +72,9 @@
     margin-top: 2px;
   }
   img {
-    height: 295px;
-    width: 220px;
+    height: 270px;
+  }
+
+  .mat-checkbox ~ .mat-checkbox {
+    margin-left: 16px;
   }

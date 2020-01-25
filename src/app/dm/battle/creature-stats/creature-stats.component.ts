@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { creatures } from "../../assets/creature.db";
+import { creatures, Rating, RatingModel } from "../../assets/creature.db";
 import { Creature } from "../../assets/creature.model";
 import { Dice } from "../../assets/dice/dice.service";
 import { cloneDeep } from "lodash";
@@ -14,6 +14,7 @@ import { cloneDeep } from "lodash";
     public creatures: Creature[] = [];
     public creatureList: string[] = [];
     public dead = "X";
+    public challengeRatings = new Rating().getRatings(10);
 
     private selectedCreature: string;
 
@@ -45,5 +46,17 @@ import { cloneDeep } from "lodash";
           if (!this.activeCreatures) {
               this.activeCreatures = []
           }
+      }
+
+      public onRatingChange(rating: RatingModel): void {
+        const selectedChallengeRatings = this.challengeRatings.filter(cr => cr.selected);
+        if (selectedChallengeRatings.length === 0) {
+          this.creatureList = this.creatures.map(creature => creature.name);
+        }
+
+        const newCreatureList = this.creatures.filter(creature => {
+           return !!selectedChallengeRatings.find(scr => scr.value === creature.challenge);
+        });
+        this.creatureList = newCreatureList.map(creature => creature.name);
       }
   }

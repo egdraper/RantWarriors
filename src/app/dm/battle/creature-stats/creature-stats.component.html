@@ -1,4 +1,4 @@
- <h4>Select Creature</h4>
+ <h4>Add Creature</h4>
 
  <mat-form-field>
    <mat-label>Creatures</mat-label>
@@ -12,7 +12,17 @@
    </mat-select>
  </mat-form-field>
 
- <button mat-button (click)="addCreature()">AddCreature</button>
+ <button mat-button (click)="addCreature()">Add</button>
+<div>
+ <span> 
+    <mat-checkbox (change)="onRatingChange(challengeRating)"
+      *ngFor="let challengeRating of challengeRatings"
+      [(ngModel)]="challengeRating.selected">
+      {{ challengeRating.display }}
+    </mat-checkbox>
+ 
+</span>
+</div>
 <mat-tab-group>
     <mat-tab *ngFor="let activeCreature of activeCreatures; let i = index" label="{{ activeCreature.name }}: {{ (activeCreature.currentHitPoints < 1 ? dead : '') }}">
         <button mat-button (click)="remove(i)">Remove X</button>

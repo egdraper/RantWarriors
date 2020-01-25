@@ -1,2 +1,9 @@
-<button bat-button (click)="getSpell()">GetSpell</button>
+<button mat-button (click)="getSpell()">GetSpell</button>
 <h1>Your Spell Is: {{ spell }}</h1>
+
+<button mat-button (click)="getRandomName('otherMale')">Get Name</button>
+<h1>Your Name Is: {{ name }} {{ lastName }}</h1>
+
+<button mat-button (click)="getDomicileName()">Get Name</button>
+<h1>Your Domicile Name Is: {{ domicile }}</h1>
+<!-- <button mat-button (click)="createCharacter()">Create Character</button> -->

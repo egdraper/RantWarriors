@@ -19,6 +19,7 @@ export class Jakum implements Npc {
   public relationship = "Random";
   public class = "Planetar";
   public alignment = "Lawful Good";
+  public imgUrl = "../../../assets/img/jackum.jpeg";
 
   public relations = [
     "Angelic Solar met on the road to clayton",
