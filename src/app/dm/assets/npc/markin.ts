@@ -55,20 +55,19 @@ export class Markin implements Npc {
     }
   ];
 
-  public resistances = [""];
+  public resistances = [];
 
-  public immunities = [""];
+  public immunities = [];
 
-  public senses = [
-    {
-      sense: "",
-      value: 0
-    },
-  ];
+  public conditionImmunities = [];
+
+  public vulnerabilities = [];
+
+  public senses = [ ];
 
   public languages = ["Common"];
 
-  public traits = [""];
+  public traits = [];
 
   public actions: Action[] = [ {
       name: "Short Sword",
@@ -78,5 +77,5 @@ export class Markin implements Npc {
       attackType: "Piercing"
   } ];
 
-  public legendaryActions = [""];
+  public legendaryActions = [ ];
 }

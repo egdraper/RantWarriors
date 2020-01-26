@@ -31,14 +31,18 @@ export class Troll implements Creature {
 
   public skillProficiencies = [];
 
-  public resistances = [""];
+  public resistances = [];
 
-  public immunities = [""];
+  public immunities = [];
+
+  public conditionImmunities = [];
+
+  public vulnerabilities = [];
 
   public senses = [
     {
-      sense: "Darkvision 60ft",
-      value: 0
+      sense: "Darkvision",
+      value: 60
     }
   ];
 
@@ -73,5 +77,5 @@ export class Troll implements Creature {
     }
   ];
 
-  public legendaryActions = [""];
+  public legendaryActions = [];
 }

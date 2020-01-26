@@ -31,7 +31,7 @@ export class MinotaurSkeleton implements Creature {
 
   public skillProficiencies = [];
 
-  public resistances = [""];
+  public resistances = [];
 
   public vulnerabilities = ["Bludgeoning"];
 
@@ -67,5 +67,5 @@ export class MinotaurSkeleton implements Creature {
     },
   ];
 
-  public legendaryActions = [""];
+  public legendaryActions = [];
 }

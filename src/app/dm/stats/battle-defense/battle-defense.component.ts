@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
-import { Creature } from "../../assets/creature.model";
 import { Dice } from "../../assets/dice/dice.service";
+import { Npc } from "../../assets/npc.model";
 
 @Component({
     selector: "battle-defense",
@@ -8,7 +8,7 @@ import { Dice } from "../../assets/dice/dice.service";
     styleUrls: ["./battle-defense.component.scss"]
   })
   export class BattleDefenseComponent {
-    @Input() activeCreature: Creature;
+    @Input() activeCreature: Npc;
     public shrink = false;
 
     public generateRandomHp(): void {

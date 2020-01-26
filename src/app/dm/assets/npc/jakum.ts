@@ -68,6 +68,10 @@ export class Jakum implements Npc {
 
   public immunities = ["Charmed", "Exhaustion", "Frightened", "Poisoned"];
 
+  public conditionImmunities = [];
+
+  public vulnerabilities = [];
+
   public senses = [
     {
       sense: "True Sight",

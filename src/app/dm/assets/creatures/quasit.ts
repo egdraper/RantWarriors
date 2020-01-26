@@ -13,9 +13,10 @@ export class Quasit implements Creature {
   public page = 64;
   public passivePerception = 10;
   public experience = 200;
-  public numberOfActions = 0;
+  public numberOfActions = 1;
   public size = "Tiny";
   public alignment = "Evil";
+  public imgUrl = "../../../assets/img/quasit.jpeg";
 
   public abilities = {
     strength: -3,
@@ -26,32 +27,7 @@ export class Quasit implements Creature {
     charisma: 0
   };
 
-  public savingThrows = [
-    {
-      ability: "Str",
-      value: 0
-    },
-    {
-      ability: "Dex",
-      value: 0
-    },
-    {
-      ability: "Con",
-      value: 0
-    },
-    {
-      ability: "Int",
-      value: 0
-    },
-    {
-      ability: "Wis",
-      value: 0
-    },
-    {
-      ability: "Cha",
-      value: 0
-    }
-  ];
+  public savingThrows = [];
 
   public skillProficiencies = [
     {
@@ -68,6 +44,10 @@ export class Quasit implements Creature {
   ];
 
   public immunities = ["Poison"];
+
+  public conditionImmunities = [];
+
+  public vulnerabilities = [];
 
   public senses = [
     {
@@ -96,9 +76,7 @@ export class Quasit implements Creature {
     {
       name: "Invisibility",
     },
-
-
   ];
 
-  public legendaryActions = [""];
+  public legendaryActions = [];
 }

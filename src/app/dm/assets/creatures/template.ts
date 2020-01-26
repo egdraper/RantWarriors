@@ -16,6 +16,7 @@ export class Template implements Creature {
   public numberOfActions = 0;
   public size = "Small";
   public alignment = "Evil";
+  public imgUrl = "";
 
   public abilities = {
     strength: 0,
@@ -26,56 +27,33 @@ export class Template implements Creature {
     charisma: 0
   };
 
-  public savingThrows = [
+  public savingThrows = [ ];
+
+  public skillProficiencies = [ ];
+
+  public resistances = [];
+
+  public immunities = [];
+
+  public conditionImmunities = [];
+
+  public vulnerabilities = [];
+
+  public senses = [];
+
+  public languages = [];
+
+  public traits = [];
+
+  public actions: Action[] = [
     {
-      ability: "Str",
-      value: 0
-    },
-    {
-      ability: "Dex",
-      value: 0
-    },
-    {
-      ability: "Con",
-      value: 0
-    },
-    {
-      ability: "Int",
-      value: 0
-    },
-    {
-      ability: "Wis",
-      value: 0
-    },
-    {
-      ability: "Cha",
-      value: 0
+      name: "",
+      attackBonus: 0,
+      reachMax: 5,
+      dice: "",
+      attackType: "",
     }
   ];
 
-  public skillProficiencies = [
-    {
-      ability: "Const",
-      value: 0
-    }
-  ];
-
-  public resistances = [""];
-
-  public immunities = [""];
-
-  public senses = [
-    {
-      sense: "",
-      value: 0
-    },
-  ];
-
-  public languages = [""];
-
-  public traits = [""];
-
-  public actions: Action[] = [ ];
-
-  public legendaryActions = [""];
+  public legendaryActions = [];
 }

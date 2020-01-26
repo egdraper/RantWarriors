@@ -50,15 +50,19 @@ export class Targulm implements Npc {
     }
   ];
 
-  public resistances = [""];
+  public resistances = [];
 
-  public immunities = [""];
+  public immunities = [];
+
+  public conditionImmunities = [];
+
+  public vulnerabilities = [];
 
   public senses = [ ];
 
   public languages = ["Common"];
 
-  public traits = [""];
+  public traits = [];
 
   public actions: Action[] = [ {
       name: "Hand Axe",

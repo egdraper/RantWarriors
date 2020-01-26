@@ -1,6 +1,8 @@
 import { Creature } from "./creature.model";
 import { Mane, Cockatrice, Lemure, Quasit, Wolf, Dretch, Troll} from "./creatures";
 import { MinotaurSkeleton } from "./creatures/minotaur-skeleton";
+import { Quaggoth } from "./creatures/Quaggoth";
+import { Pixie } from "./creatures/pixie";
 
 export const creatures: Creature[] = [
   new Cockatrice(),
@@ -9,8 +11,10 @@ export const creatures: Creature[] = [
   new Mane(),
   new MinotaurSkeleton(),
   new Quasit(),
+  new Quaggoth(),
   new Troll(),
   new Wolf(),
+  new Pixie(),
 ]
 
 export class RatingModel {

@@ -61,20 +61,19 @@ export class Hadari implements Npc {
     }
   ];
 
-  public resistances = [""];
+  public resistances = [];
 
-  public immunities = [""];
+  public immunities = [];
 
-  public senses = [
-    {
-      sense: "",
-      value: 0
-    }
-  ];
+  public conditionImmunities = [];
+
+  public vulnerabilities = [];
+
+  public senses = [];
 
   public languages = ["Common", "Elvish", "Dwarfish"];
 
-  public traits = [""];
+  public traits = [];
 
   public actions: Action[] = [
     {
@@ -94,5 +93,5 @@ export class Hadari implements Npc {
     }
   ];
 
-  public legendaryActions = [""];
+  public legendaryActions = [];
 }

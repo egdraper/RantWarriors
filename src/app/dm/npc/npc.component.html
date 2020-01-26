@@ -1,0 +1,20 @@
+<h4>Select Creature</h4>
+
+<mat-form-field>
+  <mat-label>Creatures</mat-label>
+  <mat-select
+    [placeholder]="'Creature'"
+    (selectionChange)="onNpcChange($event)"
+  >
+    <mat-option *ngFor="let npc of npcList" [value]="npc">
+      {{ npc }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<button mat-button (click)="addNpc()">Add NPC</button>
+
+<stats
+  [activeCreatures]="activeNpcs"
+  (remove)="onRemove($event)">
+</stats>

@@ -14,7 +14,7 @@ export class Glover implements Npc {
   public page = 351;
   public passivePerception = 12;
   public experience = 0;
-  public numberOfActions = 3;
+  public numberOfActions = 2;
   public size = "Medium";
   public alignment = "Good";
   public class = "Veteran";
@@ -57,15 +57,19 @@ export class Glover implements Npc {
     }
   ];
 
-  public resistances = [""];
+  public resistances = [];
 
-  public immunities = [""];
+  public immunities = [];
+  
+  public conditionImmunities = [];
 
-  public senses = [ ];
+  public vulnerabilities = [];
+
+  public senses = [];
 
   public languages = ["Common"];
 
-  public traits = [""];
+  public traits = [];
 
   public actions: Action[] = [
     {
@@ -86,5 +90,5 @@ export class Glover implements Npc {
     }
   ];
 
-  public legendaryActions = [""];
+  public legendaryActions = [];
 }

@@ -81,6 +81,10 @@ export class Nataliel implements Npc {
 
   public languages = ["All", "Telepathy (120)"];
 
+  public conditionImmunities = [];
+
+  public vulnerabilities = [];
+
   public traits = [
     "Angelic Weapons",
     "Divine Awareness",

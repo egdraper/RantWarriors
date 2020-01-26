@@ -41,54 +41,23 @@ export class Randall implements Npc {
     charisma: 1
   };
 
-  public savingThrows = [
-    {
-      ability: "Str",
-      value: 0
-    },
-    {
-      ability: "Dex",
-      value: 0
-    },
-    {
-      ability: "Con",
-      value: 2
-    },
-    {
-      ability: "Int",
-      value: 0
-    },
-    {
-      ability: "Wis",
-      value: 0
-    },
-    {
-      ability: "Cha",
-      value: 0
-    }
-  ];
+  public savingThrows = [];
 
-  public skillProficiencies = [
-    {
-      ability: "Const",
-      value: 0
-    }
-  ];
+  public skillProficiencies = [];
 
-  public resistances = [""];
+  public resistances = [];
 
-  public immunities = [""];
+  public immunities = [];
 
-  public senses = [
-    {
-      sense: "",
-      value: 0
-    },
-  ];
+  public conditionImmunities = [];
+
+  public vulnerabilities = [];
+
+  public senses = [];
 
   public languages = ["Common"];
 
-  public traits = [""];
+  public traits = [];
 
   public actions: Action[] = [ {
       name: "Dagger",
@@ -98,5 +67,5 @@ export class Randall implements Npc {
       attackType: "Piercing"
   } ];
 
-  public legendaryActions = [""];
+  public legendaryActions = [ ];
 }

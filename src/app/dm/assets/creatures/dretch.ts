@@ -40,6 +40,10 @@ export class Dretch implements Creature {
 
   public immunities = ["Poison"];
 
+  public conditionImmunities = [];
+
+  public vulnerabilities = [];
+
   public senses = [
     {
       sense: "Darkvision",
@@ -49,7 +53,7 @@ export class Dretch implements Creature {
 
   public languages = ["Abyssal, Telepathy 60ft (Only works if creature knows Abyssal"];
 
-  public traits = [""];
+  public traits = [];
 
   public actions: Action[] = [
     {
@@ -76,5 +80,5 @@ export class Dretch implements Creature {
 
   ];
 
-  public legendaryActions = [""];
+  public legendaryActions = [];
 }

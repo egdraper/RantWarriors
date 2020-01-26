@@ -1,31 +1,6 @@
- <h4>Add Creature</h4>
-
- <mat-form-field>
-   <mat-label>Creatures</mat-label>
-   <mat-select
-     [placeholder]="'Creature'"
-     (selectionChange)="onCreatureChange($event)"
-   >
-     <mat-option *ngFor="let creature of creatureList" [value]="creature">
-       {{ creature }}
-     </mat-option>
-   </mat-select>
- </mat-form-field>
-
- <button mat-button (click)="addCreature()">Add</button>
-<div>
- <span> 
-    <mat-checkbox (change)="onRatingChange(challengeRating)"
-      *ngFor="let challengeRating of challengeRatings"
-      [(ngModel)]="challengeRating.selected">
-      {{ challengeRating.display }}
-    </mat-checkbox>
- 
-</span>
-</div>
 <mat-tab-group>
-    <mat-tab *ngFor="let activeCreature of activeCreatures; let i = index" label="{{ activeCreature.name }}: {{ (activeCreature.currentHitPoints < 1 ? dead : '') }}">
-        <button mat-button (click)="remove(i)">Remove X</button>
+    <mat-tab *ngFor="let activeCreature of activeCreatures; let i = index" label="{{ activeCreature.name }}: {{ (activeCreature.currentHitPoints < 1 ? dead : i) }}">     
+       <button mat-button (click)="removeCreature(i)">Remove X</button>
         <div class="active-creatures">
           
        <div class="creature-cell" [class.creature-dead]="activeCreature.currentHitPoints <= 0">
@@ -73,11 +48,26 @@
         </div>
             
           <div class="trait-grouping" *ngIf="activeCreature.immunities.length !== 0 || activeCreature.resistances.length !== 0">
-              <h1>Immunities</h1>
-              <h4 *ngFor="let immunity of activeCreature.immunities"> {{ immunity }}</h4>
+            <div *ngIf="activeCreature.immunities.length !== 0">
+              <h3>Immunities</h3>
+              <h4 *ngFor="let immunity of activeCreature.immunities"> - {{ immunity }}</h4>
               <hr/>
-              <h1>Resistances</h1>
-              <h4 *ngFor="let resistance of activeCreature.resistances"> {{ resistance }}</h4>
+            </div>  
+            <div *ngIf="activeCreature.conditionImmunities.length !== 0">
+              <h3>Condition Immunities</h3>
+              <h4 *ngFor="let conditionImmunity of activeCreature.conditionImmunities"> - {{ conditionImmunity }}</h4>
+              <hr/>
+            </div>
+            <div *ngIf="activeCreature.resistances.length !== 0">
+              <h3>Resistances</h3>
+              <h4 *ngFor="let resistance of activeCreature.resistances"> - {{ resistance }}</h4>
+              <hr/>
+            </div>
+            <div *ngIf="activeCreature.vulnerabilities.length !== 0">
+              <h3>Vulnerabilities</h3>
+              <h4 *ngFor="let vulnerablility of activeCreature.vulnerabilities"> - {{ vulnerablility }}</h4>
+              <hr/>
+            </div>
           </div>
 
           <div class="trait-grouping" *ngIf="activeCreature.savingThrows.length > 0">

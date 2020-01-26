@@ -27,32 +27,7 @@ export class Wolf implements Creature {
     charisma: -2,
   };
 
-  public savingThrows = [
-    {
-      ability: "Str",
-      value: 0
-    },
-    {
-      ability: "Dex",
-      value: 0
-    },
-    {
-      ability: "Con",
-      value: 0
-    },
-    {
-      ability: "Int",
-      value: 0
-    },
-    {
-      ability: "Wis",
-      value: 0
-    },
-    {
-      ability: "Cha",
-      value: 0
-    }
-  ];
+  public savingThrows = [ ];
 
   public skillProficiencies = [
     {
@@ -65,18 +40,17 @@ export class Wolf implements Creature {
     }
   ];
 
-  public resistances = [""];
+  public resistances = [];
 
-  public immunities = [""];
+  public immunities = [];
 
-  public senses = [
-    {
-      sense: "",
-      value: 0
-    },
-  ];
+  public conditionImmunities = [];
 
-  public languages = [""];
+  public vulnerabilities = [];
+
+  public senses = [];
+
+  public languages = [];
 
   public traits = ["Keen Hearing and Smell"];
 
@@ -89,5 +63,5 @@ export class Wolf implements Creature {
     actionBonus: ["If target is a creature must succeed DC 11 Str saving throw or be knocked prone"]
   } ];
 
-  public legendaryActions = [""];
+  public legendaryActions = [];
 }

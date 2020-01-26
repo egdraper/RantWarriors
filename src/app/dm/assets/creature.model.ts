@@ -49,6 +49,8 @@ export class Creature {
   public lastDamageTaken?: number;
   public resistances: string[];
   public immunities: string[];
+  public conditionImmunities: string[];
+  public vulnerabilities: string[];
   public passivePerception: number;
   public languages: string[];
   public traits: string[];

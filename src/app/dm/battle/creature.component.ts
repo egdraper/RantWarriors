@@ -1,19 +1,18 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { creatures, Rating, RatingModel } from "../../assets/creature.db";
-import { Creature } from "../../assets/creature.model";
-import { Dice } from "../../assets/dice/dice.service";
+import { Component } from "@angular/core";
 import { cloneDeep } from "lodash";
+import { Creature } from "../assets/creature.model";
+import { Rating, creatures, RatingModel } from "../assets/creature.db";
+import { Dice } from "../assets/dice/dice.service";
 
 @Component({
-    selector: "creature-stats",
-    templateUrl: "./creature-stats.component.html",
-    styleUrls: ["./creature-stats.component.scss"]
+    selector: "creature",
+    templateUrl: "./creature.component.html",
+    styleUrls: ["./creature.component.scss"]
   })
-  export class CreatureStatsComponent {
+  export class CreatureComponent {
     public activeCreatures: Creature[] = [];
     public creatures: Creature[] = [];
     public creatureList: string[] = [];
-    public dead = "X";
     public challengeRatings = new Rating().getRatings(10);
 
     private selectedCreature: string;
@@ -50,13 +49,18 @@ import { cloneDeep } from "lodash";
 
       public onRatingChange(rating: RatingModel): void {
         const selectedChallengeRatings = this.challengeRatings.filter(cr => cr.selected);
-        if (selectedChallengeRatings.length === 0) {
+        if (!selectedChallengeRatings || selectedChallengeRatings.length === 0) {
           this.creatureList = this.creatures.map(creature => creature.name);
+          return;
         }
 
         const newCreatureList = this.creatures.filter(creature => {
            return !!selectedChallengeRatings.find(scr => scr.value === creature.challenge);
         });
         this.creatureList = newCreatureList.map(creature => creature.name);
+      }
+
+      public onRemove(newActiveCreatures: Creature[]): void {
+        this.activeCreatures = newActiveCreatures;
       }
   }

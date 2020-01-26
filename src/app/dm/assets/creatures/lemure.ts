@@ -27,15 +27,17 @@ export class Lemure implements Creature {
     charisma: -4
   };
 
-  public savingThrows = [
-  ];
+  public savingThrows = [];
 
-  public skillProficiencies = [
-  ];
+  public skillProficiencies = [];
 
   public resistances = ["Cold"];
 
   public immunities = ["Fire", "Poison"];
+
+  public conditionImmunities = [];
+
+  public vulnerabilities = [];
 
   public senses = [
     {
@@ -58,5 +60,5 @@ export class Lemure implements Creature {
     }
   ];
 
-  public legendaryActions = [""];
+  public legendaryActions = [];
 }

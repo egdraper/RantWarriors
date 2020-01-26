@@ -16,6 +16,7 @@ export class Mane implements Creature {
   public numberOfActions = 0;
   public size = "Small";
   public alignment = "Evil";
+  public imgUrl = "../../../assets/img/mane.jpg";
 
   public abilities = {
     strength: 0,
@@ -28,27 +29,21 @@ export class Mane implements Creature {
 
   public savingThrows = [ ];
 
-  public skillProficiencies = [
-    {
-      ability: "Const",
-      value: 0
-    }
-  ];
+  public skillProficiencies = [ ];
 
   public resistances = [];
 
   public immunities = [];
 
-  public senses = [
-    {
-      sense: "",
-      value: 0
-    },
-  ];
+  public conditionImmunities = [];
 
-  public languages = [""];
+  public vulnerabilities = [];
 
-  public traits = [""];
+  public senses = [];
+
+  public languages = [];
+
+  public traits = [];
 
   public actions: Action[] = [
     {
@@ -60,5 +55,5 @@ export class Mane implements Creature {
    }
   ];
 
-  public legendaryActions = [""];
+  public legendaryActions = [];
 }

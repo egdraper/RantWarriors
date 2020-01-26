@@ -5,25 +5,23 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { DemoMaterialModule } from "./material.module";
 import { MatNativeDateModule } from "@angular/material/core";
-import { CreatureStatsComponent } from "./battle/creature-stats/creature-stats.component";
 import { DmScreenComponent } from "./dm-screen.component";
-import { BattleDefenseComponent } from "./battle/battle-defense/battle-defense.component";
-import { BattleOffenseComponent } from "./battle/battle-offense/battle-offense.component";
-import { NpmStatsComponent } from "./npc/npc-stats/npc-stats.component";
-import { BattleDefenseNpcComponent } from "./npc/battle-defense/battle-defense.component";
-import { BattleOffenseNpcComponent } from "./npc/battle-offense/battle-offense.component";
+import { BattleOffenseComponent } from "./stats/battle-offense/battle-offense.component";
+import { BattleDefenseComponent } from "./stats/battle-defense/battle-defense.component";
+import { StatsComponent } from "./stats/npc-stats/stats.component";
 import { AdventuringComponent } from "./adventuring/adventuring.component";
+import { CreatureComponent } from "./battle/creature.component";
+import { NpcComponent } from "./npc/npc.component";
 
 @NgModule({
   declarations: [
+    NpcComponent,
     AdventuringComponent,
-    NpmStatsComponent,
-    CreatureStatsComponent,
+    CreatureComponent,
+    StatsComponent,
     DmScreenComponent,
-    BattleDefenseComponent,
     BattleOffenseComponent,
-    BattleDefenseNpcComponent,
-    BattleOffenseNpcComponent,
+    BattleDefenseComponent,
   ],
   imports: [
     BrowserModule,

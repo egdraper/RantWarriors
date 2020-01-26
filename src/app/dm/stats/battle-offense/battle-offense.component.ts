@@ -1,14 +1,14 @@
 import { Component, Input } from "@angular/core";
-import { Creature, Action } from "../../assets/creature.model";
+import {  Action } from "../../assets/creature.model";
 import { Dice } from "../../assets/dice/dice.service";
+import { Npc } from "../../assets/npc.model";
 
 @Component({
     selector: "battle-offense",
     templateUrl: "./battle-offense.component.html",
-    styleUrls: ["./battle-offense.component.scss"]
-  })
+    styleUrls: ["./battle-offense.component.scss"]  })
   export class BattleOffenseComponent {
-    @Input() activeCreature: Creature;
+    @Input() activeCreature: Npc;
     public shrink = false;
     public attack = 0;
     public damage = 0;
