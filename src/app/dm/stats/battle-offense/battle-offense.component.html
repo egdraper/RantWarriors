@@ -1,6 +1,10 @@
    
 <div *ngIf="!shrink">
-  <h1 class="creature-name">Actions ({{ activeCreature.numberOfActions }})</h1>
+  <div class="offense-header">
+    <h1 class="creature-name">Actions ({{ activeCreature.numberOfActions }})</h1>
+    <mat-icon (click)="refreshAttack()" >refresh</mat-icon>
+  </div>
+
   <div *ngFor="let action of activeCreature.actions">
     <div *ngIf="action.dice">
       <div class="hc-speed">
