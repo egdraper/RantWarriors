@@ -34,9 +34,9 @@ export class Hadari implements Npc {
     strength: 1,
     dexterity: 4,
     constitution: 2,
-    intelligence: 0,
-    wisdom: 3,
-    charisma: 1
+    intelligence: 3,
+    wisdom: 0,
+    charisma: 0
   };
 
   public savingThrows = [

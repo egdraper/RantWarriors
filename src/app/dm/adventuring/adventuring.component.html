@@ -1,20 +1,75 @@
-<button mat-button (click)="getSpell()">GetSpell</button>
-<h1>Your Spell Is: {{ spell }}</h1>
+<div class="adventure-page">
+  <div class="auto-gen-container">
+    <div class="auto-gen">
+      <button mat-button (click)="getSpell()">GetSpell</button>
+      <h3>Your Spell Is: {{ spell }}</h3>
+    </div>
+    <div class="auto-gen">
+      <button mat-button (click)="getRandomName('otherMale')">Get Name</button>
+      <h3>Your Name Is: {{ name }} {{ lastName }}</h3>
+    </div>
+    <div class="auto-gen">
+    <button mat-button (click)="getDomicileName()">Get Name</button>
+    <h3>Your Domicile Name Is: {{ domicile }}</h3>
+    </div>
+  </div>
 
-<button mat-button (click)="getRandomName('otherMale')">Get Name</button>
-<h1>Your Name Is: {{ name }} {{ lastName }}</h1>
-
-<button mat-button (click)="getDomicileName()">Get Name</button>
-<h1>Your Domicile Name Is: {{ domicile }}</h1>
-<!-- <button mat-button (click)="createCharacter()">Create Character</button> -->
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/NQr4C0UQkxY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/mlLGwW7eHTI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/BvVwY0_8TQY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/K1JvqHnSHfc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/7KFoj-SOfHs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/xHP2GgxYddY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/zQtfnPTlFFE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/zhdYi9Vwqq4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/i-iFpxYy6bA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <!-- <button mat-button (click)="createCharacter()">Create Character</button> -->
+  <div>
+    <div class="player-proficiencies-group">
+      <div class="player-proficiencies">
+        <h1>Lycos</h1>
+        <h3>Saving Throws</h3>
+        <h4>- INT (ST): +3</h4>
+        <h4>- WIS (ST): +6</h4>
+        <hr>
+        <h3>Proficiencies</h3>
+        <h4>- Nature: +3</h4>
+        <h4>- Animal Handling: +6</h4>
+        <h4>- Insight: +4</h4>
+        <h4>- Perception: +4</h4>        
+        <hr>
+        <h4>Investigation (Pass): 16</h4>
+        <h4>Perception (Pass): 19</h4>
+        <hr>
+        <h3>Feat</h3>
+        <h4>- Observant</h4>
+      </div>
+      <div class="player-proficiencies">
+        <h1>Harn</h1>
+        <h3>- Saving Throws</h3>
+        <h4>- WIS (ST): +6</h4>
+        <h4>- INT (ST): +3</h4>
+        <hr>
+        <h3>Proficiencies</h3>
+        <h4>- Nature: +3</h4>
+        <h4>- Animal Handling: +6</h4>
+        <h4>- Insight: +4</h4>
+        <hr>
+        <h4>Investigation (Pass): 16</h4>
+        <h4>- Perception (Pass): 19</h4>
+        <hr>
+        <h3>Feat</h3>
+        <h4>- Keen Mind</h4>
+    </div>
+    <div class="player-proficiencies">
+        <h1>Kade</h1>
+        <h3>Saving Throws</h3>
+        <h4>- STR: +2</h4>
+        <h4>- DEX: +5</h4>
+        <hr>
+        <h3>Proficiencies</h3>
+        <h4>- Athletics: +2</h4>
+        <h4>- Stealth: +5</h4>
+        <h4>- Nature: +2</h4>
+        <h4>- Perception: +4</h4>
+        <h4>- Survival: +4</h4>
+        <hr>
+        <h4>Perception (Pass): 14</h4>
+        <hr>
+        <h3>Feat</h3>
+        <h4>- Alert</h4>
+      </div>
+    </div>
+  </div>
+</div>

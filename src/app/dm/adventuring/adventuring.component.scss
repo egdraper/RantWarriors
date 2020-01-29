@@ -1,0 +1,31 @@
+.adventure-page {
+    padding: 10px;
+    display: flex;
+}
+
+.auto-gen-container {
+    min-width: 500px;
+    
+    .auto-gen {
+        display: flex;
+    }
+}
+
+.player-proficiencies-group {
+    display: flex;
+
+    .player-proficiencies {
+       border: 1px solid;
+       padding: 0 25px;
+    }
+}
+
+button {
+    width: 150px;
+}
+
+h3,
+h4 {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}

@@ -4,7 +4,7 @@ import { Npc } from "../npc.model";
 export class Markin implements Npc {
   public name = "Markin";
   public armorClass = 16;
-  public speed = 25;
+  public speed = 30;
   public challenge = 1;
   public maxHitPoints = 33;
   public currentHitPoints = 33;
@@ -36,9 +36,9 @@ export class Markin implements Npc {
     strength: 2,
     dexterity: 0,
     constitution: 2,
-    intelligence: 1,
+    intelligence: 0,
     wisdom: 0,
-    charisma: 3
+    charisma: 4
   };
 
   public savingThrows = [
@@ -71,7 +71,7 @@ export class Markin implements Npc {
 
   public actions: Action[] = [ {
       name: "Short Sword",
-      dice: "1d6+3",
+      dice: "1d6+4",
       reachMax: 5,
       attackBonus: 5,
       attackType: "Piercing"
