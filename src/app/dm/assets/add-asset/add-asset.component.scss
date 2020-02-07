@@ -1,0 +1,33 @@
+form {
+    padding: 35px;
+    display: flex;
+  
+    .form-group {
+        padding-left: 50px;
+    }
+    
+    .debuffs {
+        display: flex;
+         
+        mat-form-field {
+          width: 200px;
+        }
+    }
+
+    .proficiencies {
+        width: 55px;
+        padding-left: 15px;
+    }
+
+    .proficiencies-name {
+        width: 125px;
+    }
+}
+
+
+
+
+mat-form-field {
+    width: 250px;
+}
+

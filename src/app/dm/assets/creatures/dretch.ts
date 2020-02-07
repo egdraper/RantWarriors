@@ -61,7 +61,7 @@ export class Dretch implements Creature {
       attackBonus: 2,
       dice: "1d6",
       attackType: "Piercing",
-      reachMax: 5,
+      range: "5",
       allowedInMultipleAttacks: true,
     },
     {
@@ -69,12 +69,12 @@ export class Dretch implements Creature {
       attackBonus: 2,
       dice: "2d4",
       attackType: "Slashing",
-      reachMax: 5,
+      range: "5",
       allowedInMultipleAttacks: true,
     },
     {
       name: "Fetid Cloud",
-      reachMax: 10,
+      range: "10",
       actionBonus: ["See Book"],
     },
 

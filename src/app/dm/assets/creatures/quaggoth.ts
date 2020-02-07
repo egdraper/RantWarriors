@@ -61,14 +61,14 @@ export class Quaggoth implements Creature {
       attackBonus: 5,
       dice: "1d6+3",
       attackType: "Slashing",
-      reachMax: 5,
+      range: "5",
       allowedInMultipleAttacks: true,
     },    {
       name: "Claws",
       attackBonus: 5,
       dice: "1d6+3",
       attackType: "Slashing",
-      reachMax: 5,
+      range: "5",
       allowedInMultipleAttacks: true,
     },
   ];

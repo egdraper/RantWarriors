@@ -53,7 +53,7 @@ export class Lemure implements Creature {
   public actions: Action[] = [
     {
       name: "Fist",
-      reachMax: 5,
+      range: "5",
       attackBonus: 3,
       dice: "1d4",
       attackType: "Bludgeoning"

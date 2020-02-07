@@ -98,7 +98,7 @@ export class Nataliel implements Npc {
       allowedInMultipleAttacks: true,
       attackType: "Slashing",
       attackBonus: 15,
-      reachMax: 5,
+      range: "5",
       actionBonus: ["27 radiant damage"],
       dice: "4d6+8"
     },
@@ -106,8 +106,7 @@ export class Nataliel implements Npc {
       name: "Slaying Longbow",
       attackType: "Piercing",
       attackBonus: 13,
-      reachMax: 600,
-      reachMin: 120,
+      range: "120/600",
       dice: "2d8+6",
       numberOfTargets: 1,
       actionBonus: [

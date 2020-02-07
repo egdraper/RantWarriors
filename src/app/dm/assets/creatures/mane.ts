@@ -50,7 +50,7 @@ export class Mane implements Creature {
       name: "Claw",
       attackType: "Slashing",
       attackBonus: 2,
-      reachMax: 5,
+      range: "5",
       dice: "2d4"
    }
   ];

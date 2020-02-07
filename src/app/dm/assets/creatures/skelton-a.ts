@@ -54,15 +54,14 @@ export class SkeletonA implements Creature {
     {
       name: "Shortsword",
       attackBonus: 4,
-      reachMax: 5,
+      range: "5",
       dice: "1d6+2",
       attackType: "Piercing",
     },
     {
       name: "Shortbow",
       attackBonus: 4,
-      reachMax: 320,
-      reachMin: 80,
+      range: "80/320",
       dice: "1d6+2",
       attackType: "Piercing",
     }

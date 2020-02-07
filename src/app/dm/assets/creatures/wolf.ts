@@ -56,7 +56,7 @@ export class Wolf implements Creature {
 
   public actions: Action[] = [ {
     name: "Bite",
-    reachMax: 5,
+    range: "5",
     attackBonus: 4,
     attackType: "Piercing",
     dice: "2d4+2",

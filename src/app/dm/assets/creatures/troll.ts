@@ -54,7 +54,7 @@ export class Troll implements Creature {
     {
       name: "Bite",
       attackBonus: 7,
-      reachMax: 5,
+      range: "5",
       dice: "1d6+4",
       attackType: "Piercing",
       allowedInMultipleAttacks: true
@@ -62,7 +62,7 @@ export class Troll implements Creature {
     {
       name: "Claw",
       attackBonus: 7,
-      reachMax: 5,
+      range: "5",
       dice: "2d6+4",
       attackType: "Slashing",
       allowedInMultipleAttacks: true
@@ -70,7 +70,7 @@ export class Troll implements Creature {
     {
       name: "Claw",
       attackBonus: 7,
-      reachMax: 5,
+      range: "5",
       dice: "2d6+4",
       attackType: "Slashing",
       allowedInMultipleAttacks: true

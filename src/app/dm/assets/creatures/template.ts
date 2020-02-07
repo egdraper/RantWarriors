@@ -49,7 +49,7 @@ export class Template implements Creature {
     {
       name: "",
       attackBonus: 0,
-      reachMax: 5,
+      range: "5",
       dice: "",
       attackType: "",
     }

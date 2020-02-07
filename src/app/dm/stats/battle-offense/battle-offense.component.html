@@ -7,7 +7,7 @@
 
   <div *ngFor="let action of activeCreature.actions">
     <div *ngIf="action.dice">
-      <div class="hc-speed">
+      <div class="action-group">
         <div *ngIf="action.allowedInMultipleAttacks" class="multi-attack-icon">*</div>
         <mat-icon (click)="rollAttack(action)">center_focus_weak</mat-icon>
         <h4 class="hit-text"> Hit </h4>
@@ -15,7 +15,7 @@
         <h4 class="hit-roll"> {{ action.attackRoll || 0}}</h4>
         <h4 class="attack-type">- ({{ action.attackType }})</h4>
       </div>
-      <div class="hc-speed">
+      <div class="action-group">
         <mat-icon (click)="rollDamage(action)">brightness_7</mat-icon>
         <h4 class="hit-text">{{ action.name }}</h4>
         <h5 class="hit-dice"> ({{ action.dice }}) </h5>
@@ -23,7 +23,7 @@
       </div>
     </div>
     <div *ngIf="!action.dice">
-      <div class="hc-speed">
+      <div class="action-group">
         <h4 class="hit-text"> {{ action.name}} </h4>        
         <a class="hit-dice" href="{{ activeCreature.link }}" target="_blank"> - Book {{ activeCreature.page }}</a>
       </div>
@@ -31,10 +31,10 @@
     </div>
     <hr/>
   </div>
-  <div *ngIf="activeCreature.traits.length > 0">
+  <div *ngIf="activeCreature?.traits?.length > 0">
     <h3>Traits</h3>
-    <div *ngFor="let trait of activeCreature.traits">
-      <div class="hc-speed">
+    <div *ngFor="let trait of activeCreature?.traits">
+      <div class="action-group">
         <h4 class="hit-text"> {{ trait }} </h4>        
         <a class="hit-dice" href="{{ activeCreature.link }}" target="_blank"> - Book {{ activeCreature.page }}</a>
       </div>

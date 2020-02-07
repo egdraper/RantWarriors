@@ -54,7 +54,7 @@ export class SkeletonGiant implements Creature {
     {
       name: "Greatsword",
       attackBonus: 4,
-      reachMax: 5,
+      range: "5",
       dice: "2d6+4",
       attackType: "Slashing",
       allowedInMultipleAttacks: true
@@ -62,7 +62,7 @@ export class SkeletonGiant implements Creature {
     {
       name: "Greatsword",
       attackBonus: 4,
-      reachMax: 5,
+      range: "5",
       dice: "2d6+4",
       attackType: "Slashing",
       allowedInMultipleAttacks: true

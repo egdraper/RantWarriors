@@ -54,7 +54,7 @@ export class SkeletonC implements Creature {
     {
       name: "Claw",
       attackBonus: 4,
-      reachMax: 5,
+      range: "5",
       dice: "1d4+3",
       attackType: "Slashing",
       allowedInMultipleAttacks: true
@@ -62,7 +62,7 @@ export class SkeletonC implements Creature {
     {
       name: "Claw",
       attackBonus: 4,
-      reachMax: 5,
+      range: "5",
       dice: "1d4+3",
       attackType: "Slashing",
       allowedInMultipleAttacks: true

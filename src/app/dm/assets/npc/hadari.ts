@@ -79,15 +79,14 @@ export class Hadari implements Npc {
     {
       name: "Long Bow",
       dice: "1d8+6",
-      reachMax: 600,
-      reachMin: 150,
+      range: "150/600",
       attackBonus: 6,
       attackType: "Piercing"
     },
     {
       name: "Short Sword",
       dice: "1d6+3",
-      reachMax: 5,
+      range: "5",
       attackBonus: 6,
       attackType: "Piercing"
     }

@@ -14,7 +14,7 @@ import { cloneDeep } from "lodash";
 export class StatsComponent {
   @Input() public activeCreatures: Creature[] = [];
   @Output() public remove = new EventEmitter<Creature[]>();
-
+  debugger
   public dead = "X";
 
   public rollAbility(abilityModifier: number, creature: Creature): void {

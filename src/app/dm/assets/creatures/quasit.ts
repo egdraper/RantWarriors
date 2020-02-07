@@ -65,7 +65,7 @@ export class Quasit implements Creature {
       name: "Claws",
       attackType: "Piercing",
       attackBonus: 4,
-      reachMax: 5,
+      range: "5",
       dice: "1d4+3",
       actionBonus: ["Target must succeed DC 10 Const saving throw or take 2d4 damage and be poisoned for 1 minute. See Book"]
     },

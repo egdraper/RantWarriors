@@ -1,8 +1,6 @@
 import { Component } from "@angular/core";
-import { cloneDeep, remove } from "lodash";
-import { Creature } from "./assets/creature.model";
-import { creatures } from "./assets/creature.db";
-import { MagicService } from "./assets/magic/magic.service";
+import { AngularFirestore } from "@angular/fire/firestore";
+import { AngularFireDatabase } from "@angular/fire/database";
 
 @Component({
     selector: "dm-screen",
@@ -10,4 +8,11 @@ import { MagicService } from "./assets/magic/magic.service";
     styleUrls: ["./dm-screen.component.scss"]
   })
   export class DmScreenComponent {
+
+    // constructor(
+    //   public firebase: AngularFireDatabase,
+    //   private firestore: AngularFirestore
+    // ) {
+    //   this.firestore.collection("assets").add({what: "hohoho"});
+    // }
   }

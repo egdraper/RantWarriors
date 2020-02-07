@@ -54,7 +54,7 @@ export class SkeletonB implements Creature {
     {
       name: "Simitar",
       attackBonus: 4,
-      reachMax: 5,
+      range: "5",
       dice: "1d6+2",
       attackType: "Slashing",
     },

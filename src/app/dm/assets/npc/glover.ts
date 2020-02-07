@@ -75,7 +75,7 @@ export class Glover implements Npc {
     {
       name: "Longsword",
       dice: "1d10+7",
-      reachMax: 5,
+      range: "5",
       attackBonus: 7,
       attackType: "Slashing",
       allowedInMultipleAttacks: true
@@ -83,8 +83,7 @@ export class Glover implements Npc {
     {
       name: "Heavy Crossbow",
       dice: "1d10",
-      reachMax: 400,
-      reachMin: 100,
+      range: "100/400",
       attackBonus: 7,
       attackType: "Piercing"
     }

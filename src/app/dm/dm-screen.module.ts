@@ -12,9 +12,13 @@ import { StatsComponent } from "./stats/npc-stats/stats.component";
 import { AdventuringComponent } from "./adventuring/adventuring.component";
 import { CreatureComponent } from "./battle/creature.component";
 import { NpcComponent } from "./npc/npc.component";
+import { AddAssetComponent } from "./assets/add-asset/add-asset.component";
+import { AddNpcComponent } from "./add-npc/add-npc.component";
 
 @NgModule({
   declarations: [
+    AddAssetComponent,
+    AddNpcComponent,
     NpcComponent,
     AdventuringComponent,
     CreatureComponent,

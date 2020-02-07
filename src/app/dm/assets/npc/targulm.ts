@@ -67,7 +67,7 @@ export class Targulm implements Npc {
   public actions: Action[] = [ {
       name: "Hand Axe",
       dice: "1d6+2",
-      reachMax: 5,
+      range: "5",
       attackBonus: 3,
       attackType: "Slashing"
   } ];

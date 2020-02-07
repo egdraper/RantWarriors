@@ -54,14 +54,14 @@ export class MinotaurSkeleton implements Creature {
     {
       name: "Greataxe",
       attackBonus: 6,
-      reachMax: 5,
+      range: "5",
       dice: "2d12+4",
       attackType: "Slashing",
     },
     {
       name: "Gore",
       attackBonus: 6,
-      reachMax: 5,
+      range: "5",
       dice: "2d8+4",
       attackType: "Slashing",
     },

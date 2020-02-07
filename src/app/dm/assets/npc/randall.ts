@@ -62,7 +62,7 @@ export class Randall implements Npc {
   public actions: Action[] = [ {
       name: "Dagger",
       dice: "1d4+2",
-      reachMax: 5,
+      range: "5",
       attackBonus: 2,
       attackType: "Piercing"
   } ];

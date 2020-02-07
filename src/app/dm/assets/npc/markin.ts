@@ -72,7 +72,7 @@ export class Markin implements Npc {
   public actions: Action[] = [ {
       name: "Short Sword",
       dice: "1d6+4",
-      reachMax: 5,
+      range: "5",
       attackBonus: 5,
       attackType: "Piercing"
   } ];

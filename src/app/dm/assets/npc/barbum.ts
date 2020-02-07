@@ -62,7 +62,7 @@ export class Barbum implements Npc {
   public actions: Action[] = [ {
       name: "Club",
       dice: "1d4+1",
-      reachMax: 5,
+      range: "5",
       attackBonus: 2,
       attackType: "Bludgeoning"
   } ];

@@ -16,30 +16,30 @@
           <div class="score-area">
             <div class="ability-score" (click)="rollAbility(activeCreature.abilities.strength, activeCreature)">
               <div class="ability">Str</div>
-              <div class="score">{{ activeCreature.abilities.strength}}</div>
+              <div class="score">{{ activeCreature?.abilities?.strength}}</div>
             </div>
             <div class="ability-score" (click)="rollAbility(activeCreature.abilities.dexterity, activeCreature)">
               <div class="ability">Dex</div>
-              <div class="score">{{ activeCreature.abilities.dexterity}}</div>
+              <div class="score">{{ activeCreature?.abilities?.dexterity}}</div>
             </div>
             <div class="ability-score" (click)="rollAbility(activeCreature.abilities.constitution, activeCreature)">
               <div class="ability">Con</div>
-              <div class="score">{{ activeCreature.abilities.constitution}}</div>
+              <div class="score">{{ activeCreature?.abilities?.constitution}}</div>
             </div>
             <div class="ability-score" (click)="rollAbility(activeCreature.abilities.intelligence, activeCreature)">
               <div class="ability">Int</div>
-              <div class="score">{{ activeCreature.abilities.intelligence}}</div>
+              <div class="score">{{ activeCreature?.abilities?.intelligence}}</div>
             </div>
             <div class="ability-score" (click)="rollAbility(activeCreature.abilities.wisdom, activeCreature)">
               <div class="ability">Wis</div>
-              <div class="score">{{ activeCreature.abilities.wisdom}}</div>
+              <div class="score">{{ activeCreature?.abilities?.wisdom}}</div>
             </div>
             <div class="ability-score" (click)="rollAbility(activeCreature.abilities.charisma, activeCreature)">
               <div class="ability">Cha</div>
-              <div class="score">{{ activeCreature.abilities.charisma}}</div>
+              <div class="score">{{ activeCreature?.abilities?.charisma}}</div>
             </div>    
             <div class="ability-score">
-              <div class="ability"><strong>{{ activeCreature.abilityRoll || 0 }}</strong></div>
+              <div class="ability"><strong>{{ activeCreature?.abilityRoll || 0 }}</strong></div>
             </div>  
                
           </div> 
@@ -55,34 +55,48 @@
             </battle-offense>
           </div>
               
-            <div class="trait-grouping" *ngIf="activeCreature.immunities.length !== 0 || activeCreature.resistances.length !== 0">
-              <div *ngIf="activeCreature.immunities.length !== 0">
+            <div class="trait-grouping" 
+              *ngIf="activeCreature?.immunities?.length !== 0 ||
+                     activeCreature.resistances.length !== 0  ||
+                     activeCreature.conditionImmunities.length !== 0 ||
+                     activeCreature.vulnerabilities.length !== 0">
+                     
+              <div *ngIf="activeCreature?.immunities?.length !== 0">
                 <h3>Immunities</h3>
                 <h4 *ngFor="let immunity of activeCreature.immunities"> - {{ immunity }}</h4>
                 <hr/>
               </div>  
-              <div *ngIf="activeCreature.conditionImmunities.length !== 0">
+              <div *ngIf="activeCreature?.conditionImmunities?.length !== 0">
                 <h3>Condition Immunities</h3>
                 <h4 *ngFor="let conditionImmunity of activeCreature.conditionImmunities"> - {{ conditionImmunity }}</h4>
                 <hr/>
               </div>
-              <div *ngIf="activeCreature.resistances.length !== 0">
+              <div *ngIf="activeCreature?.resistances?.length !== 0">
                 <h3>Resistances</h3>
                 <h4 *ngFor="let resistance of activeCreature.resistances"> - {{ resistance }}</h4>
                 <hr/>
               </div>
-              <div *ngIf="activeCreature.vulnerabilities.length !== 0">
+              <div *ngIf="activeCreature?.vulnerabilities?.length !== 0">
                 <h3>Vulnerabilities</h3>
                 <h4 *ngFor="let vulnerablility of activeCreature.vulnerabilities"> - {{ vulnerablility }}</h4>
                 <hr/>
               </div>
             </div>
   
-            <div class="trait-grouping" *ngIf="activeCreature.savingThrows.length > 0">
-              <h1>Saving Throws</h1>
-              <div *ngFor="let savingThrow of activeCreature.savingThrows">
-                <h4> {{ savingThrow.ability }}: {{ savingThrow.value }}</h4>
+            <div class="trait-grouping" *ngIf="activeCreature?.savingThrows?.length > 0 || activeCreature?.skillProficiencies?.length > 0 ">
+              <div *ngIf="activeCreature?.savingThrows?.length > 0">
+                <h1>Saving Throws</h1>
+                <div *ngFor="let savingThrow of activeCreature?.savingThrows">
+                  <h4> {{ savingThrow.ability }}: {{ savingThrow.value }}</h4>
+                </div>
               </div>
+
+              <div *ngIf="activeCreature?.savingThrows?.length > 0">
+                <h1>Proficiencies</h1>
+                <div *ngFor="let proficiency of activeCreature?.skillProficiencies">
+                  <h4> {{ proficiency.ability }}: {{ proficiency.value }}</h4>
+                </div>
+              </div>  
           </div>
       </div>
             <span class="stat-numbers">

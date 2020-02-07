@@ -48,7 +48,7 @@ export class Cockatrice implements Creature {
   public actions: Action[] = [
     {
       name: "Bite",
-      reachMax: 5,
+      range: "5",
       dice: "1d4+1",
       attackType: "Piercing",
       actionBonus: ["The attacked must succeed DC 11 Con saving throw or be petrified. See Book"],
