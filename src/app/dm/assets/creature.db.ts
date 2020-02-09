@@ -7,22 +7,34 @@ import { SkeletonA } from "./creatures/skelton-a";
 import { SkeletonB } from "./creatures/skelton-b";
 import { SkeletonC } from "./creatures/skelton-c";
 import { SkeletonGiant } from "./creatures/skelton-giant";
+import { GnollRanged } from "./creatures/gnollRanged";
+import { GnollMelee } from "./creatures/gnollMelee";
+import { GnollBoss } from "./creatures/gnollBoss";
+import { Wight } from "./creatures/wight";
+import { Mimic } from "./creatures/mimic";
+import { BarbedDevil } from "./creatures/barbedDevil";
 
 export const creatures: Creature[] = [
+  new BarbedDevil(),
   new Cockatrice(),
   new Dretch(),
+  new GnollMelee(),
+  new GnollRanged(),
+  new GnollBoss(),
   new Lemure(),
   new Mane(),
+  new Mimic(),
   new MinotaurSkeleton(),
-  new Quasit(),
-  new Quaggoth(),
-  new Troll(),
-  new Wolf(),
   new Pixie(),
+  new Quaggoth(),
+  new Quasit(),
   new SkeletonA(),
   new SkeletonB(),
   new SkeletonC(),
   new SkeletonGiant(),
+  new Troll(),
+  new Wolf(),
+  new Wight(),
 ]
 
 export class RatingModel {

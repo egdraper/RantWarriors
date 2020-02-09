@@ -22,12 +22,12 @@
         <h4 class="hit-roll"> {{ action.damageRoll || 0 }} </h4>
       </div>
     </div>
+    <h5 class="hit-dice"> {{ action.actionBonus }}</h5>
     <div *ngIf="!action.dice">
       <div class="action-group">
         <h4 class="hit-text"> {{ action.name}} </h4>        
         <a class="hit-dice" href="{{ activeCreature.link }}" target="_blank"> - Book {{ activeCreature.page }}</a>
       </div>
-      <h5 class="hit-dice"> {{ action.actionBonus }}</h5>
     </div>
     <hr/>
   </div>

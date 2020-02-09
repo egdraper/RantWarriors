@@ -91,7 +91,7 @@
                 </div>
               </div>
 
-              <div *ngIf="activeCreature?.savingThrows?.length > 0">
+              <div *ngIf="activeCreature?.skillProficiencies?.length > 0">
                 <h1>Proficiencies</h1>
                 <div *ngFor="let proficiency of activeCreature?.skillProficiencies">
                   <h4> {{ proficiency.ability }}: {{ proficiency.value }}</h4>
