@@ -17,6 +17,8 @@ import { Npc } from "../../assets/npc.model";
 
     public generateRandomHp(): void {
       const dice = new Dice();
+      dice.withAdvantage = this.advantage;
+      dice.withDisadvantage = this.disadvantage;
       const roll = dice.roll(this.activeCreature.hitDice);
       this.activeCreature.maxHitPoints = roll.modifiedRollValue;
       this.activeCreature.currentHitPoints = roll.modifiedRollValue;
@@ -47,5 +49,20 @@ import { Npc } from "../../assets/npc.model";
           action.damageRoll = 0;
         }
       });
+    }
+
+    public giveAdvantage(): void {
+      this.advantage = true;
+      this.disadvantage = false;
+    }
+
+    public giveDisadvantage(): void {
+      this.advantage = false;
+      this.disadvantage = true;
+    }
+
+    public resetAdvantage(): void {
+      this.advantage = false;
+      this.disadvantage = false;
     }
   }

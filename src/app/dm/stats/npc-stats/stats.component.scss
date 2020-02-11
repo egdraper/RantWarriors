@@ -52,6 +52,7 @@
 
   .damage-quick-link {
     min-width: 25px;
+    padding: 0 7px;
   }
   
   
@@ -82,4 +83,11 @@
     .experience {
       padding-left: 10px;
     }
+  }
+
+  .has-advantage {
+    background-color: #00ff0029;
+  }
+  .has-disadvantage {
+    background-color: #ff000026;
   }

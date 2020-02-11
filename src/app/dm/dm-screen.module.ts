@@ -14,9 +14,11 @@ import { CreatureComponent } from "./battle/creature.component";
 import { NpcComponent } from "./npc/npc.component";
 import { AddAssetComponent } from "./assets/add-asset/add-asset.component";
 import { AddNpcComponent } from "./add-npc/add-npc.component";
+import { AdvantageToggleComponent } from "./stats/npc-stats/advantage-toggle/advantage-toggle.component";
 
 @NgModule({
   declarations: [
+    AdvantageToggleComponent,
     AddAssetComponent,
     AddNpcComponent,
     NpcComponent,

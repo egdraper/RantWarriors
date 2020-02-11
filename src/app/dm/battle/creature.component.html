@@ -1,9 +1,6 @@
- <h4>Add Creature</h4>
-
  <mat-form-field>
-   <mat-label>Creatures</mat-label>
    <mat-select
-     [placeholder]="'Creature'"
+     [placeholder]="'Select Creature'"
      (selectionChange)="onCreatureChange($event)"
    >
      <mat-option *ngFor="let creature of creatureList" [value]="creature">

@@ -99,7 +99,7 @@ export class Jakum implements Npc {
       attackType: "Slashing",
       attackBonus: 15,
       range: "5",
-      actionBonus: ["27 radiant damage"],
+      actionBonus: ["+27 radiant damage"],
       dice: "4d6+8"
     },
     {
