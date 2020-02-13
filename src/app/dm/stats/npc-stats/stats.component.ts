@@ -17,16 +17,6 @@ export class StatsComponent {
   public numbers = this.getNumbers();
   public dead = "X";
 
-  public rollAbility(abilityModifier: number, creature: Creature): void {
-    const dice = new Dice();
-    const equation =
-      abilityModifier >= 0
-        ? `d20+${abilityModifier}`
-        : `d20-${-1 * abilityModifier}`;
-    const roll = dice.roll(equation);
-    creature.abilityRoll = roll.modifiedRollValue;
-  }
-
   public removeCreature(index: number): void {
     this.activeCreatures = this.activeCreatures.filter((a, i) => i !== index);
 

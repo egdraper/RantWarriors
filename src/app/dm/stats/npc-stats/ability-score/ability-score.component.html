@@ -1,0 +1,49 @@
+<div class="score-area">
+  <div
+    class="ability-score"
+    (click)="rollAbility(activeCreature.abilities.strength, activeCreature)"
+  >
+    <div class="ability">STR</div>
+    <div class="score">({{ activeCreature?.abilities?.strength }})</div>
+  </div>
+  <div
+    class="ability-score"
+    (click)="rollAbility(activeCreature.abilities.dexterity, activeCreature)"
+  >
+    <div class="ability">DEX</div>
+    <div class="score">({{ activeCreature?.abilities?.dexterity }})</div>
+  </div>
+  <div
+    class="ability-score"
+    (click)="rollAbility(activeCreature.abilities.constitution, activeCreature)"
+  >
+    <div class="ability">CON</div>
+    <div class="score">({{ activeCreature?.abilities?.constitution }})</div>
+  </div>
+  <div
+    class="ability-score"
+    (click)="rollAbility(activeCreature.abilities.intelligence, activeCreature)"
+  >
+    <div class="ability">INT</div>
+    <div class="score">({{ activeCreature?.abilities?.intelligence }})</div>
+  </div>
+  <div
+    class="ability-score"
+    (click)="rollAbility(activeCreature.abilities.wisdom, activeCreature)"
+  >
+    <div class="ability">WIS</div>
+    <div class="score">({{ activeCreature?.abilities?.wisdom }})</div>
+  </div>
+  <div
+    class="ability-score"
+    (click)="rollAbility(activeCreature.abilities.charisma, activeCreature)"
+  >
+    <div class="ability">CHA</div>
+    <div class="score">({{ activeCreature?.abilities?.charisma }})</div>
+  </div>
+  <div class="ability-score">
+    <div class="ability">
+      <strong>({{ activeCreature?.abilityRoll || 0 }})</strong>
+    </div>
+  </div>
+</div>

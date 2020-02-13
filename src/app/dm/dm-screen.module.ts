@@ -15,6 +15,8 @@ import { NpcComponent } from "./npc/npc.component";
 import { AddAssetComponent } from "./assets/add-asset/add-asset.component";
 import { AddNpcComponent } from "./add-npc/add-npc.component";
 import { AdvantageToggleComponent } from "./stats/npc-stats/advantage-toggle/advantage-toggle.component";
+import { AbilityScoreComponent } from "./stats/npc-stats/ability-score/ability-score.component";
+import { SavingThrowComponent } from './stats/npc-stats/saving-throw/saving-throw.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { AdvantageToggleComponent } from "./stats/npc-stats/advantage-toggle/adv
     DmScreenComponent,
     BattleOffenseComponent,
     BattleDefenseComponent,
+    AbilityScoreComponent,
+    SavingThrowComponent,
   ],
   imports: [
     BrowserModule,

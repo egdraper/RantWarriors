@@ -5,14 +5,6 @@
       activeCreature.currentHitPoints < 1 ? dead : i
     }}"
   >
-    <div class="creature-header">
-      <button mat-button (click)="removeCreature(i)">Remove X</button>
-      <h2 class="experience">Experience: {{ activeCreature.experience }} -</h2>
-      <h2 class="experience">
-        Challenge Rating: {{ activeCreature.challenge }} -
-      </h2>
-      <h2 class="experience">Size: {{ activeCreature.size }}</h2>
-    </div>
     <span class="stat-numbers">
       <button
         class="damage-quick-link"
@@ -25,78 +17,19 @@
     <div class="active-creatures">
       <div
         class="creature-cell"
-        [class.creature-dead]="activeCreature.currentHitPoints <= 0"
-      >
-        <img src="{{ activeCreature.imgUrl }}" />
-        <div class="score-area">
-          <div
-            class="ability-score"
-            (click)="
-              rollAbility(activeCreature.abilities.strength, activeCreature)
-            "
-          >
-            <div class="ability">Str</div>
-            <div class="score">{{ activeCreature?.abilities?.strength }}</div>
+        [class.creature-dead]="activeCreature.currentHitPoints <= 0">
+        <div>
+          <h3>{{ activeCreature.name }} - CR: {{ activeCreature.challenge }}</h3>
+          <div [style.display]="'flex'">
+            <app-ability-score [activeCreature]="activeCreature"></app-ability-score>
+            <img src="{{ activeCreature.imgUrl }}" />
           </div>
-          <div
-            class="ability-score"
-            (click)="
-              rollAbility(activeCreature.abilities.dexterity, activeCreature)
-            "
-          >
-            <div class="ability">Dex</div>
-            <div class="score">{{ activeCreature?.abilities?.dexterity }}</div>
-          </div>
-          <div
-            class="ability-score"
-            (click)="
-              rollAbility(activeCreature.abilities.constitution, activeCreature)
-            "
-          >
-            <div class="ability">Con</div>
-            <div class="score">
-              {{ activeCreature?.abilities?.constitution }}
-            </div>
-          </div>
-          <div
-            class="ability-score"
-            (click)="
-              rollAbility(activeCreature.abilities.intelligence, activeCreature)
-            "
-          >
-            <div class="ability">Int</div>
-            <div class="score">
-              {{ activeCreature?.abilities?.intelligence }}
-            </div>
-          </div>
-          <div
-            class="ability-score"
-            (click)="
-              rollAbility(activeCreature.abilities.wisdom, activeCreature)
-            "
-          >
-            <div class="ability">Wis</div>
-            <div class="score">{{ activeCreature?.abilities?.wisdom }}</div>
-          </div>
-          <div
-            class="ability-score"
-            (click)="
-              rollAbility(activeCreature.abilities.charisma, activeCreature)
-            "
-          >
-            <div class="ability">Cha</div>
-            <div class="score">{{ activeCreature?.abilities?.charisma }}</div>
-          </div>
-          <div class="ability-score">
-            <div class="ability">
-              <strong>{{ activeCreature?.abilityRoll || 0 }}</strong>
-            </div>
-          </div>
+          <hr>
+          <app-saving-throw [creature]="activeCreature"></app-saving-throw>
         </div>
         <div class="trait-grouping">
           <battle-defense [activeCreature]="activeCreature"> </battle-defense>
         </div>
-
         <div class="trait-grouping"
           [ngClass]="{'has-advantage': offense.advantage, 'has-disadvantage': offense.disadvantage}">
           <battle-offense #offense [activeCreature]="activeCreature"> </battle-offense>
@@ -161,29 +94,17 @@
             <hr />
           </div>
         </div>
-
-        <div
-          class="trait-grouping"
-          *ngIf="
-            activeCreature?.savingThrows?.length > 0 ||
-            activeCreature?.skillProficiencies?.length > 0
-          "
-        >
-          <div *ngIf="activeCreature?.savingThrows?.length > 0">
-            <h1>Saving Throws</h1>
-            <div *ngFor="let savingThrow of activeCreature?.savingThrows">
-              <h4>{{ savingThrow.ability }}: {{ savingThrow.value }}</h4>
-            </div>
-          </div>
-
-          <div *ngIf="activeCreature?.skillProficiencies?.length > 0">
-            <h1>Proficiencies</h1>
-            <div *ngFor="let proficiency of activeCreature?.skillProficiencies">
-              <h4>{{ proficiency.ability }}: {{ proficiency.value }}</h4>
-            </div>
-          </div>
-        </div>
       </div>
+    </div>
+    <div class="creature-header">
+      <button mat-button (click)="removeCreature(i)">Remove X</button>
+      <h2 class="experience">Experience: {{ activeCreature.experience }} -</h2>
+      <h2 class="experience">
+        Challenge Rating: {{ activeCreature.challenge }} -
+      </h2>
+      <h2 class="experience">Size: {{ activeCreature.size }}</h2>
     </div>
   </mat-tab>
 </mat-tab-group>
+
+

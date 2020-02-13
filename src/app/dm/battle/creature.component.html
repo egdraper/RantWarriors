@@ -1,26 +1,22 @@
- <mat-form-field>
-   <mat-select
-     [placeholder]="'Select Creature'"
-     (selectionChange)="onCreatureChange($event)"
-   >
-     <mat-option *ngFor="let creature of creatureList" [value]="creature">
-       {{ creature }}
-     </mat-option>
-   </mat-select>
- </mat-form-field>
+<mat-form-field>
+  <mat-select
+    [placeholder]="'Select Creature'"
+    (selectionChange)="onCreatureChange($event)">
+    <mat-option *ngFor="let creature of creatureList" [value]="creature">
+      {{ creature }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
 
- <button mat-button (click)="addCreature()">Add</button>
+<button mat-button (click)="addCreature()">Add</button>
 <div>
- <span> 
-    <mat-checkbox (change)="onRatingChange(challengeRating)"
+  <span>
+    <mat-checkbox
+      (change)="onRatingChange(challengeRating)"
       *ngFor="let challengeRating of challengeRatings"
       [(ngModel)]="challengeRating.selected">
       {{ challengeRating.display }}
     </mat-checkbox>
- 
-</span>
+  </span>
 </div>
-<stats
-  [activeCreatures]="activeCreatures"
-  (remove)="onRemove($event)">
-</stats>
+<stats [activeCreatures]="activeCreatures" (remove)="onRemove($event)"> </stats>

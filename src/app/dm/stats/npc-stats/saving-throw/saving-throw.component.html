@@ -1,0 +1,39 @@
+<div [style.display]="'flex'" *ngIf="creature.savingThrows.length > 0">
+  <div>
+    <h5>Saving Throws</h5>
+    <div *ngFor="let savingThrow of creature.savingThrows">
+      <div
+        class="saving-throw-proficiency saving-throw"
+        (click)="rollSavingThrow(savingThrow.value)">
+        <div class="ability">{{ savingThrow.ability }}</div>
+        <div class="score">({{ savingThrow.value }})</div>
+      </div>
+    </div>
+    <div>
+      <div class="saving-throw-proficiency saving-throw">
+        <div class="saving-throw">({{ savingThrow }})</div>
+      </div>
+    </div>
+  </div>
+  <div class="line"></div>
+  <div class="proficiency-group">
+    <div *ngIf="creature.skillProficiencies.length > 0">
+      <div>
+        <h5>Proficiencies</h5>
+        <div *ngFor="let proficiency of creature.skillProficiencies">
+          <div
+            class="saving-throw-proficiency skill-check"
+            (click)="rollProficiency(proficiency.value)">
+            <div class="skill">{{ proficiency.ability }}</div>
+            <div class="score">({{ proficiency.value }})</div>
+          </div>
+        </div>
+        <div>
+          <div class="saving-throw-proficiency skill-check">
+            <div class="skill">({{ proficiency }})</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
