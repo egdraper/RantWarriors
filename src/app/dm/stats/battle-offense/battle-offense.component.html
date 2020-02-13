@@ -11,7 +11,7 @@
   </div>
   
   <div *ngFor="let action of activeCreature.actions">
-    <div *ngIf="action.dice">
+    <div *ngIf="action.name">
       <div class="action-group">
         <div *ngIf="action.allowedInMultipleAttacks" class="multi-attack-icon">*</div>
         <mat-icon (click)="rollAttack(action)">center_focus_weak</mat-icon>
@@ -28,7 +28,7 @@
       <h5 class="attack-type">{{ action.attackType }}</h5>
       <h6 class="hit-dice"> {{ action.actionBonus }}</h6>
     </div>
-    <div *ngIf="!action.dice">
+    <div *ngIf="action.moreInfo">
       <div class="action-group">
         <h4 class="hit-text"> {{ action.name}} </h4>        
         <a class="hit-dice" href="{{ activeCreature.link }}" target="_blank"> - Book {{ activeCreature.page }}</a>

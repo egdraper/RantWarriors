@@ -76,7 +76,20 @@ export class BarbedDevil implements Creature {
 
   public languages = [ "Infernal" ];
 
-  public traits = [ "Barbed Hide", "Devil's Sight", "Magic Resistance" ];
+  public traits = [ 
+    {
+      name: "Barbed Hide",
+      info: "At the start of each of its turns, the barbed devil deals 5 (1d10) piercing damage to any creature Grappling it."
+    },
+    {
+      name: "Devil's Sight",
+      info: "Magical Darkness doesn't impede the devil's Darkvision."
+    },
+    {
+      name: "Magic Resistance",
+      info: "The devil has advantage on Saving Throws against Spells and other magical Effects."
+    }
+  ];
 
   public actions: Action[] = [
     {

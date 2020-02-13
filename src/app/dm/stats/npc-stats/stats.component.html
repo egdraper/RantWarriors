@@ -34,20 +34,15 @@
           [ngClass]="{'has-advantage': offense.advantage, 'has-disadvantage': offense.disadvantage}">
           <battle-offense #offense [activeCreature]="activeCreature"> </battle-offense>
         </div>
-        <div class="trait-grouping">
-          <div *ngIf="activeCreature?.traits?.length > 0">
-            <h3>Traits</h3>
+        <div class="trait-grouping" *ngIf="activeCreature?.traits?.length > 0">
+          <div>
+            <h1>Traits</h1>
             <div *ngFor="let trait of activeCreature?.traits">
               <div class="action-group">
-                <h4 class="hit-text">{{ trait }}</h4>
-                <a
-                  class="hit-dice"
-                  href="{{ activeCreature.link }}"
-                  target="_blank"
-                >
-                  - Book {{ activeCreature.page }}</a
-                >
+                <h4 class="hit-text">{{ trait.name }}</h4>
+                <h6><i>{{ trait.info }}</i></h6>
               </div>
+              <hr>
             </div>
           </div>
         </div>

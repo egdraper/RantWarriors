@@ -1,5 +1,5 @@
 <div [style.display]="'flex'" *ngIf="creature.savingThrows.length > 0">
-  <div>
+  <div class="saving-throw-group">
     <h5>Saving Throws</h5>
     <div *ngFor="let savingThrow of creature.savingThrows">
       <div
@@ -15,7 +15,6 @@
       </div>
     </div>
   </div>
-  <div class="line"></div>
   <div class="proficiency-group">
     <div *ngIf="creature.skillProficiencies.length > 0">
       <div>

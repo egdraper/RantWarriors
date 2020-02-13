@@ -1,14 +1,20 @@
 export class  Action {
-  attackType?: string;
-  attackBonus?: number;
-  name: string;
-  dice?: string;
-  actionBonus?: string[];
-  range?: string;
-  numberOfTargets?: number;
-  allowedInMultipleAttacks?: boolean;
-  attackRoll?: number;
-  damageRoll?: number;
+  public attackType?: string;
+  public attackBonus?: number;
+  public name: string;
+  public dice?: string;
+  public actionBonus?: string[];
+  public range?: string;
+  public numberOfTargets?: number;
+  public allowedInMultipleAttacks?: boolean;
+  public attackRoll?: number;
+  public damageRoll?: number;
+  public moreInfo?: boolean;
+}
+
+export class Trait {
+  public name: string;
+  public info: string;
 }
 
 export class Abilities {
@@ -52,7 +58,7 @@ export class Creature {
   public vulnerabilities: string[] = [];
   public passivePerception: number = 0;
   public languages: string[] = [];
-  public traits: string[] = [];
+  public traits: Trait[] = [];
   public senses: Sense[] = [];
   public link: string;
   public page: number;

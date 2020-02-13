@@ -21,26 +21,20 @@
 }
 
 .skill {
-   width: 100px;
+   width: 100%;
 }
 
 .proficiency-group {
    padding-left: 15px;
 }
 
-.saving-throw {
-    width: 75px;
+.proficiency-group,
+.saving-throw-group {
+  width: 100%;
 }
 
-.skill-check {
-    width: 120px;
-}
 
 h5 {
   margin: 7px;
 }
 
-.line {
-  width: 1px;
-  border-left: 1px solid;
-}
