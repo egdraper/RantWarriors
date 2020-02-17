@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Npc } from "../../assets/npc.model";
 import { Dice } from "../../assets/dice/dice.service";
+import { Creature } from "../../assets/creature.model";
 
 @Component({
   selector: "app-creature-stats",
@@ -8,49 +9,49 @@ import { Dice } from "../../assets/dice/dice.service";
   styleUrls: ["./creature-stats.component.scss"]
 })
 export class CreatureStatsComponent {
-  @Input() activeCreature: Npc;
+  @Input() creature: Creature;
   public shrink = false;
 
   public generateRandomHp(): void {
     const dice = new Dice();
-    const roll = dice.roll(this.activeCreature.hitDice);
-    this.activeCreature.maxHitPoints = roll.modifiedRollValue;
-    this.activeCreature.currentHitPoints = roll.modifiedRollValue;
+    const roll = dice.roll(this.creature.hitDice);
+    this.creature.maxHitPoints = roll.modifiedRollValue;
+    this.creature.currentHitPoints = roll.modifiedRollValue;
   }
 
   public takeDamage(): void {
     if (
-      !this.activeCreature.lastDamageTaken ||
-      isNaN(Number(this.activeCreature.lastDamageTaken))
+      !this.creature.lastDamageTaken ||
+      isNaN(Number(this.creature.lastDamageTaken))
     ) {
       return;
     }
 
-    this.activeCreature.currentHitPoints -= Number(
-      this.activeCreature.lastDamageTaken
+    this.creature.currentHitPoints -= Number(
+      this.creature.lastDamageTaken
     );
 
-    if (this.activeCreature.currentHitPoints < 0) {
-      this.activeCreature.currentHitPoints = 0;
+    if (this.creature.currentHitPoints < 0) {
+      this.creature.currentHitPoints = 0;
     }
   }
 
   public doHeal(): void {
     if (
-      !this.activeCreature.lastDamageTaken ||
-      isNaN(Number(this.activeCreature.lastDamageTaken))
+      !this.creature.lastDamageTaken ||
+      isNaN(Number(this.creature.lastDamageTaken))
     ) {
       return;
     }
 
-    this.activeCreature.currentHitPoints += Number(
-      this.activeCreature.lastDamageTaken
+    this.creature.currentHitPoints += Number(
+      this.creature.lastDamageTaken
     );
 
     if (
-      this.activeCreature.currentHitPoints >= this.activeCreature.maxHitPoints
+      this.creature.currentHitPoints >= this.creature.maxHitPoints
     ) {
-      this.activeCreature.currentHitPoints = this.activeCreature.maxHitPoints;
+      this.creature.currentHitPoints = this.creature.maxHitPoints;
     }
   }
 }

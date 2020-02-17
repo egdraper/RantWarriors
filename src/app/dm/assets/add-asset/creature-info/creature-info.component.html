@@ -1,4 +1,4 @@
-<div class="form-group">
+  <div class="form-group">
     <h1>Character Stats</h1>
     <div>
       <mat-form-field class="example-full-width">
@@ -40,6 +40,7 @@
           matInput
           placeholder="Passive Perception"
           name="passivePerception"
+          type="number"
           [ngModelOptions]="{ standalone: true }"
           [(ngModel)]="creature.passivePerception"
         />
@@ -51,8 +52,10 @@
           matInput
           placeholder="Max Hit Points"
           name="maxHitPoints"
+          type="number"
           [ngModelOptions]="{ standalone: true }"
           [(ngModel)]="creature.maxHitPoints"
+          [(ngModel)]="creature.currentHitPoints" 
         />
       </mat-form-field>
     </div>
@@ -64,6 +67,18 @@
           name="hitDice"
           [ngModelOptions]="{ standalone: true }"
           [(ngModel)]="creature.hitDice"
+        />
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Img Url"
+          name="imgUrl"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="creature.imgUrl"
         />
       </mat-form-field>
     </div>

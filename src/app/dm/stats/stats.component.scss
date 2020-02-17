@@ -1,82 +1,53 @@
 .active-creatures {
+  padding: 10px;
+  background-color: rgb(216, 216, 216);
+
+  .creature-rolls {
     padding: 10px;
-    background-color: rgb(216, 216, 216);
-  
-    .creature-cell {
-      padding: 5px;
-      border-radius: 5px;
-      display: flex;
-      flex-wrap: nowrap;
-
-      .creature-rolls {
-        padding: 10px;
-      }
-  
-      .trait-grouping {
-        padding-left: 25px;
-        padding-right: 25px;
-        margin-left: 5px;
-        border: solid grey;
-        border-radius: 5px;
-        width: 230px;
-      }
-  
-      .creature-name {
-        padding-left: 10px;
-        font-weight: bold;
-      }
-  
-      
-    }
-  
-    .creature-dead {
-      background-color: rgba(128, 0, 0, 0.418);
-    }
   }
 
-  .damage-quick-link {
-    min-width: 25px;
-    padding: 0 7px;
+  .creature-name {
+    padding-left: 10px;
+    font-weight: bold;
   }
-  
-  
-  h1,
-  h4 {
-    margin-bottom: 8px;
-    margin-top: 7px;
-  }
-  
-  h6,
-  h5 {
-    margin-top: 8px;
-    margin-bottom: 0px;
-  }
-  
-  h3 {
-    padding-bottom: 5px;
-    margin-bottom: 5px;
-    margin-top: 2px;
-  }
+}
 
-  img {
-    height: 263px;
-  }
 
-  .creature-header {
-    display: flex;
-    
-    .experience {
-      padding-left: 10px;
-    }
-  }
 
-  .has-advantage {
-    background-color: #00ff0029;
-  }
-  .has-disadvantage {
-    background-color: #ff000026;
-  }
+.damage-quick-link {
+  min-width: 25px;
+  padding: 0 7px;
+}
 
-  .no-advantage {
-    background-color: #b4b4b4;
+.creature-header {
+  display: flex;
+
+  .experience {
+    padding-left: 10px;
   }
+}
+
+
+// new
+
+
+
+.advantage-wrapper {
+  display: flex;
+}
+
+.indicator {
+  height: 3px;
+}
+
+.has-advantage {
+  background-color: #26ff00;
+}
+
+.has-disadvantage {
+  background-color: #ff0000;
+}
+
+.creature-dead {
+  background-color: rgba(128, 0, 0, 0.418);
+}

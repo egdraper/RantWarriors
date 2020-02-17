@@ -1,89 +1,34 @@
 <mat-tab-group>
-  <mat-tab
-    *ngFor="let activeCreature of activeCreatures; let i = index"
-    label="{{ activeCreature.name }}: {{
-      activeCreature.currentHitPoints < 1 ? dead : i
-    }}"
+  <mat-tab *ngFor="let activeCreature of activeCreatures; let i = index"
+    label="{{activeCreature.currentHitPoints < 1 ? dead : activeCreature.name}}"
   >
+    <div class="advantage-wrapper">
+       <button mat-button (click)="giveAdvantage(activeCreature)"><mat-icon class="advantage">visibility</mat-icon></button>
+       <button mat-button (click)="resetAdvantage(activeCreature)" class="normal">X</button>
+       <button mat-button (click)="giveDisadvantage(activeCreature)"><mat-icon class="disadvantage">visibility_off</mat-icon></button>
+    </div>
 
     <div class="active-creatures">
-      <span class="stat-numbers">
-        <button
-          class="damage-quick-link"
-          mat-button
-          (click)="activeCreature.currentHitPoints = activeCreature.currentHitPoints - number"
-          *ngFor="let number of numbers; let l = index">
-          {{ number }}
-        </button>
-      </span>
-      <hr>
-      <div
-        class="creature-cell"
-        [class.creature-dead]="activeCreature.currentHitPoints <= 0">
-        <div class="creature-rolls" [ngClass]="{'has-advantage': advantage, 'has-disadvantage': disadvantage, 'no-advantage': !advantage && !disadvantage}">
-          <h3>{{ activeCreature.name }} - CR: {{ activeCreature.challenge }}  </h3>
-          <div class="advantage-wrapper">
-            <button mat-button (click)="giveAdvantage()"><mat-icon class="advantage">visibility</mat-icon></button>
-            <button mat-button (click)="resetAdvantage()" class="normal">X</button>
-            <button mat-button (click)="giveDisadvantage()"><mat-icon class="disadvantage">visibility_off</mat-icon></button>
-         </div>
-          <div [style.display]="'flex'">
-            <app-ability-score 
-              [activeCreature]="activeCreature"
-              [advantage]="advantage"
-              [disadvantage]="disadvantage">
-            </app-ability-score>
-            <img src="{{ activeCreature.imgUrl }}" />
-          </div>
-          <hr>
-          <app-saving-throw
-            [advantage]="advantage"
-            [disadvantage]="disadvantage"
-            [creature]="activeCreature">
-          </app-saving-throw>
-        </div>
-        <div class="trait-grouping">
-          <battle-defense [activeCreature]="activeCreature"> </battle-defense>
-        </div>
-        <div class="trait-grouping"
-          [ngClass]="{'has-advantage': offense.advantage, 'has-disadvantage': offense.disadvantage}">
-          <battle-offense #offense [activeCreature]="activeCreature"> </battle-offense>
-        </div>
-        <div class="trait-grouping" *ngIf="activeCreature?.traits?.length > 0">
-          <div>
-            <h1>Traits</h1>
-            <div *ngFor="let trait of activeCreature?.traits">
-              <div class="action-group">
-                <h4 class="hit-text">{{ trait.name }}</h4>
-                <h6><i>{{ trait.info }}</i></h6>
-              </div>
-              <hr>
-            </div>
-          </div>
-        </div>
-
-        <div
-          class="trait-grouping"
-          *ngIf="
-            activeCreature?.immunities?.length !== 0 ||
-            activeCreature.resistances.length !== 0 ||
-            activeCreature.conditionImmunities.length !== 0 ||
-            activeCreature.vulnerabilities.length !== 0
-          "
-        >
-        
-        </div>
+        <span class="stat-numbers">
+          <button
+            class="damage-quick-link"
+            mat-button
+            (click)="activeCreature.currentHitPoints = activeCreature.currentHitPoints - number"
+            *ngFor="let number of damageNumbers; let l = index">
+            {{ number }}
+          </button>
+        </span>
       </div>
-    </div>
-    <div class="creature-header">
-      <button mat-button (click)="removeCreature(i)">Remove X</button>
-      <h2 class="experience">Experience: {{ activeCreature.experience }} -</h2>
-      <h2 class="experience">
-        Challenge Rating: {{ activeCreature.challenge }} -
-      </h2>
-      <h2 class="experience">Size: {{ activeCreature.size }}</h2>
+      <div [class.creature-dead]="activeCreature.currentHitPoints <= 0">
+  
+      <div 
+        class="indicator"
+        [class.has-advantage]="activeCreature.hasAdvantage"  
+        [class.has-disadvantage]="activeCreature.hasDisadvantage">
+      </div>
+      <app-stats-panel 
+        [creature]="activeCreature">
+      </app-stats-panel>
     </div>
   </mat-tab>
 </mat-tab-group>
-
-

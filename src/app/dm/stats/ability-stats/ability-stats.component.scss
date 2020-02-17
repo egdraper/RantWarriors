@@ -1,0 +1,29 @@
+.score-area {
+    padding-right: 5px;
+  
+    .ability-score {
+      display: flex;
+      padding: 9px;
+      background-color: ghostwhite;
+      width: 75px;
+      border-radius: 4px;
+      border: 1px solid;
+      cursor: pointer;
+  
+      &:hover {
+        background-color: blanchedalmond;
+      }
+  
+      &:active {
+        background-color: rgb(163, 139, 79);
+      }
+  
+      .ability {
+        width: 60px;
+      }
+    }
+  }
+  
+  img {
+    height: 263px;
+  }

@@ -1,16 +1,35 @@
 <app-asset-nav (select)="onSelect($event)"></app-asset-nav>
 <div class="add-asset-container">
-    <form autocomplete="off">      
-      <app-creature-info *ngIf="activeView === 'Creature'" [creature]="newCreature"></app-creature-info>
-      <app-battle-info *ngIf="activeView === 'Battle'"  [creature]="newCreature"></app-battle-info>
-      <app-ability-info *ngIf="activeView === 'Abilities'"  [creature]="newCreature"></app-ability-info>
-      <app-immunity-vulnerability *ngIf="activeView === 'Immunities+'" [creature]="newCreature"></app-immunity-vulnerability>
-      <app-proficiency-info *ngIf="activeView === 'Proficiencies'"  [creature]="newCreature"></app-proficiency-info>
-    </form>
-
-<!-- 
-<stats
-  [activeCreatures]="[newCreature]">
-</stats> -->
-
+  <div class="entry-group">
+    <form autocomplete="off">
+      <app-creature-info
+        *ngIf="activeView === 'Creature'"
+        [creature]="newCreature">
+      </app-creature-info>
+      <app-battle-info
+        *ngIf="activeView === 'Battle'"
+        [creature]="newCreature">
+      </app-battle-info>
+      <app-ability-info
+        *ngIf="activeView === 'Abilities'"
+        [creature]="newCreature">
+      </app-ability-info>
+      <app-immunity-vulnerability
+        *ngIf="activeView === 'Immunities+'"
+        [creature]="newCreature">
+      </app-immunity-vulnerability>
+      <app-proficiency-info
+        *ngIf="activeView === 'Proficiencies'"
+        [creature]="newCreature">
+      </app-proficiency-info>
+      <app-trait-info
+        *ngIf="activeView === 'Traits'"
+        [creature]="newCreature">
+      </app-trait-info>
+    </form>  
+    <app-stats-panel 
+      [creature]="newCreature">
+    </app-stats-panel>
+  </div>
 </div>
+

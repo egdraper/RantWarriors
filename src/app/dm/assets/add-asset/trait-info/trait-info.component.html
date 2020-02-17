@@ -1,1 +1,27 @@
-<p>trait-info works!</p>
+<div  class="form-group">
+    <h1>Traits</h1>
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Name"
+          name="name"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="newTrait.name"
+        />
+      </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field class="example-full-width">
+            <mat-label>Trait Description</mat-label>
+            <textarea
+              matInput
+              placeholder="Add Description Here"
+              [(ngModel)]="newTrait.info">
+            </textarea>
+        </mat-form-field>
+      </div>
+</div>
+
+<button mat-button (click)="onTraitAdd()">Add Trait</button>

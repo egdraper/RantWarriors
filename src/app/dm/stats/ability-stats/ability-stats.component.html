@@ -1,1 +1,15 @@
-<p>ability-stats works!</p>
+<div
+class="creature-cell">
+<div class="creature-rolls">
+  <h3>{{ creature.name }} - CR: {{ creature.challenge }}  </h3>
+  <div [style.display]="'flex'">
+    <app-skill-stats-score 
+      [creature]="creature">
+    </app-skill-stats-score>
+    <img src="{{ creature.imgUrl }}" />
+  </div>
+  <hr>
+  <app-proficiency-stats
+    [creature]="creature">
+  </app-proficiency-stats>
+</div>

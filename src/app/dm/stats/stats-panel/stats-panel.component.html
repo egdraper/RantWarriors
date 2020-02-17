@@ -1,0 +1,25 @@
+
+    <div class="stat-list">
+      <div class="trait-grouping">
+        <app-ability-stats [creature]="creature"></app-ability-stats>
+      </div>
+      <div class="trait-grouping standard-group">
+        <app-creature-stats [creature]="creature"></app-creature-stats>
+      </div>
+      <div class="trait-grouping standard-group">
+        <app-battle-stats [creature]="creature"></app-battle-stats>
+      </div>
+      <div
+        class="trait-grouping standard-group"
+        *ngIf="creature.traits.length > 0">
+        <app-trait-stats [creature]="creature"></app-trait-stats>
+      </div>
+      <div
+        class="trait-grouping standard-group"
+        *ngIf="creature.vulnerabilities.length > 0">
+        <app-immunity-vulnerability-stats
+          [creature]="creature"
+        ></app-immunity-vulnerability-stats>
+      </div>
+    </div>
+

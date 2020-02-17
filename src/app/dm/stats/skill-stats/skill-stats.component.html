@@ -1,0 +1,36 @@
+<div class="score-area">
+  <app-action-button
+    label="STR"
+    diceEquation="{{ creature.abilities.strength >= 0 ? 'd20+' + creature.abilities.strength : 'd20' + creature.abilities.strength }}"
+    [advantage]="creature.hasAdvantage"
+    [disadvantage]="creature.hasDisadvantage">  
+  </app-action-button>
+  <app-action-button
+    label="DEX"
+    diceEquation="{{ creature.abilities.dexterity >= 0 ? 'd20+' + creature.abilities.dexterity : 'd20' + creature.abilities.dexterity }}"
+    [advantage]="creature.hasAdvantage"
+    [disadvantage]="creature.hasDisadvantage">
+  </app-action-button>
+  <app-action-button
+    label="CON"
+    diceEquation="{{ creature.abilities.constitution >= 0 ? 'd20+' + creature.abilities.constitution : 'd20' + creature.abilities.constitution }}"
+    [advantage]="creature.hasAdvantage"
+    [disadvantage]="creature.hasDisadvantage">
+  </app-action-button>
+  <app-action-button
+    label="INT"
+    diceEquation="{{ creature.abilities.intelligence >= 0 ? 'd20+' + creature.abilities.intelligence : 'd20' + creature.abilities.intelligence }}"
+    [advantage]="creature.hasAdvantage"
+    [disadvantage]="creature.hasDisadvantage">
+  </app-action-button>
+  <app-action-button
+    label="WIS"
+    diceEquation="{{ creature.abilities.wisdom >= 0 ? 'd20+' + creature.abilities.wisdom : 'd20' + creature.abilities.wisdom }}"    [advantage]="creature.hasAdvantage"
+    [disadvantage]="creature.hasDisadvantage">
+  </app-action-button>
+  <app-action-button
+    label="CHA"
+    diceEquation="{{ creature.abilities.charisma >= 0 ? 'd20+' + creature.abilities.charisma : 'd20' + creature.abilities.charisma }}"    [advantage]="creature.hasAdvantage"
+    [disadvantage]="creature.hasDisadvantage">
+  </app-action-button>
+</div>

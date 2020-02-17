@@ -1,0 +1,12 @@
+<div class="action-group"
+  [ngClass]="{'crit-fail': critical === 'fail',  'crit-hit': critical === 'hit'}"
+  (click)="roll()">
+    <div class="hit-number">
+        <h2 class="hit-roll"> {{ rollResult || '-'}}</h2>
+    </div>
+    <div>
+        <h3 class="hit-text"> {{ label }} </h3>
+        <h6 class="hit-dice"><i> {{ diceEquation }} </i></h6>
+    </div>
+    <div *ngIf="asterisk" class="multi-attack-icon">*</div>
+  </div>

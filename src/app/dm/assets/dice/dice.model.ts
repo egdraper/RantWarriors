@@ -7,6 +7,8 @@ export interface Rollable {
     public modifiedRollValue = 0;
     public hasAdvantage = false;
     public hasDisadvantage = false;
+    public criticalHit = false;
+    public criticalFail = false;
   }
   
   export class DiceEquation {

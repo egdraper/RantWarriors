@@ -1,4 +1,5 @@
 import { DiceEquation, Roll } from "./dice.model";
+import { ReadPropExpr } from "@angular/compiler";
 
 export class Dice {
   public savedRoll: Array<DiceEquation> = [];
@@ -8,23 +9,28 @@ export class Dice {
   public roll(diceEquation: string): Roll {
     this.parseEquation(diceEquation);
 
-    if (
-      diceEquation.startsWith("d20") &&
-      (this.withAdvantage || this.withDisadvantage)
-    ) {
+    if (diceEquation.startsWith("d20")) {
       const roll1 = this.performRoll();
       const roll2 = this.performRoll();
       if (this.withAdvantage) {
-        return roll1.modifiedRollValue >= roll2.modifiedRollValue
-          ? roll1
-          : roll2;
+        const advantageRoll = roll1.modifiedRollValue >= roll2.modifiedRollValue
+        ? roll1
+        : roll2;
+        this.setCrit(advantageRoll);
+        return advantageRoll;
       }
 
       if (this.withDisadvantage) {
-        return roll1.modifiedRollValue <= roll2.modifiedRollValue
+        const disadvantageRoll = roll1.modifiedRollValue <= roll2.modifiedRollValue
           ? roll1
           : roll2;
+        this.setCrit(disadvantageRoll);
+        return disadvantageRoll;
       }
+
+      const regularRoll = this.performRoll();
+      this.setCrit(regularRoll);
+      return regularRoll;
     } else {
       return this.performRoll();
     }
@@ -69,5 +75,15 @@ export class Dice {
         )
       );
     });
+  }
+
+  public setCrit(roll: Roll): void {
+    if (roll.actualRollValue === 20) {
+      roll.criticalHit = true;
+    }
+
+    if (roll.actualRollValue === 1) {
+      roll.criticalFail = true;
+    }
   }
 }

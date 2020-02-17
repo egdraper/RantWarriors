@@ -13,8 +13,8 @@ export class  Action {
 }
 
 export class Trait {
-  public name: string;
-  public info: string;
+  public name = "";
+  public info = "";
 }
 
 export class Abilities {
@@ -51,7 +51,7 @@ export class Creature {
   public experience: number;
   public challenge: number;
   public skillProficiencies: Checks[] = [];
-  public lastDamageTaken?: number;
+  public lastDamageTaken?: number = 0;
   public resistances: string[] = [];
   public immunities: string[] = [];
   public conditionImmunities: string[] = [];
@@ -67,6 +67,8 @@ export class Creature {
   public alignment: string;
   public legendaryActions: Trait[] = [];
   public imgUrl?: string;
+  public hasAdvantage?: boolean = false;
+  public hasDisadvantage?: boolean = false;
 }
 
 export class CreatureDB {

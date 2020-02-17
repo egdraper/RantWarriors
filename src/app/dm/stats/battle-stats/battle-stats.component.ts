@@ -1,7 +1,8 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, ContentChildren, ViewChildren } from "@angular/core";
 import { Dice } from "../../assets/dice/dice.service";
 import { Npc } from "../../assets/npc.model";
-import { Action } from "../../assets/creature.model";
+import { Action, Creature } from "../../assets/creature.model";
+import { ActionButtonComponent } from "../action-button/action-button.component";
 
 @Component({
   selector: "app-battle-stats",
@@ -9,26 +10,25 @@ import { Action } from "../../assets/creature.model";
   styleUrls: ["./battle-stats.component.scss"]
 })
 export class BattleStatsComponent {
-  @Input() activeCreature: Npc;
+  @ViewChildren(ActionButtonComponent) actionButton: ActionButtonComponent[];
+  @Input() creature: Creature;
   public shrink = false;
   public attack = 0;
   public damage = 0;
-  public advantage = false;
-  public disadvantage = false;
 
   public generateRandomHp(): void {
     const dice = new Dice();
-    dice.withAdvantage = this.advantage;
-    dice.withDisadvantage = this.disadvantage;
-    const roll = dice.roll(this.activeCreature.hitDice);
-    this.activeCreature.maxHitPoints = roll.modifiedRollValue;
-    this.activeCreature.currentHitPoints = roll.modifiedRollValue;
+    dice.withAdvantage = this.creature.hasAdvantage;
+    dice.withDisadvantage = this.creature.hasDisadvantage;
+    const roll = dice.roll(this.creature.hitDice);
+    this.creature.maxHitPoints = roll.modifiedRollValue;
+    this.creature.currentHitPoints = roll.modifiedRollValue;
   }
 
   public rollAttack(action: Action): void {
     const dice = new Dice();
-    dice.withAdvantage = this.advantage;
-    dice.withDisadvantage = this.disadvantage;
+    dice.withAdvantage = this.creature.hasAdvantage;
+    dice.withDisadvantage = this.creature.hasDisadvantage;
 
     const roll = dice.roll(`d20+${action.attackBonus}`);
     action.attackRoll = roll.modifiedRollValue;
@@ -41,29 +41,6 @@ export class BattleStatsComponent {
   }
 
   public refreshAttack(): void {
-    this.activeCreature.actions.forEach(action => {
-      if (action.attackRoll) {
-        action.attackRoll = 0;
-      }
-
-      if (action.damageRoll) {
-        action.damageRoll = 0;
-      }
-    });
-  }
-
-  public giveAdvantage(): void {
-    this.advantage = true;
-    this.disadvantage = false;
-  }
-
-  public giveDisadvantage(): void {
-    this.advantage = false;
-    this.disadvantage = true;
-  }
-
-  public resetAdvantage(): void {
-    this.advantage = false;
-    this.disadvantage = false;
+    this.actionButton.forEach(ab => ab.reset());
   }
 }

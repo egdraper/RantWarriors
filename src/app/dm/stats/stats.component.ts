@@ -9,11 +9,12 @@ import { Creature } from "../assets/creature.model";
 export class StatsComponent {
   @Input() public activeCreatures: Creature[] = [];
   @Output() public remove = new EventEmitter<Creature[]>();
-  public numbers = this.getNumbers();
+  public damageNumbers = [];
   public dead = "X";
 
-  public advantage = false;
-  public disadvantage = false;
+  constructor() {
+    this.setDamageNumbers();
+  }
 
   public removeCreature(index: number): void {
     this.activeCreatures = this.activeCreatures.filter((a, i) => i !== index);
@@ -25,54 +26,24 @@ export class StatsComponent {
     return this.remove.emit(this.activeCreatures);
   }
 
-  public giveAdvantage(): void {
-    this.advantage = true;
-    this.disadvantage = false;
+  private setDamageNumbers(): void {
+    for (let index = 1; index <= 50; index++) {
+      this.damageNumbers.push(index);
+    }
   }
 
-  public giveDisadvantage(): void {
-    this.advantage = false;
-    this.disadvantage = true;
+  public giveAdvantage(creature): void {
+    creature.hasAdvantage = true;
+    creature.hasDisadvantage = false;
   }
 
-  public resetAdvantage(): void {
-    this.advantage = false;
-    this.disadvantage = false;
+  public giveDisadvantage(creature): void {
+    creature.hasAdvantage = false;
+    creature.hasDisadvantage = true;
   }
 
-  private getNumbers(): number[] {
-    return [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12,
-      13,
-      14,
-      15,
-      16,
-      17,
-      18,
-      19,
-      20,
-      21,
-      22,
-      23,
-      24,
-      25,
-      26,
-      27,
-      28,
-      29,
-      30,31,32,33,34,35,36,37,38,39,40,
-      41,42,43,44,45,46,47,48,49,50,
-    ];
+  public resetAdvantage(creature): void {
+    creature.hasAdvantage = false;
+    creature.hasDisadvantage = false;
   }
 }

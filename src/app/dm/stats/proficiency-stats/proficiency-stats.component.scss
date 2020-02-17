@@ -1,41 +1,33 @@
 .saving-throw-proficiency {
-    display: flex;
-    padding: 9px;
-    background-color: ghostwhite;
-    border-radius: 4px;
-    border: 1px solid;
-    cursor: pointer;
-  
-    &:hover {
-      background-color: blanchedalmond;
-    }
-  
-    &:active {
-      background-color: rgb(163, 139, 79);
-    }
-  
-    .ability {
-      width: 60px;
-    }
-  
+  display: flex;
+  padding: 9px;
+  background-color: ghostwhite;
+  border-radius: 4px;
+  border: 1px solid;
+  cursor: pointer;
+
+  &:hover {
+    background-color: blanchedalmond;
   }
-  
-  .skill {
-     width: 100%;
+
+  &:active {
+    background-color: rgb(163, 139, 79);
   }
-  
-  .proficiency-group {
-     padding-left: 15px;
+
+  .ability {
+    width: 60px;
   }
-  
-  .proficiency-group,
-  .saving-throw-group {
-    width: 100%;
-  }
-  
-  
-  h5 {
-    margin: 7px;
-  }
-  
-  
+}
+
+.skill {
+  width: 100%;
+}
+
+.proficiency-group {
+  padding-left: 15px;
+}
+
+.proficiency-group,
+.saving-throw-group {
+  width: 100%;
+}

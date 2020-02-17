@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, ViewChildren } from "@angular/core";
 import { Creature } from "../../assets/creature.model";
 import { Dice } from "../../assets/dice/dice.service";
+import { ActionButtonComponent } from "../action-button/action-button.component";
 
 @Component({
   selector: "app-proficiency-stats",
@@ -8,9 +9,8 @@ import { Dice } from "../../assets/dice/dice.service";
   styleUrls: ["./proficiency-stats.component.scss"]
 })
 export class ProficiencyStatsComponent {
+  @ViewChildren(ActionButtonComponent) actionButton: ActionButtonComponent[];
   @Input() public creature: Creature;
-  @Input() public advantage = false;
-  @Input() public disadvantage = false;
 
   public savingThrow = 0;
   public proficiency = 0;
@@ -25,8 +25,8 @@ export class ProficiencyStatsComponent {
 
   private rollDice(modifier: number): number {
     const dice = new Dice();
-    dice.withAdvantage = this.advantage;
-    dice.withDisadvantage = this.disadvantage;
+    dice.withAdvantage = this.creature.hasAdvantage;
+    dice.withDisadvantage = this.creature.hasAdvantage;
 
     const equation =
       modifier >= 0
@@ -36,4 +36,7 @@ export class ProficiencyStatsComponent {
     return roll.modifiedRollValue;
   }
 
+  public refreshRolls(): void {
+    this.actionButton.forEach(ab => ab.reset());
+  }
 }

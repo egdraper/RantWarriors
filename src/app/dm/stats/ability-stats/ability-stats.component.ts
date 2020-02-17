@@ -8,14 +8,12 @@ import { Creature } from "../../assets/creature.model";
   styleUrls: ["./ability-stats.component.scss"]
 })
 export class AbilityStatsComponent {
-  @Input() public activeCreature: Creature;
-  @Input() public advantage = false;
-  @Input() public disadvantage = false;
+  @Input() public creature: Creature;
 
   public rollAbility(abilityModifier: number, creature: Creature): void {
     const dice = new Dice();
-    dice.withAdvantage = this.advantage;
-    dice.withDisadvantage = this.disadvantage;
+    dice.withAdvantage = this.creature.hasAdvantage;
+    dice.withDisadvantage = this.creature.hasDisadvantage;
     const equation =
       abilityModifier >= 0
         ? `d20+${abilityModifier}`
@@ -23,4 +21,5 @@ export class AbilityStatsComponent {
     const roll = dice.roll(equation);
     creature.abilityRoll = roll.modifiedRollValue;
   }
+
 }

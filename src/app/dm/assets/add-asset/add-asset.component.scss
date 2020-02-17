@@ -1,7 +1,16 @@
-
 .add-asset-container {
-    padding: 20px;
-    display: flex;
-    position: relative;
-    left: 204px;
+  padding: 20px;
+  position: relative;
+  left: 204px;
+}
+
+.entry-group {
+  display: flex;
+  margin-bottom: 25px;
+}
+
+.display-area {
+  border: 1px solid gray;
+  padding: 15px;
+  margin-left: 50px;
 }

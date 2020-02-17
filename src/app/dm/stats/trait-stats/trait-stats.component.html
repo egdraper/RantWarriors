@@ -1,1 +1,10 @@
-<p>trait-stats works!</p>
+<div>
+    <h1>Traits</h1>
+    <div *ngFor="let trait of creature?.traits">
+      <div class="action-group">
+        <h4 class="hit-text">{{ trait.name }}</h4>
+        <h6><i>{{ trait.info }}</i></h6>
+      </div>
+      <hr>
+    </div>
+  </div>
