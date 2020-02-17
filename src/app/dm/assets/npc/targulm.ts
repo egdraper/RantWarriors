@@ -72,5 +72,5 @@ export class Targulm implements Npc {
       attackType: "Slashing"
   } ];
 
-  public legendaryActions = [""];
+  public legendaryActions = [];
 }

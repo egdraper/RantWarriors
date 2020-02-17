@@ -48,7 +48,15 @@ export class Lemure implements Creature {
 
   public languages = ["Understands Infernal but can't speak"];
 
-  public traits = ["Devil's Sight", "Hellish Rejuvenation"];
+  public traits = [{ 
+    name: "Devil's Sight",
+    info: "Magical Darkness doesn't impede the lemure's Darkvision."
+   }, {
+      name: "Hellish Rejuvenation",
+      info: `A lemure that dies in the Nine Hells comes back to life with all its Hit Points
+        in 1d10 days unless it is killed by a good-aligned creature with a bless spell cast on
+        that creature or its remains are sprinkled with Holy Water.`
+    }];
 
   public actions: Action[] = [
     {

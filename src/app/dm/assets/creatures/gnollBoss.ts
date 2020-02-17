@@ -39,10 +39,10 @@ export class GnollBoss implements Creature {
     {
       ability: "CHA",
       value: 3
-    },
-   ];
+    }
+  ];
 
-  public skillProficiencies = [ ];
+  public skillProficiencies = [];
 
   public resistances = [];
 
@@ -52,14 +52,22 @@ export class GnollBoss implements Creature {
 
   public vulnerabilities = [];
 
-  public senses = [ {
-    sense: "Darkvision",
-    value: 60
-  }];
+  public senses = [
+    {
+      sense: "Darkvision",
+      value: 60
+    }
+  ];
 
   public languages = [];
 
-  public traits = [ "Rampage" ];
+  public traits = [
+    {
+      name: "Rampage",
+      info: `When the gnoll reduces a creature to 0 Hit Points with a melee Attack on its turn,
+      the gnoll can take a Bonus Action to move up to half its speed and make a bite Attack.`
+    }
+  ];
 
   public actions: Action[] = [
     {
@@ -70,14 +78,16 @@ export class GnollBoss implements Creature {
       attackType: "Piercing",
       allowedInMultipleAttacks: true,
       actionBonus: ["Wis DC Saving Throw or suffer 2d6 Poison"]
-    }, {
+    },
+    {
       name: "Claw",
       attackBonus: 5,
       range: "5",
       dice: "1d8+3",
       attackType: "Slashing",
       allowedInMultipleAttacks: true
-    }, {
+    },
+    {
       name: "Claw",
       attackBonus: 5,
       range: "5",

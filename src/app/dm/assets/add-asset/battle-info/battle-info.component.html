@@ -1,0 +1,72 @@
+<div  class="form-group">
+    <h1>Attack</h1>
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Weapon (ex: Longbow)"
+          name="name"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="action.name"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Attack Type</mat-label>
+        <mat-select
+          [placeholder]="'Attack Type (ex: Slashing)'"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="action.attackType"
+        >
+          <mat-option *ngFor="let actions of damageTypes" [value]="actions">
+            {{ actions }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Attack Bonus"
+          name="attackBonus"
+          type="number"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="action.attackBonus"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Damage Dice (ex: 2d4+3)"
+          name="damageDice"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="action.dice"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Range (ex: 5 or 20/80)"
+          name="range"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="action.range"
+        />
+      </mat-form-field>
+    </div>
+    <div>     
+      <mat-checkbox
+        [(ngModel)]="action.allowedInMultipleAttacks"
+        value="newAction.allowedInMultipleAttacks"
+        [ngModelOptions]="{ standalone: true }">
+        Allowed In Multiple Attack</mat-checkbox>
+    </div> 
+    <div>
+      <button mat-button (click)="addAttackAction()">Add</button>
+    </div>
+  </div>

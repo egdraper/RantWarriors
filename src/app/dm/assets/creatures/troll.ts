@@ -48,7 +48,18 @@ export class Troll implements Creature {
 
   public languages = ["Giant"];
 
-  public traits = ["Keen Smell", "Regeneration"];
+  public traits = [
+    {
+      name: "Keen Smell",
+      info: ``
+    },
+    {
+      name: "Regeneration",
+      info: `The troll regains 10 Hit Points at the start of its turn.
+         If the troll takes acid or fire damage, this trait doesn't function at the start of the troll's next turn.
+         The troll dies only if it starts its turn with 0 Hit Points and doesn't Regenerate.`
+    }
+  ];
 
   public actions: Action[] = [
     {

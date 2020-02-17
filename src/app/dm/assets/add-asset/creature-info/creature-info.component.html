@@ -1,0 +1,70 @@
+<div class="form-group">
+    <h1>Character Stats</h1>
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Name"
+          name="name"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="creature.name"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Speed"
+          name="speed"
+          type="number"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="creature.speed"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Armor Class"
+          name="armorClass"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="creature.armorClass"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Passive Perception"
+          name="passivePerception"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="creature.passivePerception"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Max Hit Points"
+          name="maxHitPoints"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="creature.maxHitPoints"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Hit Dice (ex:2d8+6 - NO Spaces)"
+          name="hitDice"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="creature.hitDice"
+        />
+      </mat-form-field>
+    </div>
+  </div>

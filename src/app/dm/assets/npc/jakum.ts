@@ -86,10 +86,26 @@ export class Jakum implements Npc {
   public languages = ["All", "Telepathy (120)"];
 
   public traits = [
-    "Angelic Weapons",
-    "Divine Awareness",
-    "Innate SpellCasting",
-    "Magic Resistance"
+    {
+     name: "Angelic Weapons",
+     info: `The planetar's weapon attacks are magical. When the planetar hits with any weapon,
+       the weapon deals an extra 5d8 radiant damage (included in the attack).`
+    },
+    {
+      name: "Divine Awareness",
+      info: `The planetar knows if it hears a lie.`
+    },
+    {
+      name: "Innate SpellCasting",
+      info: `The planetar's Spellcasting Ability is Charisma (spell save DC 20). The planetar can innately cast the following Spells, requiring no material components:
+        \nAt will: Detect Evil and Good, Invisibility (self only)
+      3/day each: Blade Barrier, Dispel Evil and Good, Flame Strike, Raise Dead
+      1/day each: Commune, Control Weather, Insect Plague`
+    },
+    {
+      name: "Magic Resistance",
+      info: `The planetar has advantage on Saving Throws against Spells and other magical Effects.`
+    },
   ];
 
   public actions: Action[] = [

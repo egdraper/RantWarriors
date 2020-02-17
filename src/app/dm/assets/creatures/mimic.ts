@@ -27,30 +27,55 @@ export class Mimic implements Creature {
     charisma: -1
   };
 
-  public savingThrows = [ ];
+  public savingThrows = [];
 
   public skillProficiencies = [
     {
       ability: "Stealth",
       value: 5
-  } ];
+    }
+  ];
 
   public resistances = [];
 
-  public immunities = [ "Poison" ];
+  public immunities = ["Poison"];
 
-  public conditionImmunities = [ "Prone" ];
+  public conditionImmunities = ["Prone"];
 
   public vulnerabilities = [];
 
-  public senses = [ {
-    sense: "Darkvision",
-    value: 60
-  }];
+  public senses = [
+    {
+      sense: "Darkvision",
+      value: 60
+    }
+  ];
 
   public languages = [];
 
-  public traits = [ "Shapechanger",  "Adhesive", "False Appearance", "Grappler"];
+  public traits = [
+    {
+      name: "Shapechanger",
+      info: `The mimic can use its action to Polymorph into an object or back into its true,
+        amorphous form. Its Statistics are the same in each form. Any Equipment it is wearing
+        or carrying isn 't transformed. It reverts to its true form if it dies.`
+    },
+    {
+      name: "Adhesive",
+      info: `The mimic adheres to anything that touches it. A Huge or smaller creature adhered to
+        the mimic is also Grappled by it (escape DC 13). Ability Checks made to escape this grapple
+        have disadvantage.
+      `
+    },
+    {
+      name: "False Appearance",
+      info: `While the mimic remains motionless, it is indistinguishable from an ordinary object.`
+    },
+    {
+      name: "Grappler",
+      info: `The mimic has advantage on Attack rolls against any creature Grappled by it.`
+    }
+  ];
 
   public actions: Action[] = [
     {
@@ -59,14 +84,17 @@ export class Mimic implements Creature {
       range: "5",
       dice: "1d8+3",
       attackType: "Bludgeoning",
-      actionBonus: ["If the mimic is in object form, the target is subjected to its Adhesive trait"]
-    }, {
+      actionBonus: [
+        "If the mimic is in object form, the target is subjected to its Adhesive trait"
+      ]
+    },
+    {
       name: "Bite",
       attackBonus: 5,
       range: "5",
       dice: "1d8+3",
-      attackType: "Piercing",
-    },
+      attackType: "Piercing"
+    }
   ];
 
   public legendaryActions = [];

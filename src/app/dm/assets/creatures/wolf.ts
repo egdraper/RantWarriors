@@ -4,7 +4,7 @@ export class Wolf implements Creature {
   public name = "Wolf";
   public armorClass = 13;
   public speed = 40;
-  public challenge = .25;
+  public challenge = 0.25;
   public maxHitPoints = 11;
   public currentHitPoints = 11;
   public hitDice = "2d8+2";
@@ -24,10 +24,10 @@ export class Wolf implements Creature {
     constitution: 1,
     intelligence: -4,
     wisdom: 1,
-    charisma: -2,
+    charisma: -2
   };
 
-  public savingThrows = [ ];
+  public savingThrows = [];
 
   public skillProficiencies = [
     {
@@ -52,16 +52,30 @@ export class Wolf implements Creature {
 
   public languages = [];
 
-  public traits = ["Keen Hearing and Smell"];
+  public traits = [
+    {
+      name: "Keen Hearing and Smell",
+      info: `The wolf has advantage on Wisdom (Perception) checks that rely on hearing or smell.`
+    },
+    {
+      name: "Pack Tactics",
+      info: `The wolf has advantage on an Attack roll against a creature if at least one of the wolf's
+        allies is within 5 ft. of the creature and the ally isn't Incapacitated.`
+    }
+  ];
 
-  public actions: Action[] = [ {
-    name: "Bite",
-    range: "5",
-    attackBonus: 4,
-    attackType: "Piercing",
-    dice: "2d4+2",
-    actionBonus: ["If target is a creature must succeed DC 11 Str saving throw or be knocked prone"]
-  } ];
+  public actions: Action[] = [
+    {
+      name: "Bite",
+      range: "5",
+      attackBonus: 4,
+      attackType: "Piercing",
+      dice: "2d4+2",
+      actionBonus: [
+        "If target is a creature must succeed DC 11 Str saving throw or be knocked prone"
+      ]
+    }
+  ];
 
   public legendaryActions = [];
 }

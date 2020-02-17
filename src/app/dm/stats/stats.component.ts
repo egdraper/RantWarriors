@@ -1,10 +1,5 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { Creature } from "../../assets/creature.model";
-import { Dice } from "../../assets/dice/dice.service";
-import { Npc } from "../../assets/npc.model";
-import { npcs } from "../../assets/npc.db";
-
-import { cloneDeep } from "lodash";
+import { Creature } from "../assets/creature.model";
 
 @Component({
   selector: "stats",
@@ -17,6 +12,9 @@ export class StatsComponent {
   public numbers = this.getNumbers();
   public dead = "X";
 
+  public advantage = false;
+  public disadvantage = false;
+
   public removeCreature(index: number): void {
     this.activeCreatures = this.activeCreatures.filter((a, i) => i !== index);
 
@@ -25,6 +23,21 @@ export class StatsComponent {
     }
 
     return this.remove.emit(this.activeCreatures);
+  }
+
+  public giveAdvantage(): void {
+    this.advantage = true;
+    this.disadvantage = false;
+  }
+
+  public giveDisadvantage(): void {
+    this.advantage = false;
+    this.disadvantage = true;
+  }
+
+  public resetAdvantage(): void {
+    this.advantage = false;
+    this.disadvantage = false;
   }
 
   private getNumbers(): number[] {

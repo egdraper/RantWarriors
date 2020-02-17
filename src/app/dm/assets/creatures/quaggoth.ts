@@ -27,7 +27,7 @@ export class Quaggoth implements Creature {
     charisma: -2
   };
 
-  public savingThrows = [ ];
+  public savingThrows = [];
 
   public skillProficiencies = [
     {
@@ -40,7 +40,7 @@ export class Quaggoth implements Creature {
 
   public immunities = ["Poison"];
 
-  public conditionImmunities = ["Poisoned"]
+  public conditionImmunities = ["Poisoned"];
 
   public vulnerabilities = [];
 
@@ -48,29 +48,36 @@ export class Quaggoth implements Creature {
     {
       sense: "Darkvision",
       value: 120
-    },
+    }
   ];
 
   public languages = ["Undercommon"];
 
-  public traits = ["Wounded Fury"];
+  public traits = [
+    {
+      name: "Wounded Fury",
+      info: `While it has 10 hit points or fewer, the quaggoth has advantage on attack rolls.
+        In addition, it deals an extra 7 (2d6) damage to any target it hits with a melee attack.`
+    }
+  ];
 
-  public actions: Action[] = [ 
+  public actions: Action[] = [
     {
       name: "Claws",
       attackBonus: 5,
       dice: "1d6+3",
       attackType: "Slashing",
       range: "5",
-      allowedInMultipleAttacks: true,
-    },    {
+      allowedInMultipleAttacks: true
+    },
+    {
       name: "Claws",
       attackBonus: 5,
       dice: "1d6+3",
       attackType: "Slashing",
       range: "5",
-      allowedInMultipleAttacks: true,
-    },
+      allowedInMultipleAttacks: true
+    }
   ];
 
   public legendaryActions = [];

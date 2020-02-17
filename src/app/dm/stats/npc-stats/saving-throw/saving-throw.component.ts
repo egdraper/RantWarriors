@@ -9,6 +9,9 @@ import { Dice } from "src/app/dm/assets/dice/dice.service";
 })
 export class SavingThrowComponent {
   @Input() public creature: Creature;
+  @Input() public advantage = false;
+  @Input() public disadvantage = false;
+
   public savingThrow = 0;
   public proficiency = 0;
 
@@ -22,6 +25,9 @@ export class SavingThrowComponent {
 
   private rollDice(modifier: number): number {
     const dice = new Dice();
+    dice.withAdvantage = this.advantage;
+    dice.withDisadvantage = this.disadvantage;
+
     const equation =
       modifier >= 0
         ? `d20+${modifier}`

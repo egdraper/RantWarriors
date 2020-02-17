@@ -1,0 +1,69 @@
+<div  class="form-group">
+    <h1>Ability Modifiers</h1>
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Strength"
+          [ngModelOptions]="{ standalone: true }"
+          type="number"
+          [(ngModel)]="creature.abilities.strength"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Dexterity"
+          [ngModelOptions]="{ standalone: true }"
+          type="number"
+          [(ngModel)]="creature.abilities.dexterity"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Constitution"
+          [ngModelOptions]="{ standalone: true }"
+          type="number"
+          [(ngModel)]="creature.abilities.constitution"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Intelligence"
+          [ngModelOptions]="{ standalone: true }"
+          type="number"
+          [(ngModel)]="creature.abilities.intelligence"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Wisdom"
+          [ngModelOptions]="{ standalone: true }"
+          type="number"
+          [(ngModel)]="creature.abilities.wisdom"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Charisma"
+          [ngModelOptions]="{ standalone: true }"
+          type="number"
+          [(ngModel)]="creature.abilities.charisma"
+        />
+      </mat-form-field>
+    </div>
+  </div>

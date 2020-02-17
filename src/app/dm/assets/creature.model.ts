@@ -65,7 +65,7 @@ export class Creature {
   public numberOfActions: number;
   public size: string;
   public alignment: string;
-  public legendaryActions: string[] = [];
+  public legendaryActions: Trait[] = [];
   public imgUrl?: string;
 }
 

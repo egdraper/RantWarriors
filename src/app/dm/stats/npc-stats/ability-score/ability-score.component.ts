@@ -9,9 +9,14 @@ import { Dice } from "src/app/dm/assets/dice/dice.service";
 })
 export class AbilityScoreComponent {
   @Input() public activeCreature: Creature;
+  @Input() public advantage = false;
+  @Input() public disadvantage = false;
 
   public rollAbility(abilityModifier: number, creature: Creature): void {
     const dice = new Dice();
+    debugger
+    dice.withAdvantage = this.advantage;
+    dice.withDisadvantage = this.disadvantage;
     const equation =
       abilityModifier >= 0
         ? `d20+${abilityModifier}`

@@ -39,8 +39,8 @@ export class Wight implements Creature {
     {
       ability: "CHA",
       value: 3
-    },
-   ];
+    }
+  ];
 
   public skillProficiencies = [
     {
@@ -51,24 +51,35 @@ export class Wight implements Creature {
       ability: "Stealth",
       value: 4
     }
-   ];
+  ];
 
-  public resistances = [ "Necrotic", "Bludgeoning, Piercing, Slashing from non magical weapons that aren't silvered."];
+  public resistances = [
+    "Necrotic",
+    "Bludgeoning, Piercing, Slashing from non magical weapons that aren't silvered."
+  ];
 
-  public immunities = [ "Poison"];
+  public immunities = ["Poison"];
 
-  public conditionImmunities = [ "Exhaustion", "Poisoned" ];
+  public conditionImmunities = ["Exhaustion", "Poisoned"];
 
   public vulnerabilities = [];
 
-  public senses = [ {
-    sense: "Darkvision",
-    value: 60
-  }];
+  public senses = [
+    {
+      sense: "Darkvision",
+      value: 60
+    }
+  ];
 
   public languages = [];
 
-  public traits = [ "Sunlight Sensitivity" ];
+  public traits = [
+    {
+      name: "Sunlight Sensitivity",
+      info: `While in sunlight, the wight has disadvantage on Attack rolls, as well as on Wisdom (Perception)
+      checks that rely on sight.`
+    }
+  ];
 
   public actions: Action[] = [
     {
@@ -93,7 +104,10 @@ export class Wight implements Creature {
       range: "5",
       dice: "1d6+2",
       attackType: "Necrotic",
-      actionBonus: [`The target must succeed on a DC 13 Constitution saving throw or its hit point maximum is reduced by an amount equal to the damage taken. This reduction lasts until the target finishes a Long Rest.`]
+      actionBonus: [
+        `The target must succeed on a DC 13 Constitution saving throw or its hit point maximum is reduced by an amount equal to the damage taken. This reduction lasts until the target finishes a Long Rest. The target dies if this effect reduces its hit point maximum to 0.
+        A Humanoid slain by this Attack rises 24 hours later as a Zombie under the wight's control, unless the Humanoid is restored to life or its body is destroyed. The wight can have no more than twelve Zombies under its control at one time.`
+      ]
     }
   ];
 

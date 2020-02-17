@@ -1,0 +1,39 @@
+   
+<div *ngIf="!shrink"> 
+    <div class="offense-header">
+      <h1 class="creature-name">Actions ({{ activeCreature.numberOfActions }})</h1>
+      <mat-icon (click)="refreshAttack()" >refresh</mat-icon>
+    </div>
+    <div class="advantage-wrapper">
+      <button mat-button (click)="giveAdvantage()"><mat-icon class="advantage">visibility</mat-icon></button>
+      <button mat-button (click)="resetAdvantage()" class="normal">X</button>
+      <button mat-button (click)="giveDisadvantage()"><mat-icon class="disadvantage">visibility_off</mat-icon></button>
+    </div>
+    
+    <div *ngFor="let action of activeCreature.actions">
+      <div *ngIf="action.name">
+        <div class="action-group">
+          <div *ngIf="action.allowedInMultipleAttacks" class="multi-attack-icon">*</div>
+          <mat-icon (click)="rollAttack(action)">center_focus_weak</mat-icon>
+          <h4 class="hit-text"> Hit </h4>
+          <h5 class="hit-dice"> (d20+{{ action.attackBonus && action.attackBonus > 0 ? action.attackBonus : 0 }}): </h5>
+          <h4 class="hit-roll"> {{ action.attackRoll || 0}}</h4>
+        </div>
+        <div class="action-group">
+          <mat-icon (click)="rollDamage(action)">brightness_7</mat-icon>
+          <h4 class="hit-text">{{ action.name }}</h4>
+          <h5 class="hit-dice"> ({{ action.dice }}) </h5>
+          <h4 class="hit-roll"> {{ action.damageRoll || 0 }} </h4>
+        </div>
+        <h5 class="attack-type">{{ action.attackType }}</h5>
+        <h6 class="hit-dice"> {{ action.actionBonus }}</h6>
+      </div>
+      <div *ngIf="action.moreInfo">
+        <div class="action-group">
+          <h4 class="hit-text"> {{ action.name}} </h4>        
+          <a class="hit-dice" href="{{ activeCreature.link }}" target="_blank"> - Book {{ activeCreature.page }}</a>
+        </div>
+      </div>
+      <hr/>
+    </div>
+  </div>

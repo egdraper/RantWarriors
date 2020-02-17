@@ -46,7 +46,13 @@ export class GnollMelee implements Creature {
 
   public languages = [];
 
-  public traits = [ "Rampage" ];
+  public traits = [
+    {
+      name: "Rampage",
+      info: `When the gnoll reduces a creature to 0 Hit Points with a melee Attack on its turn,
+        the gnoll can take a Bonus Action to move up to half its speed and make a bite Attack.`
+    }
+  ];
 
   public actions: Action[] = [
     {

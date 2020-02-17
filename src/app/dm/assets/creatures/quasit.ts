@@ -58,7 +58,20 @@ export class Quasit implements Creature {
 
   public languages = ["Abysmal", "Common"];
 
-  public traits = ["Shape Changer", "Magic Resistance"];
+  public traits = [
+    {
+      name: "Shape Changer",
+      info: `The quasit can use its action to Polymorph into a beast form that resembles a bat
+        (speed 10 ft. fly 40 ft.), a centipede (40 ft., climb 40 ft.), or a toad (40 ft., swim 40 ft.),
+        or back into its true form . Its Statistics are the same in each form,
+        except for the speed changes noted. Any Equipment it is wearing or carrying isn't transformed .
+        It reverts to its true form if it dies.`
+    },
+    {
+      name: "Magic Resistance",
+      info: `The quasit has advantage on Saving Throws against Spells and other magical Effects.`
+    }
+  ];
 
   public actions: Action[] = [
     {
@@ -67,15 +80,19 @@ export class Quasit implements Creature {
       attackBonus: 4,
       range: "5",
       dice: "1d4+3",
-      actionBonus: ["Target must succeed DC 10 Const saving throw or take 2d4 damage and be poisoned for 1 minute. See Book"]
+      actionBonus: [
+        "Target must succeed DC 10 Const saving throw or take 2d4 damage and be poisoned for 1 minute. See Book"
+      ]
     },
     {
       name: "Scare",
-      actionBonus: ["Target must succeed DC 10 Wis saving throw or be scared for 1 minute. See Book"]
+      actionBonus: [
+        "Target must succeed DC 10 Wis saving throw or be scared for 1 minute. See Book"
+      ]
     },
     {
-      name: "Invisibility",
-    },
+      name: "Invisibility"
+    }
   ];
 
   public legendaryActions = [];

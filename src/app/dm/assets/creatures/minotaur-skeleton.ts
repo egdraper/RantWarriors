@@ -35,7 +35,7 @@ export class MinotaurSkeleton implements Creature {
 
   public vulnerabilities = ["Bludgeoning"];
 
-  public immunities = ["Poison" ];
+  public immunities = ["Poison"];
 
   public conditionImmunities = ["Exhaustion", "Poisoned"];
 
@@ -48,7 +48,15 @@ export class MinotaurSkeleton implements Creature {
 
   public languages = ["Abyssal"];
 
-  public traits = ["Charge"];
+  public traits = [
+    {
+      name: "Charge",
+      info: `If the Skeleton moves at least 10 feet straight toward a target and then hits
+        it with a gore Attack on the same turn, the target takes an extra 9 (2d8) piercing damage.
+        If the target is a creature, it must succeed on a DC 14 Strength saving throw or be pushed 
+        up to 10 feet away and knocked prone.`
+    }
+  ];
 
   public actions: Action[] = [
     {
@@ -56,15 +64,15 @@ export class MinotaurSkeleton implements Creature {
       attackBonus: 6,
       range: "5",
       dice: "2d12+4",
-      attackType: "Slashing",
+      attackType: "Slashing"
     },
     {
       name: "Gore",
       attackBonus: 6,
       range: "5",
       dice: "2d8+4",
-      attackType: "Slashing",
-    },
+      attackType: "Slashing"
+    }
   ];
 
   public legendaryActions = [];

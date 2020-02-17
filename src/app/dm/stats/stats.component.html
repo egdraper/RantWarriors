@@ -5,27 +5,42 @@
       activeCreature.currentHitPoints < 1 ? dead : i
     }}"
   >
-    <span class="stat-numbers">
-      <button
-        class="damage-quick-link"
-        mat-button
-        (click)="activeCreature.currentHitPoints = activeCreature.currentHitPoints - number"
-        *ngFor="let number of numbers; let l = index">
-        {{ number }}
-      </button>
-    </span>
+
     <div class="active-creatures">
+      <span class="stat-numbers">
+        <button
+          class="damage-quick-link"
+          mat-button
+          (click)="activeCreature.currentHitPoints = activeCreature.currentHitPoints - number"
+          *ngFor="let number of numbers; let l = index">
+          {{ number }}
+        </button>
+      </span>
+      <hr>
       <div
         class="creature-cell"
         [class.creature-dead]="activeCreature.currentHitPoints <= 0">
-        <div>
-          <h3>{{ activeCreature.name }} - CR: {{ activeCreature.challenge }}</h3>
+        <div class="creature-rolls" [ngClass]="{'has-advantage': advantage, 'has-disadvantage': disadvantage, 'no-advantage': !advantage && !disadvantage}">
+          <h3>{{ activeCreature.name }} - CR: {{ activeCreature.challenge }}  </h3>
+          <div class="advantage-wrapper">
+            <button mat-button (click)="giveAdvantage()"><mat-icon class="advantage">visibility</mat-icon></button>
+            <button mat-button (click)="resetAdvantage()" class="normal">X</button>
+            <button mat-button (click)="giveDisadvantage()"><mat-icon class="disadvantage">visibility_off</mat-icon></button>
+         </div>
           <div [style.display]="'flex'">
-            <app-ability-score [activeCreature]="activeCreature"></app-ability-score>
+            <app-ability-score 
+              [activeCreature]="activeCreature"
+              [advantage]="advantage"
+              [disadvantage]="disadvantage">
+            </app-ability-score>
             <img src="{{ activeCreature.imgUrl }}" />
           </div>
           <hr>
-          <app-saving-throw [creature]="activeCreature"></app-saving-throw>
+          <app-saving-throw
+            [advantage]="advantage"
+            [disadvantage]="disadvantage"
+            [creature]="activeCreature">
+          </app-saving-throw>
         </div>
         <div class="trait-grouping">
           <battle-defense [activeCreature]="activeCreature"> </battle-defense>
@@ -56,38 +71,7 @@
             activeCreature.vulnerabilities.length !== 0
           "
         >
-          <div *ngIf="activeCreature?.immunities?.length !== 0">
-            <h3>Immunities</h3>
-            <h4 *ngFor="let immunity of activeCreature.immunities">
-              - {{ immunity }}
-            </h4>
-            <hr />
-          </div>
-          <div *ngIf="activeCreature?.conditionImmunities?.length !== 0">
-            <h3>Condition Immunities</h3>
-            <h4
-              *ngFor="
-                let conditionImmunity of activeCreature.conditionImmunities
-              "
-            >
-              - {{ conditionImmunity }}
-            </h4>
-            <hr />
-          </div>
-          <div *ngIf="activeCreature?.resistances?.length !== 0">
-            <h3>Resistances</h3>
-            <h4 *ngFor="let resistance of activeCreature.resistances">
-              - {{ resistance }}
-            </h4>
-            <hr />
-          </div>
-          <div *ngIf="activeCreature?.vulnerabilities?.length !== 0">
-            <h3>Vulnerabilities</h3>
-            <h4 *ngFor="let vulnerablility of activeCreature.vulnerabilities">
-              - {{ vulnerablility }}
-            </h4>
-            <hr />
-          </div>
+        
         </div>
       </div>
     </div>

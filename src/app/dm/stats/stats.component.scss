@@ -1,12 +1,16 @@
 .active-creatures {
     padding: 10px;
+    background-color: rgb(216, 216, 216);
   
     .creature-cell {
       padding: 5px;
-      background-color: rgb(216, 216, 216);
       border-radius: 5px;
       display: flex;
       flex-wrap: nowrap;
+
+      .creature-rolls {
+        padding: 10px;
+      }
   
       .trait-grouping {
         padding-left: 25px;
@@ -71,4 +75,8 @@
   }
   .has-disadvantage {
     background-color: #ff000026;
+  }
+
+  .no-advantage {
+    background-color: #b4b4b4;
   }

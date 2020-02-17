@@ -43,7 +43,19 @@ export class Pixie implements Creature {
 
   public languages = [];
 
-  public traits = ["Magic Resistance", "Innate Spellcasting"];
+  public traits = [
+    {
+      name: "Magic Resistance",
+      info: `The pixie has advantage on saving throws against spells and other magical effects.`
+    },
+    {
+      name: "Innate Spellcasting",
+      info: `The pixie's innate spellcasting ability is Charisma (spell save DC 12). It can
+        innately cast the following spells, requiring only its pixie dust as a component:\n
+        At will: druidcraft\n1/day each: confusion, dancing lights, detect evil and good,
+        detect thoughts, dispel magic, entangle, fly, phantasmal force, polymorph, sleep
+      `
+    } ];
 
   public actions: Action[] = [
     {

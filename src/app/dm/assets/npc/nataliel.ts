@@ -12,6 +12,7 @@ export class Nataliel implements Npc {
   public flySpeed = 150;
   public link = "http://online.anyflip.com/duex/ixpz/mobile/index.html#p=18";
   public page = 19;
+  public imgUrl = "https://i.pinimg.com/originals/69/26/0c/69260c4ae780004068c8ea2f68a79c3d.png";
   public passivePerception = 24;
   public experience = 33000;
   public numberOfActions = 2;
@@ -20,9 +21,7 @@ export class Nataliel implements Npc {
   public size = "Large";
   public alignment = "Lawful Good";
 
-  public relations = [
-    "Angelic Solar met on the road to clayton",
-  ];
+  public relations = ["Angelic Solar met on the road to clayton"];
 
   public notes = [
     "Magical Items: upon death, she gifts the travelers with special bracelets giving them magical ability",
@@ -86,10 +85,26 @@ export class Nataliel implements Npc {
   public vulnerabilities = [];
 
   public traits = [
-    "Angelic Weapons",
-    "Divine Awareness",
-    "Innate SpellCasting",
-    "Magic Resistance"
+    {
+      name: "Angelic Weapons",
+      info: `The Solar's weapon attacks are magical. When the Solar hits with any weapon,
+        the weapon deals an extra 5d8 radiant damage (included in the attack).`
+    },
+    {
+      name: "Divine Awareness",
+      info: `The Solar knows if it hears a lie.`
+    },
+    {
+      name: "Innate SpellCasting",
+      info: `The Solar's spellcasting Ability is Charisma (spell save DC 20). The Solar can innately cast the following Spells, requiring no material components:
+         \nAt will: Detect Evil and Good, Invisibility (self only)
+         3/day each: Blade Barrier, Dispel Evil and Good, Resurrection
+         1/day each: Commune, Control Weather`
+    },
+    {
+      name: "Magic Resistance",
+      info: `The Solar has advantage on Saving Throws against Spells and other magical Effects.`
+    }
   ];
 
   public actions: Action[] = [
@@ -116,13 +131,43 @@ export class Nataliel implements Npc {
     },
     {
       name: "Flying Sword",
-      actionBonus: ["See Book"]
+      allowedInMultipleAttacks: true,
+      attackType: "Slashing",
+      attackBonus: 15,
+      range: "5",
+      dice: "4d6+8",
+      actionBonus: [
+        `The solar releases its Greatsword to hover magically in an unoccupied space within 5 ft. of it.
+        If the solar can see the sword, the solar can mentally Command it as a Bonus Action to fly up to 50 ft.
+        and either make one Attack against a target or return to the solar's hands. If the hovering sword is
+        targeted by any effect, the solar is considered to be holding it. The hovering sword falls if the solar dies.`
+      ]
     },
     {
       name: "Healing Touch",
-      actionBonus: ["See Book"]
+      actionBonus: [
+        `(4/Day): The solar touches another creature. The target magically regains 40 (8d8 + 4)
+        Hit Points and is freed from any curse, disease, poison, blindness, or deafness.`
+      ]
     }
   ];
 
-  public legendaryActions = ["Teleport", "Searing Burst", "Blinding Gaze"];
+  public legendaryActions = [
+    {
+      name: `Teleport`,
+      info: `The solar magically teleports, along with any equipment it is wearing or carrying, up to 120 ft. to an unoccupied space it can see.`
+    },
+    {
+      name: `Searing Burst (Costs 2 Actions)`,
+      info: `The solar emits magical, divine energy. Each creature of its choice in a 10 -foot radius must make a
+        DC 23 Dexterity saving throw, taking 14 (4d6) fire damage plus 14 (4d6) radiant damage on a failed save,
+        or half as much damage on a successful one.`
+    },
+    {
+      name: `Blinding Gaze (Costs 3 Actions)`,
+      info: `The solar targets one creature it can see within 30 ft. of it. If the target can see it, 
+        the target must succeed on a DC 15 Constitution saving throw or be blinded until magic such as
+        the lesser restoration spell removes the blindness.`
+    }
+  ];
 }
