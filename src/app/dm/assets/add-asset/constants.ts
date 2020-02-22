@@ -45,7 +45,8 @@ export class Constants {
     "Proficiencies",
     "Immunities+",
     "Traits",
-  ]
+    "Legendary Actions"
+  ];
 }
 
 export enum CreaturePart {

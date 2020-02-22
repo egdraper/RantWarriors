@@ -8,11 +8,10 @@ import { AngularFireDatabase } from "@angular/fire/database";
     styleUrls: ["./dm-screen.component.scss"]
   })
   export class DmScreenComponent {
-
     // constructor(
     //   public firebase: AngularFireDatabase,
     //   private firestore: AngularFirestore
     // ) {
-    //   this.firestore.collection("assets").add({what: "hohoho"});
+    //   this.firestore.collection("assets").get({what: "hohoho"});
     // }
   }

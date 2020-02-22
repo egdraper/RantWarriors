@@ -152,6 +152,8 @@ export class Nataliel implements Npc {
     }
   ];
 
+  public legendaryActionsInfo = "Can take 3 Legendary Actions, choosing from the options below. Only one legendary action can be used at a time, and only at the end of another creature's turn. Spent legendary Actions are regained at the start of each turn."
+
   public legendaryActions = [
     {
       name: `Teleport`,

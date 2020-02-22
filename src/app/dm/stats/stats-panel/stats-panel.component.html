@@ -16,10 +16,20 @@
       </div>
       <div
         class="trait-grouping standard-group"
-        *ngIf="creature.vulnerabilities.length > 0">
+        *ngIf="creature.vulnerabilities.length > 0 ||
+               creature.resistances.length > 0 || 
+               creature.conditionImmunities.length > 0 ||
+               creature.immunities.length > 0">
         <app-immunity-vulnerability-stats
           [creature]="creature"
         ></app-immunity-vulnerability-stats>
       </div>
+      <div
+        class="trait-grouping standard-group"
+        *ngIf="creature.legendaryActions.length > 0">
+        <app-legendary-actions-stats 
+          [creature]="creature"
+        ></app-legendary-actions-stats>
     </div>
+</div>
 

@@ -65,10 +65,12 @@ export class Creature {
   public numberOfActions: number;
   public size: string;
   public alignment: string;
+  public legendaryActionsInfo?: string;
   public legendaryActions: Trait[] = [];
   public imgUrl?: string;
   public hasAdvantage?: boolean = false;
   public hasDisadvantage?: boolean = false;
+
 }
 
 export class CreatureDB {

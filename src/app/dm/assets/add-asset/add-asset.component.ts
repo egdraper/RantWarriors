@@ -1,6 +1,9 @@
-import { Component } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 import { Creature, Action } from "../creature.model";
 import { cloneDeep } from "lodash";
+import { creatures } from "../creature.db";
+import { DbService } from "../dbService";
+import { AngularFirestore } from "@angular/fire/firestore";
 
 @Component({
   selector: "add-asset",
@@ -12,10 +15,16 @@ export class AddAssetComponent {
   public newAction = new Action();
   public activeView = "Creature";
 
-  public newDebuff = "";
-
-
-  constructor() {
+      // constructor(
+    //   public firebase: AngularFireDatabase,
+    //   private firestore: AngularFirestore
+    // ) {
+    //   this.firestore.collection("assets").add({what: "hohoho"});
+    // }
+  constructor(
+    private dbService: DbService,
+    private firestore: AngularFirestore
+  ) {
     this.newCreature = new Creature();
   }
 
@@ -28,6 +37,13 @@ export class AddAssetComponent {
     this.activeView = selection;
   }
 
-
-
+  onCreatureAdded(): void {
+    creatures.push(this.newCreature);
+    const cleanCreature = Object.assign({}, this.newCreature);
+    cleanCreature.abilities = Object.assign({}, this.newCreature.abilities);
+    this.firestore.collection("creatures").doc(this.newCreature.name).set(this.newCreature);
+    this.dbService.creatures.next(creatures);
+    this.newAction = new Action();
+    this.newCreature = new Creature();
+  }
 }

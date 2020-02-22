@@ -4,6 +4,11 @@
   <h4 class="creature-stat">Speed: {{ creature.speed }}</h4>
   <h4 class="passive-perception">Passive Perception: {{ creature.passivePerception }} </h4>
   <hr/>
+  <div *ngIf="creature.languages.length > 0">
+    <h4>Languages</h4>
+    <h5 *ngFor="let language of creature.languages">{{ language }}</h5>
+    <hr>
+  </div>
   <div class="hc-speed">
     <h4 class="creature-stat">Max HP: {{ creature.maxHitPoints }}</h4>
     <!-- <h4 class="hit-dice"> - </h4> -->

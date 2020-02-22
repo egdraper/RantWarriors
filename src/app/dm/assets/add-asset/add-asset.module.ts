@@ -14,6 +14,8 @@ import { MatNativeDateModule } from "@angular/material/core";
 import { ImmunityVulnerabilityComponent } from "./immunity-vulnerability/immunity-vulnerability.component";
 import { AssetNavComponent } from "./asset-nav/asset-nav.component";
 import { StatsModule } from "../../stats/stats.module";
+import { LegendaryActionsComponent } from './legendary-actions/legendary-actions.component';
+import { DBModule } from "../db.moduel";
 
 @NgModule({
   declarations: [
@@ -25,11 +27,13 @@ import { StatsModule } from "../../stats/stats.module";
     AddAssetComponent,
     ImmunityVulnerabilityComponent,
     AssetNavComponent,
+    LegendaryActionsComponent,
   ],
   exports: [
     AddAssetComponent,
   ],
   imports: [
+    DBModule,
     StatsModule,
     CommonModule,
     BrowserModule,

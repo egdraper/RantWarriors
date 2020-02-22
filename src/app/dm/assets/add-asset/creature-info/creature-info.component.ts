@@ -8,8 +8,14 @@ import { Creature } from "../../creature.model";
 })
 export class CreatureInfoComponent implements OnInit {
   @Input() public creature: Creature;
-
+  public newLanguage = "";
   constructor() {}
 
   ngOnInit() {}
+
+  public addLanguage(): void {
+    if (this.newLanguage !== "") {
+      this.creature.languages.push(this.newLanguage);
+    }
+  }
 }

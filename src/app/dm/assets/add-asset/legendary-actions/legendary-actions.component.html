@@ -1,0 +1,28 @@
+<div  class="form-group">
+    <h1>Legendary Actions</h1>
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Name"
+          name="name"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="newAction.name"
+        />
+      </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field class="example-full-width">
+            <mat-label>Action Description</mat-label>
+            <textarea
+              matInput
+              placeholder="Add Description Here"
+              [(ngModel)]="newAction.info">
+            </textarea>
+        </mat-form-field>
+      </div>
+</div>
+
+<button mat-button (click)="onTraitAdd()">Add Action</button>
+

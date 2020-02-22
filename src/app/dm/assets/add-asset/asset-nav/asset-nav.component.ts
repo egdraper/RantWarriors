@@ -8,11 +8,15 @@ import { Constants } from "../constants";
 })
 export class AssetNavComponent implements OnInit {
   @Output() public select = new EventEmitter();
+  @Output() public creatureAdded = new EventEmitter();
+  
   public navItems: string[] = Constants.navItems;
+
 
   constructor() { }
 
   ngOnInit() {
   }
+
 
 }

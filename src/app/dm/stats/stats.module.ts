@@ -13,9 +13,11 @@ import { TraitStatsComponent } from "./trait-stats/trait-stats.component";
 import { SkillStatsComponent } from "./skill-stats/skill-stats.component";
 import { ActionButtonComponent } from "./action-button/action-button.component";
 import { StatsPanelComponent } from "./stats-panel/stats-panel.component";
+import { LegendaryActionsStatsComponent } from "./legendary-actions/legendary-actions-stats.component";
 
 @NgModule({
   declarations: [
+    LegendaryActionsStatsComponent,
     SkillStatsComponent,
     StatsComponent,
     CreatureStatsComponent,
@@ -28,6 +30,7 @@ import { StatsPanelComponent } from "./stats-panel/stats-panel.component";
     StatsPanelComponent,
   ],
   exports: [
+    LegendaryActionsStatsComponent,
     StatsComponent,
     SkillStatsComponent,
     StatsComponent,

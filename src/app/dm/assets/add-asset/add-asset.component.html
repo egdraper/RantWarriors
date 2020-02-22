@@ -1,4 +1,8 @@
-<app-asset-nav (select)="onSelect($event)"></app-asset-nav>
+<app-asset-nav 
+  (creatureAdded)="onCreatureAdded()"
+  (select)="onSelect($event)">
+  
+</app-asset-nav>
 <div class="add-asset-container">
   <div class="entry-group">
     <form autocomplete="off">
@@ -26,6 +30,10 @@
         *ngIf="activeView === 'Traits'"
         [creature]="newCreature">
       </app-trait-info>
+      <app-legendary-actions
+        *ngIf="activeView === 'Legendary Actions'"
+        [creature]="newCreature">
+      </app-legendary-actions>
     </form>  
     <app-stats-panel 
       [creature]="newCreature">

@@ -13,6 +13,7 @@ import { NpcComponent } from "./npc/npc.component";
 import { AdvantageToggleComponent } from "./assets/advantage-toggle/advantage-toggle.component";
 import { AddAssetModule } from "./assets/add-asset/add-asset.module";
 import { StatsModule } from "./stats/stats.module";
+import { DBModule } from "./assets/db.moduel";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { StatsModule } from "./stats/stats.module";
     DmScreenComponent,
   ],
   imports: [
+    DBModule,
     StatsModule,
     AddAssetModule,
     BrowserModule,
