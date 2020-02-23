@@ -1,3 +1,15 @@
 .creature-info-area {
     display: flex;
+
+    .sense {
+        width: 125px;
+    }
+
+    .range {
+        width: 50px;
+        padding-left: 10px;
+    }
 }
+
+
+

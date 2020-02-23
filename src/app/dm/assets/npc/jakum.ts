@@ -8,7 +8,8 @@ export class Jakum implements Npc {
   public currentHitPoints = 200;
   public hitDice = "16d10+112";
   public armorClass = 19;
-  public speed = 40;
+  public aromor
+  public speed = "40ft.";
   public flySpeed = 120;
   public link = "http://online.anyflip.com/duex/ixpz/mobile/index.html#p=18";
   public page = 19;

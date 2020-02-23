@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { Creature } from "../assets/creature.model";
+import { players } from "../assets/players.db";
 
 @Component({
   selector: "stats",
@@ -9,6 +10,8 @@ import { Creature } from "../assets/creature.model";
 export class StatsComponent {
   @Input() public activeCreatures: Creature[] = [];
   @Output() public remove = new EventEmitter<Creature[]>();
+  public activePlayers = players;
+  public selectedPlayer;
   public damageNumbers = [];
   public dead = "X";
 
@@ -45,5 +48,14 @@ export class StatsComponent {
   public resetAdvantage(creature): void {
     creature.hasAdvantage = false;
     creature.hasDisadvantage = false;
+  }
+
+  public onPlayerSelect(player: Creature): void {
+    if (this.selectedPlayer === player) {
+      this.selectedPlayer = undefined;
+      return;
+    }
+
+    this.selectedPlayer = player;
   }
 }

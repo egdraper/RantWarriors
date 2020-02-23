@@ -1,0 +1,17 @@
+<mat-form-field>
+  <mat-select
+    [placeholder]="'Select Player'"
+    (selectionChange)="onNpcChange($event)"
+  >
+    <mat-option *ngFor="let player of playerList" [value]="player">
+      {{ player }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<button mat-button (click)="addPlayer()">Add Player</button>
+
+<stats
+  [activeCreatures]="activePlayers"
+  (remove)="onRemove($event)">
+</stats>

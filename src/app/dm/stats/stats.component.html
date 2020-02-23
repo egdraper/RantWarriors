@@ -6,8 +6,14 @@
        <button mat-button (click)="giveAdvantage(activeCreature)"><mat-icon class="advantage">visibility</mat-icon></button>
        <button mat-button (click)="resetAdvantage(activeCreature)" class="normal">X</button>
        <button mat-button (click)="giveDisadvantage(activeCreature)"><mat-icon class="disadvantage">visibility_off</mat-icon></button>
+       <div
+         *ngFor="let player of activePlayers"
+         class="attack-selector"
+         [class.attack-selector-selected]="player === selectedPlayer"
+         (click)="onPlayerSelect(player)">
+         <h3>{{ player.name }}</h3>
+        </div>
     </div>
-
     <div class="active-creatures">
         <span class="stat-numbers">
           <button
@@ -27,7 +33,8 @@
         [class.has-disadvantage]="activeCreature.hasDisadvantage">
       </div>
       <app-stats-panel 
-        [creature]="activeCreature">
+        [creature]="activeCreature"
+        [selectedCreature]="selectedPlayer">
       </app-stats-panel>
     </div>
   </mat-tab>

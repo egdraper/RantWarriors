@@ -3,7 +3,7 @@ import { Creature, Action } from "../creature.model";
 export class Quaggoth implements Creature {
   public name = "Quaggoth";
   public armorClass = 13;
-  public speed = 30;
+  public speed = "30ft";
   public challenge = 2;
   public maxHitPoints = 45;
   public currentHitPoints = 45;

@@ -8,7 +8,7 @@ export class Nataliel implements Npc {
   public currentHitPoints = 243;
   public hitDice = "18d10+144";
   public armorClass = 21;
-  public speed = 50;
+  public speed = "50ft";
   public flySpeed = 150;
   public link = "http://online.anyflip.com/duex/ixpz/mobile/index.html#p=18";
   public page = 19;

@@ -3,7 +3,7 @@ import { Creature, Action } from "../creature.model";
 export class GnollMelee implements Creature {
   public name = "Gnoll Melee";
   public armorClass = 15;
-  public speed = 30;
+  public speed = "30ft.";
   public challenge = .5;
   public maxHitPoints = 22;
   public currentHitPoints = 22;

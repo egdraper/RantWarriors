@@ -8,4 +8,5 @@ import { Creature } from "../../assets/creature.model";
 })
 export class StatsPanelComponent {
   @Input() public creature: Creature;
+  @Input() public selectedCreature: Creature;
 }

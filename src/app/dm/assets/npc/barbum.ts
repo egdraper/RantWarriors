@@ -4,7 +4,7 @@ import { Npc } from "../npc.model";
 export class Barbum implements Npc {
   public name = "Barbum";
   public armorClass = 13;
-  public speed = 25;
+  public speed = "25ft";
   public challenge = 0;
   public maxHitPoints = 4;
   public currentHitPoints = 4;

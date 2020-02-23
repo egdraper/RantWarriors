@@ -3,7 +3,7 @@ import { Creature, Action } from "../creature.model";
 export class SkeletonGiant implements Creature {
   public name = "Skeleton-Giant";
   public armorClass = 15;
-  public speed = 30;
+  public speed = "30ft.";
   public challenge = 3;
   public maxHitPoints = 65;
   public currentHitPoints = 65;

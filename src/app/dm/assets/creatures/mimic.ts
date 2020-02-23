@@ -3,7 +3,7 @@ import { Creature, Action } from "../creature.model";
 export class Mimic implements Creature {
   public name = "Mimic";
   public armorClass = 12;
-  public speed = 58;
+  public speed = "20ft";
   public challenge = 2;
   public maxHitPoints = 58;
   public currentHitPoints = 58;

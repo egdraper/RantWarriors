@@ -4,7 +4,7 @@ import { Npc } from "../npc.model";
 export class Targulm implements Npc {
   public name = "Targulm Haven";
   public armorClass = 15;
-  public speed = 25;
+  public speed = "30ft";
   public challenge = 1;
   public maxHitPoints = 25;
   public currentHitPoints = 25;

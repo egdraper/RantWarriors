@@ -7,7 +7,7 @@ export class Dretch implements Creature {
   public currentHitPoints = 18;
   public hitDice = "4d6+4";
   public armorClass = 11;
-  public speed = 20;
+  public speed = "20ft.";
   public flySpeed = 0;
   public link = "http://online.anyflip.com/duex/ixpz/mobile/index.html#p=59";
   public page = 59;

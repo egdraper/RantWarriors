@@ -14,11 +14,13 @@ import { AdvantageToggleComponent } from "./assets/advantage-toggle/advantage-to
 import { AddAssetModule } from "./assets/add-asset/add-asset.module";
 import { StatsModule } from "./stats/stats.module";
 import { DBModule } from "./assets/db.moduel";
+import { PlayerComponent } from "./player/player.component";
 
 @NgModule({
   declarations: [
     AdvantageToggleComponent,
     NpcComponent,
+    PlayerComponent,
     AdventuringComponent,
     CreatureComponent,
     DmScreenComponent,

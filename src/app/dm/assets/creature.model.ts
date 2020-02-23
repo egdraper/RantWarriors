@@ -37,39 +37,42 @@ export class Sense {
 }
 
 export class Creature {
-  public name = "";
   public abilities: Abilities = new Abilities();
   public abilityRoll?: number;
-  public maxHitPoints = 0;
-  public hitDice: string;
-  public currentHitPoints: number;
-  public armorClass: number;
   public actions?: Action[] = [];
-  public speed: number = 0;
-  public savingThrows: Checks[] = [];
-  public flySpeed?: number;
-  public experience: number;
+  public alignment?: string = "";
+  public armorClass: number;
+  public armorType?: string;
+  public attackNotes?: string;
   public challenge: number;
-  public skillProficiencies: Checks[] = [];
-  public lastDamageTaken?: number = 0;
-  public resistances: string[] = [];
-  public immunities: string[] = [];
+  public creatureType?: string;
   public conditionImmunities: string[] = [];
-  public vulnerabilities: string[] = [];
-  public passivePerception: number = 0;
-  public languages: string[] = [];
-  public traits: Trait[] = [];
-  public senses: Sense[] = [];
-  public link: string;
-  public page: number;
-  public numberOfActions: number;
-  public size: string;
-  public alignment: string;
-  public legendaryActionsInfo?: string;
-  public legendaryActions: Trait[] = [];
-  public imgUrl?: string;
+  public currentHitPoints: number;
+  public experience: number;
+  public flySpeed?: number;
   public hasAdvantage?: boolean = false;
   public hasDisadvantage?: boolean = false;
+  public hitDice: string;
+  public imgUrl?: string;
+  public immunities: string[] = [];
+  public languages: string[] = [];
+  public lastDamageTaken?: number = 0;
+  public legendaryActions: Trait[] = [];
+  public legendaryActionsInfo?: string;
+  public link: string;
+  public maxHitPoints = 0;
+  public name = "";
+  public numberOfActions: number;
+  public page: number;
+  public passivePerception: number = 0;
+  public resistances: string[] = [];
+  public savingThrows: Checks[] = [];
+  public senses: Sense[] = [];
+  public size: string;
+  public skillProficiencies: Checks[] = [];
+  public speed: string = "";
+  public traits: Trait[] = [];
+  public vulnerabilities: string[] = [];
 
 }
 

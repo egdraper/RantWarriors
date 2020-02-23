@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Output } from "@angular/core";
 import { Creature, Action } from "../creature.model";
 import { cloneDeep } from "lodash";
-import { creatures } from "../creature.db";
 import { DbService } from "../dbService";
 import { AngularFirestore } from "@angular/fire/firestore";
 
@@ -38,11 +37,7 @@ export class AddAssetComponent {
   }
 
   onCreatureAdded(): void {
-    creatures.push(this.newCreature);
-    const cleanCreature = Object.assign({}, this.newCreature);
-    cleanCreature.abilities = Object.assign({}, this.newCreature.abilities);
-    this.firestore.collection("creatures").doc(this.newCreature.name).set(this.newCreature);
-    this.dbService.creatures.next(creatures);
+    this.dbService.addCreature(this.newCreature);
     this.newAction = new Action();
     this.newCreature = new Creature();
   }

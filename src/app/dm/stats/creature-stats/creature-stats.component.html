@@ -1,12 +1,17 @@
 
   <h1 class="defense-title">Defense</h1>
-  <h4 class="creature-stat">AC: {{ creature.armorClass }}</h4>
+  <h4 class="creature-stat">AC: {{ creature.armorClass }} ({{creature.armorType || 'natural'}})</h4>
   <h4 class="creature-stat">Speed: {{ creature.speed }}</h4>
   <h4 class="passive-perception">Passive Perception: {{ creature.passivePerception }} </h4>
   <hr/>
   <div *ngIf="creature.languages.length > 0">
     <h4>Languages</h4>
     <h5 *ngFor="let language of creature.languages">{{ language }}</h5>
+    <hr>
+  </div>
+  <div *ngIf="creature.senses.length > 0">
+    <h4>Senses</h4>
+    <h5 *ngFor="let sense of creature.senses">{{ sense.sense }}: {{ sense.value }}ft</h5>
     <hr>
   </div>
   <div class="hc-speed">
@@ -20,7 +25,7 @@
     </mat-icon>
   </div>
 
-  <h3 class="creature-stat">HP: {{ creature.currentHitPoints }}</h3>
+  <h2 class="creature-stat">HP: {{ creature.currentHitPoints }}</h2>
   <div class="hc-speed">
     <form autocomplete="off">
       <mat-form-field class="example-full-width">

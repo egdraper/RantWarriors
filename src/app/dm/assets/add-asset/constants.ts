@@ -1,4 +1,26 @@
 export class Constants {
+  public static alignments = [
+    "Unaligned",
+    "Lawful Good",
+    "Neutral Good",
+    "Chaotic Good",
+    "Lawful Neutral",
+    "True Neutral",
+    "Chaotic Neutral",
+    "Lawful Evil",
+    "Neutral Evil",
+    "Chaotic Evil"
+  ];
+
+  public static sizes = [
+    "Tiny",
+    "Small",
+    "Medium",
+    "Large",
+    "Huge",
+    "Gargantua"
+  ];
+
   public static damageTypes = [
     "Acid",
     "Bludgeoning",
@@ -46,6 +68,30 @@ export class Constants {
     "Immunities+",
     "Traits",
     "Legendary Actions"
+  ];
+
+  public static senses = [
+    "Blindsight",
+    "Darkvision",
+    "Tremorsense",
+    "Truesight"
+  ];
+
+  public static creatureTypes = [
+    "Aberration",
+    "Beast",
+    "Celestial",
+    "Construct",
+    "Dragon",
+    "Elemental",
+    "Fey",
+    "Fiend",
+    "Giant",
+    "Humanoid",
+    "Monstrosity",
+    "Ooze",
+    "Plant",
+    "Undead"
   ];
 }
 

@@ -12,6 +12,7 @@ import { ActionButtonComponent } from "../action-button/action-button.component"
 export class BattleStatsComponent {
   @ViewChildren(ActionButtonComponent) actionButton: ActionButtonComponent[];
   @Input() creature: Creature;
+  @Input() selectedCreature: Creature;
   public shrink = false;
   public attack = 0;
   public damage = 0;
@@ -23,21 +24,6 @@ export class BattleStatsComponent {
     const roll = dice.roll(this.creature.hitDice);
     this.creature.maxHitPoints = roll.modifiedRollValue;
     this.creature.currentHitPoints = roll.modifiedRollValue;
-  }
-
-  public rollAttack(action: Action): void {
-    const dice = new Dice();
-    dice.withAdvantage = this.creature.hasAdvantage;
-    dice.withDisadvantage = this.creature.hasDisadvantage;
-
-    const roll = dice.roll(`d20+${action.attackBonus}`);
-    action.attackRoll = roll.modifiedRollValue;
-  }
-
-  public rollDamage(action: Action): void {
-    const dice = new Dice();
-    const roll = dice.roll(action.dice);
-    action.damageRoll = roll.modifiedRollValue;
   }
 
   public refreshAttack(): void {

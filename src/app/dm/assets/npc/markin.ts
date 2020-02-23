@@ -4,7 +4,7 @@ import { Npc } from "../npc.model";
 export class Markin implements Npc {
   public name = "Markin";
   public armorClass = 16;
-  public speed = 30;
+  public speed = "30ft.";
   public challenge = 1;
   public maxHitPoints = 33;
   public currentHitPoints = 33;

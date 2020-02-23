@@ -3,7 +3,7 @@ import { Creature, Action } from "../creature.model";
 export class Lemure implements Creature {
   public name = "Lemure";
   public armorClass = 7;
-  public speed = 15;
+  public speed = "15ft";
   public challenge = 0;
   public maxHitPoints = 13;
   public currentHitPoints = 13;

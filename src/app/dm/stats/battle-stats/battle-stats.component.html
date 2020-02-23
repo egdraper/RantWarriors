@@ -4,12 +4,17 @@
       <h1 class="creature-name">Actions ({{ creature.numberOfActions }})</h1>
       <mat-icon (click)="refreshAttack()" >refresh</mat-icon>
     </div>
+    <div *ngIf="creature.attackNotes">
+      <h5>{{ creature.attackNotes }}</h5>
+      <hr>
+    </div>
     <div *ngFor="let action of creature.actions">
       <div *ngIf="action.name">
         <h5 class="attack-type">{{ action.attackType }}</h5>
         <app-action-button
-          label="Hit"
+          label="Hit"          
           diceEquation="{{ 'd20+' + action.attackBonus }}"
+          [minimumForSuccess]="selectedCreature?.armorClass"
           [advantage]="creature.hasAdvantage"
           [disadvantage]="creature.hasDisadvantage"
           [asterisk]="action.allowedInMultipleAttacks">

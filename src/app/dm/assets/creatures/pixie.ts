@@ -3,12 +3,11 @@ import { Creature, Action } from "../creature.model";
 export class Pixie implements Creature {
   public name = "Pixie";
   public armorClass = 15;
-  public speed = 10;
+  public speed = "10ft., fly 30ft";
   public challenge = .25;
   public maxHitPoints = 1;
   public currentHitPoints = 1;
   public hitDice = "1d4-1";
-  public flySpeed = 30;
   public link = "http://online.anyflip.com/duex/ixpz/mobile/index.html#p=254";
   public page = 254;
   public passivePerception = 14;

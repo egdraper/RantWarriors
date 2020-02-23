@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Dice } from "../../assets/dice/dice.service";
+import { RouteConfigLoadEnd } from "@angular/router";
 
 @Component({
   selector: "app-action-button",
@@ -12,7 +13,9 @@ export class ActionButtonComponent {
   @Input() public advantage = false;
   @Input() public disadvantage = false;
   @Input() public asterisk = false;
+  @Input() public minimumForSuccess;
   @Output() public result = new EventEmitter();
+
 
   public rollResult: number;
   public critical = "none";
@@ -26,6 +29,10 @@ export class ActionButtonComponent {
     this.critical = roll.criticalFail ? "fail" : roll.criticalHit ? "hit" : "none";
     this.rollResult = roll.modifiedRollValue;
     this.result.emit(this.rollResult);
+
+    if (this.minimumForSuccess && roll.modifiedRollValue < this.minimumForSuccess && this.critical !== "fail") {
+      this.critical = "miss";
+    }
   }
 
   public reset(): void {

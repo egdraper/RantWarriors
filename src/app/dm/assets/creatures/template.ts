@@ -3,7 +3,7 @@ import { Creature, Action } from "../creature.model";
 export class Template implements Creature {
   public name = "";
   public armorClass = 0;
-  public speed = 0;
+  public speed = "0";
   public challenge = 0;
   public maxHitPoints = 0;
   public currentHitPoints = 0;

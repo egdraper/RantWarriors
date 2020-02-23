@@ -51,3 +51,30 @@
 .creature-dead {
   background-color: rgba(128, 0, 0, 0.418);
 }
+
+
+
+.attack-selector-selected {
+  background-color: rgba(0, 0, 255, 0.397);
+}
+
+.attack-selector {
+  padding: 9px;
+  margin-left: 10px;
+  border-radius: 4px;
+
+  h3 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0px;
+  }
+
+  &:hover {
+    background-color: ghostwhite;
+    cursor: pointer;
+  }
+
+  &:active {
+    background-color: rgb(163, 163, 163);
+  }
+}

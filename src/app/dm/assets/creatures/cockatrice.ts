@@ -7,8 +7,7 @@ export class Cockatrice implements Creature {
   public currentHitPoints = 27;
   public hitDice = "6d6+6";
   public armorClass = 11;
-  public speed = 20;
-  public flySpeed = 40;
+  public speed = "30ft., fly40";
   public link = "http://online.anyflip.com/duex/ixpz/mobile/index.html#p=42";
   public page = 42;
   public passivePerception = 11;

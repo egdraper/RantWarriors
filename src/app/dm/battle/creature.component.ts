@@ -21,15 +21,8 @@ export class CreatureComponent {
 
   constructor(
     public dbService: DbService,
-    private firestore: AngularFirestore
   ) {
     dbService.creatures.subscribe(creatureCollection => {
-      // creatureCollection.forEach(creature => {
-      //   const cleanCreature = Object.assign({}, creature);
-      //   cleanCreature.abilities = Object.assign({}, creature.abilities);
-      //   this.firestore.collection("assets").doc(creature.name).set(cleanCreature);
-
-      // })
       this.creatures = creatureCollection;
       this.creatureList = creatureCollection.map(creature => creature.name);
     });
