@@ -2,6 +2,9 @@ import { Component } from "@angular/core";
 import { Npc } from "../assets/npc.model";
 import { npcs } from "../assets/npc.db";
 import { cloneDeep } from "lodash";
+import { AngularFirestore } from "@angular/fire/firestore";
+import { DbService } from "../assets/dbService";
+import { Creature } from "../assets/creature.model";
 
 @Component({
   selector: "npc",
@@ -9,16 +12,18 @@ import { cloneDeep } from "lodash";
   templateUrl: "./npc.component.html"
 })
 export class NpcComponent {
-  public activeNpcs: Npc[] = [];
-  public npcs: Npc[] = [];
+  public activeNpcs: Creature[] = [];
+  public npcs: Creature[] = [];
   public npcList: string[] = [];
   public dead = "X";
 
   private selectedNpc: string;
 
-  constructor() {
-    this.npcs = npcs;
-    this.npcList = this.npcs.map(creature => creature.name);
+  constructor(public dbService: DbService) {
+    dbService.npcs.subscribe(npcCollection => {
+      this.npcs = npcCollection;
+      this.npcList = npcCollection.map(creature => creature.name);
+    });
   }
 
   public onNpcChange(creature: any): void {

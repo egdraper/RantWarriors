@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Creature } from "../../creature.model";
 import { Constants } from "../constants";
+import { Rating } from "../../creature.db";
 
 @Component({
   selector: "app-creature-info",
@@ -13,6 +14,7 @@ export class CreatureInfoComponent implements OnInit {
   public alignments = Constants.alignments;
   public sizes = Constants.sizes;
   public creatureTypes = Constants.creatureTypes;
+  public challengeRatings = new Rating().getRatings(10);
   public newLanguage = "";
   public newSense = "";
   public senseRange = 0;

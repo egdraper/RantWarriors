@@ -1,5 +1,7 @@
 <app-asset-nav 
-  (creatureAdded)="onCreatureAdded()"
+  (creatureAdded)="onCreatureAdded('assets')"
+  (npcAdded)="onCreatureAdded('npcs')"
+  (playerAdded)="onCreatureAdded('players')"
   (select)="onSelect($event)">
   
 </app-asset-nav>

@@ -3,6 +3,8 @@ import { Npc } from "../assets/npc.model";
 import { players } from "../assets/players.db";
 import { cloneDeep } from "lodash";
 import { Creature } from "../assets/creature.model";
+import { AngularFirestore } from "@angular/fire/firestore";
+import { DbService } from "../assets/dbService";
 
 @Component({
   selector: "app-player",
@@ -17,9 +19,11 @@ export class PlayerComponent {
 
   private selectedNpc: string;
 
-  constructor() {
-    this.players = players;
-    this.playerList = this.players.map(creature => creature.name);
+  constructor(public dbService: DbService) {
+    dbService.players.subscribe(npcCollection => {
+      this.players = npcCollection;
+      this.playerList = npcCollection.map(creature => creature.name);
+    });
   }
 
   public onNpcChange(creature: any): void {

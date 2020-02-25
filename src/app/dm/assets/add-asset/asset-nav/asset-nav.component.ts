@@ -9,6 +9,8 @@ import { Constants } from "../constants";
 export class AssetNavComponent implements OnInit {
   @Output() public select = new EventEmitter();
   @Output() public creatureAdded = new EventEmitter();
+  @Output() public npcAdded = new EventEmitter();
+  @Output() public playerAdded = new EventEmitter();
   
   public navItems: string[] = Constants.navItems;
 

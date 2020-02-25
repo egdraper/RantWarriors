@@ -69,6 +69,16 @@
         />
       </mat-form-field>
     </div>
+    <div>
+      <mat-form-field class="example-full-width">
+          <mat-label>Bonus Information</mat-label>
+          <textarea
+            matInput
+            placeholder="Bonus Information"
+            [(ngModel)]="action.actionBonus">
+          </textarea>
+      </mat-form-field>
+    </div>
     <div>     
       <mat-checkbox
         [(ngModel)]="action.allowedInMultipleAttacks"

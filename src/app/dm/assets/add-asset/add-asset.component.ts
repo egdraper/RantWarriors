@@ -36,9 +36,10 @@ export class AddAssetComponent {
     this.activeView = selection;
   }
 
-  onCreatureAdded(): void {
-    this.dbService.addCreature(this.newCreature);
+  public onCreatureAdded(type: string): void {
+    this.dbService.addCreature(this.newCreature, type);
     this.newAction = new Action();
     this.newCreature = new Creature();
   }
+
 }
