@@ -1,21 +1,23 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
 import { DmScreenComponent } from "./dm/dm-screen.component";
+import { AuthService } from "./home/auth";
 
 const routes: Routes = [
-    {
-      component: HomeComponent,
-      path: "",
-    },
-    {
-      component: DmScreenComponent,
-      path: "creature"
-    }
+  {
+    path: "creature",
+    canActivate: [AuthService],
+    component: DmScreenComponent
+  },
+  {
+    path: "",
+    component: HomeComponent
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

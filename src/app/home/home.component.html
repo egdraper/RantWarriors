@@ -1,54 +1,80 @@
-<!-- <!-- The content below is only a placeholder and can be replaced. -->
-<div style="text-align:center">
-  <!-- <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" src="../assets/DNDTime.jpg">
 
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/SAZChYZwXEM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-
-  <h2>Press the Space Bar to start and stop the power strip</h2>
-  <div
-    [style.width]="'100%'"
-    [style.display]="'flex'"
-    [style.justifyContent]="'center'"
-  >
-    <div
-      [style.width.px]="600"
-      [style.height.px]="35"
-      [style.backgroundColor]="'white'"
-    >
-      <div
-        [style.height.px]="35"
-        [style.width.px]="progress"
-        [style.backgroundColor]="'orange'"
-      ></div>
-    </div>
+<div class="login-page">
+  <div class="login-header">
+    <button mat-button (click)="openCreateAccountView()">Create Account</button>
+    <button mat-button (click)="openLoginView()">Login</button>
   </div>
 
-  <h1>
-    {{ result }}
-  </h1>
+  <div class="login-body">
+    <div [style.width.px]="250">
+      <div *ngIf="isLogin || isCreateAccount">
+        <div>
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              placeholder="Email"
+              name="username"
+              [ngModelOptions]="{ standalone: true }"
+              [(ngModel)]="username"
+            />
+          </mat-form-field>
+        </div>
+        <div *ngIf="isCreateAccount">
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              placeholder="Display Name"
+              name="displayName"
+              [ngModelOptions]="{ standalone: true }"
+              [(ngModel)]="displayName"
+            />
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              placeholder="Password"
+              name="password"
+              type="password"
+              [ngModelOptions]="{ standalone: true }"
+              [(ngModel)]="password"
+            />
+          </mat-form-field>
+        </div>
+        <div *ngIf="isCreateAccount">
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              placeholder="Re-enter Password"
+              name="rewritePassword"
+              type="password"
+              [ngModelOptions]="{ standalone: true }"
+              [(ngModel)]="rewritePassword"
+            />
+          </mat-form-field>
+        </div>
+        <div class="execution-buttons">
+          <button
+            mat-button
+            [disabled]="loggingIn"
+            *ngIf="isLogin"
+            (click)="login()"
+          >
+            Login
+          </button>
+          <button
+            mat-button
+            [disabled]="loggingIn"
+            *ngIf="isCreateAccount"
+            (click)="createAccount()"
+          >
+            Create Account
+          </button>
+        </div>
+      </div>
+    </div>
 
-  <div
-    [style.position]="'absolute'"
-    [style.left.px]="1500"
-    [style.top.px]="350"
-    [style.height.px]="100"
-    [style.width.px]="100"
-    [style.borderColor]="'green'"
-    [style.border]="'solid'"
-    [style.borderRadius.px]="100"
-    [style.borderWidth.px]="14"
-    [style.backgroundColor]="'red'"
-  ></div>
-  <div
-    [style.position]="'absolute'"
-    [style.left.px]="currentLoc"
-    [style.top.px]="390"
-    [style.height.px]="50"
-    [style.width.px]="50"
-    [style.borderRadius.px]="100"
-    [style.backgroundColor]="'blue'"
-  ></div>
+    <h5>{{ message }}</h5>
+  </div>
 </div>

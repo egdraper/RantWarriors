@@ -7,21 +7,27 @@ import { HomeComponent } from "./home/home.component";
 import { CreatureModule } from "./dm/dm-screen.module";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
+import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFireModule } from "@angular/fire";
 import { environment } from "src/environments/environment";
+import { FormsModule } from "@angular/forms";
+import { HomeModule } from "./home/home.module";
 
 @NgModule({
   declarations: [
-    HomeComponent,
     AppComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
+    AngularFireAuthModule,
+    FormsModule,
+    HomeModule,
     BrowserModule,
     CreatureModule,
     AppRoutingModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

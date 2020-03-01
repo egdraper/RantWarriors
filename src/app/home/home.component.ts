@@ -1,75 +1,114 @@
-import { Component, HostListener } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { AngularFireAuth } from "@angular/fire/auth";
+import { Router } from "@angular/router";
 
 @Component({
-    selector: 'home',
-    templateUrl: "./home.component.html",
-    styleUrls: ["./home.component.scss"]
-  })
-  export class HomeComponent {
-    public title = "Rant Warriors";
-    public result = "Waiting To Shoot";
-    public toss = 100;
-    public currentLoc = 100;
-    public progress = 0;
+  selector: "home",
+  templateUrl: "./home.component.html",
+  styleUrls: ["./home.component.scss"]
+})
+export class HomeComponent implements OnInit {
+  public message = "";
+  public username = "";
+  public displayName = "";
+  public password = "";
+  public rewritePassword = "";
+  public isLogin = false;
+  public isCreateAccount = false;
+  public loggingIn = false;
+  public loading = true;
 
-    private progressStarted = false;
-    private interval;
-    private progressInterval;
+  constructor(
+    private fireAuth: AngularFireAuth,
+    private router: Router
+  ) {
 
-    @HostListener("window:keyup", ["$event"])
-    public keyUp(event: any) {
-      if (event.code === "Space") {
+  }
 
-        if (!this.progressStarted) {
-          this.reset();
-          this.progressStarted = true;
-
-          this.progressInterval = setInterval(() => {
-            this.progress = this.progress + 3;
-
-            if (this.progress >= 600) {
-              this.progressStarted = false;
-              clearInterval(this.progressInterval);
-            }
-          }, 20);
-        } else {
-          this.progressStarted = false;
-          clearInterval(this.progressInterval);
-          this.throw(this.progress * 3);
-        }
-      }
-    }
-
-    public throw(value?: number): void {
-      if (!value) {
-        this.toss = Math.floor(Math.random() * 1800);
+  public async ngOnInit(): Promise<void> {
+    this.fireAuth.auth.onAuthStateChanged(user => {
+      if (user) {
+        this.router.navigateByUrl("/creature");
       } else {
-        this.toss = value;
+        setTimeout(() => {
+          this.loading = false;
+        })
       }
+    });
+  }
 
-      this.interval = setInterval(() => {
-        this.currentLoc = this.currentLoc + 15;
+  public openCreateAccountView(): void {
+    this.isCreateAccount = true;
+    this.isLogin = false;
+    this.reset();
+  }
 
-        if (this.currentLoc >= this.toss) {
-          clearInterval(this.interval);
+  public openLoginView(): void {
+    this.isLogin = true;
+    this.isCreateAccount = false;
+    this.reset();
+  }
 
-          if (this.toss >= 1514 && this.toss <= 1564) {
-            this.result = "YOU MADE IT!!! YAY!!!!";
-          }
-
-          if (this.toss < 1514) {
-            this.result = "YOU MISSED!!!! TO Short!";
-          }
-
-          if (this.toss > 1564) {
-            this.result = "YOU MISSED!!!! To Far!";
-          }
-        }
-      }, 20);
+  public createAccount(): void {
+    this.loggingIn = true;
+    const passwordsMatch = this.password === this.rewritePassword;
+    if (!passwordsMatch) {
+      this.message = "Passwords do not match";
+      return;
     }
 
-    public reset(): void {
-      this.currentLoc = 100;
-      this.progress = 0;
+    if (this.username.length <= 4) {
+      this.message = "Username Length Must Be 5 Characters";
+      return;
+    }
+
+    if (this.username && this.password) {
+      this.fireAuth.auth
+        .createUserWithEmailAndPassword(this.username, this.username)
+        .catch(error => {
+          this.message = `${error.code} ---- ${error.message}`;
+        })
+        .finally(() => {
+          this.loggingIn = false;
+        })
+        .then(user => {
+          this.fireAuth.auth.currentUser.updateProfile({
+            displayName: this.displayName
+          });
+          this.router.navigateByUrl("/creature");
+        });
+    } else {
+      this.message = "Username and Password are Required";
     }
   }
+
+  public login(): void {
+    this.fireAuth.auth
+      .signInWithEmailAndPassword(this.username, this.username)
+      .catch(error => {
+        this.message = `${error.code} ---- ${error.message}`;
+      })
+      .then(user => {
+        if (user) {
+          this.router.navigateByUrl("/creature");
+        } else {
+          this.message = "Username or Password is incorrect.";
+        }
+      });
+  }
+
+  public sendMessage(): void {}
+
+  public reset() {
+    this.message = "";
+    this.username = "";
+    this.displayName = "";
+    this.password = "";
+    this.rewritePassword = "";
+  }
+
+  public clickMe(): void {
+    debugger
+    this.loading = false;
+  }
+}

@@ -1,0 +1,33 @@
+.login-page {
+  display: flex;
+  flex-direction: column;
+
+  .login-header {
+    padding: 5px;
+    background-color: #f5c6c6e7;
+    text-align: right;
+
+    button {
+      padding-left: 10px;
+    }
+  }
+
+  .login-body {
+    flex: 1;
+    margin: auto;
+    padding: 100px;
+
+    .execution-buttons {
+      text-align: right;
+    }
+
+    .mat-form-field {
+      width: 250px;
+      margin-top: 5px;
+    }
+
+    h5 {
+      color: rgb(255, 85, 85);
+    }
+  }
+}

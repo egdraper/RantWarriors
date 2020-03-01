@@ -10,9 +10,9 @@
     </div>
     <div *ngFor="let action of creature.actions">
       <div *ngIf="action.name">
-        <h5 class="attack-type">{{ action.attackType }}</h5>
+        <h5 class="attack-type">{{ action.attackType }}: (Range {{ action.range }})  </h5>
         <app-action-button
-          label="Hit"          
+          label="Hit"  
           diceEquation="{{ 'd20+' + action.attackBonus }}"
           [minimumForSuccess]="selectedCreature?.armorClass"
           [advantage]="creature.hasAdvantage"
