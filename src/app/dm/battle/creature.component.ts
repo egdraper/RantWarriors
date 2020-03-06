@@ -4,7 +4,7 @@ import { Creature } from "../assets/creature.model";
 import { Rating, RatingModel } from "../assets/creature.db";
 import { Dice } from "../assets/dice/dice.service";
 import { DbService } from "../assets/dbService";
-import { AngularFirestore } from "@angular/fire/firestore";
+import { DbSessionService } from "../assets/dbSession";
 
 @Component({
   selector: "creature",
@@ -13,6 +13,7 @@ import { AngularFirestore } from "@angular/fire/firestore";
 })
 export class CreatureComponent {
   public activeCreatures: Creature[] = [];
+  public activePlayers: Creature[] = [];
   public creatures: Creature[] = [];
   public creatureList: string[] = [];
   public challengeRatings = new Rating().getRatings(10);
@@ -21,18 +22,23 @@ export class CreatureComponent {
 
   constructor(
     public dbService: DbService,
+    public dbSessionService: DbSessionService
   ) {
     dbService.creatures.subscribe(creatureCollection => {
       this.creatures = creatureCollection;
       this.creatureList = creatureCollection.map(creature => creature.name);
     });
+
+    dbSessionService.activePlayers.subscribe(activePlayerCollection => {
+      this.activePlayers = activePlayerCollection;
+    })
   }
 
   public onCreatureChange(creature: any): void {
     this.selectedCreature = creature.value;
   }
 
-  public addCreature(creature: Creature): void {
+  public addCreature(): void {
     const chosenCreature = cloneDeep(
       this.creatures.find(npc => npc.name === this.selectedCreature)
     );

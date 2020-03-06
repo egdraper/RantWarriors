@@ -4,7 +4,7 @@ import { Creature } from "./creature.model";
 import { npcs } from "./npc.db";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { sortBy } from "lodash";
-import { Npc } from "./npc.model";
+import { AngularFireAuth } from "@angular/fire/auth";
 
 @Injectable()
 export class DbService {
@@ -15,9 +15,14 @@ export class DbService {
   public creatures = new BehaviorSubject<Creature[]>(this.creatureList);
   public players = new BehaviorSubject<Creature[]>(this.creatureList);
 
-  constructor(private firestore: AngularFirestore) {
+  constructor(
+    private fireAuth: AngularFireAuth,
+    private firestore: AngularFirestore
+  ) {
     this.firestore
-      .collection("assets")
+      .collection("users")
+      .doc(`${this.fireAuth.auth.currentUser}`)
+      .collection("creatures")
       .get()
       .subscribe(querySnapshot => {
         querySnapshot.forEach(doc => {
@@ -28,6 +33,8 @@ export class DbService {
       });
 
     this.firestore
+      .collection("users")
+      .doc(`${this.fireAuth.auth.currentUser}`)
       .collection("npcs")
       .get()
       .subscribe(querySnapshot => {
@@ -39,6 +46,8 @@ export class DbService {
       });
 
     this.firestore
+      .collection("users")
+      .doc(`${this.fireAuth.auth.currentUser}`)
       .collection("players")
       .get()
       .subscribe(querySnapshot => {
@@ -52,13 +61,16 @@ export class DbService {
 
   public addCreature(creature: Creature, type: string): void {
     const cleanCreature = JSON.parse(JSON.stringify(creature));
+
     this.firestore
+      .collection("users")
+      .doc(`${this.fireAuth.auth.currentUser.uid}`)
       .collection(type)
       .doc(creature.name)
       .set(cleanCreature);
 
     switch (type) {
-      case "assets":
+      case "creatures":
         this.creatureList.push(creature);
         this.creatures.next(this.creatureList);
         break;
@@ -71,6 +83,5 @@ export class DbService {
         this.npcs.next(this.npcList);
         break;
     }
-
   }
 }

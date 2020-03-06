@@ -5,6 +5,7 @@ import { cloneDeep } from "lodash";
 import { Creature } from "../assets/creature.model";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { DbService } from "../assets/dbService";
+import { DbSessionService } from "../assets/dbSession";
 
 @Component({
   selector: "app-player",
@@ -19,14 +20,17 @@ export class PlayerComponent {
 
   private selectedNpc: string;
 
-  constructor(public dbService: DbService) {
-    dbService.players.subscribe(npcCollection => {
-      this.players = npcCollection;
-      this.playerList = npcCollection.map(creature => creature.name);
+  constructor(
+    public dbService: DbService,
+    public dbSessionService: DbSessionService
+  ) {
+    dbService.players.subscribe(playerCollection => {
+      this.players = playerCollection;
+      this.playerList = playerCollection.map(player => player.name);
     });
   }
 
-  public onNpcChange(creature: any): void {
+  public onPlayerChange(creature: any): void {
     this.selectedNpc = creature.value;
   }
 
@@ -34,6 +38,8 @@ export class PlayerComponent {
     this.activePlayers.push(
       cloneDeep(this.players.find(npc => npc.name === this.selectedNpc))
     );
+
+    this.dbSessionService.activePlayers.next(this.activePlayers);
   }
 
   public onRemove(newActivePlayer: Creature[]): void {

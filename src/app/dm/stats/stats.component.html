@@ -1,4 +1,9 @@
-<mat-tab-group>
+<mat-tab-group [(selectedIndex)]="creatureSelectedIndex">
+  <mat-tab label="Summary">
+    <app-summary (select)="onSelect($event)"
+      [activeCreatures]="activeCreatures" 
+    ></app-summary> 
+  </mat-tab>
   <mat-tab *ngFor="let activeCreature of activeCreatures; let i = index"
     label="{{activeCreature.currentHitPoints < 1 ? dead : activeCreature.name}}"
   >
@@ -29,13 +34,16 @@
          (click)="giveDisadvantage(activeCreature)">
            <mat-icon class="disadvantage">visibility_off</mat-icon>
        </button>
-       <div
-         *ngFor="let player of activePlayers"
-         class="attack-selector"
-         [class.attack-selector-selected]="player === selectedPlayer"
-         (click)="onPlayerSelect(player)">
-         <h3>{{ player.name }}</h3>
-        </div>
+       <div class="attack-selector-container">
+         <h6>Players/NPC's:</h6>
+         <div
+           *ngFor="let enemy of activeEnemies"
+           class="attack-selector"
+           [class.attack-selector-selected]="enemy === selectedEnemy"
+           (click)="onEnemySelect(enemy)">
+           <h4>{{ enemy.name }}</h4>
+          </div>
+       </div>
     </div>
     <div class="active-creatures">
         <span class="stat-numbers">
@@ -57,7 +65,7 @@
       </div>
       <app-stats-panel 
         [creature]="activeCreature"
-        [selectedCreature]="selectedPlayer">
+        [selectedCreature]="selectedEnemy">
       </app-stats-panel>
     </div>
   </mat-tab>

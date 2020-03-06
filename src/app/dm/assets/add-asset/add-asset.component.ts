@@ -14,16 +14,7 @@ export class AddAssetComponent {
   public newAction = new Action();
   public activeView = "Creature";
 
-      // constructor(
-    //   public firebase: AngularFireDatabase,
-    //   private firestore: AngularFirestore
-    // ) {
-    //   this.firestore.collection("assets").add({what: "hohoho"});
-    // }
-  constructor(
-    private dbService: DbService,
-    private firestore: AngularFirestore
-  ) {
+  constructor(private dbService: DbService) {
     this.newCreature = new Creature();
   }
 
@@ -41,5 +32,4 @@ export class AddAssetComponent {
     this.newAction = new Action();
     this.newCreature = new Creature();
   }
-
 }

@@ -1,7 +1,8 @@
 <mat-form-field>
   <mat-select
     [placeholder]="'Select Creature'"
-    (selectionChange)="onCreatureChange($event)">
+    (selectionChange)="onCreatureChange($event)"
+  >
     <mat-option *ngFor="let creature of creatureList" [value]="creature">
       {{ creature }}
     </mat-option>
@@ -14,9 +15,13 @@
     <mat-checkbox
       (change)="onRatingChange(challengeRating)"
       *ngFor="let challengeRating of challengeRatings"
-      [(ngModel)]="challengeRating.selected">
+      [(ngModel)]="challengeRating.selected"
+    >
       {{ challengeRating.display }}
     </mat-checkbox>
   </span>
 </div>
-<stats [activeCreatures]="activeCreatures" (remove)="onRemove($event)"> </stats>
+<stats
+  [activeEnemies]="activePlayers"
+  [activeCreatures]="activeCreatures" (remove)="onRemove($event)">
+</stats>

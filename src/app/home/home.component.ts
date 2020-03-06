@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { Router } from "@angular/router";
+import { AngularFirestore } from "@angular/fire/firestore";
 
 @Component({
   selector: "home",
@@ -20,6 +21,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private fireAuth: AngularFireAuth,
+    private firestore: AngularFirestore,
     private router: Router
   ) {
 
@@ -32,7 +34,7 @@ export class HomeComponent implements OnInit {
       } else {
         setTimeout(() => {
           this.loading = false;
-        })
+        });
       }
     });
   }
@@ -75,6 +77,12 @@ export class HomeComponent implements OnInit {
           this.fireAuth.auth.currentUser.updateProfile({
             displayName: this.displayName
           });
+
+          this.firestore
+            .collection("users")
+            .doc(this.fireAuth.auth.currentUser.uid)
+            .set({ dateCreated: Date.now().toString()});
+
           this.router.navigateByUrl("/creature");
         });
     } else {

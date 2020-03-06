@@ -1,7 +1,7 @@
 <mat-form-field>
   <mat-select
     [placeholder]="'Select Player'"
-    (selectionChange)="onNpcChange($event)"
+    (selectionChange)="onPlayerChange($event)"
   >
     <mat-option *ngFor="let player of playerList" [value]="player">
       {{ player }}

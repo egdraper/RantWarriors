@@ -9,7 +9,7 @@
       <hr>
     </div>
     <div *ngFor="let action of creature.actions">
-      <div *ngIf="action.name">
+      <div *ngIf="action.attackBonus">
         <h5 class="attack-type">{{ action.attackType }}: (Range {{ action.range }})  </h5>
         <app-action-button
           label="Hit"  
@@ -23,8 +23,9 @@
           [label]="action.name"
           [diceEquation]="action.dice">
         </app-action-button>
-        <h6 class="hit-dice"> {{ action.actionBonus }}</h6>
       </div>
+      <h5 *ngIf="!action.name" {{ action.name }}></h5>
+      <h6 class="hit-dice"> {{ action.actionBonus }}</h6>
       <div *ngIf="action.moreInfo">
         <div class="action-group">
           <h4 class="hit-text"> {{ action.name}} </h4>        

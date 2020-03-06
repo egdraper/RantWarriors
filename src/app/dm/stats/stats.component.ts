@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { Creature } from "../assets/creature.model";
-import { players } from "../assets/players.db";
+import { DbService } from "../assets/dbService";
 
 @Component({
   selector: "stats",
@@ -8,14 +8,16 @@ import { players } from "../assets/players.db";
   styleUrls: ["./stats.component.scss"]
 })
 export class StatsComponent {
-  @Input() public activeCreatures: Creature[] = [];
   @Output() public remove = new EventEmitter<Creature[]>();
-  public activePlayers = players;
-  public selectedPlayer;
+  @Input() public activeCreatures: Creature[] = [];
+  @Input() public activeEnemies: Creature[] = [];
+
+  public selectedEnemy;
   public damageNumbers = [];
   public dead = "X";
+  public creatureSelectedIndex = 0;
 
-  constructor() {
+  constructor(private dbService: DbService) {
     this.setDamageNumbers();
   }
 
@@ -50,12 +52,16 @@ export class StatsComponent {
     creature.hasDisadvantage = false;
   }
 
-  public onPlayerSelect(player: Creature): void {
-    if (this.selectedPlayer === player) {
-      this.selectedPlayer = undefined;
+  public onEnemySelect(enemy: Creature): void {
+    if (this.selectedEnemy === enemy) {
+      this.selectedEnemy = undefined;
       return;
     }
 
-    this.selectedPlayer = player;
+    this.selectedEnemy = enemy;
+  }
+
+  public onSelect(index: number): void {
+    this.creatureSelectedIndex = index;
   }
 }
