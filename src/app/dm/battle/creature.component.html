@@ -3,7 +3,7 @@
     [placeholder]="'Select Creature'"
     (selectionChange)="onCreatureChange($event)"
   >
-    <mat-option *ngFor="let creature of creatureList" [value]="creature">
+    <mat-option *ngFor="let creature of creatureSelectionList" [value]="creature">
       {{ creature }}
     </mat-option>
   </mat-select>
@@ -22,6 +22,7 @@
   </span>
 </div>
 <stats
-  [activeEnemies]="activePlayers"
-  [activeCreatures]="activeCreatures" (remove)="onRemove($event)">
+  [activeEnemies]="dbSessionService.activePlayersList"
+  [activeCreatures]="dbSessionService.activeCreatureList"
+  (remove)="onRemove($event)">
 </stats>

@@ -1,0 +1,31 @@
+<h1>Ability Modifiers</h1>
+<div>
+  <mat-form-field class="example-full-width">
+    <input
+      matInput
+      placeholder="Game Name"
+      [ngModelOptions]="{ standalone: true }"
+      [(ngModel)]="gameName"
+    />
+  </mat-form-field>
+  <h6>
+    This give yous a list of prebuilt creatures you can use for your encounters,
+    if you do not select this there will be no default creatures to select from, and you
+    will need to build every creature from scratch. This can be changed at any time in the options menu.
+  </h6>
+  <mat-slide-toggle class="example-margin" [checked]="creaturesChecked">
+    Use Built-in Creatures
+  </mat-slide-toggle>
+  <h6>
+    This give yous a list of prebuilt NPCs you can use or customize for your encounters,
+    if you do not select this there will be no default NPC's to select from, and you
+    will need to build every creature from scratch. This can be changed at any time in the options menu.
+  </h6>
+  <mat-slide-toggle class="example-margin" [checked]="npcsChecked">
+    Use Built-in Generic NPC's
+  </mat-slide-toggle>
+
+  <div>
+      <button mat-button (click)="createGame()">Create Game</button>
+  </div>
+</div>

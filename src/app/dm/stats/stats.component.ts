@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { Creature } from "../assets/creature.model";
 import { DbService } from "../assets/dbService";
+import { DbSessionService } from "../assets/dbSession";
 
 @Component({
   selector: "stats",
@@ -8,7 +9,7 @@ import { DbService } from "../assets/dbService";
   styleUrls: ["./stats.component.scss"]
 })
 export class StatsComponent {
-  @Output() public remove = new EventEmitter<Creature[]>();
+  @Output() public remove = new EventEmitter<number>();
   @Input() public activeCreatures: Creature[] = [];
   @Input() public activeEnemies: Creature[] = [];
 
@@ -17,18 +18,12 @@ export class StatsComponent {
   public dead = "X";
   public creatureSelectedIndex = 0;
 
-  constructor(private dbService: DbService) {
+  constructor(private dbSessionService: DbSessionService) {
     this.setDamageNumbers();
   }
 
   public removeCreature(index: number): void {
-    this.activeCreatures = this.activeCreatures.filter((a, i) => i !== index);
-
-    if (!this.activeCreatures) {
-      this.activeCreatures = [];
-    }
-
-    return this.remove.emit(this.activeCreatures);
+    return this.remove.emit(index);
   }
 
   private setDamageNumbers(): void {
@@ -63,5 +58,15 @@ export class StatsComponent {
 
   public onSelect(index: number): void {
     this.creatureSelectedIndex = index;
+  }
+
+  public takeDamage(activeCreature: Creature, value: number): void {
+    activeCreature.currentHitPoints -= value;
+
+    if (activeCreature.currentHitPoints < 0) {
+      activeCreature.currentHitPoints = 0;
+    }
+
+    this.dbSessionService.updateSession();
   }
 }

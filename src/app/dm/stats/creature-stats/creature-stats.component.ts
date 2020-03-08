@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
 import { Npc } from "../../assets/npc.model";
 import { Dice } from "../../assets/dice/dice.service";
 import { Creature } from "../../assets/creature.model";
@@ -9,8 +9,11 @@ import { Creature } from "../../assets/creature.model";
   styleUrls: ["./creature-stats.component.scss"]
 })
 export class CreatureStatsComponent {
+  @Output() damage = new EventEmitter<{creature, value: number}>();
+  @Output() heal = new EventEmitter<{creature, value: number}>();
   @Input() creature: Creature;
   public shrink = false;
+  public damageTaken = 0;
 
   public generateRandomHp(): void {
     const dice = new Dice();
@@ -20,38 +23,14 @@ export class CreatureStatsComponent {
   }
 
   public takeDamage(): void {
-    if (
-      !this.creature.lastDamageTaken ||
-      isNaN(Number(this.creature.lastDamageTaken))
-    ) {
-      return;
-    }
-
-    this.creature.currentHitPoints -= Number(
-      this.creature.lastDamageTaken
-    );
-
-    if (this.creature.currentHitPoints < 0) {
-      this.creature.currentHitPoints = 0;
-    }
+    this.damage.emit({creature: this.creature, value: this.damageTaken})
   }
 
   public doHeal(): void {
-    if (
-      !this.creature.lastDamageTaken ||
-      isNaN(Number(this.creature.lastDamageTaken))
-    ) {
-      return;
-    }
+    this.damage.emit({creature: this.creature, value: this.damageTaken})
+  }
 
-    this.creature.currentHitPoints += Number(
-      this.creature.lastDamageTaken
-    );
-
-    if (
-      this.creature.currentHitPoints >= this.creature.maxHitPoints
-    ) {
-      this.creature.currentHitPoints = this.creature.maxHitPoints;
-    }
+  public resetHp(): void {
+    this.creature.currentHitPoints = this.creature.maxHitPoints;
   }
 }

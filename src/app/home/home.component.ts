@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   public async ngOnInit(): Promise<void> {
     this.fireAuth.auth.onAuthStateChanged(user => {
       if (user) {
-        this.router.navigateByUrl("/creature");
+        this.router.navigate(["/landing"]);
       } else {
         setTimeout(() => {
           this.loading = false;
@@ -83,7 +83,7 @@ export class HomeComponent implements OnInit {
             .doc(this.fireAuth.auth.currentUser.uid)
             .set({ dateCreated: Date.now().toString()});
 
-          this.router.navigateByUrl("/creature");
+          this.router.navigate(["/landing"]);
         });
     } else {
       this.message = "Username and Password are Required";
@@ -98,7 +98,7 @@ export class HomeComponent implements OnInit {
       })
       .then(user => {
         if (user) {
-          this.router.navigateByUrl("/creature");
+          this.router.navigate(["/landing"]);
         } else {
           this.message = "Username or Password is incorrect.";
         }
@@ -116,7 +116,6 @@ export class HomeComponent implements OnInit {
   }
 
   public clickMe(): void {
-    debugger
     this.loading = false;
   }
 }

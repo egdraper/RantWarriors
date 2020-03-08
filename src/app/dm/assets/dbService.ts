@@ -5,58 +5,46 @@ import { npcs } from "./npc.db";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { sortBy } from "lodash";
 import { AngularFireAuth } from "@angular/fire/auth";
+import { DbSessionService } from "./dbSession";
 
 @Injectable()
 export class DbService {
-  public creatureList: Creature[] = [];
-  public playersList: Creature[] = [];
-  public npcList: Creature[] = [];
-  public npcs = new BehaviorSubject<Creature[]>(npcs);
-  public creatures = new BehaviorSubject<Creature[]>(this.creatureList);
-  public players = new BehaviorSubject<Creature[]>(this.creatureList);
-
   constructor(
     private fireAuth: AngularFireAuth,
-    private firestore: AngularFirestore
-  ) {
-    this.firestore
+    private firestore: AngularFirestore,
+    private sessionService: DbSessionService
+  ) {}
+
+  public async createGame(game: any): Promise<void> {
+    await this.firestore
       .collection("users")
-      .doc(`${this.fireAuth.auth.currentUser}`)
-      .collection("creatures")
-      .get()
-      .subscribe(querySnapshot => {
-        querySnapshot.forEach(doc => {
-          this.creatureList.push(doc.data() as Creature);
-        });
-        this.creatureList = sortBy(this.creatureList, ["name"], ["asc"]);
-        this.creatures.next(this.creatureList);
+      .doc(`${this.fireAuth.auth.currentUser.uid}`)
+      .collection("games")
+      .doc(game.name)
+      .set({
+        game,
+        session: {
+          creatures: [],
+          npcs: [],
+          players: []
+        }
       });
 
-    this.firestore
-      .collection("users")
-      .doc(`${this.fireAuth.auth.currentUser}`)
-      .collection("npcs")
-      .get()
-      .subscribe(querySnapshot => {
-        querySnapshot.forEach(doc => {
-          this.npcList.push(doc.data() as Creature);
-        });
-        this.npcList = sortBy(this.npcList, ["name"], ["asc"]);
-        this.npcs.next(this.npcList);
-      });
+    this.sessionService.currentGame = game.name;
+    this.sessionService.addSession();
+  }
 
-    this.firestore
-      .collection("users")
-      .doc(`${this.fireAuth.auth.currentUser}`)
-      .collection("players")
-      .get()
-      .subscribe(querySnapshot => {
-        querySnapshot.forEach(doc => {
-          this.playersList.push(doc.data() as Creature);
+  public async getGames(): Promise<string[]> {
+    return new Promise(resolve => {
+      this.firestore
+        .collection("users")
+        .doc(`${this.fireAuth.auth.currentUser.uid}`)
+        .collection("games")
+        .get()
+        .subscribe(querySnapshot => {
+          resolve(querySnapshot.docs.map(doc => doc.data().game.name));
         });
-        this.playersList = sortBy(this.playersList, ["name"], ["asc"]);
-        this.players.next(this.playersList);
-      });
+    });
   }
 
   public addCreature(creature: Creature, type: string): void {
@@ -69,19 +57,6 @@ export class DbService {
       .doc(creature.name)
       .set(cleanCreature);
 
-    switch (type) {
-      case "creatures":
-        this.creatureList.push(creature);
-        this.creatures.next(this.creatureList);
-        break;
-      case "players":
-        this.playersList.push(creature);
-        this.players.next(this.playersList);
-        break;
-      case "npcs":
-        this.npcList.push(creature);
-        this.npcs.next(this.npcList);
-        break;
-    }
+    this.sessionService.addToCreatureList(creature);
   }
 }

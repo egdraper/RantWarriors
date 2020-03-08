@@ -3,7 +3,7 @@
     [placeholder]="'Select NPC'"
     (selectionChange)="onNpcChange($event)"
   >
-    <mat-option *ngFor="let npc of npcList" [value]="npc">
+    <mat-option *ngFor="let npc of npcSelectionList" [value]="npc">
       {{ npc }}
     </mat-option>
   </mat-select>

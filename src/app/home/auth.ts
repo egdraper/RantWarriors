@@ -10,19 +10,20 @@ import { Injectable } from "@angular/core";
 export class AuthService {
   constructor(private fireAuth: AngularFireAuth, private router: Router) {}
 
-  public async canActivate(
+  public async canActivateChild(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Promise<boolean> {
-    const promise = new Promise<boolean>(resolve =>
+    const promise = new Promise<boolean>(resolve => {
       this.fireAuth.auth.onAuthStateChanged(user => {
         if (user) {
           resolve(true);
         } else {
           this.router.navigateByUrl("");
         }
-      })
-    );
+      });
+    });
     return promise;
   }
+
 }

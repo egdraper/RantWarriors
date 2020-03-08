@@ -12,10 +12,7 @@ import { DbSessionService } from "../assets/dbSession";
   styleUrls: ["./creature.component.scss"]
 })
 export class CreatureComponent {
-  public activeCreatures: Creature[] = [];
-  public activePlayers: Creature[] = [];
-  public creatures: Creature[] = [];
-  public creatureList: string[] = [];
+  public creatureSelectionList: string[] = [];
   public challengeRatings = new Rating().getRatings(10);
 
   private selectedCreature: string;
@@ -24,14 +21,14 @@ export class CreatureComponent {
     public dbService: DbService,
     public dbSessionService: DbSessionService
   ) {
-    dbService.creatures.subscribe(creatureCollection => {
-      this.creatures = creatureCollection;
-      this.creatureList = creatureCollection.map(creature => creature.name);
-    });
 
-    dbSessionService.activePlayers.subscribe(activePlayerCollection => {
-      this.activePlayers = activePlayerCollection;
-    })
+    dbSessionService.initCreatureList();
+
+    dbSessionService.creatures$.subscribe(creatureCollection => {
+      this.creatureSelectionList = creatureCollection.map(
+        creature => creature.name
+      );
+    });
   }
 
   public onCreatureChange(creature: any): void {
@@ -40,49 +37,43 @@ export class CreatureComponent {
 
   public addCreature(): void {
     const chosenCreature = cloneDeep(
-      this.creatures.find(npc => npc.name === this.selectedCreature)
+      this.dbSessionService.creatureList.find(
+        npc => npc.name === this.selectedCreature
+      )
     );
-    chosenCreature.name = `${chosenCreature.name} ${this.activeCreatures
-      .length + 1}`;
-    this.activeCreatures.push(chosenCreature);
+    chosenCreature.name = `${chosenCreature.name} ${this.dbSessionService
+      .activeCreatureList.length + 1}`;
+    this.dbSessionService.add(chosenCreature, "creatures");
   }
 
-  public rollAbility(abilityModifier: number, creature: Creature): void {
-    const dice = new Dice();
-    const equation =
-      abilityModifier >= 0
-        ? `d20+${abilityModifier}`
-        : `d20-${-1 * abilityModifier}`;
-    const roll = dice.roll(equation);
-    creature.abilityRoll = roll.modifiedRollValue;
+  public onRemove(index: number): void {
+    this.dbSessionService.remove(index, "creatures");
   }
 
-  public remove(index: number): void {
-    this.activeCreatures = this.activeCreatures.filter((a, i) => i !== index);
+  // public rollAbility(abilityModifier: number, creature: Creature): void {
+  //   const dice = new Dice();
+  //   const equation =
+  //     abilityModifier >= 0
+  //       ? `d20+${abilityModifier}`
+  //       : `d20-${-1 * abilityModifier}`;
+  //   const roll = dice.roll(equation);
+  //   creature.abilityRoll = roll.modifiedRollValue;
+  // }
 
-    if (!this.activeCreatures) {
-      this.activeCreatures = [];
-    }
-  }
+  // public onRatingChange(rating: RatingModel): void {
+  //   const selectedChallengeRatings = this.challengeRatings.filter(
+  //     cr => cr.selected
+  //   );
+  //   if (!selectedChallengeRatings || selectedChallengeRatings.length === 0) {
+  //     this.creatureList = this.creatures.map(creature => creature.name);
+  //     return;
+  //   }
 
-  public onRatingChange(rating: RatingModel): void {
-    const selectedChallengeRatings = this.challengeRatings.filter(
-      cr => cr.selected
-    );
-    if (!selectedChallengeRatings || selectedChallengeRatings.length === 0) {
-      this.creatureList = this.creatures.map(creature => creature.name);
-      return;
-    }
-
-    const newCreatureList = this.creatures.filter(creature => {
-      return !!selectedChallengeRatings.find(
-        scr => scr.value === creature.challenge
-      );
-    });
-    this.creatureList = newCreatureList.map(creature => creature.name);
-  }
-
-  public onRemove(newActiveCreatures: Creature[]): void {
-    this.activeCreatures = newActiveCreatures;
-  }
+  //   const newCreatureList = this.creatures.filter(creature => {
+  //     return !!selectedChallengeRatings.find(
+  //       scr => scr.value === creature.challenge
+  //     );
+  //   });
+  //   this.creatureList = newCreatureList.map(creature => creature.name);
+  // }
 }

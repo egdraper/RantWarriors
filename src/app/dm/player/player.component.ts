@@ -13,36 +13,70 @@ import { DbSessionService } from "../assets/dbSession";
   templateUrl: "./player.component.html"
 })
 export class PlayerComponent {
-  public activePlayers: Creature[] = [];
-  public players: Creature[] = [];
-  public playerList: string[] = [];
-  public dead = "X";
+  public playerSelectionList: string[] = [];
 
-  private selectedNpc: string;
+  private selectedPlayer: string;
 
   constructor(
     public dbService: DbService,
     public dbSessionService: DbSessionService
   ) {
-    dbService.players.subscribe(playerCollection => {
-      this.players = playerCollection;
-      this.playerList = playerCollection.map(player => player.name);
+    dbSessionService.players$.subscribe(playerCollection => {
+      this.playerSelectionList = playerCollection.map(
+        player => player.name
+      );
     });
   }
 
-  public onPlayerChange(creature: any): void {
-    this.selectedNpc = creature.value;
+  public onPlayerChange(player: any): void {
+    this.selectedPlayer = player.value;
   }
 
   public addPlayer(): void {
-    this.activePlayers.push(
-      cloneDeep(this.players.find(npc => npc.name === this.selectedNpc))
+    const chosenPlayer = cloneDeep(
+      this.dbSessionService.playersList.find(
+        player => player.name === this.selectedPlayer
+      )
     );
-
-    this.dbSessionService.activePlayers.next(this.activePlayers);
+    chosenPlayer.name = `${chosenPlayer.name} ${this.dbSessionService
+      .activePlayersList.length + 1}`;
+    this.dbSessionService.add(chosenPlayer, "player");
   }
 
-  public onRemove(newActivePlayer: Creature[]): void {
-    this.activePlayers = newActivePlayer;
+  public onRemove(index: number): void {
+    this.dbSessionService.remove(index, "player");
   }
+
+  // public activePlayers: Creature[] = [];
+  // public players: Creature[] = [];
+  // public playerList: string[] = [];
+  // public dead = "X";
+
+  // private selectedNpc: string;
+
+  // constructor(
+  //   public dbService: DbService,
+  //   public dbSessionService: DbSessionService
+  // ) {
+  //   dbService.players.subscribe(playerCollection => {
+  //     this.players = playerCollection;
+  //     this.playerList = playerCollection.map(player => player.name);
+  //   });
+  // }
+
+  // public onPlayerChange(creature: any): void {
+  //   this.selectedNpc = creature.value;
+  // }
+
+  // public addPlayer(): void {
+  //   this.activePlayers.push(
+  //     cloneDeep(this.players.find(npc => npc.name === this.selectedNpc))
+  //   );
+
+  //   this.dbSessionService.activePlayers.next(this.activePlayers);
+  // }
+
+  // public onRemove(newActivePlayer: Creature[]): void {
+  //   this.activePlayers = newActivePlayer;
+  // }
 }

@@ -15,7 +15,7 @@ import { ImmunityVulnerabilityComponent } from "./immunity-vulnerability/immunit
 import { AssetNavComponent } from "./asset-nav/asset-nav.component";
 import { StatsModule } from "../../stats/stats.module";
 import { LegendaryActionsComponent } from './legendary-actions/legendary-actions.component';
-import { DBModule } from "../db.moduel";
+import { DBModule } from "../db.module";
 
 @NgModule({
   declarations: [

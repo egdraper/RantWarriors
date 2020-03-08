@@ -50,7 +50,7 @@
           <button
             class="damage-quick-link"
             mat-button
-            (click)="activeCreature.currentHitPoints = activeCreature.currentHitPoints - number"
+            (click)="takeDamage(activeCreature, number)"
             *ngFor="let number of damageNumbers; let l = index">
             {{ number }}
           </button>
