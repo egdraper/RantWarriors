@@ -9,6 +9,8 @@ import { LandingPageComponent } from "./landing-page/landing-page.component";
 import { CreateGameComponent } from "./landing-page/create-game/create-game.component";
 import { LoadGameComponent } from "./landing-page/load-game/load-game.component";
 import { DBModule } from "../dm/assets/db.module";
+import { AdminService } from "../dm/assets/admin.service";
+import { AdminModule } from "../admin/admin.module";
 
 @NgModule({
   declarations: [
@@ -26,6 +28,9 @@ import { DBModule } from "../dm/assets/db.module";
     DemoMaterialModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService]
+  providers: [
+    AdminService,
+    AuthService
+  ]
 })
 export class HomeModule {}

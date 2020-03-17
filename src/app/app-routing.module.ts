@@ -4,6 +4,7 @@ import { HomeComponent } from "./home/home.component";
 import { DmScreenComponent } from "./dm/dm-screen.component";
 import { AuthService } from "./home/auth";
 import { LandingPageComponent } from "./home/landing-page/landing-page.component";
+import { AdminComponent } from "./admin/admin.component";
 
 const routes: Routes = [
   {
@@ -11,18 +12,21 @@ const routes: Routes = [
     canActivateChild: [ AuthService ],
     children: [
       {
-        path: "",
-        pathMatch: "full",
-        component: HomeComponent
-      },
-      {
         path: "creature",
         component: DmScreenComponent
       },
       {
         path: "landing",
         component: LandingPageComponent
-      }
+      },
+      {
+        path: "admin",
+        component: AdminComponent
+      },
+      {
+        path: "",
+        component: HomeComponent
+      },
     ]
   }
 ];

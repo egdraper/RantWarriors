@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 import { DbService } from "../../../dm/assets/dbService";
 
 @Component({
@@ -11,7 +12,9 @@ export class CreateGameComponent {
   public creaturesChecked = true;
   public npcsChecked = true;
 
-  constructor(private dbService: DbService) {}
+  constructor(
+    private router: Router,
+    private dbService: DbService) {}
 
   public createGame(): void {
     this.dbService.createGame({
@@ -20,5 +23,7 @@ export class CreateGameComponent {
       useCreatures: this.npcsChecked,
       created: Date.now().toLocaleString()
     });
+
+    this.router.navigate(["/creature"], {queryParams: {game: this.gameName}});
   }
 }

@@ -23,11 +23,11 @@ export class CreatureStatsComponent {
   }
 
   public takeDamage(): void {
-    this.damage.emit({creature: this.creature, value: this.damageTaken})
+    this.damage.emit({creature: this.creature, value: this.damageTaken});
   }
 
   public doHeal(): void {
-    this.damage.emit({creature: this.creature, value: this.damageTaken})
+    this.damage.emit({creature: this.creature, value: this.damageTaken});
   }
 
   public resetHp(): void {

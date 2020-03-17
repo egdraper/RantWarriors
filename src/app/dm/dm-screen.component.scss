@@ -3,3 +3,16 @@
   padding: 15px;
 }
 
+.mat-icon {
+  right: 50px;
+  position: absolute;
+  top: 17px;
+}
+
+.settings {
+  display: grid;
+  position: absolute;
+  right: 70px;
+  top: 17px;
+  z-index: 100;
+}

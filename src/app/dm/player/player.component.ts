@@ -21,6 +21,8 @@ export class PlayerComponent {
     public dbService: DbService,
     public dbSessionService: DbSessionService
   ) {
+    dbSessionService.initPlayersList();
+
     dbSessionService.players$.subscribe(playerCollection => {
       this.playerSelectionList = playerCollection.map(
         player => player.name
@@ -40,11 +42,11 @@ export class PlayerComponent {
     );
     chosenPlayer.name = `${chosenPlayer.name} ${this.dbSessionService
       .activePlayersList.length + 1}`;
-    this.dbSessionService.add(chosenPlayer, "player");
+    this.dbSessionService.add(chosenPlayer, "players");
   }
 
   public onRemove(index: number): void {
-    this.dbSessionService.remove(index, "player");
+    this.dbSessionService.remove(index, "players");
   }
 
   // public activePlayers: Creature[] = [];

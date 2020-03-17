@@ -60,6 +60,16 @@ export class StatsComponent {
     this.creatureSelectedIndex = index;
   }
 
+  public heal(activeCreature: Creature, value: number): void {
+    activeCreature.currentHitPoints += value;
+
+    if (activeCreature.currentHitPoints > activeCreature.maxHitPoints) {
+      activeCreature.currentHitPoints = activeCreature.maxHitPoints;
+    }
+
+    this.dbSessionService.updateSession();
+  }
+
   public takeDamage(activeCreature: Creature, value: number): void {
     activeCreature.currentHitPoints -= value;
 

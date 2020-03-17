@@ -22,9 +22,6 @@ export class LoadGameComponent implements OnInit {
   }
 
   public async selectGame(): Promise<void> {
-    await this.dbSession.loadGameSession(this.game);
-    this.router.navigate(["/creature"]);
+    this.router.navigate(["/creature"], {queryParams: {game: this.game}});
   }
-
-
 }

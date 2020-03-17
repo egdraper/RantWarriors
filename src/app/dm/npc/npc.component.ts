@@ -20,6 +20,7 @@ export class NpcComponent {
     public dbService: DbService,
     public dbSessionService: DbSessionService
   ) {
+    dbSessionService.initNpcList();
     dbSessionService.npcs$.subscribe(npcCollection => {
       this.npcSelectionList = npcCollection.map(
         npc => npc.name
@@ -39,37 +40,10 @@ export class NpcComponent {
     );
     chosenNpc.name = `${chosenNpc.name} ${this.dbSessionService
       .activeNpcList.length + 1}`;
-    this.dbSessionService.add(chosenNpc, "npc");
+    this.dbSessionService.add(chosenNpc, "npcs");
   }
 
   public onRemove(index: number): void {
-    this.dbSessionService.remove(index, "npc");
+    this.dbSessionService.remove(index, "npcs");
   }
-  // public activeNpcs: Creature[] = [];
-  // public npcs: Creature[] = [];
-  // public npcSelectionList: string[] = [];
-  // public dead = "X";
-
-  // private selectedNpc: string;
-
-  // constructor(public dbService: DbService) {
-  //   dbService.npcs.subscribe(npcCollection => {
-  //     this.npcs = npcCollection;
-  //     this.npcList = npcCollection.map(creature => creature.name);
-  //   });
-  // }
-
-  // public onNpcChange(creature: any): void {
-  //   this.selectedNpc = creature.value;
-  // }
-
-  // public addNpc(): void {
-  //   this.activeNpcs.push(
-  //     cloneDeep(this.npcs.find(npc => npc.name === this.selectedNpc))
-  //   );
-  // }
-
-  // public onRemove(newActiveCreatures: Npc[]): void {
-  //   this.activeNpcs = newActiveCreatures;
-  // }
 }

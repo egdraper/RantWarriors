@@ -64,6 +64,8 @@
         [class.has-disadvantage]="activeCreature.hasDisadvantage">
       </div>
       <app-stats-panel 
+        (damage)="takeDamage($event)"
+        (heal)="takeDamage($event)"
         [creature]="activeCreature"
         [selectedCreature]="selectedEnemy">
       </app-stats-panel>

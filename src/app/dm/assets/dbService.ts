@@ -31,7 +31,10 @@ export class DbService {
       });
 
     this.sessionService.currentGame = game.name;
-    this.sessionService.addSession();
+  }
+
+  public async signOut(): Promise<void> {
+    this.fireAuth.auth.signOut();
   }
 
   public async getGames(): Promise<string[]> {
@@ -57,6 +60,6 @@ export class DbService {
       .doc(creature.name)
       .set(cleanCreature);
 
-    this.sessionService.addToCreatureList(creature);
+    this.sessionService.addToCreatureList(creature, type);
   }
 }

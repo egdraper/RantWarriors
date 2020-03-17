@@ -4,9 +4,11 @@ import { Creature } from "./creature.model";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { sortBy } from "lodash";
+import { OnInit } from "@angular/core";
 
 @Injectable()
 export class DbSessionService {
+  public admin = false;
   public currentGame: string;
   public creatureList: Creature[] = [];
   public playersList: Creature[] = [];
@@ -25,6 +27,9 @@ export class DbSessionService {
     this.activeCreatureList
   );
 
+  private useGenericNpcs = "";
+  private useGenericCreatures = "";
+
   constructor(
     private fireAuth: AngularFireAuth,
     private firestore: AngularFirestore
@@ -42,48 +47,71 @@ export class DbSessionService {
         });
         this.creatureList = sortBy(this.creatureList, ["name"], ["asc"]);
         this.creatures$.next(this.creatureList);
+
+        if (this.useGenericCreatures) {
+          this.getGenericCreatures();
+        }
       });
   }
 
-  // this.firestore
-  //   .collection("users")
-  //   .doc(`${this.fireAuth.auth.currentUser.uid}`)
-  //   .collection("npcs")
-  //   .get()
-  //   .subscribe(querySnapshot => {
-  //     querySnapshot.forEach(doc => {
-  //       this.npcList.push(doc.data() as Creature);
-  //     });
-  //     this.npcList = sortBy(this.npcList, ["name"], ["asc"]);
-  //     this.npcs.next(this.npcList);
-  //   });
+  public getGenericCreatures(): void {
+    this.firestore
+      .collection("assets")
+      .get()
+      .subscribe(snapshot => {
+        snapshot.forEach(doc => {
+          this.creatureList.push(doc.data() as Creature);
+        });
+        this.creatureList = sortBy(this.creatureList, ["name"], ["asc"]);
+        this.creatures$.next(this.creatureList);
+      });
+  }
 
-  // this.firestore
-  //   .collection("users")
-  //   .doc(`${this.fireAuth.auth.currentUser.uid}`)
-  //   .collection("players")
-  //   .get()
-  //   .subscribe(querySnapshot => {
-  //     querySnapshot.forEach(doc => {
-  //       this.playersList.push(doc.data() as Creature);
-  //     });
-  //     this.playersList = sortBy(this.playersList, ["name"], ["asc"]);
-  //     this.players.next(this.playersList);
-  //   });
+  public initPlayersList(): void {
+    this.firestore
+      .collection("users")
+      .doc(`${this.fireAuth.auth.currentUser.uid}`)
+      .collection("players")
+      .get()
+      .subscribe(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          this.playersList.push(doc.data() as Creature);
+        });
+        this.playersList = sortBy(this.playersList, ["name"], ["asc"]);
+        this.players$.next(this.playersList);
+      });
+  }
 
-  public addSession(): void {
-    // const session = {
-    //   creatures: JSON.parse(JSON.stringify(this.activeCreatureList)),
-    //   npcs: JSON.parse(JSON.stringify(this.activeNpcList)),
-    //   players: JSON.parse(JSON.stringify(this.activePlayersList))
-    // };
+  public initNpcList(): void {
+    this.firestore
+      .collection("users")
+      .doc(`${this.fireAuth.auth.currentUser.uid}`)
+      .collection("npcs")
+      .get()
+      .subscribe(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          this.npcList.push(doc.data() as Creature);
+        });
+        this.npcList = sortBy(this.npcList, ["name"], ["asc"]);
+        this.npcs$.next(this.npcList);
+      });
 
-    // this.firestore
-    //   .collection("users")
-    //   .doc(`${this.fireAuth.auth.currentUser.uid}`)
-    //   .collection("games")
-    //   .doc(this.currentGame)
-    //   .update(session:session);
+    if (this.useGenericNpcs) {
+      this.getGenericNpcList();
+    }
+  }
+
+  public getGenericNpcList(): void {
+    this.firestore
+      .collection("npcs")
+      .get()
+      .subscribe(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          this.npcList.push(doc.data() as Creature);
+        });
+        this.npcList = sortBy(this.npcList, ["name"], ["asc"]);
+        this.npcs$.next(this.npcList);
+      });
   }
 
   public updateSession(): void {
@@ -104,14 +132,29 @@ export class DbSessionService {
     this.creatures$.next(this.creatureList);
   }
 
-  public addToCreatureList(creature: Creature): void {
-    this.creatureList.push(creature);
-    this.creatureList = sortBy(this.creatureList, ["name"], ["asc"]);
-    this.creatures$.next(this.creatureList);
+  public addToCreatureList(asset: Creature, type: string): void {
+    switch (type) {
+      case "creatures":
+        this.creatureList.push(asset);
+        this.creatureList = sortBy(this.creatureList, ["name"], ["asc"]);
+        this.creatures$.next(this.creatureList);
+        break;
+      case "players":
+        this.playersList.push(asset);
+        this.playersList = sortBy(this.playersList, ["name"], ["asc"]);
+        this.players$.next(this.playersList);
+        break;
+      case "npcs":
+        this.npcList.push(asset);
+        this.npcList = sortBy(this.npcList, ["name"], ["asc"]);
+        this.npcs$.next(this.npcList);
+        break;
+    }
   }
 
   public async loadGameSession(gameName: string): Promise<void> {
     this.currentGame = gameName;
+
     return new Promise(resolve => {
       this.firestore
         .collection("users")
@@ -124,6 +167,8 @@ export class DbSessionService {
           this.activeCreatureList = data.session.creatures;
           this.activeNpcList = data.session.npcs;
           this.activePlayersList = data.session.players;
+          this.useGenericCreatures = data.game.useCreatures;
+          this.useGenericNpcs = data.game.useNpcs;
           this.activeNpcs.next(this.activeNpcList);
           this.activePlayers.next(this.activePlayersList);
           this.activeCreatures.next(this.activeCreatureList);

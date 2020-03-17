@@ -11,11 +11,11 @@ import { AngularFireModule } from "@angular/fire";
 import { environment } from "src/environments/environment";
 import { FormsModule } from "@angular/forms";
 import { HomeModule } from "./home/home.module";
+import { AuthService } from "./home/auth";
+import { AdminModule } from "./admin/admin.module";
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
@@ -23,11 +23,12 @@ import { HomeModule } from "./home/home.module";
     AngularFireAuthModule,
     FormsModule,
     HomeModule,
+    AdminModule,
     BrowserModule,
     CreatureModule,
-    AppRoutingModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,35 +1,43 @@
-
-    <div class="stat-list">
-      <div class="trait-grouping">
-        <app-ability-stats [creature]="creature"></app-ability-stats>
-      </div>
-      <div class="trait-grouping standard-group">
-        <app-creature-stats [creature]="creature"></app-creature-stats>
-      </div>
-      <div class="trait-grouping standard-group">
-        <app-battle-stats [creature]="creature" [selectedCreature]="selectedCreature"></app-battle-stats>
-      </div>
-      <div
-        class="trait-grouping standard-group"
-        *ngIf="creature.traits.length > 0">
-        <app-trait-stats [creature]="creature"></app-trait-stats>
-      </div>
-      <div
-        class="trait-grouping standard-group"
-        *ngIf="creature.vulnerabilities.length > 0 ||
-               creature.resistances.length > 0 || 
-               creature.conditionImmunities.length > 0 ||
-               creature.immunities.length > 0">
-        <app-immunity-vulnerability-stats
-          [creature]="creature"
-        ></app-immunity-vulnerability-stats>
-      </div>
-      <div
-        class="trait-grouping standard-group"
-        *ngIf="creature.legendaryActions.length > 0">
-        <app-legendary-actions-stats 
-          [creature]="creature"
-        ></app-legendary-actions-stats>
-    </div>
+<div class="stat-list">
+  <div class="trait-grouping">
+    <app-ability-stats [creature]="creature"></app-ability-stats>
+  </div>
+  <div class="trait-grouping standard-group">
+    <app-creature-stats
+      [creature]="creature"
+      (damage)="damage.emit($event)"
+      (heal)="heal.emit($event)"
+    >
+    </app-creature-stats>
+  </div>
+  <div class="trait-grouping standard-group">
+    <app-battle-stats
+      [creature]="creature"
+      [selectedCreature]="selectedCreature"
+    ></app-battle-stats>
+  </div>
+  <div class="trait-grouping standard-group" *ngIf="creature.traits.length > 0">
+    <app-trait-stats [creature]="creature"></app-trait-stats>
+  </div>
+  <div
+    class="trait-grouping standard-group"
+    *ngIf="
+      creature.vulnerabilities.length > 0 ||
+      creature.resistances.length > 0 ||
+      creature.conditionImmunities.length > 0 ||
+      creature.immunities.length > 0
+    "
+  >
+    <app-immunity-vulnerability-stats
+      [creature]="creature"
+    ></app-immunity-vulnerability-stats>
+  </div>
+  <div
+    class="trait-grouping standard-group"
+    *ngIf="creature.legendaryActions.length > 0"
+  >
+    <app-legendary-actions-stats
+      [creature]="creature"
+    ></app-legendary-actions-stats>
+  </div>
 </div>
-
