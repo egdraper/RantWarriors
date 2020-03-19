@@ -10,7 +10,6 @@ import { DbSessionService } from "../assets/dbSession";
   styleUrls: ["./creature.component.scss"]
 })
 export class CreatureComponent {
-  public creatureSelectionList: string[] = [];
   public challengeRatings = new Rating().getRatings(10);
 
   private selectedCreature: string;
@@ -19,14 +18,6 @@ export class CreatureComponent {
     public dbService: DbService,
     public dbSessionService: DbSessionService
   ) {
-
-    dbSessionService.initCreatureList();
-
-    dbSessionService.creatures$.subscribe(creatureCollection => {
-      this.creatureSelectionList = creatureCollection.map(
-        creature => creature.name
-      );
-    });
   }
 
   public onCreatureChange(creature: any): void {

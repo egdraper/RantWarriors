@@ -3,7 +3,7 @@
     [placeholder]="'Select Player'"
     (selectionChange)="onPlayerChange($event)"
   >
-    <mat-option *ngFor="let player of playerSelectionList" [value]="player">
+    <mat-option *ngFor="let player of dbSessionService.playerSelectionList" [value]="player">
       {{ player }}
     </mat-option>
   </mat-select>

@@ -1,0 +1,26 @@
+.value-modifier {
+  visibility: hidden;
+  cursor: pointer;
+  display: inline-grid;
+  position: absolute;
+  left: -20px;
+  top: 47px;
+
+  .mat-icon {
+    height: 12px;
+    width: 14px;
+    font-size: 15px;
+  }
+
+  .value-up {
+  }
+
+  .value-down {
+  }
+
+
+}
+
+.value-modifier:hover {
+   visibility: visible;
+}

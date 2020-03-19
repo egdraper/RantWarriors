@@ -6,26 +6,33 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { DbService } from "./assets/dbService";
 
 @Component({
-    selector: "dm-screen",
-    templateUrl: "./dm-screen.component.html",
-    styleUrls: ["./dm-screen.component.scss"]
-  })
-  export class DmScreenComponent {
-    constructor(
-      private dbSessionService: DbSessionService,
-      private dbService: DbService,
-      private activatedRoute: ActivatedRoute,
-      private router: Router,
-    ) {
-      this.activatedRoute.queryParams.subscribe(params => {
-        const gameName = params["game"];
-        this.dbSessionService.loadGameSession(gameName);
-      });
-    }
-
-    public logOut(): void {
-      this.dbService.signOut();
-      this.router.navigate(["/"]);
-    }
-
+  selector: "dm-screen",
+  templateUrl: "./dm-screen.component.html",
+  styleUrls: ["./dm-screen.component.scss"]
+})
+export class DmScreenComponent {
+  constructor(
+    private dbSessionService: DbSessionService,
+    private dbService: DbService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {
+    this.activatedRoute.queryParams.subscribe(params => {
+      const gameName = params["game"];
+      this.dbSessionService.loadGameSession(gameName);
+    });
   }
+
+  public logOut(): void {
+    this.dbService.signOut();
+    this.router.navigate(["/"]);
+  }
+
+  public goHome(): void {
+    this.router.navigate(["/landing"]);
+  }
+
+  public goAdmin(): void {
+    this.router.navigate(["/admin"]);
+  }
+}

@@ -9,4 +9,19 @@
   <button mat-button (click)="creatureAdded.emit()">Add Creature</button>
   <button mat-button (click)="npcAdded.emit()">Add NPC</button> 
   <button mat-button (click)="playerAdded.emit()">Add Player</button> 
+  
+  <mat-form-field>
+    <mat-select
+      [placeholder]="'Select Creature'"
+      (selectionChange)="onLoad($event)"
+    >
+      <mat-option
+        *ngFor="let creature of dbSessionService?.creatureSelectionList"
+        [value]="creature"
+      >
+        {{ creature }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 </div>
+

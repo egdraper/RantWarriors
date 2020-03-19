@@ -12,21 +12,12 @@ import { DbSessionService } from "../assets/dbSession";
   templateUrl: "./npc.component.html"
 })
 export class NpcComponent {
-  public npcSelectionList: string[] = [];
-
   private selectedNpc: string;
 
   constructor(
     public dbService: DbService,
     public dbSessionService: DbSessionService
-  ) {
-    dbSessionService.initNpcList();
-    dbSessionService.npcs$.subscribe(npcCollection => {
-      this.npcSelectionList = npcCollection.map(
-        npc => npc.name
-      );
-    });
-  }
+  ) { }
 
   public onNpcChange(npc: any): void {
     this.selectedNpc = npc.value;

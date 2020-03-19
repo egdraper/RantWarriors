@@ -15,6 +15,7 @@ import { AddAssetModule } from "./assets/add-asset/add-asset.module";
 import { StatsModule } from "./stats/stats.module";
 import { DBModule } from "./assets/db.module";
 import { PlayerComponent } from "./player/player.component";
+import { AdminModule } from "../admin/admin.module";
 
 @NgModule({
   declarations: [

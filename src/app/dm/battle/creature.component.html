@@ -1,29 +1,28 @@
-<div class="creature-page">
-  <div class="creature-tool-bar">
+
     <mat-form-field>
       <mat-select
         [placeholder]="'Select Creature'"
         (selectionChange)="onCreatureChange($event)"
       >
         <mat-option
-          *ngFor="let creature of creatureSelectionList"
+          *ngFor="let creature of dbSessionService.creatureSelectionList"
           [value]="creature"
         >
           {{ creature }}
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <div class="creature-add">
+
       <button mat-button (click)="addCreature()">Add</button>
-    </div>
-  </div>
-  <div>
+
+
+
     <stats
       [activeEnemies]="dbSessionService.activePlayersList"
       [activeCreatures]="dbSessionService.activeCreatureList"
       (remove)="onRemove($event)">
     </stats>
-  </div>
+
   <!-- <div>
     <span>
       <mat-checkbox
@@ -35,4 +34,4 @@
       </mat-checkbox>
     </span>
   </div> -->
-</div>
+

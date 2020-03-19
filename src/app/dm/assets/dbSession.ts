@@ -26,14 +26,35 @@ export class DbSessionService {
   public activePlayers = new BehaviorSubject<Creature[]>(
     this.activeCreatureList
   );
+  public creatureSelectionList: string[] = [];
+  public playerSelectionList: string[] = [];
+  public npcSelectionList: string[] = [];
 
-  private useGenericNpcs = "";
-  private useGenericCreatures = "";
+  private useGenericNpcs = false;
+  private useGenericCreatures = false;
 
   constructor(
     private fireAuth: AngularFireAuth,
     private firestore: AngularFirestore
-  ) {}
+  ) {
+    this.creatures$.subscribe(creatureCollection => {
+      this.creatureSelectionList = creatureCollection.map(
+        creature => creature.name
+      );
+    });
+
+    this.npcs$.subscribe(npcCollection => {
+      this.npcSelectionList = npcCollection.map(
+        npc => npc.name
+      );
+    });
+
+    this.players$.subscribe(playerCollection => {
+      this.playerSelectionList = playerCollection.map(
+        player => player.name
+      );
+    });
+  }
 
   public initCreatureList(): void {
     this.firestore
@@ -172,6 +193,10 @@ export class DbSessionService {
           this.activeNpcs.next(this.activeNpcList);
           this.activePlayers.next(this.activePlayersList);
           this.activeCreatures.next(this.activeCreatureList);
+
+          this.initCreatureList();
+          this.initNpcList();
+          this.initPlayersList();
           resolve();
         });
     });

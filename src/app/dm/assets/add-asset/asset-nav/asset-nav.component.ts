@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { Constants } from "../constants";
+import { DbService } from "../../dbService";
+import { DbSessionService } from "../../dbSession";
 
 @Component({
   selector: "app-asset-nav",
@@ -11,14 +13,16 @@ export class AssetNavComponent implements OnInit {
   @Output() public creatureAdded = new EventEmitter();
   @Output() public npcAdded = new EventEmitter();
   @Output() public playerAdded = new EventEmitter();
+  @Output() public loadCreature = new EventEmitter();
   
   public navItems: string[] = Constants.navItems;
 
-
-  constructor() { }
+  constructor(public dbSessionService: DbSessionService) { }
 
   ngOnInit() {
   }
 
-
+  public onLoad(creature: any): void {
+    this.loadCreature.emit(creature.value);
+  }
 }

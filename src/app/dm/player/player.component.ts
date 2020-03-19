@@ -13,22 +13,12 @@ import { DbSessionService } from "../assets/dbSession";
   templateUrl: "./player.component.html"
 })
 export class PlayerComponent {
-  public playerSelectionList: string[] = [];
-
   private selectedPlayer: string;
 
   constructor(
     public dbService: DbService,
     public dbSessionService: DbSessionService
-  ) {
-    dbSessionService.initPlayersList();
-
-    dbSessionService.players$.subscribe(playerCollection => {
-      this.playerSelectionList = playerCollection.map(
-        player => player.name
-      );
-    });
-  }
+  ) { }
 
   public onPlayerChange(player: any): void {
     this.selectedPlayer = player.value;
