@@ -29,9 +29,8 @@ export class DbSessionService {
   public creatureSelectionList: string[] = [];
   public playerSelectionList: string[] = [];
   public npcSelectionList: string[] = [];
-
-  private useGenericNpcs = false;
-  private useGenericCreatures = false;
+  public useGenericNpcs = false;
+  public useGenericCreatures = false;
 
   constructor(
     private fireAuth: AngularFireAuth,

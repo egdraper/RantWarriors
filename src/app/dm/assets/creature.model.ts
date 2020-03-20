@@ -18,12 +18,12 @@ export class Trait {
 }
 
 export class Abilities {
-  public strength = 0;
-  public dexterity = 0;
-  public constitution = 0;
-  public intelligence = 0;
-  public wisdom = 0;
-  public charisma = 0;
+  public strength = 10;
+  public dexterity = 10;
+  public constitution = 10;
+  public intelligence = 10;
+  public wisdom = 10;
+  public charisma = 10;
 }
 
 export class Checks {
@@ -45,6 +45,7 @@ export class Creature {
   public armorType?: string;
   public attackNotes?: string;
   public challenge: number;
+  public challengeDisplay?: string;
   public creatureType?: string;
   public conditionImmunities: string[] = [];
   public currentHitPoints: number;

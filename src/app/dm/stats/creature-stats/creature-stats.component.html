@@ -1,4 +1,4 @@
-<h1 class="defense-title">Defense</h1>
+<h1 class="defense-title">Attributes</h1>
 <div>
   <app-value-modifier [value]="creature.armorClass" (change)="creature.armorClass = $event"></app-value-modifier>
   <h4 class="creature-stat">
@@ -18,7 +18,7 @@
 <div *ngIf="creature.senses.length > 0">
   <h4>Senses</h4>
   <h5 *ngFor="let sense of creature.senses">
-    {{ sense.sense }}: {{ sense.value }}ft
+     - {{ sense.sense }}
   </h5>
   <hr />
 </div>

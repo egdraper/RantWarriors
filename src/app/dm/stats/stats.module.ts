@@ -16,9 +16,11 @@ import { StatsPanelComponent } from "./stats-panel/stats-panel.component";
 import { LegendaryActionsStatsComponent } from "./legendary-actions/legendary-actions-stats.component";
 import { SummaryComponent } from './summary/summary.component';
 import { ValueModifierComponent } from './value-modifier/value-modifier.component';
+import { AbilityScoreModifierPipe } from "./skill-stats/ability.pipe";
 
 @NgModule({
   declarations: [
+    AbilityScoreModifierPipe,
     LegendaryActionsStatsComponent,
     SkillStatsComponent,
     StatsComponent,

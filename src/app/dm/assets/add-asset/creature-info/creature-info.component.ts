@@ -10,27 +10,18 @@ import { Rating } from "../../creature.db";
 })
 export class CreatureInfoComponent implements OnInit {
   @Input() public creature: Creature;
-  public senses = Constants.senses;
-  public alignments = Constants.alignments;
+
   public sizes = Constants.sizes;
+  public challengeRatings = new Rating().getRatings(30);
   public creatureTypes = Constants.creatureTypes;
-  public challengeRatings = new Rating().getRatings(10);
-  public newLanguage = "";
-  public newSense = "";
-  public senseRange = 0;
-  constructor() {}
+  public alignments = Constants.alignments;
 
-  ngOnInit() {}
+  constructor() { }
 
-  public addLanguage(): void {
-    if (this.newLanguage !== "") {
-      this.creature.languages.push(this.newLanguage);
-    }
+  ngOnInit() {
   }
 
-  public addSense(): void {
-    if (this.newSense !== "") {
-      this.creature.senses.push({ sense: this.newSense, value: this.senseRange });
-    }
+  public onChange(challengeRatings: string): void {
+    this.creature.experience = Constants.getXP(challengeRatings);
   }
 }

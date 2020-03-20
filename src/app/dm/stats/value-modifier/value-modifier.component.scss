@@ -1,5 +1,5 @@
 .value-modifier {
-  visibility: hidden;
+  opacity: 0;
   cursor: pointer;
   display: inline-grid;
   position: absolute;
@@ -22,5 +22,5 @@
 }
 
 .value-modifier:hover {
-   visibility: visible;
+   opacity: 1;
 }

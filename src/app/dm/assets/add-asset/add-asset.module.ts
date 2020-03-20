@@ -16,6 +16,7 @@ import { AssetNavComponent } from "./asset-nav/asset-nav.component";
 import { StatsModule } from "../../stats/stats.module";
 import { LegendaryActionsComponent } from './legendary-actions/legendary-actions.component';
 import { DBModule } from "../db.module";
+import { AttributesComponent } from './attributes/attributes.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { DBModule } from "../db.module";
     ImmunityVulnerabilityComponent,
     AssetNavComponent,
     LegendaryActionsComponent,
+    AttributesComponent,
   ],
   exports: [
     AddAssetComponent,

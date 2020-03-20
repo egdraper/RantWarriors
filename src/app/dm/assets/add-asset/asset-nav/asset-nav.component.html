@@ -1,4 +1,4 @@
-<div class="nav-container">
+<!-- <div class="nav-container">
   <div
     class="nav-item"
     *ngFor="let item of navItems"
@@ -6,9 +6,9 @@
     {{ item }}
   </div>
   <hr>
-  <button mat-button (click)="creatureAdded.emit()">Add Creature</button>
-  <button mat-button (click)="npcAdded.emit()">Add NPC</button> 
-  <button mat-button (click)="playerAdded.emit()">Add Player</button> 
+  <button mat-button (click)="creatureAdded.emit()">Add As New Creature</button>
+  <button mat-button (click)="npcAdded.emit()">Add as New NPC</button> 
+  <button mat-button (click)="playerAdded.emit()">Add as New Player</button> 
   
   <mat-form-field>
     <mat-select
@@ -23,5 +23,48 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
-</div>
+  <div>
+    <button mat-button (click)="update.emit()">Update</button> 
+  </div>
+</div> -->
+<!-- 
+<div class="nav-container">
+  <div *ngIf="!optionSelected">
+    <div
+      class="nav-item"
+      *ngFor="let option of navMainOptions"
+      (click)="optionSelect(option)">
+      {{ option }}
+    </div>
+  </div>
+  <div *ngIf="optionSelected">
+    <div
+      class="nav-item"
+      *ngFor="let item of navItems"
+      (click)="select.emit(item)">
+      {{ item }}
+    </div>
 
+  <hr />
+  <button mat-button (click)="creatureAdded.emit()">Add As New Creature</button>
+  <button mat-button (click)="npcAdded.emit()">Add as New NPC</button>
+  <button mat-button (click)="playerAdded.emit()">Add as New Player</button>
+
+  <mat-form-field>
+    <mat-select
+      [placeholder]="'Select Creature'"
+      (selectionChange)="onLoad($event)"
+    >
+      <mat-option
+        *ngFor="let creature of dbSessionService?.creatureSelectionList"
+        [value]="creature"
+      >
+        {{ creature }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div>
+    <button mat-button (click)="update.emit()">Update</button>
+  </div>
+</div>
+</div> -->

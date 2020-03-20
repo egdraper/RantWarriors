@@ -1,9 +1,15 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component, EventEmitter, Output, Input } from "@angular/core";
 import { Creature, Action } from "../creature.model";
 import { cloneDeep } from "lodash";
 import { DbService } from "../dbService";
 import { DbSessionService } from "../dbSession";
 import { AngularFirestore } from "@angular/fire/firestore";
+
+export enum View {
+  Abilities = "Abilities",
+  Attributes = "Attributes",
+  Info = "Info",
+}
 
 @Component({
   selector: "add-asset",
@@ -11,9 +17,10 @@ import { AngularFirestore } from "@angular/fire/firestore";
   templateUrl: "./add-asset.component.html"
 })
 export class AddAssetComponent {
+  @Input() public admin = false;
   public newCreature = new Creature();
   public newAction = new Action();
-  public activeView = "Creature";
+  public activeView = View.Attributes;
 
   constructor(
     private dbSessionService: DbSessionService,
@@ -26,12 +33,12 @@ export class AddAssetComponent {
     this.newCreature = new Creature();
   }
 
-  public onSelect(selection: string): void {
+  public onSelect(selection: View): void {
     this.activeView = selection;
   }
 
   public onCreatureAdded(type: string): void {
-    this.dbService.addCreature(this.newCreature, type);
+    this.admin ? this.dbService.addAdminCreature(this.newCreature, type) : this.dbService.addCreature(this.newCreature, type);
     this.newAction = new Action();
     this.newCreature = new Creature();
   }
@@ -44,5 +51,9 @@ export class AddAssetComponent {
     );
 
     this.newCreature.name = this.newCreature.name + " (Mod)";
+  }
+
+  public onUpdate(type: string): void {
+    this.admin ? this.dbService.updateAdminCreature(this.newCreature, type) : this.dbService.updateCreature(this.newCreature, type);
   }
 }

@@ -10,7 +10,8 @@
     >
     </app-creature-stats>
   </div>
-  <div class="trait-grouping standard-group">
+  <div *ngIf="creature.actions.length > 0"
+     class="trait-grouping standard-group">
     <app-battle-stats
       [creature]="creature"
       [selectedCreature]="selectedCreature"

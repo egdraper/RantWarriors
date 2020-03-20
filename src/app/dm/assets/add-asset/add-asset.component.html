@@ -1,25 +1,30 @@
-<app-asset-nav 
+<!-- <app-asset-nav 
   (creatureAdded)="onCreatureAdded('creatures')"
   (npcAdded)="onCreatureAdded('npcs')"
   (playerAdded)="onCreatureAdded('players')"
   (loadCreature)="onCreatureLoad($event)"
-  (select)="onSelect($event)">  
-</app-asset-nav>
+  (select)="onSelect($event)"  
+  (update)="onUpdate($event)">
+</app-asset-nav> -->
 <div class="add-asset-container">
   <div class="entry-group">
     <form autocomplete="off">
+      <app-ability-info
+        *ngIf="activeView === 'Abilities'"
+        [creature]="newCreature">
+      </app-ability-info>
+      <app-attributes
+        *ngIf="activeView === 'Attributes'"
+        [creature]="newCreature">
+      </app-attributes>
       <app-creature-info
-        *ngIf="activeView === 'Creature'"
+        *ngIf="activeView === 'Info'"
         [creature]="newCreature">
       </app-creature-info>
       <app-battle-info
         *ngIf="activeView === 'Battle'"
         [creature]="newCreature">
       </app-battle-info>
-      <app-ability-info
-        *ngIf="activeView === 'Abilities'"
-        [creature]="newCreature">
-      </app-ability-info>
       <app-immunity-vulnerability
         *ngIf="activeView === 'Immunities+'"
         [creature]="newCreature">

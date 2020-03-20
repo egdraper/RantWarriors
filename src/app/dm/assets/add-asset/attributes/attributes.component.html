@@ -1,0 +1,102 @@
+<div class="form-group">
+
+    <mat-form-field class="sense">
+        <mat-label>Armor</mat-label>
+        <mat-select
+          [placeholder]="'Attack Type (ex: Slashing)'"
+          (selectionChange)="onChange($event)">
+          <mat-option *ngFor="let armor of armorList" [value]="armor.name">
+            {{ armor.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    <div *ngIf="creature.armorType === 'Natural'">
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Additional Armor"
+          name="armorClass"
+          type="number"
+          (input)="onAdditionalArmorChange($event.target.value)"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Max Hit Points"
+          name="maxHitPoints"
+          type="number"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="creature.maxHitPoints"
+          [(ngModel)]="creature.currentHitPoints" 
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Hit Dice (ex:2d8+6 - NO Spaces)"
+          name="hitDice"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="creature.hitDice"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Speed"
+          name="speed"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="creature.speed"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Passive Perception"
+          name="passivePerception"
+          type="number"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="creature.passivePerception"
+        />
+      </mat-form-field>
+    </div>
+    <div class="creature-info-area">
+      <mat-form-field class="sense">
+        <mat-label>Senses</mat-label>
+        <mat-select
+          [placeholder]="'Attack Type (ex: Slashing)'"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="newSense">
+          <mat-option *ngFor="let actions of senses" [value]="actions">
+            {{ actions }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-button (click)="addSense()">Add</button>    
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Languages"
+          name="languages"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="newLanguage"
+        />
+      </mat-form-field>
+      <button mat-button (click)="addLanguage()">Add</button>
+    </div>
+
+ 
+  
+  </div>
+
