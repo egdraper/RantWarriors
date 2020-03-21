@@ -1,15 +1,17 @@
 <div  class="form-group">
-    <h1>Attack</h1>
+    <h2>Weapons</h2>
     <div>
       <mat-form-field class="example-full-width">
-          <mat-label>Attack Info</mat-label>
+          <mat-label>Group Info</mat-label>
           <textarea
             matInput
-            placeholder="Add Attack Notes"
+            [rows]="4"
+            placeholder="Add Instruction for all attack"
             [(ngModel)]="creature.attackNotes">
           </textarea>
       </mat-form-field>
     </div>
+    <hr/>
     <div>
       <mat-form-field class="example-full-width">
         <input

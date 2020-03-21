@@ -41,7 +41,7 @@ export class AttributesComponent implements OnInit {
     const armorType = this.armorList.find(a => a.name === armor.value);
     this.creature.armorClass = armorType.acBonus;
     this.creature.armorType = armorType.name;
-    
+
     if (armorType.plus) {
       this.creature.armorClass +=
       this.creature.abilities.dexterity > 2  && armorType.max
@@ -52,7 +52,7 @@ export class AttributesComponent implements OnInit {
   }
 
   public onAdditionalArmorChange(number: number): void {
-    debugger
+    this.creature.additionalArmor = Number(number);
     this.creature.armorClass = this.actualArmor + Number(number);
   }
 }

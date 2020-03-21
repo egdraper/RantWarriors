@@ -17,6 +17,8 @@ import { StatsModule } from "../../stats/stats.module";
 import { LegendaryActionsComponent } from './legendary-actions/legendary-actions.component';
 import { DBModule } from "../db.module";
 import { AttributesComponent } from './attributes/attributes.component';
+import { SubmitComponent } from './submit/submit.component';
+import { CreateComponent } from './create/create.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { AttributesComponent } from './attributes/attributes.component';
     AssetNavComponent,
     LegendaryActionsComponent,
     AttributesComponent,
+    SubmitComponent,
+    CreateComponent,
   ],
   exports: [
     AddAssetComponent,

@@ -42,11 +42,13 @@ export class Creature {
   public actions?: Action[] = [];
   public alignment?: string = "";
   public armorClass: number;
+  public additionalArmor?: number;
   public armorType?: string;
   public attackNotes?: string;
   public challenge: number;
   public challengeDisplay?: string;
   public creatureType?: string;
+  public humanoidType?: string;
   public conditionImmunities: string[] = [];
   public currentHitPoints: number;
   public experience: number;

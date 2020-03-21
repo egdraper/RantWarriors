@@ -7,13 +7,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 })
 export class ValueModifierComponent {
   @Input() public value: number;
-  @Output() public change = new EventEmitter<number>();
+  @Output() public change = new EventEmitter();
 
   public valueUp(): void {
-    this.change.emit(++this.value);
+    this.change.emit({newValue: ++this.value, amount: 1});
   }
 
   public valueDown(): void {
-    this.change.emit(--this.value);
+    this.change.emit({newValue: --this.value, amount: -1});
   }
 }

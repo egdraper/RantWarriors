@@ -10,11 +10,13 @@ import { Rating } from "../../creature.db";
 })
 export class CreatureInfoComponent implements OnInit {
   @Input() public creature: Creature;
+  @Input() public creatureType: string;
 
   public sizes = Constants.sizes;
   public challengeRatings = new Rating().getRatings(30);
   public creatureTypes = Constants.creatureTypes;
   public alignments = Constants.alignments;
+  public humanoidTypes = Constants.humanoidTypes;
 
   constructor() { }
 

@@ -1,5 +1,5 @@
   <div class="form-group">
-    <h1>Info</h1>
+    <h2>{{ creatureType }} Info</h2>
     <div>
       <mat-form-field class="example-full-width">
         <input
@@ -50,6 +50,19 @@
           </mat-select>
         </mat-form-field>
       </div>
+      <div *ngIf="creature.creatureType === 'Humanoid'">
+        <mat-form-field class="sense">
+          <mat-label>Humanoid Type</mat-label>
+          <mat-select
+            [placeholder]="'Humanoid Type'"
+            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="creature.humanoidType">
+            <mat-option *ngFor="let humanoidType of humanoidTypes" [value]="creatureType">
+              {{ humanoidType }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
        
       <div>
         <mat-form-field class="sense">
@@ -73,8 +86,10 @@
             [ngModelOptions]="{ standalone: true }"
             [(ngModel)]="creature.imgUrl"
           />
+          <mat-hint>Right click a searched image in Google and select "Copy Image Address"</mat-hint>
         </mat-form-field>
       </div>
     </div>
   
   </div>
+

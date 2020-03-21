@@ -6,45 +6,49 @@
   (select)="onSelect($event)"  
   (update)="onUpdate($event)">
 </app-asset-nav> -->
+
+<div>
+  <button
+    [disabled]="!typeOfCreature || activeView === 0"
+    mat-button
+    (click)="onPrevious()"
+  >
+    Previous
+  </button>
+  <button
+    [disabled]="!typeOfCreature || activeView === 9"
+    mat-button
+    (click)="onNext()"
+  >
+    Next
+  </button>
+</div>
 <div class="add-asset-container">
   <div class="entry-group">
-    <form autocomplete="off">
-      <app-ability-info
-        *ngIf="activeView === 'Abilities'"
-        [creature]="newCreature">
-      </app-ability-info>
-      <app-attributes
-        *ngIf="activeView === 'Attributes'"
-        [creature]="newCreature">
-      </app-attributes>
-      <app-creature-info
-        *ngIf="activeView === 'Info'"
-        [creature]="newCreature">
-      </app-creature-info>
-      <app-battle-info
-        *ngIf="activeView === 'Battle'"
-        [creature]="newCreature">
-      </app-battle-info>
-      <app-immunity-vulnerability
-        *ngIf="activeView === 'Immunities+'"
-        [creature]="newCreature">
-      </app-immunity-vulnerability>
-      <app-proficiency-info
-        *ngIf="activeView === 'Proficiencies'"
-        [creature]="newCreature">
-      </app-proficiency-info>
-      <app-trait-info
-        *ngIf="activeView === 'Traits'"
-        [creature]="newCreature">
-      </app-trait-info>
-      <app-legendary-actions
-        *ngIf="activeView === 'Legendary Actions'"
-        [creature]="newCreature">
-      </app-legendary-actions>
-    </form>  
-    <app-stats-panel 
-      [creature]="newCreature">
-    </app-stats-panel>
+    <div class="entry-field">
+      <form autocomplete="off">
+        <app-create *ngIf="activeView === 0" (selected)="onSelect($event)">
+        </app-create>
+        <app-creature-info *ngIf="activeView === 1" [creature]="newCreature" [creatureType]="typeOfCreature">
+        </app-creature-info>
+        <app-ability-info *ngIf="activeView === 2" [creature]="newCreature">
+        </app-ability-info>
+        <app-attributes *ngIf="activeView === 3" [creature]="newCreature">
+        </app-attributes>
+        <app-battle-info *ngIf="activeView === 4" [creature]="newCreature">
+        </app-battle-info>
+        <app-immunity-vulnerability *ngIf="activeView === 5" [creature]="newCreature">
+        </app-immunity-vulnerability>
+        <app-proficiency-info *ngIf="activeView === 6" [creature]="newCreature">
+        </app-proficiency-info>
+        <app-trait-info *ngIf="activeView === 7" [creature]="newCreature">
+        </app-trait-info>
+        <app-legendary-actions *ngIf="activeView === 8" [creature]="newCreature">
+        </app-legendary-actions>
+        <app-submit *ngIf="activeView === 9" (submit)="onSubmit($event)">
+        </app-submit>
+      </form>
+    </div>
+    <app-stats-panel [creature]="newCreature"> </app-stats-panel>
   </div>
 </div>
-

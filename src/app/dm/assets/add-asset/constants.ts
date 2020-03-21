@@ -112,6 +112,29 @@ export class Constants {
     "Undead"
   ];
 
+  public static humanoidTypes = [
+    "Blue",
+    "BugBear",
+    "Dwarf",
+    "Elf",
+    "Gnoll",
+    "Half-elf",
+    "Half-Orc",
+    "Halfling",
+    "HobGoblin",
+    "Human",
+    "Kobold",
+    "LizardFolk",
+    "Maenad",
+    "Merfolk",
+    "Orc",
+    "Reptilian",
+    "Svirfneblin",
+    "Troglodyte",
+    "Werewolf",
+    "Xeph",
+  ]
+
   public static getAbilityModifier(abilityScore): number {
     switch (abilityScore) {
       case 1:

@@ -1,9 +1,10 @@
 <div class="form-group">
-
+  <h2>Attributes</h2>
     <mat-form-field class="sense">
         <mat-label>Armor</mat-label>
         <mat-select
-          [placeholder]="'Attack Type (ex: Slashing)'"
+          [ngModel]="creature.armorType"
+          [ngModelOptions]="{ standalone: true }"
           (selectionChange)="onChange($event)">
           <mat-option *ngFor="let armor of armorList" [value]="armor.name">
             {{ armor.name }}
@@ -18,6 +19,7 @@
           placeholder="Additional Armor"
           name="armorClass"
           type="number"
+          [ngModel]="creature.additionalArmor"
           (input)="onAdditionalArmorChange($event.target.value)"
         />
       </mat-form-field>

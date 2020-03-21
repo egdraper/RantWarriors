@@ -6,9 +6,9 @@ import { DbSessionService } from "../dbSession";
 import { AngularFirestore } from "@angular/fire/firestore";
 
 export enum View {
-  Abilities = "Abilities",
-  Attributes = "Attributes",
-  Info = "Info",
+  Info,
+  Abilities,
+  Attributes,
 }
 
 @Component({
@@ -20,7 +20,8 @@ export class AddAssetComponent {
   @Input() public admin = false;
   public newCreature = new Creature();
   public newAction = new Action();
-  public activeView = View.Attributes;
+  public activeView = 0;
+  public typeOfCreature;
 
   constructor(
     private dbSessionService: DbSessionService,
@@ -33,8 +34,9 @@ export class AddAssetComponent {
     this.newCreature = new Creature();
   }
 
-  public onSelect(selection: View): void {
-    this.activeView = selection;
+  public onSelect(selection: string): void {
+    this.typeOfCreature = selection;
+    this.activeView = 1;
   }
 
   public onCreatureAdded(type: string): void {
@@ -55,5 +57,17 @@ export class AddAssetComponent {
 
   public onUpdate(type: string): void {
     this.admin ? this.dbService.updateAdminCreature(this.newCreature, type) : this.dbService.updateCreature(this.newCreature, type);
+  }
+
+  public onPrevious(): void {
+    this.activeView--;
+  }
+  
+  public onNext(): void {
+    this.activeView++;
+  }
+
+  public onSubmit(a): void {
+
   }
 }
