@@ -70,6 +70,7 @@ export class AddAssetComponent {
     if (this.admin) {
       this.dbService.addAdminCreature(this.newCreature, type);
     } else {
+      debugger
       this.dbService.addCreature(this.newCreature, type);
     }
   }

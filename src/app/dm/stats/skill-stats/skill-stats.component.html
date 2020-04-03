@@ -1,36 +1,36 @@
 <div class="score-area">
   <app-action-button
     label="STR"
-    diceEquation="{{ creature.abilities.strength |  abilityModifier }}"
+    diceEquation="{{ creature.abilities.STR |  abilityModifier }}"
     [advantage]="creature.hasAdvantage"
     [disadvantage]="creature.hasDisadvantage">  
   </app-action-button>
   <app-action-button
     label="DEX"
-    diceEquation="{{ creature.abilities.dexterity  |  abilityModifier }}"
+    diceEquation="{{ creature.abilities.DEX  |  abilityModifier }}"
     [advantage]="creature.hasAdvantage"
     [disadvantage]="creature.hasDisadvantage">
   </app-action-button>
   <app-action-button
     label="CON"
-    diceEquation="{{ creature.abilities.constitution  |  abilityModifier  }}"
+    diceEquation="{{ creature.abilities.CON  |  abilityModifier  }}"
     [advantage]="creature.hasAdvantage"
     [disadvantage]="creature.hasDisadvantage">
   </app-action-button>
   <app-action-button
     label="INT"
-    diceEquation="{{ creature.abilities.intelligence  |  abilityModifier }}"
+    diceEquation="{{ creature.abilities.INT  |  abilityModifier }}"
     [advantage]="creature.hasAdvantage"
     [disadvantage]="creature.hasDisadvantage">
   </app-action-button>
   <app-action-button
     label="WIS"
-    diceEquation="{{ creature.abilities.wisdom  |  abilityModifier }}"
+    diceEquation="{{ creature.abilities.WIS  |  abilityModifier }}"
     [disadvantage]="creature.hasDisadvantage">
   </app-action-button>
   <app-action-button
     label="CHA"
-    diceEquation="{{ creature.abilities.charisma  |  abilityModifier }}"
+    diceEquation="{{ creature.abilities.CHA  |  abilityModifier }}"
     [disadvantage]="creature.hasDisadvantage">
   </app-action-button>
 </div>

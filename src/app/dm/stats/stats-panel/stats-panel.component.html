@@ -35,7 +35,7 @@
   </div>
   <div
     class="trait-grouping standard-group"
-    *ngIf="creature.legendaryActions.length > 0"
+    *ngIf="creature.legendaryActions.length > 0 || creature.legendaryActionsInfo"
   >
     <app-legendary-actions-stats
       [creature]="creature"

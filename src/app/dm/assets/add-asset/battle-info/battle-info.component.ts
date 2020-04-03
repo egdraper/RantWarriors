@@ -29,15 +29,15 @@ export class BattleInfoComponent {
     this.hasBonusDamage = false;
   }
 
-  public attackUses(abilityShorthand: string): void {
-    this.action.attackUses = Constants.getAbilityByShorthand(abilityShorthand);
+  public attackUses(ability: string): void {
+    this.action.attackUses = ability;
     this.action.attackModifier = this.creature.proficiency + Constants.getAbilityModifier(this.action.attackUses);
-    AssetService.updateDamageDice(this.creature, this.action),
-    AssetService.updateAttackDice(this.creature, this.action)
+    AssetService.updateDamageDice(this.creature, this.action);
+    AssetService.updateAttackDice(this.creature, this.action);
   }
 
   public onDamageDiceChange(): void {
-    AssetService.updateDamageDice(this.creature, this.action)
+    AssetService.updateDamageDice(this.creature, this.action);
     // const ability = this.action.attackUses;
     // const modifier = Constants.getAbilityModifier(this.creature.abilities[ability.toLowerCase()]);
     // const attackModifier = modifier ? `+${modifier}` : "";

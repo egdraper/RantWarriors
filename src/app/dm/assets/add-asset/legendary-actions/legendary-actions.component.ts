@@ -11,7 +11,7 @@ export class LegendaryActionsComponent {
   public newAction = new Trait();
 
   public onTraitAdd(): void {
-    this.creature.traits.push(this.newAction);
+    this.creature.legendaryActions.push(this.newAction);
     this.newAction = new Trait();
   }
 }

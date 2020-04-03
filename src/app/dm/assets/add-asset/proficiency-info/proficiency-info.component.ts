@@ -15,10 +15,11 @@ export class ProficiencyInfoComponent  {
   public newProficiency = "";
 
   public addNewSavingThrow(): void {
-    AssetService.addSavingThrows(this.creature, this.newSavingThrow)
+    AssetService.addSavingThrows(this.creature, this.newSavingThrow);
     this.newSavingThrow = "";
   }
   public addNewProficiency(): void {
-
+    AssetService.addSkillProficiency(this.creature, this.newProficiency);
+    this.newProficiency = "";
   }
 }

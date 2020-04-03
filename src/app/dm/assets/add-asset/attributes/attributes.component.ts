@@ -46,9 +46,9 @@ export class AttributesComponent implements OnInit {
 
     if (armorType.plus) {
       this.creature.armorClass +=
-      this.creature.abilities.dexterity > 2  && armorType.max
+      this.creature.abilities.DEX > 2  && armorType.max
       ? 2
-      : Constants.getAbilityModifier(this.creature.abilities.dexterity);
+      : Constants.getAbilityModifier(this.creature.abilities.DEX);
     }
     this.actualArmor = this.creature.armorClass;
   }

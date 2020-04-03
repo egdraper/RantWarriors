@@ -24,36 +24,36 @@ export class AssetService {
 
     // update AC
 
-    if (ability === "Strength") {
+    if (ability === "STR") {
       this.updateSavingThrows(creature, ability);
-      // this.updateSkillProficiency(creature, ability);
+      this.updateSkillProficiency(creature);
     }
-    if (ability === "Dexterity") {
+    if (ability === "DEX") {
       this.updateSavingThrows(creature, ability);
-      // this.updateSkillProficiency(creature, ability);
+      this.updateSkillProficiency(creature);
     }
-    if (ability === "Constitution") {
+    if (ability === "CON") {
       this.createHitDice(creature);
       this.updateSavingThrows(creature, ability);
     }
-    if (ability === "Wisdom") {
+    if (ability === "WIS") {
       this.updateSavingThrows(creature, ability);
-      // this.updateSkillProficiency(creature, ability);
+      this.updateSkillProficiency(creature);
     }
-    if (ability === "Intelligence") {
+    if (ability === "INT") {
       this.updateSavingThrows(creature, ability);
-      // this.updateSkillProficiency(creature, ability);
+      this.updateSkillProficiency(creature);
     }
-    if (ability === "Charisma") {
+    if (ability === "CHA") {
       this.updateSavingThrows(creature, ability);
-      // this.updateSkillProficiency(creature, ability);
+      this.updateSkillProficiency(creature);
     }
   }
 
   public static updateDamageDice(creature: Creature, action: Action): void {
     const ability = action.attackUses;
     const modifier = Constants.getAbilityModifier(
-      creature.abilities[ability.toLowerCase()]
+      creature.abilities[ability]
     );
     const attackModifier = modifier ? `+${modifier}` : "";
     action.dice = `${action.numberOfRoll}${action.numberOfDiceSides}${attackModifier}`;
@@ -63,6 +63,7 @@ export class AssetService {
     creature.actions.forEach(action => {
       if (action.attackModifier) {
         this.updateAttackDice(creature, action);
+        this.updateSkillProficiency(creature);
       }
     });
 
@@ -70,9 +71,7 @@ export class AssetService {
       this.updateSavingThrows(creature, ability);
     });
 
-    // Constants.skills.forEach(skill => {
-    //   this.updateSkillProficiency(createWriteStream)
-    // })
+    this.updateSkillProficiency(creature);
   }
 
   public static updateAttackDice(creature: Creature, action: Action): void {
@@ -85,7 +84,7 @@ export class AssetService {
   public static createHitDice(creature: Creature): void {
     const level = creature.level || "";
     const modifier =
-      Constants.getAbilityModifier(creature.abilities.constitution) *
+      Constants.getAbilityModifier(creature.abilities.CON) *
       (level ? Number(level) : 1);
     const thing = modifier > 0 ? "+" : "";
     const dice = Constants.sizes.find(s => creature.size === s.name).dice;
@@ -109,37 +108,33 @@ export class AssetService {
       return;
     }
 
-    const newValue = Constants.getAbilityModifier(
-      Constants.getAbilityBySkill(skill)
-    );
+    const newValue = Constants.getAbilityModifier(creature.abilities[Constants.getAbilityBySkill(skill)]);
 
-    creature.savingThrows.push({
-      value: newValue,
+    creature.skillProficiencies.push({
+      value: newValue + creature.proficiency,
       ability: skill
     });
   }
 
   public static updateSkillProficiency(creature: Creature): void {
     creature.skillProficiencies.forEach(s => {
-      const ability = Constants.getAbilityBySkill(s);
-      s.value = Constants.getAbilityModifier(ability) + creature.proficiency;
+      const ability = Constants.getAbilityBySkill(s.ability);
+      s.value = Constants.getAbilityModifier(creature.abilities[ability]) + creature.proficiency;
     });
   }
 
-  public static addSavingThrows( creature: Creature, abilityShorthand: string ): void {
-    if (creature.savingThrows.find(savingThrow => savingThrow.ability === abilityShorthand)) { return; }
-    const ability = Constants.getAbilityByShorthand(abilityShorthand);
-    const newValue = Constants.getAbilityModifier(creature.abilities[ability.toLowerCase()]) + creature.proficiency;
+  public static addSavingThrows( creature: Creature, ability: string ): void {
+    if (creature.savingThrows.find(savingThrow => savingThrow.ability === ability)) { return; }
+    const newValue = Constants.getAbilityModifier(creature.abilities[ability]) + creature.proficiency;
 
     creature.savingThrows.push({
       value: newValue,
-      ability: abilityShorthand
+      ability
     });
   }
 
   public static updateSavingThrows(creature: Creature, ability: string): void {
-    debugger
-    const newValue = Constants.getAbilityModifier(creature.abilities[ability.toLowerCase()]) + creature.proficiency;
+    const newValue = Constants.getAbilityModifier(creature.abilities[ability]) + creature.proficiency;
     const savingThrows = creature.savingThrows.find(savingThrow => savingThrow.ability === ability);
 
     if (savingThrows) {

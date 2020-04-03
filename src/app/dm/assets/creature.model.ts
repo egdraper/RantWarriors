@@ -27,12 +27,12 @@ export class Trait {
 }
 
 export class Abilities {
-  public strength = 10;
-  public dexterity = 10;
-  public constitution = 10;
-  public intelligence = 10;
-  public wisdom = 10;
-  public charisma = 10;
+  public STR = 10;
+  public DEX = 10;
+  public CON = 10;
+  public INT = 10;
+  public WIS = 10;
+  public CHA = 10;
 }
 
 export class Checks {
@@ -89,6 +89,7 @@ export class Creature {
   public traits: Trait[] = [];
   public vulnerabilities: string[] = [];
   public multiAttack? = false;
+  public hasLegendaryActions?: boolean;
 }
 
 export class CreatureDB {

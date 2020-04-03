@@ -163,72 +163,50 @@ export class Constants {
 
   public static navMainOptions = ["Creature", "Npc", "Player"];
 
-  public static getAbilityByShorthand(ability: string): string {
-    switch (ability) {
-      case "STR":
-        return "Strength";
-        break;
-      case "DEX":
-        return "Dexterity";
-        break;
-      case "INT":
-        return "Intelligence";
-      case "CON":
-        return "Constitution";
-        break;
-      case "WIS":
-        return "Wisdom";
-        break;
-      case "CHA":
-        return "Charisma";
-        break;
-    }
-  }
-
   public static getAbilityBySkill(skill): string {
     switch (skill) {
       case "Athletics":
-        return "Strength";
+        return "STR";
         break;
       case "Acrobatics":
       case "Sleight of Hand":
       case "Stealth":
-        return "Dexterity";
+        return "DEX";
         break;
       case "Arcana":
       case "History":
       case "Investigation":
       case "Nature":
       case "Religion":
-        return "Intelligence";
+        return "INT";
       case "Animal Handling":
       case "Insight":
       case "Medicine":
       case "Perception":
       case "Survival":
-        return "Wisdom";
+        return "WIS";
         break;
       case "Deception":
       case "Intimidation":
       case "Performance":
       case "Persuasion":
-        return "Charisma";
+        return "CHA";
         break;
     }
   }
 
   public static getSkillByAbility(skill): string[] {
     switch (skill) {
-      case "Strength":
+      case "STR":
         return ["Athletics"];
         break;
-      case "Dexterity":
+      case "DEX":
         return ["Acrobatics", "Sleight of Hand", "Stealth"];
         break;
-      case "Intelligence":
+      case "INT":
         return ["Arcana", "History", "Investigation", "Nature", "Religion"];
         break;
-      case "Wisdom":
+      case "WIS":
         return [
           "Animal Handling",
           "Insight",
@@ -237,7 +215,7 @@ export class Constants {
           "Survival"
         ];
         break;
-      case "Charisma":
+      case "CHA":
         return ["Deception", "Intimidation", "Performance", "Persuasion"];
         break;
     }

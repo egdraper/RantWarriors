@@ -27,6 +27,7 @@ export class CreatureInfoComponent implements OnInit {
   public onCRChange(challengeRatings: string): void {
     this.creature.experience = Constants.getXP(challengeRatings);
     this.creature.proficiency = Constants.getProficiency(challengeRatings);
+    AssetService.updateChallengeRating(this.creature);
   }
 
   public onSizeChange(selection: any): void {
