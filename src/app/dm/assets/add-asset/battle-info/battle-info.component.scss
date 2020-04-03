@@ -1,0 +1,20 @@
+.dice {
+  display: flex;
+
+  .min-width {
+    width: 50px;
+  }
+
+  .mid-width {
+    margin-left: 15px;
+    width: 75px;
+  }
+
+  h2 {
+  }
+}
+
+.add-button {
+  float: right;
+  margin-right: 25px;
+}

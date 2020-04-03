@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 import { cloneDeep } from "lodash";
-import { Rating } from "../assets/creature.db";
 import { DbService } from "../assets/dbService";
 import { DbSessionService } from "../assets/dbSession";
+import { Constants } from "../assets/add-asset/constants";
 
 @Component({
   selector: "creature",
@@ -10,7 +10,7 @@ import { DbSessionService } from "../assets/dbSession";
   styleUrls: ["./creature.component.scss"]
 })
 export class CreatureComponent {
-  public challengeRatings = new Rating().getRatings(10);
+  public challengeRatings = Constants.getRatings(10);
 
   private selectedCreature: string;
 

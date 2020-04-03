@@ -1,37 +1,68 @@
-   
-<div *ngIf="!shrink"> 
-    <div class="offense-header">
-      <h1 class="creature-name">Actions ({{ creature.numberOfActions }})</h1>
-      <mat-icon (click)="refreshAttack()" >refresh</mat-icon>
+<div *ngIf="!shrink">
+  <div class="offense-header">
+    <h1 class="creature-name">Actions ({{ creature.numberOfActions }})</h1>
+    <mat-icon (click)="refreshAttack()">refresh</mat-icon>
+  </div>
+  <div *ngIf="creature.attackNotes">
+    <h5><strong>Multiattack:</strong> {{ creature.attackNotes }}</h5>
+    <hr />
+  </div>
+  <div *ngFor="let action of creature.actions">
+    <div *ngIf="action.isRollableAction">
+      <h5 class="attack-type">
+        {{ action.name }}: (Range {{ action.range }})
+      </h5>
+      <app-action-button
+        [label]="action.attackType || action.name"
+        [diceEquation]="action.dice"
+      >
+      </app-action-button>
+      <h6 class="hit-dice">{{ action.actionBonusInfo }}</h6>
     </div>
-    <div *ngIf="creature.attackNotes">
-      <h5>{{ creature.attackNotes }}</h5>
-      <hr>
+    <div *ngIf="action.isNonRollableAction">
+      <h5 class="attack-type">
+        {{ action.name }}
+      </h5>
+      <h6 class="hit-dice">{{ action.actionBonusInfo }}</h6>
     </div>
-    <div *ngFor="let action of creature.actions">
-      <div *ngIf="action.attackBonus">
-        <h5 class="attack-type">{{ action.attackType }}: (Range {{ action.range }})  </h5>
+    <div *ngIf="action.isAttackAction">
+      <div>
+        <h5 class="attack-type">
+          {{ action.name }}: (Range {{ action.range }})
+        </h5>
         <app-action-button
-          label="Hit"  
-          diceEquation="{{ 'd20+' + action.attackBonus }}"
+          label="Attack"
+          diceEquation="{{ 'd20+' + action.attackModifier }}"
           [minimumForSuccess]="selectedCreature?.armorClass"
           [advantage]="creature.hasAdvantage"
           [disadvantage]="creature.hasDisadvantage"
-          [asterisk]="action.allowedInMultipleAttacks">
+          [asterisk]="action.numberOfAttacksAllowed"
+        >
         </app-action-button>
         <app-action-button
-          [label]="action.name"
-          [diceEquation]="action.dice">
+          *ngIf="action.attackType"
+          [label]="action.attackType"
+          [diceEquation]="action.dice"
+        >
+        </app-action-button>
+        <app-action-button
+          *ngIf="action.bonusDamageDice"
+          [label]="action.bonusDamageType"
+          [diceEquation]="action.bonusDamageDice"
+        >
         </app-action-button>
       </div>
       <h5 *ngIf="!action.name" {{ action.name }}></h5>
-      <h6 class="hit-dice"> {{ action.actionBonus }}</h6>
+      <h6 class="hit-dice">{{ action.actionBonusInfo }}</h6>
       <div *ngIf="action.moreInfo">
         <div class="action-group">
-          <h4 class="hit-text"> {{ action.name}} </h4>        
-          <a class="hit-dice" href="{{ creature.link }}" target="_blank"> - Book {{ creature.page }}</a>
+          <h4 class="hit-text">{{ action.name }}</h4>
+          <a class="hit-dice" href="{{ creature.link }}" target="_blank">
+            - Book {{ creature.page }}</a
+          >
         </div>
       </div>
-      <hr/>
     </div>
+    <hr />
   </div>
+</div>

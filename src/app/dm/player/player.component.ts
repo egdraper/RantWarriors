@@ -1,9 +1,5 @@
 import { Component } from "@angular/core";
-import { Npc } from "../assets/npc.model";
-import { players } from "../assets/players.db";
 import { cloneDeep } from "lodash";
-import { Creature } from "../assets/creature.model";
-import { AngularFirestore } from "@angular/fire/firestore";
 import { DbService } from "../assets/dbService";
 import { DbSessionService } from "../assets/dbSession";
 

@@ -19,6 +19,7 @@ import { DBModule } from "../db.module";
 import { AttributesComponent } from './attributes/attributes.component';
 import { SubmitComponent } from './submit/submit.component';
 import { CreateComponent } from './create/create.component';
+import { MultiAttackComponent } from './multi-attack/multi-attack.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { CreateComponent } from './create/create.component';
     AttributesComponent,
     SubmitComponent,
     CreateComponent,
+    MultiAttackComponent,
   ],
   exports: [
     AddAssetComponent,

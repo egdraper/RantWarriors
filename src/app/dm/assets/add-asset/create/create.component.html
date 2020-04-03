@@ -1,9 +1,25 @@
 <mat-form-field>
     <mat-select
-      placeholder="Create As"
+      placeholder="Create New"
       (selectionChange)="onTypeSelected($event)">
       <mat-option value="Creature"> Creature </mat-option>
       <mat-option value="Npc"> Npc </mat-option>
       <mat-option value="Player"> Player </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <h3>OR</h3>
+
+  <mat-form-field>
+    <mat-select
+      [placeholder]="'Edit Existing'"
+      (selectionChange)="onCreatureChange($event)"
+    >
+      <mat-option
+        *ngFor="let creature of dbSession.creatureSelectionList"
+        [value]="creature"
+      >
+        {{ creature }}
+      </mat-option>
     </mat-select>
   </mat-form-field>

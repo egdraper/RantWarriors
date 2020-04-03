@@ -1,0 +1,26 @@
+<h2>Actions</h2>
+<mat-checkbox [(ngModel)]="creature.multiAttack" (change)="onSection()">Does This Creature Multiattack?</mat-checkbox>
+<div *ngIf="creature.multiAttack">
+  <mat-form-field class="example-full-width">
+      <mat-label>Mulitattack Info</mat-label>
+      <textarea
+        matInput
+        rows="4"
+        cols="40"
+        placeholder="Add Instruction for multiAttack"
+        [(ngModel)]="creature.attackNotes"
+        >
+      </textarea>
+  </mat-form-field>
+  <div>
+    <mat-form-field class="example-full-width">
+      <input
+        matInput
+        placeholder="Number Of Attack Actions"
+        [ngModelOptions]="{ standalone: true }"
+        type="number"
+        [(ngModel)]="creature.numberOfActions"
+      />
+    </mat-form-field>
+  </div>
+</div>

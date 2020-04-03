@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { DbSessionService } from "../../dbSession";
 
 
 @Component({
@@ -8,12 +9,20 @@ import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 })
 export class CreateComponent implements OnInit {
   @Output() public selected = new EventEmitter();
-  constructor() { }
+  @Output() public creatureSelected = new EventEmitter();
+  constructor(
+    public dbSession: DbSessionService
+  ) { }
 
   ngOnInit() {
+
   }
 
   public onTypeSelected(type: any): void {
     this.selected.emit(type.value);
+  }
+
+  public onCreatureChange(creature: any): void {
+    this.creatureSelected.emit(creature.value);
   }
 }

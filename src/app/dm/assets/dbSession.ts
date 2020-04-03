@@ -76,7 +76,7 @@ export class DbSessionService {
 
   public getGenericCreatures(): void {
     this.firestore
-      .collection("assets")
+      .collection("creatures")
       .get()
       .subscribe(snapshot => {
         snapshot.forEach(doc => {

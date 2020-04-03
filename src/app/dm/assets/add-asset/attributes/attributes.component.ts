@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Creature } from "../../creature.model";
 import { Constants } from "../constants";
-import { Rating } from "../../creature.db";
 
 @Component({
   selector: "app-attributes",
@@ -15,7 +14,7 @@ export class AttributesComponent implements OnInit {
   public alignments = Constants.alignments;
   public sizes = Constants.sizes;
   public creatureTypes = Constants.creatureTypes;
-  public challengeRatings = new Rating().getRatings(30);
+  public challengeRatings = Constants.getRatings(30);
   public newLanguage = "";
   public newSense = "";
   public senseRange = 0;
@@ -29,12 +28,15 @@ export class AttributesComponent implements OnInit {
     if (this.newLanguage !== "") {
       this.creature.languages.push(this.newLanguage);
     }
+    this.newLanguage = "";
   }
 
   public addSense(): void {
     if (this.newSense !== "") {
       this.creature.senses.push({ sense: this.newSense, value: this.senseRange });
     }
+
+    this.newSense = "";
   }
 
   public onChange(armor: any): void {
@@ -55,4 +57,6 @@ export class AttributesComponent implements OnInit {
     this.creature.additionalArmor = Number(number);
     this.creature.armorClass = this.actualArmor + Number(number);
   }
+
+
 }

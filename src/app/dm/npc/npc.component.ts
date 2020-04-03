@@ -1,6 +1,5 @@
 import { Component } from "@angular/core";
 import { Npc } from "../assets/npc.model";
-import { npcs } from "../assets/npc.db";
 import { cloneDeep } from "lodash";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { DbService } from "../assets/dbService";

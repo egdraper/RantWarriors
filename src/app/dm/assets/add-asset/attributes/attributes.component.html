@@ -28,30 +28,6 @@
       <mat-form-field class="example-full-width">
         <input
           matInput
-          placeholder="Max Hit Points"
-          name="maxHitPoints"
-          type="number"
-          [ngModelOptions]="{ standalone: true }"
-          [(ngModel)]="creature.maxHitPoints"
-          [(ngModel)]="creature.currentHitPoints" 
-        />
-      </mat-form-field>
-    </div>
-    <div>
-      <mat-form-field class="example-full-width">
-        <input
-          matInput
-          placeholder="Hit Dice (ex:2d8+6 - NO Spaces)"
-          name="hitDice"
-          [ngModelOptions]="{ standalone: true }"
-          [(ngModel)]="creature.hitDice"
-        />
-      </mat-form-field>
-    </div>
-    <div>
-      <mat-form-field class="example-full-width">
-        <input
-          matInput
           placeholder="Speed"
           name="speed"
           [ngModelOptions]="{ standalone: true }"

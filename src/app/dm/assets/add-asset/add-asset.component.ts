@@ -21,7 +21,7 @@ export class AddAssetComponent {
   public newCreature = new Creature();
   public newAction = new Action();
   public activeView = 0;
-  public typeOfCreature;
+  public nextText = "Next";
 
   constructor(
     private dbSessionService: DbSessionService,
@@ -29,13 +29,9 @@ export class AddAssetComponent {
     this.newCreature = new Creature();
   }
 
-  public addCreature(): void {
-    // add to db and clear creature info
-    this.newCreature = new Creature();
-  }
-
   public onSelect(selection: string): void {
-    this.typeOfCreature = selection;
+    this.newCreature = new Creature();
+    this.newCreature.assetType = selection;
     this.activeView = 1;
   }
 
@@ -53,6 +49,7 @@ export class AddAssetComponent {
     );
 
     this.newCreature.name = this.newCreature.name + " (Mod)";
+    this.activeView = 1;
   }
 
   public onUpdate(type: string): void {
@@ -61,13 +58,29 @@ export class AddAssetComponent {
 
   public onPrevious(): void {
     this.activeView--;
-  }
-  
-  public onNext(): void {
-    this.activeView++;
+    this.setNextText();
   }
 
-  public onSubmit(a): void {
+  public onNext(): void {
+    this.activeView++;
+    this.setNextText();
+  }
+
+  public onSubmit(type: string): void {
+    if (this.admin) {
+      this.dbService.addAdminCreature(this.newCreature, type);
+    } else {
+      this.dbService.addCreature(this.newCreature, type);
+    }
+  }
+
+  public setNextText(): void {
+    if (this.activeView === 4 && !this.newCreature.multiAttack) {
+      this.nextText = "Skip";
+      return
+    }
+
+    this.nextText = "Next"
 
   }
 }

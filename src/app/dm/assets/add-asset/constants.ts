@@ -1,3 +1,5 @@
+import { RatingModel } from "../creature.model";
+
 export class Constants {
   public static armor = [
     { name: "Natural", acBonus: 10 },
@@ -15,6 +17,8 @@ export class Constants {
     { name: "Splint", acBonus: 17 }
   ];
 
+  public static hitDice;
+
   public static alignments = [
     "Unaligned",
     "Lawful Good",
@@ -29,12 +33,12 @@ export class Constants {
   ];
 
   public static sizes = [
-    "Tiny",
-    "Small",
-    "Medium",
-    "Large",
-    "Huge",
-    "Gargantua"
+    { name: "Tiny", dice: "d4", multiplier: 2.5 },
+    { name: "Small", dice: "d6", multiplier: 3.5 },
+    { name: "Medium", dice: "d8", multiplier: 4.5 },
+    { name: "Large", dice: "d10", multiplier: 5.5 },
+    { name: "Huge", dice: "d12", multiplier: 6.5 },
+    { name: "Gargantua", dice: "d20", multiplier: 10.5 }
   ];
 
   public static damageTypes = [
@@ -52,6 +56,10 @@ export class Constants {
     "Slashing",
     "Thunder"
   ];
+
+  public static dice = ["d4", "d6", "d8", "d10", "d12", "d20"];
+
+  public static abilities = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
 
   public static skills = [
     "Acrobatics",
@@ -132,8 +140,108 @@ export class Constants {
     "Svirfneblin",
     "Troglodyte",
     "Werewolf",
-    "Xeph",
-  ]
+    "Xeph"
+  ];
+
+  public static conditions: string[] = [
+    "Blinded",
+    "Charmed",
+    "Deafended",
+    "Fatigued",
+    "Frightened",
+    "Grappled",
+    "Incapacitated",
+    "Invisible",
+    "Paralyzed",
+    "Petrified",
+    "Poisoned",
+    "Prone",
+    "Restrained",
+    "Stunned",
+    "Unconscious"
+  ];
+
+  public static navMainOptions = ["Creature", "Npc", "Player"];
+
+  public static getAbilityByShorthand(ability: string): string {
+    switch (ability) {
+      case "STR":
+        return "Strength";
+        break;
+      case "DEX":
+        return "Dexterity";
+        break;
+      case "INT":
+        return "Intelligence";
+      case "CON":
+        return "Constitution";
+        break;
+      case "WIS":
+        return "Wisdom";
+        break;
+      case "CHA":
+        return "Charisma";
+        break;
+    }
+  }
+
+  public static getAbilityBySkill(skill): string {
+    switch (skill) {
+      case "Athletics":
+        return "Strength";
+        break;
+      case "Acrobatics":
+      case "Sleight of Hand":
+      case "Stealth":
+        return "Dexterity";
+        break;
+      case "Arcana":
+      case "History":
+      case "Investigation":
+      case "Nature":
+      case "Religion":
+        return "Intelligence";
+      case "Animal Handling":
+      case "Insight":
+      case "Medicine":
+      case "Perception":
+      case "Survival":
+        return "Wisdom";
+        break;
+      case "Deception":
+      case "Intimidation":
+      case "Performance":
+      case "Persuasion":
+        return "Charisma";
+        break;
+    }
+  }
+
+  public static getSkillByAbility(skill): string[] {
+    switch (skill) {
+      case "Strength":
+        return ["Athletics"];
+        break;
+      case "Dexterity":
+        return ["Acrobatics", "Sleight of Hand", "Stealth"];
+        break;
+      case "Intelligence":
+        return ["Arcana", "History", "Investigation", "Nature", "Religion"];
+        break;
+      case "Wisdom":
+        return [
+          "Animal Handling",
+          "Insight",
+          "Medicine",
+          "Perception",
+          "Survival"
+        ];
+        break;
+      case "Charisma":
+        return ["Deception", "Intimidation", "Performance", "Persuasion"];
+        break;
+    }
+  }
 
   public static getAbilityModifier(abilityScore): number {
     switch (abilityScore) {
@@ -269,8 +377,6 @@ export class Constants {
     }
   }
 
-  public static navMainOptions = ["Creature", "Npc", "Player"];
-
   public static getXP(challengeRating: string): number {
     switch (challengeRating) {
       case "0":
@@ -361,6 +467,74 @@ export class Constants {
         return 155000;
         break;
     }
+  }
+
+  public static getProficiency(challengeRating: string): number {
+    switch (challengeRating) {
+      case "0":
+      case "1/8":
+      case "1/4":
+      case "1/2":
+      case "1":
+      case "2":
+      case "3":
+      case "4":
+        return 2;
+        break;
+      case "5":
+      case "6":
+      case "7":
+      case "8":
+        return 3;
+        break;
+      case "9":
+      case "10":
+      case "11":
+      case "12":
+        return 4;
+        break;
+      case "13":
+      case "14":
+      case "15":
+      case "16":
+        return 5;
+        break;
+      case "17":
+      case "18":
+      case "19":
+      case "20":
+        return 6;
+        break;
+      case "21":
+      case "22":
+      case "23":
+      case "24":
+        return 7;
+        break;
+      case "25":
+      case "26":
+      case "27":
+      case "28":
+        return 8;
+        break;
+      case "30":
+      case "29":
+        return 9;
+        break;
+    }
+  }
+
+  public static getRatings(max: number = 30): RatingModel[] {
+    const ratings: RatingModel[] = [];
+    ratings.push({ value: 0, display: "0", selected: false });
+    ratings.push({ value: 0.125, display: "1/8", selected: false });
+    ratings.push({ value: 0.25, display: "1/4", selected: false });
+    ratings.push({ value: 0.5, display: "1/2", selected: false });
+
+    for (let i = 1; i <= max; i++) {
+      ratings.push({ value: i, display: i.toString(), selected: false });
+    }
+    return ratings;
   }
 }
 

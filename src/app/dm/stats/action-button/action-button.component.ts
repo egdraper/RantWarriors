@@ -13,15 +13,20 @@ export class ActionButtonComponent {
   @Input() public diceEquation = "d20";
   @Input() public advantage = false;
   @Input() public disadvantage = false;
-  @Input() public asterisk = false;
   @Input() public minimumForSuccess;
+  @Input() public set asterisk(value) { this._asterisk = Array(value).fill(value); }
+  public get asterisk() { return this._asterisk; }
+
   @Output() public result = new EventEmitter();
 
   public rollResult: number;
   public hitMessage: string;
   public critical = "none";
 
+  _asterisk = []
+
   public roll(): void {
+    debugger
     const dice = new Dice();
     dice.withAdvantage = this.advantage;
     dice.withDisadvantage = this.disadvantage;

@@ -15,7 +15,7 @@
       <hr />
       <app-action-button
         label="Hit"
-        diceEquation="{{ 'd20+' + action.attackBonus }}"
+        diceEquation="{{ 'd20+' + action.attackModifier }}"
         [minimumForSuccess]="creature?.armorClass"
         [advantage]="creature.hasAdvantage"
         [disadvantage]="creature.hasDisadvantage"

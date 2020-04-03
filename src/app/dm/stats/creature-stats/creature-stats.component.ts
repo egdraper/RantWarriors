@@ -47,7 +47,6 @@ export class CreatureStatsComponent {
     const dice = this.creature.hitDice.match(/(?<=d)(\?*\d+)/g);
     const modifier = this.creature.hitDice.match(/(?<=\+|-)(\?*\d+)/g);
 
-    debugger
     let newModifier: number;
     if (operator && operator[0] === "+") {
       newModifier = Number(modifier) + value.amount;

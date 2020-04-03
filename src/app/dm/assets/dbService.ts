@@ -1,9 +1,6 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
 import { Creature } from "./creature.model";
-import { npcs } from "./npc.db";
 import { AngularFirestore } from "@angular/fire/firestore";
-import { sortBy } from "lodash";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { DbSessionService } from "./dbSession";
 
@@ -51,12 +48,13 @@ export class DbService {
   }
 
   public addCreature(creature: Creature, type: string): void {
+    const cleanType = type.toLowerCase() + "s";
     const cleanCreature = JSON.parse(JSON.stringify(creature));
 
     this.firestore
       .collection("users")
       .doc(`${this.fireAuth.auth.currentUser.uid}`)
-      .collection(type)
+      .collection(cleanType)
       .doc(creature.name)
       .set(cleanCreature);
 
@@ -75,10 +73,11 @@ export class DbService {
   }
 
   public addAdminCreature(creature: Creature, type: string): void {
+    const cleanType = type.toLowerCase() + "s";
     const cleanCreature = JSON.parse(JSON.stringify(creature));
 
     this.firestore
-      .collection("assets")
+      .collection(cleanType)
       .doc(creature.name)
       .set(cleanCreature);
 
