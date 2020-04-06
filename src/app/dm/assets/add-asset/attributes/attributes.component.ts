@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Creature } from "../../creature.model";
 import { Constants } from "../constants";
+import { AssetService } from "../asset.service";
 
 @Component({
   selector: "app-attributes",
@@ -18,7 +19,6 @@ export class AttributesComponent implements OnInit {
   public newLanguage = "";
   public newSense = "";
   public senseRange = 0;
-  public actualArmor = 10;
 
   constructor() {}
 
@@ -40,22 +40,13 @@ export class AttributesComponent implements OnInit {
   }
 
   public onChange(armor: any): void {
-    const armorType = this.armorList.find(a => a.name === armor.value);
-    this.creature.armorClass = armorType.acBonus;
-    this.creature.armorType = armorType.name;
-
-    if (armorType.plus) {
-      this.creature.armorClass +=
-      this.creature.abilities.DEX > 2  && armorType.max
-      ? 2
-      : Constants.getAbilityModifier(this.creature.abilities.DEX);
-    }
-    this.actualArmor = this.creature.armorClass;
+    this.creature.armorType = armor.value;
+    AssetService.updateArmorClass(this.creature);
   }
 
   public onAdditionalArmorChange(number: number): void {
     this.creature.additionalArmor = Number(number);
-    this.creature.armorClass = this.actualArmor + Number(number);
+    AssetService.updateArmorClass(this.creature);
   }
 
 

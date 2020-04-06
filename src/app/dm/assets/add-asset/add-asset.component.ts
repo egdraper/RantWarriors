@@ -31,11 +31,13 @@ export class AddAssetComponent {
 
   public onSelect(selection: string): void {
     this.newCreature = new Creature();
+    this.newCreature.editing = true;
     this.newCreature.assetType = selection;
     this.activeView = 1;
   }
 
   public onCreatureAdded(type: string): void {
+    delete this.newCreature.editing;
     this.admin ? this.dbService.addAdminCreature(this.newCreature, type) : this.dbService.addCreature(this.newCreature, type);
     this.newAction = new Action();
     this.newCreature = new Creature();
@@ -47,7 +49,7 @@ export class AddAssetComponent {
         creature => creature.name === creatureName
       )
     );
-
+    this.newCreature.editing = true;
     this.newCreature.name = this.newCreature.name + " (Mod)";
     this.activeView = 1;
   }
@@ -70,7 +72,6 @@ export class AddAssetComponent {
     if (this.admin) {
       this.dbService.addAdminCreature(this.newCreature, type);
     } else {
-      debugger
       this.dbService.addCreature(this.newCreature, type);
     }
   }
@@ -78,7 +79,7 @@ export class AddAssetComponent {
   public setNextText(): void {
     if (this.activeView === 4 && !this.newCreature.multiAttack) {
       this.nextText = "Skip";
-      return
+      return;
     }
 
     this.nextText = "Next"

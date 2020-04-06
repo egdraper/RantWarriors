@@ -13,6 +13,8 @@ export class BattleStatsComponent {
   @ViewChildren(ActionButtonComponent) actionButton: ActionButtonComponent[];
   @Input() creature: Creature;
   @Input() selectedCreature: Creature;
+
+  public tools = ["edit", "delete"]
   public shrink = false;
   public attack = 0;
   public damage = 0;

@@ -90,6 +90,7 @@ export class Creature {
   public vulnerabilities: string[] = [];
   public multiAttack? = false;
   public hasLegendaryActions?: boolean;
+  public editing = true;
 }
 
 export class CreatureDB {

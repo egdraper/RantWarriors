@@ -57,13 +57,18 @@ export class Constants {
     "Thunder"
   ];
 
+  public static immunities = [
+    ...Constants.damageTypes,
+    "Blinded"
+  ]
+
   public static dice = ["d4", "d6", "d8", "d10", "d12", "d20"];
 
   public static abilities = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
 
   public static skills = [
     "Acrobatics",
-    "Animal",
+    "Animal Handling",
     "Arcana",
     "Athletics",
     "Deception",
@@ -96,6 +101,7 @@ export class Constants {
   ];
 
   public static senses = [
+    "Blindsight: 30ft",
     "Blindsight: 60ft",
     "Darkvision: 60ft",
     "Darkvision: 120ft",
@@ -126,6 +132,7 @@ export class Constants {
     "Dwarf",
     "Elf",
     "Gnoll",
+    "Grimlock",
     "Half-elf",
     "Half-Orc",
     "Halfling",

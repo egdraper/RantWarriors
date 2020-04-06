@@ -10,15 +10,14 @@
     >
     </app-creature-stats>
   </div>
-  <div *ngIf="creature.actions.length > 0 || creature.attackNotes"
-     class="trait-grouping standard-group">
+  <div
+    *ngIf="creature.actions.length > 0 || creature.attackNotes"
+    class="trait-grouping standard-group"
+  >
     <app-battle-stats
       [creature]="creature"
       [selectedCreature]="selectedCreature"
     ></app-battle-stats>
-  </div>
-  <div class="trait-grouping standard-group" *ngIf="creature.traits.length > 0">
-    <app-trait-stats [creature]="creature"></app-trait-stats>
   </div>
   <div
     class="trait-grouping standard-group"
@@ -33,9 +32,17 @@
       [creature]="creature"
     ></app-immunity-vulnerability-stats>
   </div>
+</div>
+<div>
+  <div class="trait-grouping standard-group" *ngIf="creature.traits.length > 0">
+    <app-trait-stats [creature]="creature"></app-trait-stats>
+  </div>
+
   <div
     class="trait-grouping standard-group"
-    *ngIf="creature.legendaryActions.length > 0 || creature.legendaryActionsInfo"
+    *ngIf="
+      creature.legendaryActions.length > 0 || creature.legendaryActionsInfo
+    "
   >
     <app-legendary-actions-stats
       [creature]="creature"

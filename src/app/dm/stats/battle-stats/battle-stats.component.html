@@ -26,6 +26,10 @@
       <h6 class="hit-dice">{{ action.actionBonusInfo }}</h6>
     </div>
     <div *ngIf="action.isAttackAction">
+      <app-editor-toolbar
+        *ngIf="creature.editing"
+        [tools]="tools">
+      </app-editor-toolbar>
       <div>
         <h5 class="attack-type">
           {{ action.name }}: (Range {{ action.range }})

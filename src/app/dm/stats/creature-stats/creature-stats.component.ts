@@ -12,6 +12,8 @@ export class CreatureStatsComponent {
   @Output() damage = new EventEmitter<{creature, value: number}>();
   @Output() heal = new EventEmitter<{creature, value: number}>();
   @Input() creature: Creature;
+
+  public tools = ["delete"];
   public shrink = false;
   public damageTaken = 0;
 

@@ -17,6 +17,7 @@ import { LegendaryActionsStatsComponent } from "./legendary-actions/legendary-ac
 import { SummaryComponent } from './summary/summary.component';
 import { ValueModifierComponent } from './value-modifier/value-modifier.component';
 import { AbilityScoreModifierPipe } from "./skill-stats/ability.pipe";
+import { EditorToolbarComponent } from './editor-toolbar/editor-toolbar.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { AbilityScoreModifierPipe } from "./skill-stats/ability.pipe";
     StatsPanelComponent,
     SummaryComponent,
     ValueModifierComponent,
+    EditorToolbarComponent,
   ],
   exports: [
     LegendaryActionsStatsComponent,

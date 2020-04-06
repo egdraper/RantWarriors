@@ -1,0 +1,9 @@
+<div class="editable-area">
+  <div class="toolbar">
+    <mat-icon 
+     *ngFor="let tool of tools"
+     (click)="optionClick.emit(tool)">
+       {{tool}}
+    </mat-icon>
+  </div>
+</div>

@@ -8,6 +8,8 @@ import { Creature } from "../../assets/creature.model";
 })
 export class LegendaryActionsStatsComponent implements OnInit {
   @Input() creature: Creature;
+
+  public tools = ["edit", "delete"];
   constructor() { }
 
   ngOnInit() {

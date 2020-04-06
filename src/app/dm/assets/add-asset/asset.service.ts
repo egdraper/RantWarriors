@@ -12,7 +12,6 @@ export class AssetService {
   public static updateAbility(
     creature: Creature,
     ability: string,
-    newScore
   ): void {
     // update attack
     creature.actions.forEach(action => {
@@ -31,6 +30,7 @@ export class AssetService {
     if (ability === "DEX") {
       this.updateSavingThrows(creature, ability);
       this.updateSkillProficiency(creature);
+      this.updateArmorClass(creature);
     }
     if (ability === "CON") {
       this.createHitDice(creature);
@@ -76,7 +76,7 @@ export class AssetService {
 
   public static updateAttackDice(creature: Creature, action: Action): void {
     const modifier = Constants.getAbilityModifier(
-      creature.abilities[action.attackUses.toLowerCase()]
+      creature.abilities[action.attackUses]
     );
     action.attackModifier = creature.proficiency + modifier;
   }
@@ -140,5 +140,27 @@ export class AssetService {
     if (savingThrows) {
       savingThrows.value = newValue;
     }
+  }
+
+  public static updateArmorClass(creature: Creature): void {
+    if (!creature.armorType || creature.armorType === "Natural") {
+      creature.armorClass = 10 + Constants.getAbilityModifier(creature.abilities.DEX) + (creature.additionalArmor || 0);
+      return;
+    }
+
+    const armorType = Constants.armor.find(a => a.name === creature.armorType);
+    creature.armorClass = armorType.acBonus;
+    creature.armorType = armorType.name;
+
+    if (armorType.plus) {
+      creature.armorClass +=
+      creature.abilities.DEX > 2  && armorType.max
+      ? 2
+      : Constants.getAbilityModifier(creature.abilities.DEX);
+    }
+  }
+
+  public static updateAction(actionName: string): void {
+    
   }
 }

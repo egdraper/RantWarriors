@@ -26,7 +26,6 @@ export class ActionButtonComponent {
   _asterisk = []
 
   public roll(): void {
-    debugger
     const dice = new Dice();
     dice.withAdvantage = this.advantage;
     dice.withDisadvantage = this.disadvantage;

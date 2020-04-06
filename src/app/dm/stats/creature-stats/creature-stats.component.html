@@ -10,13 +10,24 @@
 </h4>
 <hr />
 <div *ngIf="creature.languages.length > 0">
+
   <h4>Languages</h4>
-  <h5 *ngFor="let language of creature.languages">{{ language }}</h5>
+  <h5 *ngFor="let language of creature.languages">
+    <app-editor-toolbar
+      *ngIf="creature.editing"
+      [tools]="tools">
+    </app-editor-toolbar>
+    {{ language }}
+  </h5>
   <hr />
 </div>
 <div *ngIf="creature.senses.length > 0">
   <h4>Senses</h4>
   <h5 *ngFor="let sense of creature.senses">
+    <app-editor-toolbar
+    *ngIf="creature.editing"
+    [tools]="tools">
+  </app-editor-toolbar>
      - {{ sense.sense }}
   </h5>
   <hr />

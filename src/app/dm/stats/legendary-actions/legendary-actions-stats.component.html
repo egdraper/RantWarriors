@@ -1,9 +1,13 @@
 <div>
-    <h3>Legendary Actions</h3>
+    <h1>Legendary Actions</h1>
     <h5>{{ creature.legendaryActionsInfo }}</h5>
     <hr>
     <div *ngFor="let legendaryAction of creature?.legendaryActions">
       <div class="action-group">
+        <app-editor-toolbar
+          *ngIf="creature.editing"
+          [tools]="tools">
+        </app-editor-toolbar>
         <h4 class="hit-text">{{ legendaryAction.name }}</h4>
         <h6><i>{{ legendaryAction.info }}</i></h6>
       </div>
