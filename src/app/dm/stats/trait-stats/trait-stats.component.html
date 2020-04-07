@@ -1,9 +1,9 @@
 <div>
     <h1>Traits</h1>
-    <div *ngFor="let trait of creature?.traits">
+    <div *ngFor="let trait of asset?.traits">
       <div class="action-group">
         <app-editor-toolbar
-          *ngIf="creature.editing"
+          *ngIf="asset.editing"
           [tools]="tools">
         </app-editor-toolbar>
         <h4 class="hit-text">{{ trait.name }}</h4>

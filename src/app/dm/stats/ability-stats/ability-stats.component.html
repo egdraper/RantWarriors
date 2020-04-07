@@ -1,19 +1,19 @@
 <div
 class="creature-cell">
 <div class="creature-rolls">
-  <h2> {{ creature.name }} </h2>
+  <h2> {{ asset.name }} </h2>
   <div class="header-name-score">
-    <h4>CR: {{ creature.challenge }} Exp: {{ creature.experience }}  </h4>
+    <h4>CR: {{ asset.challenge }} Exp: {{ asset.experience }}  </h4>
   </div>
-  <h5><i>{{ creature.size}} {{creature.creatureType}}, {{ creature.alignment }}</i></h5>
+  <h5><i>{{ asset.size}} {{asset.creatureType}}, {{ asset.alignment }}</i></h5>
   <div [style.display]="'flex'">
     <app-skill-stats-score 
-      [creature]="creature">
+      [asset]="asset">
     </app-skill-stats-score>
-    <img src="{{ creature.imgUrl }}" />
+    <img src="{{ asset.imgUrl }}" />
   </div>
   <hr>
   <app-proficiency-stats
-    [creature]="creature">
+    [asset]="asset">
   </app-proficiency-stats>
 </div>

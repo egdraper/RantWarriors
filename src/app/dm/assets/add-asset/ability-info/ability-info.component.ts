@@ -1,8 +1,5 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { Creature } from "../../creature.model";
-import { Constants } from "../constants";
-import { Utilities } from "../utilities";
-import { AssetService } from "../asset.service";
+import { Component, Input } from "@angular/core";
+import { Asset } from "../asset";
 
 @Component({
   selector: "app-ability-info",
@@ -10,9 +7,9 @@ import { AssetService } from "../asset.service";
   styleUrls: ["./ability-info.component.scss"]
 })
 export class AbilityInfoComponent {
-  @Input() public creature: Creature;
+  @Input() public asset: Asset;
 
   public onAbilityChange(value: number, ability: string): void {
-    AssetService.updateAbility(this.creature, ability, value);
+    this.asset.updateAbility(ability);
   }
 }

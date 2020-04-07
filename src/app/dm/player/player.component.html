@@ -12,6 +12,6 @@
 <button mat-button (click)="addPlayer()">Add Player</button>
 
 <stats
-  [activeCreatures]="dbSessionService.activePlayersList"
+  [activeAssets]="dbSessionService.activePlayersList"
   (remove)="onRemove($event)">
 </stats>

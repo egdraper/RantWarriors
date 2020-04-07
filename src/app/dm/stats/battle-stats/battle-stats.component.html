@@ -1,13 +1,13 @@
 <div *ngIf="!shrink">
   <div class="offense-header">
-    <h1 class="creature-name">Actions ({{ creature.numberOfActions }})</h1>
+    <h1 class="creature-name">Actions ({{ asset.numberOfActions }})</h1>
     <mat-icon (click)="refreshAttack()">refresh</mat-icon>
   </div>
-  <div *ngIf="creature.attackNotes">
-    <h5><strong>Multiattack:</strong> {{ creature.attackNotes }}</h5>
+  <div *ngIf="asset.attackNotes">
+    <h5><strong>Multiattack:</strong> {{ asset.attackNotes }}</h5>
     <hr />
   </div>
-  <div *ngFor="let action of creature.actions">
+  <div *ngFor="let action of asset.actions">
     <div *ngIf="action.isRollableAction">
       <h5 class="attack-type">
         {{ action.name }}: (Range {{ action.range }})
@@ -27,7 +27,7 @@
     </div>
     <div *ngIf="action.isAttackAction">
       <app-editor-toolbar
-        *ngIf="creature.editing"
+        *ngIf="asset.editing"
         [tools]="tools">
       </app-editor-toolbar>
       <div>
@@ -37,9 +37,9 @@
         <app-action-button
           label="Attack"
           diceEquation="{{ 'd20+' + action.attackModifier }}"
-          [minimumForSuccess]="selectedCreature?.armorClass"
-          [advantage]="creature.hasAdvantage"
-          [disadvantage]="creature.hasDisadvantage"
+          [minimumForSuccess]="selectedAsset?.armorClass"
+          [advantage]="asset.hasAdvantage"
+          [disadvantage]="asset.hasDisadvantage"
           [asterisk]="action.numberOfAttacksAllowed"
         >
         </app-action-button>
@@ -61,8 +61,8 @@
       <div *ngIf="action.moreInfo">
         <div class="action-group">
           <h4 class="hit-text">{{ action.name }}</h4>
-          <a class="hit-dice" href="{{ creature.link }}" target="_blank">
-            - Book {{ creature.page }}</a
+          <a class="hit-dice" href="{{ asset.link }}" target="_blank">
+            - Book {{ asset.page }}</a
           >
         </div>
       </div>

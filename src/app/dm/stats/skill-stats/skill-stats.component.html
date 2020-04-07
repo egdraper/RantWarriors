@@ -1,36 +1,36 @@
 <div class="score-area">
   <app-action-button
     label="STR"
-    diceEquation="{{ creature.abilities.STR |  abilityModifier }}"
-    [advantage]="creature.hasAdvantage"
-    [disadvantage]="creature.hasDisadvantage">  
+    diceEquation="{{ asset.abilities.STR |  abilityModifier }}"
+    [advantage]="asset.hasAdvantage"
+    [disadvantage]="asset.hasDisadvantage">  
   </app-action-button>
   <app-action-button
     label="DEX"
-    diceEquation="{{ creature.abilities.DEX  |  abilityModifier }}"
-    [advantage]="creature.hasAdvantage"
-    [disadvantage]="creature.hasDisadvantage">
+    diceEquation="{{ asset.abilities.DEX  |  abilityModifier }}"
+    [advantage]="asset.hasAdvantage"
+    [disadvantage]="asset.hasDisadvantage">
   </app-action-button>
   <app-action-button
     label="CON"
-    diceEquation="{{ creature.abilities.CON  |  abilityModifier  }}"
-    [advantage]="creature.hasAdvantage"
-    [disadvantage]="creature.hasDisadvantage">
+    diceEquation="{{ asset.abilities.CON  |  abilityModifier  }}"
+    [advantage]="asset.hasAdvantage"
+    [disadvantage]="asset.hasDisadvantage">
   </app-action-button>
   <app-action-button
     label="INT"
-    diceEquation="{{ creature.abilities.INT  |  abilityModifier }}"
-    [advantage]="creature.hasAdvantage"
-    [disadvantage]="creature.hasDisadvantage">
+    diceEquation="{{ asset.abilities.INT  |  abilityModifier }}"
+    [advantage]="asset.hasAdvantage"
+    [disadvantage]="asset.hasDisadvantage">
   </app-action-button>
   <app-action-button
     label="WIS"
-    diceEquation="{{ creature.abilities.WIS  |  abilityModifier }}"
-    [disadvantage]="creature.hasDisadvantage">
+    diceEquation="{{ asset.abilities.WIS  |  abilityModifier }}"
+    [disadvantage]="asset.hasDisadvantage">
   </app-action-button>
   <app-action-button
     label="CHA"
-    diceEquation="{{ creature.abilities.CHA  |  abilityModifier }}"
-    [disadvantage]="creature.hasDisadvantage">
+    diceEquation="{{ asset.abilities.CHA  |  abilityModifier }}"
+    [disadvantage]="asset.hasDisadvantage">
   </app-action-button>
 </div>

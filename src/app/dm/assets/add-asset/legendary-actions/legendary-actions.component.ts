@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { Creature, Trait } from "../../creature.model";
+import { Component, Input } from "@angular/core";
+import { Asset } from "../asset";
+import { Trait } from "../../creature.model";
 
 @Component({
   selector: "app-legendary-actions",
@@ -7,11 +8,11 @@ import { Creature, Trait } from "../../creature.model";
   styleUrls: ["./legendary-actions.component.scss"]
 })
 export class LegendaryActionsComponent {
-  @Input() public creature: Creature;
+  @Input() public asset: Asset;
   public newAction = new Trait();
 
   public onTraitAdd(): void {
-    this.creature.legendaryActions.push(this.newAction);
+    this.asset.legendaryActions.push(this.newAction);
     this.newAction = new Trait();
   }
 }

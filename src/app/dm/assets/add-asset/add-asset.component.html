@@ -1,22 +1,13 @@
-<!-- <app-asset-nav 
-  (creatureAdded)="onCreatureAdded('creatures')"
-  (npcAdded)="onCreatureAdded('npcs')"
-  (playerAdded)="onCreatureAdded('players')"
-  (loadCreature)="onCreatureLoad($event)"
-  (select)="onSelect($event)"  
-  (update)="onUpdate($event)">
-</app-asset-nav> -->
-
 <div>
   <button
-    [disabled]="!newCreature.assetType || activeView === 0"
+    [disabled]="!newAsset.assetType || activeView === 0"
     mat-button
     (click)="onPrevious()"
   >
     Previous
   </button>
   <button
-    [disabled]="!newCreature.assetType || activeView === 10"
+    [disabled]="!newAsset.assetType || activeView === 10"
     mat-button
     (click)="onNext()"
   >
@@ -37,57 +28,57 @@
 
         <app-ability-info
           *ngIf="activeView === 1"
-          [creature]="newCreature"
+          [asset]="newAsset"
         >
         </app-ability-info>
 
         <app-creature-info
           *ngIf="activeView === 2"
-          [creature]="newCreature"
-          [creatureType]="newCreature.creatureType"
+          [asset]="newAsset"
+          [creatureType]="newAsset.creatureType"
         >
         </app-creature-info>
         
         <app-attributes
           *ngIf="activeView === 3"
-          [creature]="newCreature"
+          [asset]="newAsset"
         >
         </app-attributes>
 
         <app-multi-attack
           *ngIf="activeView === 4"
           (multiAttackSelected)="setNextText()"
-          [creature]="newCreature"
+          [asset]="newAsset"
         >
         </app-multi-attack>
         
         <app-battle-info
           *ngIf="activeView === 5"
-          [creature]="newCreature"
+          [asset]="newAsset"
         >
         </app-battle-info>
         
         <app-immunity-vulnerability
           *ngIf="activeView === 6"
-          [creature]="newCreature"
+          [asset]="newAsset"
         >       
         </app-immunity-vulnerability>
         
         <app-proficiency-info
           *ngIf="activeView === 7"
-          [creature]="newCreature"
+          [asset]="newAsset"
         >
         </app-proficiency-info>
         
         <app-trait-info
           *ngIf="activeView === 8"
-          [creature]="newCreature"
+          [asset]="newAsset"
         >
         </app-trait-info>
         
         <app-legendary-actions
           *ngIf="activeView === 9"
-          [creature]="newCreature"
+          [asset]="newAsset"
         >
         </app-legendary-actions>
         
@@ -99,6 +90,6 @@
     
     </div>
    
-    <app-stats-panel [creature]="newCreature"> </app-stats-panel>
+    <app-stats-panel [asset]="newAsset"> </app-stats-panel>
   </div>
 </div>

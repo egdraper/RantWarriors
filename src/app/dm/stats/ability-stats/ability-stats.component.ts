@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Dice } from "../../assets/dice/dice.service";
-import { Creature } from "../../assets/creature.model";
+import { Asset } from "../../assets/add-asset/asset";
 
 @Component({
   selector: "app-ability-stats",
@@ -8,18 +8,18 @@ import { Creature } from "../../assets/creature.model";
   styleUrls: ["./ability-stats.component.scss"]
 })
 export class AbilityStatsComponent {
-  @Input() public creature: Creature;
+  @Input() public asset: Asset;
 
-  public rollAbility(abilityModifier: number, creature: Creature): void {
+  public rollAbility(abilityModifier: number, asset: Asset): void {
     const dice = new Dice();
-    dice.withAdvantage = this.creature.hasAdvantage;
-    dice.withDisadvantage = this.creature.hasDisadvantage;
+    dice.withAdvantage = this.asset.hasAdvantage;
+    dice.withDisadvantage = this.asset.hasDisadvantage;
     const equation =
       abilityModifier >= 0
         ? `d20+${abilityModifier}`
         : `d20-${-1 * abilityModifier}`;
     const roll = dice.roll(equation);
-    creature.abilityRoll = roll.modifiedRollValue;
+    asset.abilityRoll = roll.modifiedRollValue;
   }
 
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { Creature } from "../../creature.model";
 import { Constants } from "../constants";
-import { AssetService } from "../asset.service";
+import { Asset } from "../asset";
 
 @Component({
   selector: "app-attributes",
@@ -9,7 +8,7 @@ import { AssetService } from "../asset.service";
   styleUrls: ["./attributes.component.scss"]
 })
 export class AttributesComponent implements OnInit {
-  @Input() public creature: Creature;
+  @Input() public asset: Asset;
   public senses = Constants.senses;
   public armorList = Constants.armor;
   public alignments = Constants.alignments;
@@ -26,28 +25,26 @@ export class AttributesComponent implements OnInit {
 
   public addLanguage(): void {
     if (this.newLanguage !== "") {
-      this.creature.languages.push(this.newLanguage);
+      this.asset.languages.push(this.newLanguage);
     }
     this.newLanguage = "";
   }
 
   public addSense(): void {
     if (this.newSense !== "") {
-      this.creature.senses.push({ sense: this.newSense, value: this.senseRange });
+      this.asset.senses.push({ sense: this.newSense, value: this.senseRange });
     }
 
     this.newSense = "";
   }
 
   public onChange(armor: any): void {
-    this.creature.armorType = armor.value;
-    AssetService.updateArmorClass(this.creature);
+    this.asset.armorType = armor.value;
+    this.asset.updateArmorClass();
   }
 
   public onAdditionalArmorChange(number: number): void {
-    this.creature.additionalArmor = Number(number);
-    AssetService.updateArmorClass(this.creature);
+    this.asset.additionalArmor = Number(number);
+    this.asset.updateArmorClass();
   }
-
-
 }

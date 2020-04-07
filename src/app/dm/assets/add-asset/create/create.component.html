@@ -13,7 +13,7 @@
   <mat-form-field>
     <mat-select
       [placeholder]="'Edit Existing'"
-      (selectionChange)="onCreatureChange($event)"
+      (selectionChange)="onAssetChange($event)"
     >
       <mat-option
         *ngFor="let creature of dbSession.creatureSelectionList"

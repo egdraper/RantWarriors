@@ -1,24 +1,24 @@
 <div [style.display]="'flex'">
   <div
     class="summary-panel"
-    *ngFor="let creature of activeCreatures; let i = index"
+    *ngFor="let asset of activeAssets; let i = index"
   >
-    <h4>{{ creature.name }}</h4>
+    <h4>{{ asset.name }}</h4>
     <div class="summary-stats">
-      <img (click)="onSelect(i + 1)" src="{{ creature.imgUrl }}" />
+      <img (click)="onSelect(i + 1)" src="{{ asset.imgUrl }}" />
       <div>
-        <h5>AC:{{ creature.armorClass }}</h5>
-        <h5>HP:{{ creature.currentHitPoints }}/{{ creature.maxHitPoints }}</h5>
+        <h5>AC:{{ asset.armorClass }}</h5>
+        <h5>HP:{{ asset.currentHitPoints }}/{{ asset.maxHitPoints }}</h5>
       </div>
     </div>
-    <div *ngFor="let action of creature.actions">
+    <div *ngFor="let action of asset.actions">
       <hr />
       <app-action-button
         label="Hit"
         diceEquation="{{ 'd20+' + action.attackModifier }}"
-        [minimumForSuccess]="creature?.armorClass"
-        [advantage]="creature.hasAdvantage"
-        [disadvantage]="creature.hasDisadvantage"
+        [minimumForSuccess]="asset?.armorClass"
+        [advantage]="asset.hasAdvantage"
+        [disadvantage]="asset.hasDisadvantage"
         [asterisk]="action.allowedInMultipleAttacks"
       >
       </app-action-button>

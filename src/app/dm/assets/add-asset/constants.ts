@@ -523,8 +523,3 @@ export class Constants {
   }
 }
 
-export enum CreaturePart {
-  creature = "Creature",
-  battle = "Battle",
-  ability = "Ability"
-}

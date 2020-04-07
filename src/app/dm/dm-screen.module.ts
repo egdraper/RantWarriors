@@ -7,7 +7,7 @@ import { DemoMaterialModule } from "./material.module";
 import { MatNativeDateModule } from "@angular/material/core";
 import { DmScreenComponent } from "./dm-screen.component";
 import { AdventuringComponent } from "./adventuring/adventuring.component";
-import { CreatureComponent } from "./battle/creature.component";
+import { CreatureComponent } from "./creature/creature.component";
 import { NpcComponent } from "./npc/npc.component";
 
 import { AdvantageToggleComponent } from "./assets/advantage-toggle/advantage-toggle.component";

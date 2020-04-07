@@ -1,7 +1,6 @@
-import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
-import { Npc } from "../../assets/npc.model";
+import { Component, Input, EventEmitter, Output } from "@angular/core";
 import { Dice } from "../../assets/dice/dice.service";
-import { Creature } from "../../assets/creature.model";
+import { Asset } from "../../assets/add-asset/asset";
 
 @Component({
   selector: "app-creature-stats",
@@ -11,7 +10,7 @@ import { Creature } from "../../assets/creature.model";
 export class CreatureStatsComponent {
   @Output() damage = new EventEmitter<{creature, value: number}>();
   @Output() heal = new EventEmitter<{creature, value: number}>();
-  @Input() creature: Creature;
+  @Input() asset: Asset;
 
   public tools = ["delete"];
   public shrink = false;
@@ -21,33 +20,33 @@ export class CreatureStatsComponent {
 
   public generateRandomHp(): void {
     const dice = new Dice();
-    const roll = dice.roll(this.creature.hitDice);
-    this.creature.maxHitPoints = roll.modifiedRollValue;
-    this.creature.currentHitPoints = roll.modifiedRollValue;
+    const roll = dice.roll(this.asset.hitDice);
+    this.asset.maxHitPoints = roll.modifiedRollValue;
+    this.asset.currentHitPoints = roll.modifiedRollValue;
   }
 
   public takeDamage(): void {
-    this.damage.emit({creature: this.creature, value: this.damageTaken});
+    this.damage.emit({creature: this.asset, value: this.damageTaken});
   }
 
   public doHeal(): void {
-    this.damage.emit({creature: this.creature, value: this.damageTaken});
+    this.damage.emit({creature: this.asset, value: this.damageTaken});
   }
 
   public resetHp(): void {
-    this.creature.currentHitPoints = this.creature.maxHitPoints;
+    this.asset.currentHitPoints = this.asset.maxHitPoints;
   }
 
   public onMaxHitPointsIncrease(value: any): void {
     if (!this.originalMaxHp) {
-      this.originalMaxHp = this.creature.maxHitPoints;
+      this.originalMaxHp = this.asset.maxHitPoints;
     }
 
-    this.creature.hitDice = `${this.creature.hitDice}`;
-    const numberOfRolls = this.creature.hitDice.match(/\d+(?=d)/g);
-    const operator = this.creature.hitDice.match(/\+|-/g);
-    const dice = this.creature.hitDice.match(/(?<=d)(\?*\d+)/g);
-    const modifier = this.creature.hitDice.match(/(?<=\+|-)(\?*\d+)/g);
+    this.asset.hitDice = `${this.asset.hitDice}`;
+    const numberOfRolls = this.asset.hitDice.match(/\d+(?=d)/g);
+    const operator = this.asset.hitDice.match(/\+|-/g);
+    const dice = this.asset.hitDice.match(/(?<=d)(\?*\d+)/g);
+    const modifier = this.asset.hitDice.match(/(?<=\+|-)(\?*\d+)/g);
 
     let newModifier: number;
     if (operator && operator[0] === "+") {
@@ -57,7 +56,7 @@ export class CreatureStatsComponent {
     } else if (operator && operator[0] === "-" && value.amount === 1) {
         newModifier = (Number(modifier) - 1) * -1;
     } else {
-      newModifier = value.newValue - this.creature.maxHitPoints;
+      newModifier = value.newValue - this.asset.maxHitPoints;
     }
 
     let newHitDice: string;
@@ -69,11 +68,11 @@ export class CreatureStatsComponent {
       newHitDice = `${numberOfRolls[0]}d${dice[0]}+${newModifier}`;
     }
 
-    if (this.creature.currentHitPoints > this.creature.maxHitPoints) {
-      this.creature.currentHitPoints = this.creature.maxHitPoints;
+    if (this.asset.currentHitPoints > this.asset.maxHitPoints) {
+      this.asset.currentHitPoints = this.asset.maxHitPoints;
     }
 
-    this.creature.maxHitPoints = value.newValue;
-    this.creature.hitDice = newHitDice;
+    this.asset.maxHitPoints = value.newValue;
+    this.asset.hitDice = newHitDice;
   }
 }

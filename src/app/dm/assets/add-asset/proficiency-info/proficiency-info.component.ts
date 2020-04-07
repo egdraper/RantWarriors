@@ -1,7 +1,6 @@
 import { Component, Input } from "@angular/core";
-import { Creature } from "../../creature.model";
 import { Constants } from "../constants";
-import { AssetService } from "../asset.service";
+import { Asset } from "../asset";
 
 @Component({
   selector: "app-proficiency-info",
@@ -9,17 +8,17 @@ import { AssetService } from "../asset.service";
   styleUrls: ["./proficiency-info.component.scss"]
 })
 export class ProficiencyInfoComponent  {
-  @Input() public creature: Creature;
+  @Input() public asset: Asset;
   public skills = Constants.skills;
   public newSavingThrow = "";
   public newProficiency = "";
 
   public addNewSavingThrow(): void {
-    AssetService.addSavingThrows(this.creature, this.newSavingThrow);
+    this.asset.addSavingThrows(this.newSavingThrow);
     this.newSavingThrow = "";
   }
   public addNewProficiency(): void {
-    AssetService.addSkillProficiency(this.creature, this.newProficiency);
+    this.asset.addSkillProficiency(this.newProficiency);
     this.newProficiency = "";
   }
 }

@@ -3,7 +3,7 @@
     <mat-form-field class="sense">
         <mat-label>Armor</mat-label>
         <mat-select
-          [ngModel]="creature.armorType"
+          [ngModel]="asset.armorType"
           [ngModelOptions]="{ standalone: true }"
           (selectionChange)="onChange($event)">
           <mat-option *ngFor="let armor of armorList" [value]="armor.name">
@@ -12,14 +12,14 @@
         </mat-select>
       </mat-form-field>
 
-    <div *ngIf="creature.armorType === 'Natural'">
+    <div *ngIf="asset.armorType === 'Natural'">
       <mat-form-field class="example-full-width">
         <input
           matInput
           placeholder="Additional Armor"
           name="armorClass"
           type="number"
-          [ngModel]="creature.additionalArmor"
+          [ngModel]="asset.additionalArmor"
           (input)="onAdditionalArmorChange($event.target.value)"
         />
       </mat-form-field>
@@ -31,7 +31,7 @@
           placeholder="Speed"
           name="speed"
           [ngModelOptions]="{ standalone: true }"
-          [(ngModel)]="creature.speed"
+          [(ngModel)]="asset.speed"
         />
       </mat-form-field>
     </div>
@@ -43,7 +43,7 @@
           name="passivePerception"
           type="number"
           [ngModelOptions]="{ standalone: true }"
-          [(ngModel)]="creature.passivePerception"
+          [(ngModel)]="asset.passivePerception"
         />
       </mat-form-field>
     </div>
@@ -72,9 +72,6 @@
         />
       </mat-form-field>
       <button mat-button (click)="addLanguage()">Add</button>
-    </div>
-
- 
-  
+    </div>  
   </div>
 

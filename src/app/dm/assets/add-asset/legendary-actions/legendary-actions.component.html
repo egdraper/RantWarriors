@@ -1,16 +1,16 @@
 <div class="form-group">
   <h2>Legendary Actions</h2>
   <div class="select-checkbox">
-    <mat-checkbox [(ngModel)]="creature.hasLegendaryActions">Are there Legendary Actions?</mat-checkbox>
+    <mat-checkbox [(ngModel)]="asset.hasLegendaryActions">Are there Legendary Actions?</mat-checkbox>
   </div>
-  <div *ngIf="creature.hasLegendaryActions">
+  <div *ngIf="asset.hasLegendaryActions">
     <div>
       <mat-form-field class="example-full-width">
         <mat-label>Group Info</mat-label>
         <textarea
           matInput
           placeholder="Bonus Information"
-          [(ngModel)]="creature.legendaryActionsInfo"
+          [(ngModel)]="asset.legendaryActionsInfo"
         >
         </textarea>
       </mat-form-field>

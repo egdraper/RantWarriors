@@ -7,19 +7,16 @@ import { ProficiencyInfoComponent } from "./proficiency-info/proficiency-info.co
 import { AbilityInfoComponent } from "./ability-info/ability-info.component";
 import { AddAssetComponent } from "./add-asset.component";
 import { BrowserModule } from "@angular/platform-browser";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { DemoMaterialModule } from "../../material.module";
-import { MatNativeDateModule } from "@angular/material/core";
 import { ImmunityVulnerabilityComponent } from "./immunity-vulnerability/immunity-vulnerability.component";
-import { AssetNavComponent } from "./asset-nav/asset-nav.component";
 import { StatsModule } from "../../stats/stats.module";
-import { LegendaryActionsComponent } from './legendary-actions/legendary-actions.component';
+import { LegendaryActionsComponent } from "./legendary-actions/legendary-actions.component";
 import { DBModule } from "../db.module";
-import { AttributesComponent } from './attributes/attributes.component';
-import { SubmitComponent } from './submit/submit.component';
-import { CreateComponent } from './create/create.component';
-import { MultiAttackComponent } from './multi-attack/multi-attack.component';
+import { AttributesComponent } from "./attributes/attributes.component";
+import { SubmitComponent } from "./submit/submit.component";
+import { CreateComponent } from "./create/create.component";
+import { MultiAttackComponent } from "./multi-attack/multi-attack.component";
 
 @NgModule({
   declarations: [
@@ -30,7 +27,6 @@ import { MultiAttackComponent } from './multi-attack/multi-attack.component';
     AbilityInfoComponent,
     AddAssetComponent,
     ImmunityVulnerabilityComponent,
-    AssetNavComponent,
     LegendaryActionsComponent,
     AttributesComponent,
     SubmitComponent,

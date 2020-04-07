@@ -1,5 +1,5 @@
   <div class="form-group">
-    <h2>{{ creature.assetType }} Info</h2>
+    <h2>{{ asset.assetType }} Info</h2>
     <div>
       <mat-form-field class="example-full-width">
         <input
@@ -7,7 +7,7 @@
           placeholder="Name"
           name="name"
           [ngModelOptions]="{ standalone: true }"
-          [(ngModel)]="creature.name"
+          [(ngModel)]="asset.name"
         />
       </mat-form-field>
     </div>
@@ -17,8 +17,8 @@
         <mat-select
           placeholder="Challenge Rating"
           [ngModelOptions]="{ standalone: true }"
-          [(ngModel)]="creature.challenge"
-          (selectionChange)="onCRChange(creature.challenge)">
+          [(ngModel)]="asset.challenge"
+          (selectionChange)="onCRChange(asset.challenge)">
           <mat-option *ngFor="let rating of challengeRatings" [value]="rating.display">
             {{ rating.display }}
           </mat-option>
@@ -30,7 +30,7 @@
           <mat-select
             [placeholder]="'Size'"
             [ngModelOptions]="{ standalone: true }"
-            [(ngModel)]="creature.size"
+            [(ngModel)]="asset.size"
             (selectionChange)="onSizeChange($event)">
             <mat-option *ngFor="let size of sizes" [value]="size.name">
               {{ size.name }}
@@ -47,7 +47,7 @@
             name="maxHitPoints"
             type="number"
             [ngModelOptions]="{ standalone: true }"
-            [(ngModel)]="creature.level" 
+            [(ngModel)]="asset.level" 
             (change)="onLevelChange()"
           />
         </mat-form-field>
@@ -59,20 +59,20 @@
           <mat-select
             [placeholder]="'Type'"
             [ngModelOptions]="{ standalone: true }"
-            [(ngModel)]="creature.creatureType">
+            [(ngModel)]="asset.creatureType">
             <mat-option *ngFor="let creatureType of creatureTypes" [value]="creatureType">
               {{ creatureType }}
             </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
-      <div *ngIf="creature.creatureType === 'Humanoid'">
+      <div *ngIf="asset.creatureType === 'Humanoid'">
         <mat-form-field class="sense">
           <mat-label>Humanoid Type</mat-label>
           <mat-select
             [placeholder]="'Humanoid Type'"
             [ngModelOptions]="{ standalone: true }"
-            [(ngModel)]="creature.humanoidType">
+            [(ngModel)]="asset.humanoidType">
             <mat-option *ngFor="let humanoidType of humanoidTypes" [value]="creatureType">
               {{ humanoidType }}
             </mat-option>
@@ -86,7 +86,7 @@
           <mat-select
             [placeholder]="'Alignment'"
             [ngModelOptions]="{ standalone: true }"
-            [(ngModel)]="creature.alignment">
+            [(ngModel)]="asset.alignment">
             <mat-option *ngFor="let alignment of alignments" [value]="alignment">
               {{ alignment }}
             </mat-option>
@@ -100,7 +100,7 @@
             placeholder="Img Url"
             name="imgUrl"
             [ngModelOptions]="{ standalone: true }"
-            [(ngModel)]="creature.imgUrl"
+            [(ngModel)]="asset.imgUrl"
           />
           <mat-hint>Right click a searched image in Google and select "Copy Image Address"</mat-hint>
         </mat-form-field>

@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { Creature } from "../assets/creature.model";
-import { DbService } from "../assets/dbService";
 import { DbSessionService } from "../assets/dbSession";
+import { Asset } from "../assets/add-asset/asset";
 
 @Component({
   selector: "stats",
@@ -10,13 +10,13 @@ import { DbSessionService } from "../assets/dbSession";
 })
 export class StatsComponent {
   @Output() public remove = new EventEmitter<number>();
-  @Input() public activeCreatures: Creature[] = [];
-  @Input() public activeEnemies: Creature[] = [];
+  @Input() public activeAssets: Asset[] = [];
+  @Input() public activeEnemies: Asset[] = [];
 
   public selectedEnemy;
   public damageNumbers = [];
   public dead = "X";
-  public creatureSelectedIndex = 0;
+  public assetSelectedIndex = 0;
 
   constructor(private dbSessionService: DbSessionService) {
     this.setDamageNumbers();
@@ -32,19 +32,19 @@ export class StatsComponent {
     }
   }
 
-  public giveAdvantage(creature): void {
-    creature.hasAdvantage = true;
-    creature.hasDisadvantage = false;
+  public giveAdvantage(asset: Asset): void {
+    asset.hasAdvantage = true;
+    asset.hasDisadvantage = false;
   }
 
-  public giveDisadvantage(creature): void {
-    creature.hasAdvantage = false;
-    creature.hasDisadvantage = true;
+  public giveDisadvantage(asset): void {
+    asset.hasAdvantage = false;
+    asset.hasDisadvantage = true;
   }
 
-  public resetAdvantage(creature): void {
-    creature.hasAdvantage = false;
-    creature.hasDisadvantage = false;
+  public resetAdvantage(asset): void {
+    asset.hasAdvantage = false;
+    asset.hasDisadvantage = false;
   }
 
   public onEnemySelect(enemy: Creature): void {
@@ -57,24 +57,24 @@ export class StatsComponent {
   }
 
   public onSelect(index: number): void {
-    this.creatureSelectedIndex = index;
+    this.assetSelectedIndex = index;
   }
 
-  public heal(activeCreature: Creature, value: number): void {
-    activeCreature.currentHitPoints += value;
+  public heal(activeAsset: Asset, value: number): void {
+    activeAsset.currentHitPoints += value;
 
-    if (activeCreature.currentHitPoints > activeCreature.maxHitPoints) {
-      activeCreature.currentHitPoints = activeCreature.maxHitPoints;
+    if (activeAsset.currentHitPoints > activeAsset.maxHitPoints) {
+      activeAsset.currentHitPoints = activeAsset.maxHitPoints;
     }
 
     this.dbSessionService.updateSession();
   }
 
-  public takeDamage(activeCreature: Creature, value: number): void {
-    activeCreature.currentHitPoints -= value;
+  public takeDamage(activeAsset: Creature, value: number): void {
+    activeAsset.currentHitPoints -= value;
 
-    if (activeCreature.currentHitPoints < 0) {
-      activeCreature.currentHitPoints = 0;
+    if (activeAsset.currentHitPoints < 0) {
+      activeAsset.currentHitPoints = 0;
     }
 
     this.dbSessionService.updateSession();

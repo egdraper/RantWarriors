@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { Creature } from "../../assets/creature.model";
+import { Asset } from "../../assets/add-asset/asset";
 
 @Component({
   selector: "app-trait-stats",
@@ -7,7 +7,7 @@ import { Creature } from "../../assets/creature.model";
   styleUrls: ["./trait-stats.component.scss"]
 })
 export class TraitStatsComponent implements OnInit {
-  @Input() creature: Creature;
+  @Input() asset: Asset;
 
   public tools = ["edit", "delete"]
   constructor() { }

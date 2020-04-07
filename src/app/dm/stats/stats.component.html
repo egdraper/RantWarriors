@@ -1,11 +1,11 @@
-<mat-tab-group [(selectedIndex)]="creatureSelectedIndex">
+<mat-tab-group [(selectedIndex)]="assetSelectedIndex">
   <mat-tab label="Summary">
     <app-summary (select)="onSelect($event)"
-      [activeCreatures]="activeCreatures" 
+      [activeAssets]="activeAssets" 
     ></app-summary> 
   </mat-tab>
-  <mat-tab *ngFor="let activeCreature of activeCreatures; let i = index"
-    label="{{activeCreature.currentHitPoints < 1 ? dead : activeCreature.name}}"
+  <mat-tab *ngFor="let asset of activeAssets; let i = index"
+    label="{{asset.currentHitPoints < 1 ? dead : asset.name}}"
   >
     
   <div class="advantage-wrapper">
@@ -18,20 +18,20 @@
        <button 
          mat-button
          matTooltip="Give Advantage"
-         (click)="giveAdvantage(activeCreature)">
+         (click)="giveAdvantage(asset)">
            <mat-icon class="advantage">visibility</mat-icon>
         </button>
        <button 
          mat-button
          matTooltip="Remove Advantage"
-         (click)="resetAdvantage(activeCreature)"
+         (click)="resetAdvantage(asset)"
          class="normal">
            None
         </button>
        <button 
          mat-button
          matTooltip="Give Disadvantage"
-         (click)="giveDisadvantage(activeCreature)">
+         (click)="giveDisadvantage(asset)">
            <mat-icon class="disadvantage">visibility_off</mat-icon>
        </button>
        <div class="attack-selector-container">
@@ -50,24 +50,24 @@
           <button
             class="damage-quick-link"
             mat-button
-            (click)="takeDamage(activeCreature, number)"
+            (click)="takeDamage(asset, number)"
             *ngFor="let number of damageNumbers; let l = index">
             {{ number }}
           </button>
         </span>
       </div>
-      <div [class.creature-dead]="activeCreature.currentHitPoints <= 0">
+      <div [class.creature-dead]="asset.currentHitPoints <= 0">
   
       <div 
         class="indicator"
-        [class.has-advantage]="activeCreature.hasAdvantage"  
-        [class.has-disadvantage]="activeCreature.hasDisadvantage">
+        [class.has-advantage]="asset.hasAdvantage"  
+        [class.has-disadvantage]="asset.hasDisadvantage">
       </div>
       <app-stats-panel 
         (damage)="takeDamage($event)"
         (heal)="takeDamage($event)"
-        [creature]="activeCreature"
-        [selectedCreature]="selectedEnemy">
+        [asset]="asset"
+        [selectedAsset]="selectedEnemy">
       </app-stats-panel>
     </div>
   </mat-tab>

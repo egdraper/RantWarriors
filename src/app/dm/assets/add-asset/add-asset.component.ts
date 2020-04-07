@@ -1,9 +1,9 @@
-import { Component, EventEmitter, Output, Input } from "@angular/core";
-import { Creature, Action } from "../creature.model";
+import { Component, Input } from "@angular/core";
+import { Action } from "../creature.model";
 import { cloneDeep } from "lodash";
 import { DbService } from "../dbService";
 import { DbSessionService } from "../dbSession";
-import { AngularFirestore } from "@angular/fire/firestore";
+import { Asset } from "./asset";
 
 export enum View {
   Info,
@@ -18,7 +18,7 @@ export enum View {
 })
 export class AddAssetComponent {
   @Input() public admin = false;
-  public newCreature = new Creature();
+  public newAsset = new Asset();
   public newAction = new Action();
   public activeView = 0;
   public nextText = "Next";
@@ -26,36 +26,36 @@ export class AddAssetComponent {
   constructor(
     private dbSessionService: DbSessionService,
     private dbService: DbService) {
-    this.newCreature = new Creature();
+    this.newAsset = new Asset();
   }
 
   public onSelect(selection: string): void {
-    this.newCreature = new Creature();
-    this.newCreature.editing = true;
-    this.newCreature.assetType = selection;
+    this.newAsset = new Asset();
+    this.newAsset.editing = true;
+    this.newAsset.assetType = selection;
     this.activeView = 1;
   }
 
   public onCreatureAdded(type: string): void {
-    delete this.newCreature.editing;
-    this.admin ? this.dbService.addAdminCreature(this.newCreature, type) : this.dbService.addCreature(this.newCreature, type);
+    delete this.newAsset.editing;
+    this.admin ? this.dbService.addAdminCreature(this.newAsset, type) : this.dbService.addCreature(this.newAsset, type);
     this.newAction = new Action();
-    this.newCreature = new Creature();
+    this.newAsset = new Asset();
   }
 
   public onCreatureLoad(creatureName: string): void {
-    this.newCreature = cloneDeep(
+    this.newAsset = cloneDeep(
       this.dbSessionService.creatureList.find(
-        creature => creature.name === creatureName
+        asset => asset.name === creatureName
       )
     );
-    this.newCreature.editing = true;
-    this.newCreature.name = this.newCreature.name + " (Mod)";
+    this.newAsset.editing = true;
+    this.newAsset.name = this.newAsset.name + " (Mod)";
     this.activeView = 1;
   }
 
   public onUpdate(type: string): void {
-    this.admin ? this.dbService.updateAdminCreature(this.newCreature, type) : this.dbService.updateCreature(this.newCreature, type);
+    this.admin ? this.dbService.updateAdminCreature(this.newAsset, type) : this.dbService.updateCreature(this.newAsset, type);
   }
 
   public onPrevious(): void {
@@ -70,19 +70,19 @@ export class AddAssetComponent {
 
   public onSubmit(type: string): void {
     if (this.admin) {
-      this.dbService.addAdminCreature(this.newCreature, type);
+      this.dbService.addAdminCreature(this.newAsset, type);
     } else {
-      this.dbService.addCreature(this.newCreature, type);
+      this.dbService.addCreature(this.newAsset, type);
     }
   }
 
   public setNextText(): void {
-    if (this.activeView === 4 && !this.newCreature.multiAttack) {
+    if (this.activeView === 4 && !this.newAsset.multiAttack) {
       this.nextText = "Skip";
       return;
     }
 
-    this.nextText = "Next"
+    this.nextText = "Next";
 
   }
 }

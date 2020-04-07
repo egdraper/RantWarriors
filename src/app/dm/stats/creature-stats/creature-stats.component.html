@@ -1,31 +1,31 @@
 <h1 class="defense-title">Attributes</h1>
 <div class="attribute-line">
   <h4 class="creature-stat">
-    AC: {{ creature.armorClass }} ({{ creature.armorType || "natural" }})
+    AC: {{ asset.armorClass }} ({{ asset.armorType || "natural" }})
   </h4>
 </div>
-<h4 class="creature-stat">Speed: {{ creature.speed }}</h4>
+<h4 class="creature-stat">Speed: {{ asset.speed }}</h4>
 <h4 class="passive-perception">
-  Passive Perception: {{ creature.passivePerception }}
+  Passive Perception: {{ asset.passivePerception }}
 </h4>
 <hr />
-<div *ngIf="creature.languages.length > 0">
+<div *ngIf="asset.languages.length > 0">
 
   <h4>Languages</h4>
-  <h5 *ngFor="let language of creature.languages">
+  <h5 *ngFor="let language of asset.languages">
     <app-editor-toolbar
-      *ngIf="creature.editing"
+      *ngIf="asset.editing"
       [tools]="tools">
     </app-editor-toolbar>
     {{ language }}
   </h5>
   <hr />
 </div>
-<div *ngIf="creature.senses.length > 0">
+<div *ngIf="asset.senses.length > 0">
   <h4>Senses</h4>
-  <h5 *ngFor="let sense of creature.senses">
+  <h5 *ngFor="let sense of asset.senses">
     <app-editor-toolbar
-    *ngIf="creature.editing"
+    *ngIf="asset.editing"
     [tools]="tools">
   </app-editor-toolbar>
      - {{ sense.sense }}
@@ -33,18 +33,18 @@
   <hr />
 </div>
 <div class="hc-speed attribute-line">
-  <app-value-modifier [value]="creature.maxHitPoints" (change)="onMaxHitPointsIncrease($event)"></app-value-modifier>
-  <h4 class="creature-stat">Max HP: {{ creature.maxHitPoints }}</h4>
-  <h4 class="hit-dice">({{ creature.hitDice }})</h4>
-  <mat-icon *ngIf="creature.currentHitPoints === creature.maxHitPoints" (click)="generateRandomHp()" aria-label="Example home icon">
+  <app-value-modifier [value]="asset.maxHitPoints" (change)="onMaxHitPointsIncrease($event)"></app-value-modifier>
+  <h4 class="creature-stat">Max HP: {{ asset.maxHitPoints }}</h4>
+  <h4 class="hit-dice">({{ asset.hitDice }})</h4>
+  <mat-icon *ngIf="asset.currentHitPoints === asset.maxHitPoints" (click)="generateRandomHp()" aria-label="Example home icon">
     refresh
   </mat-icon>
 </div>
 
 <div class="hc-speed attribute-line" >
-  <app-value-modifier [value]="creature.currentHitPoints" (change)="creature.currentHitPoints = $event.newValue"></app-value-modifier>
-  <h2 class="creature-stat">HP: {{ creature.currentHitPoints }}</h2>
-  <mat-icon *ngIf="creature.currentHitPoints !== creature.maxHitPoints" (click)="resetHp()" aria-label="Example home icon">
+  <app-value-modifier [value]="asset.currentHitPoints" (change)="asset.currentHitPoints = $event.newValue"></app-value-modifier>
+  <h2 class="creature-stat">HP: {{ asset.currentHitPoints }}</h2>
+  <mat-icon *ngIf="asset.currentHitPoints !== asset.maxHitPoints" (click)="resetHp()" aria-label="Example home icon">
     refresh
   </mat-icon>
 </div>

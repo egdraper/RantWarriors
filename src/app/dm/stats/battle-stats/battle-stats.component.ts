@@ -1,8 +1,7 @@
 import { Component, Input, ContentChildren, ViewChildren } from "@angular/core";
 import { Dice } from "../../assets/dice/dice.service";
-import { Npc } from "../../assets/npc.model";
-import { Action, Creature } from "../../assets/creature.model";
 import { ActionButtonComponent } from "../action-button/action-button.component";
+import { Asset } from "../../assets/add-asset/asset";
 
 @Component({
   selector: "app-battle-stats",
@@ -11,8 +10,8 @@ import { ActionButtonComponent } from "../action-button/action-button.component"
 })
 export class BattleStatsComponent {
   @ViewChildren(ActionButtonComponent) actionButton: ActionButtonComponent[];
-  @Input() creature: Creature;
-  @Input() selectedCreature: Creature;
+  @Input() asset: Asset;
+  @Input() selectedAsset: Asset;
 
   public tools = ["edit", "delete"]
   public shrink = false;
@@ -21,11 +20,11 @@ export class BattleStatsComponent {
 
   public generateRandomHp(): void {
     const dice = new Dice();
-    dice.withAdvantage = this.creature.hasAdvantage;
-    dice.withDisadvantage = this.creature.hasDisadvantage;
-    const roll = dice.roll(this.creature.hitDice);
-    this.creature.maxHitPoints = roll.modifiedRollValue;
-    this.creature.currentHitPoints = roll.modifiedRollValue;
+    dice.withAdvantage = this.asset.hasAdvantage;
+    dice.withDisadvantage = this.asset.hasDisadvantage;
+    const roll = dice.roll(this.asset.hitDice);
+    this.asset.maxHitPoints = roll.modifiedRollValue;
+    this.asset.currentHitPoints = roll.modifiedRollValue;
   }
 
   public refreshAttack(): void {

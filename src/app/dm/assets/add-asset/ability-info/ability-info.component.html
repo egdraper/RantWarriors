@@ -7,7 +7,7 @@
           placeholder="STR"
           [ngModelOptions]="{ standalone: true }"
           type="number"
-          [(ngModel)]="creature.abilities.STR"
+          [(ngModel)]="asset.abilities.STR"
           (change)="onAbilityChange($event.value, 'STR')"
         />
       </mat-form-field>
@@ -19,7 +19,7 @@
           placeholder="DEX"
           [ngModelOptions]="{ standalone: true }"
           type="number"
-          [(ngModel)]="creature.abilities.DEX"
+          [(ngModel)]="asset.abilities.DEX"
           (change)="onAbilityChange($event.value, 'DEX')"
         />
       </mat-form-field>
@@ -31,7 +31,7 @@
           placeholder="CON"
           [ngModelOptions]="{ standalone: true }"
           type="number"
-          [(ngModel)]="creature.abilities.CON"
+          [(ngModel)]="asset.abilities.CON"
           (change)="onAbilityChange($event.value, 'CON')"
         />
       </mat-form-field>
@@ -43,7 +43,7 @@
           placeholder="INT"
           [ngModelOptions]="{ standalone: true }"
           type="number"
-          [(ngModel)]="creature.abilities.INT"
+          [(ngModel)]="asset.abilities.INT"
           (change)="onAbilityChange($event.value, 'INT')"
         />
       </mat-form-field>
@@ -55,7 +55,7 @@
           placeholder="WIS"
           [ngModelOptions]="{ standalone: true }"
           type="number"
-          [(ngModel)]="creature.abilities.WIS"
+          [(ngModel)]="asset.abilities.WIS"
           (change)="onAbilityChange($event.value, 'WIS')"
         />
       </mat-form-field>
@@ -67,7 +67,7 @@
           placeholder="CHA"
           [ngModelOptions]="{ standalone: true }"
           type="number"
-          [(ngModel)]="creature.abilities.CHA"
+          [(ngModel)]="asset.abilities.CHA"
           (change)="onAbilityChange($event.value, 'CHA')"
         />
       </mat-form-field>

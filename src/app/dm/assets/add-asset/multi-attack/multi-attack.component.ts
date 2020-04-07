@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { Creature } from "../../creature.model";
+import { Asset } from "../asset";
 
 @Component({
   selector: "app-multi-attack",
@@ -7,7 +7,7 @@ import { Creature } from "../../creature.model";
   styleUrls: ["./multi-attack.component.scss"]
 })
 export class MultiAttackComponent implements OnInit {
-  @Input() public creature: Creature;
+  @Input() public asset: Asset;
   @Output() public multiAttackSelected = new EventEmitter();
 
   constructor() { }
@@ -16,10 +16,10 @@ export class MultiAttackComponent implements OnInit {
   }
 
   public onSection(): void {
-    if (this.creature.multiAttack) {
-      this.creature.numberOfActions = 2;
+    if (this.asset.multiAttack) {
+      this.asset.numberOfActions = 2;
     } else {
-      this.creature.numberOfActions = 1;
+      this.asset.numberOfActions = 1;
     }
     this.multiAttackSelected.emit();
   }

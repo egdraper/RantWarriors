@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { Creature, Trait } from "../../creature.model";
+import { Component, Input } from "@angular/core";
+import { Trait } from "../../creature.model";
+import { Asset } from "../asset";
 
 @Component({
   selector: "app-trait-info",
@@ -7,11 +8,11 @@ import { Creature, Trait } from "../../creature.model";
   styleUrls: ["./trait-info.component.scss"]
 })
 export class TraitInfoComponent {
-  @Input() public creature: Creature;
+  @Input() public asset: Asset;
   public newTrait = new Trait();
 
   public onTraitAdd(): void {
-    this.creature.traits.push(this.newTrait);
+    this.asset.traits.push(this.newTrait);
     this.newTrait = new Trait();
   }
 }
