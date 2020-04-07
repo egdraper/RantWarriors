@@ -47,7 +47,8 @@
         <mat-label>Attack Uses</mat-label>
         <mat-select
           [placeholder]="'Attack Type (ex: Slashing)'"
-          (selectionChange)="attackUses($event.value)"
+          [(ngModel)]="action.attackUses"
+          (selectionChange)="onAttackUses()"
         >
           <mat-option *ngFor="let ability of abilities" [value]="ability">
             {{ ability }}
@@ -129,7 +130,7 @@
     </div>
     <div class="select-checkbox">
       <mat-checkbox
-        [(ngModel)]="hasBonusDamage"
+        [(ngModel)]="action.hasBonusDamage"
         value="hasBonusDamage"
         [ngModelOptions]="{ standalone: true }"
       >
@@ -137,7 +138,7 @@
       </mat-checkbox>
     </div>
 
-    <div *ngIf="hasBonusDamage">
+    <div *ngIf="action.hasBonusDamage">
       <div>
         <mat-form-field class="example-full-width">
           <input
@@ -276,6 +277,6 @@
 </div>
 <div *ngIf="action.isNonRollableAction || action.isRollableAction || action.isAttackAction">
   <div class="add-button">
-    <button mat-button (click)="addAttackAction()">Add</button>
+    <button mat-button (click)="addAttackAction()">{{buttonAction}}</button>
   </div>
 </div>

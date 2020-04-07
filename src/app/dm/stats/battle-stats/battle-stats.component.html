@@ -8,6 +8,11 @@
     <hr />
   </div>
   <div *ngFor="let action of asset.actions">
+    <app-editor-toolbar
+    *ngIf="asset.editing"
+    [tools]="tools"
+    (optionClick)="asset.ModifyAction($event, action)">
+  </app-editor-toolbar>
     <div *ngIf="action.isRollableAction">
       <h5 class="attack-type">
         {{ action.name }}: (Range {{ action.range }})
@@ -26,10 +31,7 @@
       <h6 class="hit-dice">{{ action.actionBonusInfo }}</h6>
     </div>
     <div *ngIf="action.isAttackAction">
-      <app-editor-toolbar
-        *ngIf="asset.editing"
-        [tools]="tools">
-      </app-editor-toolbar>
+  
       <div>
         <h5 class="attack-type">
           {{ action.name }}: (Range {{ action.range }})

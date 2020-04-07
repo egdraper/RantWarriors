@@ -13,7 +13,7 @@ export class BattleStatsComponent {
   @Input() asset: Asset;
   @Input() selectedAsset: Asset;
 
-  public tools = ["edit", "delete"]
+  public tools = ["edit", "delete", "file_copy"];
   public shrink = false;
   public attack = 0;
   public damage = 0;

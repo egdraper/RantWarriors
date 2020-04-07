@@ -15,7 +15,8 @@
   <h5 *ngFor="let language of asset.languages">
     <app-editor-toolbar
       *ngIf="asset.editing"
-      [tools]="tools">
+      [tools]="tools"
+      (optionClick)="asset.removeLanguage(language)">
     </app-editor-toolbar>
     {{ language }}
   </h5>
@@ -26,16 +27,24 @@
   <h5 *ngFor="let sense of asset.senses">
     <app-editor-toolbar
     *ngIf="asset.editing"
-    [tools]="tools">
+    [tools]="tools"
+    (optionClick)="asset.removeSense(sense)">
   </app-editor-toolbar>
      - {{ sense.sense }}
   </h5>
   <hr />
 </div>
 <div class="hc-speed attribute-line">
-  <app-value-modifier [value]="asset.maxHitPoints" (change)="onMaxHitPointsIncrease($event)"></app-value-modifier>
-  <h4 class="creature-stat">Max HP: {{ asset.maxHitPoints }}</h4>
-  <h4 class="hit-dice">({{ asset.hitDice }})</h4>
+  <app-value-modifier
+    [value]="asset.maxHitPoints"
+    (change)="onMaxHitPointsIncrease($event)">
+  </app-value-modifier>
+
+  <h4 class="creature-stat">
+    Max HP: {{ asset.maxHitPoints }}
+  </h4>
+  <h4 class="hit-dice">
+    ({{ asset.hitDice }})</h4>
   <mat-icon *ngIf="asset.currentHitPoints === asset.maxHitPoints" (click)="generateRandomHp()" aria-label="Example home icon">
     refresh
   </mat-icon>

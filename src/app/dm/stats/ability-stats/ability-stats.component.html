@@ -1,19 +1,17 @@
-<div
-class="creature-cell">
-<div class="creature-rolls">
-  <h2> {{ asset.name }} </h2>
-  <div class="header-name-score">
-    <h4>CR: {{ asset.challenge }} Exp: {{ asset.experience }}  </h4>
+<div class="creature-cell">
+  <div class="creature-rolls">
+    <h2>{{ asset.name }}</h2>
+    <div class="header-name-score">
+      <h4>CR: {{ asset.challenge }} XP: {{ asset.experience }}</h4>
+    </div>
+    <h5>
+      <i>{{ asset.size }} {{ asset.creatureType }}, {{ asset.alignment }}</i>
+    </h5>
+    <div [style.display]="'flex'">
+      <app-skill-stats-score [asset]="asset"> </app-skill-stats-score>
+      <img src="{{ asset.imgUrl }}" />
+    </div>
+    <hr />
+    <app-proficiency-stats [asset]="asset"> </app-proficiency-stats>
   </div>
-  <h5><i>{{ asset.size}} {{asset.creatureType}}, {{ asset.alignment }}</i></h5>
-  <div [style.display]="'flex'">
-    <app-skill-stats-score 
-      [asset]="asset">
-    </app-skill-stats-score>
-    <img src="{{ asset.imgUrl }}" />
-  </div>
-  <hr>
-  <app-proficiency-stats
-    [asset]="asset">
-  </app-proficiency-stats>
 </div>

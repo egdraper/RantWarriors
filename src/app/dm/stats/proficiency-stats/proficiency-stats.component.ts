@@ -14,6 +14,7 @@ export class ProficiencyStatsComponent {
 
   public savingThrow = 0;
   public proficiency = 0;
+  public tools = ["delete"];
 
   public rollSavingThrow(abilityModifier: number): void {
     this.savingThrow = this.rollDice(abilityModifier);

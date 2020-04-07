@@ -5,6 +5,7 @@ export class  Action {
   public attackType?: string;
   public attackModifier?: number;
   public attackUses?: string;
+  public hasBonusDamage = false;
   public bonusDamageType?: string;
   public bonusDamageDice?: string;
   public name: string;

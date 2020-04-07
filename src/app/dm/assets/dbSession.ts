@@ -5,6 +5,7 @@ import { AngularFirestore } from "@angular/fire/firestore";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { sortBy } from "lodash";
 import { OnInit } from "@angular/core";
+import { Asset } from "./add-asset/asset";
 
 @Injectable()
 export class DbSessionService {
@@ -37,6 +38,7 @@ export class DbSessionService {
     private firestore: AngularFirestore
   ) {
     this.creatures$.subscribe(creatureCollection => {
+      debugger
       this.creatureSelectionList = creatureCollection.map(
         creature => creature.name
       );
@@ -152,19 +154,20 @@ export class DbSessionService {
     this.creatures$.next(this.creatureList);
   }
 
-  public addToCreatureList(asset: Creature, type: string): void {
+  public addToCreatureList(asset: Asset, type: string): void {
+    debugger
     switch (type) {
-      case "creatures":
+      case "Creature":
         this.creatureList.push(asset);
         this.creatureList = sortBy(this.creatureList, ["name"], ["asc"]);
         this.creatures$.next(this.creatureList);
         break;
-      case "players":
+      case "Players":
         this.playersList.push(asset);
         this.playersList = sortBy(this.playersList, ["name"], ["asc"]);
         this.players$.next(this.playersList);
         break;
-      case "npcs":
+      case "Npcs":
         this.npcList.push(asset);
         this.npcList = sortBy(this.npcList, ["name"], ["asc"]);
         this.npcs$.next(this.npcList);

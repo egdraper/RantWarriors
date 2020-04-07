@@ -6,7 +6,8 @@
       <div class="action-group">
         <app-editor-toolbar
           *ngIf="asset.editing"
-          [tools]="tools">
+          [tools]="tools"
+          (optionClick)="asset.modifyLegendaryAction($event, legendaryAction)">
         </app-editor-toolbar>
         <h4 class="hit-text">{{ legendaryAction.name }}</h4>
         <h6><i>{{ legendaryAction.info }}</i></h6>

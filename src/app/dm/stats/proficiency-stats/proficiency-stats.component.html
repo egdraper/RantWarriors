@@ -7,6 +7,11 @@
   <div class="saving-throw-group">
     <h5>Saving Throws</h5>
     <div *ngFor="let savingThrow of asset.savingThrows">
+      <app-editor-toolbar
+      *ngIf="asset.editing"
+      [tools]="tools"
+      (optionClick)="asset.removeSavingThrow(savingThrow)">
+    </app-editor-toolbar>
       <app-action-button
         [label]="savingThrow.ability"
         diceEquation="{{ 'd20+' + savingThrow.value }}"
@@ -20,6 +25,11 @@
       <div>
         <h5>Skill Proficiencies</h5>
         <div *ngFor="let proficiency of asset.skillProficiencies">   
+          <app-editor-toolbar
+          *ngIf="asset.editing"
+          [tools]="tools"
+          (optionClick)="asset.removeProficiency(proficiency)">
+        </app-editor-toolbar>
             <app-action-button
               [label]="proficiency.ability"
               diceEquation="{{ 'd20+' + proficiency.value }}"

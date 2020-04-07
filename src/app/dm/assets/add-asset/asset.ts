@@ -7,6 +7,8 @@ import {
   Sense
 } from "../creature.model";
 import { Constants } from "./constants";
+import { remove } from "lodash";
+import { Subject, BehaviorSubject } from "rxjs";
 
 export class Asset {
   public abilities: Abilities = new Abilities();
@@ -55,53 +57,59 @@ export class Asset {
   public traits: Trait[] = [];
   public vulnerabilities: string[] = [];
 
+  // subscriptions
+
+  public traitChange = new BehaviorSubject<Trait>(null);
+  public legendaryActionChange = new BehaviorSubject<Trait>(null);
+  public actionChange = new BehaviorSubject<any>(null);
+
   constructor(creature: Creature = null) {
     if (creature) {
-      this.abilities = this.abilities;
-      this.abilityRoll = this.abilityRoll;
-      this.actions = this.actions;
-      this.additionalArmor = this.additionalArmor;
-      this.alignment = this.alignment;
-      this.armorClass = this.armorClass;
-      this.armorType = this.armorType;
-      this.assetType = this.assetType;
-      this.attackNotes = this.attackNotes;
-      this.challenge = this.challenge;
-      this.conditionImmunities = this.conditionImmunities;
-      this.creatureType = this.creatureType;
-      this.currentHitPoints = this.currentHitPoints;
-      this.editing = this.editing;
-      this.experience = this.experience;
-      this.flySpeed = this.flySpeed;
-      this.hasAdvantage = this.hasAdvantage;
-      this.hasDisadvantage = this.hasDisadvantage;
-      this.hasLegendaryActions = this.hasLegendaryActions;
-      this.hitDice = this.hitDice;
-      this.hitDiceModifier = this.hitDiceModifier;
-      this.humanoidType = this.humanoidType;
-      this.imgUrl = this.imgUrl;
-      this.immunities = this.immunities;
-      this.languages = this.languages;
-      this.lastDamageTaken = this.lastDamageTaken;
-      this.legendaryActions = this.legendaryActions;
-      this.legendaryActionsInfo = this.legendaryActionsInfo;
-      this.level = this.level;
-      this.link = this.link;
-      this.maxHitPoints = this.maxHitPoints;
-      this.multiAttack = this.multiAttack;
-      this.name = this.name;
-      this.numberOfActions = this.numberOfActions;
-      this.page = this.page;
-      this.passivePerception = this.passivePerception;
-      this.proficiency = this.proficiency;
-      this.resistances = this.resistances;
-      this.savingThrows = this.savingThrows;
-      this.senses = this.senses;
-      this.size = this.size;
-      this.skillProficiencies = this.skillProficiencies;
-      this.speed = this.speed;
-      this.traits = this.traits;
-      this.vulnerabilities = this.vulnerabilities;
+      this.abilities = creature.abilities;
+      this.abilityRoll = creature.abilityRoll;
+      this.actions = creature.actions;
+      this.additionalArmor = creature.additionalArmor;
+      this.alignment = creature.alignment;
+      this.armorClass = creature.armorClass;
+      this.armorType = creature.armorType;
+      this.assetType = creature.assetType;
+      this.attackNotes = creature.attackNotes;
+      this.challenge = creature.challenge;
+      this.conditionImmunities = creature.conditionImmunities;
+      this.creatureType = creature.creatureType;
+      this.currentHitPoints = creature.currentHitPoints;
+      this.editing = creature.editing;
+      this.experience = creature.experience;
+      this.flySpeed = creature.flySpeed;
+      this.hasAdvantage = creature.hasAdvantage;
+      this.hasDisadvantage = creature.hasDisadvantage;
+      this.hasLegendaryActions = creature.hasLegendaryActions;
+      this.hitDice = creature.hitDice;
+      this.hitDiceModifier = creature.hitDiceModifier;
+      this.humanoidType = creature.humanoidType;
+      this.imgUrl = creature.imgUrl;
+      this.immunities = creature.immunities;
+      this.languages = creature.languages;
+      this.lastDamageTaken = creature.lastDamageTaken;
+      this.legendaryActions = creature.legendaryActions;
+      this.legendaryActionsInfo = creature.legendaryActionsInfo;
+      this.level = creature.level;
+      this.link = creature.link;
+      this.maxHitPoints = creature.maxHitPoints;
+      this.multiAttack = creature.multiAttack;
+      this.name = creature.name;
+      this.numberOfActions = creature.numberOfActions;
+      this.page = creature.page;
+      this.passivePerception = creature.passivePerception;
+      this.proficiency = creature.proficiency;
+      this.resistances = creature.resistances;
+      this.savingThrows = creature.savingThrows;
+      this.senses = creature.senses;
+      this.size = creature.size;
+      this.skillProficiencies = creature.skillProficiencies;
+      this.speed = creature.speed;
+      this.traits = creature.traits;
+      this.vulnerabilities = creature.vulnerabilities;
     }
   }
 
@@ -268,5 +276,61 @@ export class Asset {
     }
   }
 
-  public updateAction(actionName: string): void {}
+  public ModifyAction(eventAction: string, action: Action): void {
+    if (eventAction === "delete") {
+      remove(this.actions, a => action.name === a.name);
+    } else if (eventAction === "edit") {
+      this.actionChange.next({action, name: "Update"});
+    } else if (eventAction === "file_copy") {
+      this.actionChange.next({action, name: "Duplicate"});
+    }
+  }
+
+  public modifyTrait(action: string, trait: Trait): void {
+    if (action === "delete") {
+      remove(this.traits, t => trait.name === t.name);
+    } else if (action === "edit") {
+      this.traitChange.next(trait);
+    }
+  }
+
+  public modifyLegendaryAction(action: string, trait: Trait): void {
+    if (action === "delete") {
+      remove(this.legendaryActions, t => trait.name === t.name);
+    } else if (action === "edit") {
+      this.legendaryActionChange.next(trait);
+    }
+  }
+
+  public removeLanguage(language: string): void {
+    remove(this.languages, l => l === language);
+  }
+
+  public removeSense(sense: string): void {
+    remove(this.senses, s => s === sense);
+  }
+
+  public removeSavingThrow(savingThrow: Checks): void {
+    remove(this.savingThrows, l => l.ability === savingThrow.ability);
+  }
+
+  public removeProficiency(proficiency: Checks): void {
+    remove(this.skillProficiencies, l => l.ability === proficiency.ability);
+  }
+
+  public removeVulnerability(vulnerability: string): void {
+    remove(this.vulnerabilities, v => v === vulnerability);
+  }
+
+  public removeImmunity(immunity: string): void {
+    remove(this.immunities, i => i === immunity);
+  }
+
+  public removeResistance(resistance: string): void {
+    remove(this.resistances, r => r === resistance);
+  }
+
+  public removeConditionImmunity(conditionImmunity): void {
+    remove(this.conditionImmunities, c => c === conditionImmunity);
+  }
 }
