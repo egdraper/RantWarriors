@@ -29,7 +29,11 @@ export class AddAssetComponent {
   constructor(
     private dbSessionService: DbSessionService,
     private dbService: DbService) {
-    this.newAsset = new Asset();
+    this.loadPendingAsset();
+  }
+
+  public async loadPendingAsset(): Promise<void> {
+    this.newAsset = await this.dbService.getPendingCreatures();
   }
 
   public onSelect(selection: string): void {
@@ -38,6 +42,7 @@ export class AddAssetComponent {
     this.newAsset.editing = true;
     this.newAsset.assetType = selection;
     this.activeView = 1;
+    this.dbService.updatePendingCreature(this.newAsset);
     this.subscribeToEditablePages();
   }
 
@@ -51,22 +56,24 @@ export class AddAssetComponent {
     this.newAsset.editing = true;
     this.newAsset.name = this.newAsset.name + " (Mod)";
     this.activeView = 1;
+    this.dbService.updatePendingCreature(this.newAsset);
     this.subscribeToEditablePages();
   }
 
   public onUpdate(type: string): void {
-    debugger
     this.admin ? this.dbService.updateAdminCreature(this.newAsset, type) : this.dbService.updateCreature(this.newAsset, type);
   }
 
   public onPrevious(): void {
     this.activeView--;
     this.setNextText();
+    this.dbService.updatePendingCreature(this.newAsset);
   }
 
   public onNext(): void {
     this.activeView++;
     this.setNextText();
+    this.dbService.updatePendingCreature(this.newAsset);
   }
 
   public onSubmit(type: string): void {
@@ -76,6 +83,7 @@ export class AddAssetComponent {
       this.dbService.addCreature(this.newAsset, type);
     }
     this.newAsset = new Asset();
+    this.dbService.updatePendingCreature(this.newAsset);
     this.activeView = 0;
   }
 

@@ -48,6 +48,56 @@ export class DbService {
     });
   }
 
+  public addPendingCreature(asset: Asset): void {
+    const blankCreature = this.convertToCreature(asset);
+    const cleanCreature = JSON.parse(JSON.stringify(blankCreature));
+
+    this.firestore
+    .collection("users")
+    .doc(`${this.fireAuth.auth.currentUser.uid}`)
+    .collection("pending")
+    .doc("pendingAsset")
+    .get()
+    .subscribe(querySnapshot => {
+      debugger
+      if (!querySnapshot.data()) {
+
+        this.firestore
+        .collection("users")
+        .doc(`${this.fireAuth.auth.currentUser.uid}`)
+        .collection("pending")
+        .doc("pendingAsset")
+        .set(cleanCreature);
+      }
+    });
+  }
+
+  public updatePendingCreature(asset: Asset): void {
+    const blankCreature = this.convertToCreature(asset);
+    const cleanCreature = JSON.parse(JSON.stringify(blankCreature));
+
+    this.firestore
+      .collection("users")
+      .doc(`${this.fireAuth.auth.currentUser.uid}`)
+      .collection("pending")
+      .doc("pendingAsset")
+      .update(cleanCreature);
+  }
+
+  public getPendingCreatures(): Promise<Asset> {
+    return new Promise(resolve => {
+      this.firestore
+        .collection("users")
+        .doc(`${this.fireAuth.auth.currentUser.uid}`)
+        .collection("pending")
+        .doc("pendingAsset")
+        .get()
+        .subscribe(querySnapshot => {
+          resolve(new Asset(querySnapshot.data() as Creature));
+        });
+    });
+  }
+
   public addCreature(asset: Asset, type: string): void {
     const cleanType = type.toLowerCase() + "s";
     const blankCreature = this.convertToCreature(asset);

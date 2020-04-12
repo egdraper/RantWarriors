@@ -55,7 +55,7 @@ export class Dice {
 
   public parseEquation(diceEquation: string): any {
     const rolls = diceEquation.match(
-      /(\d+d|d)([4,6,8]|\d+[10,12,20,100])((\-|\+)\d+|)/g
+      /(\d+d|d)([2,4,6,8]|\d+[10,12,20,100])((\-|\+)\d+|)/g
     );
     rolls.forEach(r => {
       const numberOfRolls = r.match(/\d+(?=d)/g);

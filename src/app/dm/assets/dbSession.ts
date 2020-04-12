@@ -38,7 +38,6 @@ export class DbSessionService {
     private firestore: AngularFirestore
   ) {
     this.creatures$.subscribe(creatureCollection => {
-      debugger
       this.creatureSelectionList = creatureCollection.map(
         creature => creature.name
       );
@@ -162,12 +161,12 @@ export class DbSessionService {
         this.creatureList = sortBy(this.creatureList, ["name"], ["asc"]);
         this.creatures$.next(this.creatureList);
         break;
-      case "Players":
+      case "Player":
         this.playersList.push(asset);
         this.playersList = sortBy(this.playersList, ["name"], ["asc"]);
         this.players$.next(this.playersList);
         break;
-      case "Npcs":
+      case "Npc":
         this.npcList.push(asset);
         this.npcList = sortBy(this.npcList, ["name"], ["asc"]);
         this.npcs$.next(this.npcList);

@@ -63,12 +63,25 @@
         [class.has-advantage]="asset.hasAdvantage"  
         [class.has-disadvantage]="asset.hasDisadvantage">
       </div>
-      <app-stats-panel 
+      <div class="display-area">
+
+        <div class="quick-dice">
+          <app-action-button diceEquation="d100"></app-action-button>
+          <app-action-button diceEquation="d20"></app-action-button>
+          <app-action-button diceEquation="d12"></app-action-button>
+          <app-action-button diceEquation="d10"></app-action-button>
+          <app-action-button diceEquation="d8"></app-action-button>
+          <app-action-button diceEquation="d6"></app-action-button>
+          <app-action-button diceEquation="d4"></app-action-button>
+          <app-action-button diceEquation="d2"></app-action-button>
+        </div>
+        <app-stats-panel 
         (damage)="takeDamage($event)"
         (heal)="takeDamage($event)"
         [asset]="asset"
         [selectedAsset]="selectedEnemy">
       </app-stats-panel>
+    </div>
     </div>
   </mat-tab>
 </mat-tab-group>

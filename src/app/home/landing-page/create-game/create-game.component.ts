@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { DbService } from "../../../dm/assets/dbService";
+import { Asset } from "src/app/dm/assets/add-asset/asset";
 
 @Component({
   selector: "app-create-game",
@@ -23,6 +24,8 @@ export class CreateGameComponent {
       useCreatures: this.npcsChecked,
       created: Date.now().toLocaleString()
     });
+
+    this.dbService.addPendingCreature(new Asset());
 
     this.router.navigate(["/creature"], {queryParams: {game: this.gameName}});
   }

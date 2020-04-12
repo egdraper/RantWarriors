@@ -84,6 +84,7 @@
         
         <app-submit
           *ngIf="activeView === 10"
+          [type]="newAsset.assetType"
           (submit)="onSubmit($event)">
         </app-submit>
       </form>

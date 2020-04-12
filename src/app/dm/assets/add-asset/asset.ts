@@ -25,7 +25,7 @@ export class Asset {
   public creatureType = "Monstrosity";
   public currentHitPoints: number;
   public editing = true;
-  public experience: number;
+  public experience = 25;
   public flySpeed?: number;
   public hasAdvantage = false;
   public hasDisadvantage = false;

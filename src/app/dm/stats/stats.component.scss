@@ -25,6 +25,14 @@
   }
 }
 
+.display-area {
+  display: flex;
+
+  .quick-dice {
+    width: 150px;
+  }  
+}
+
 // new
 
 .advantage-wrapper {
