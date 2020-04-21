@@ -13,6 +13,7 @@ export class AttributesComponent implements OnInit {
   public armorList = Constants.armor;
   public alignments = Constants.alignments;
   public sizes = Constants.sizes;
+  public languages = Constants.languages;
   public creatureTypes = Constants.creatureTypes;
   public challengeRatings = Constants.getRatings(30);
   public newLanguage = "";
@@ -38,8 +39,8 @@ export class AttributesComponent implements OnInit {
     this.newSense = "";
   }
 
-  public onChange(armor: any): void {
-    this.asset.armorType = armor.value;
+  public onChange(armor: string): void {
+    this.asset.armorType = armor;
     this.asset.updateArmorClass();
   }
 

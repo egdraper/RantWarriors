@@ -18,9 +18,10 @@ export enum View {
   templateUrl: "./add-asset.component.html"
 })
 export class AddAssetComponent {
-  @Input() public admin = false;
+  @Input() public globalAsset: boolean;
   public newAsset = new Asset();
   public newAction = new Action();
+  public actionType: "duplicate" | "edit" | "create";
   public activeView = 0;
   public nextText = "Next";
 
@@ -36,7 +37,8 @@ export class AddAssetComponent {
     this.newAsset = await this.dbService.getPendingCreatures();
   }
 
-  public onSelect(selection: string): void {
+  public onCreateNew(selection: string, action: any): void {
+    this.actionType = action;
     this.unsubscribeFromAll();
     this.newAsset = new Asset();
     this.newAsset.editing = true;
@@ -46,7 +48,8 @@ export class AddAssetComponent {
     this.subscribeToEditablePages();
   }
 
-  public onCreatureLoad(creatureName: string): void {
+  public onCreatureLoad(creatureName: string, action: any): void {
+    this.actionType = action;
     this.unsubscribeFromAll();
     this.newAsset = new Asset(cloneDeep(
       this.dbSessionService.creatureList.find(
@@ -54,14 +57,14 @@ export class AddAssetComponent {
       )
     ));
     this.newAsset.editing = true;
-    this.newAsset.name = this.newAsset.name + " (Mod)";
+    this.newAsset.name = action === "duplicate" ? this.newAsset.name + " (Mod)" : this.newAsset.name;
     this.activeView = 1;
     this.dbService.updatePendingCreature(this.newAsset);
     this.subscribeToEditablePages();
   }
 
   public onUpdate(type: string): void {
-    this.admin ? this.dbService.updateAdminCreature(this.newAsset, type) : this.dbService.updateCreature(this.newAsset, type);
+    this.globalAsset ? this.dbService.updateGlobalAsset(this.newAsset, type) : this.dbService.updateAsset(this.newAsset, type);
   }
 
   public onPrevious(): void {
@@ -77,8 +80,8 @@ export class AddAssetComponent {
   }
 
   public onSubmit(type: string): void {
-    if (this.admin) {
-      this.dbService.addAdminCreature(this.newAsset, type);
+    if (this.globalAsset) {
+      this.dbService.addGlobalCreature(this.newAsset, type);
     } else {
       this.dbService.addCreature(this.newAsset, type);
     }

@@ -21,8 +21,10 @@
       <form autocomplete="off">
         <app-create
           *ngIf="activeView === 0"
-          (selected)="onSelect($event)"
-          (assetSelected)="onCreatureLoad($event)"
+          [globalAsset]="globalAsset"
+          (createNewSelected)="onCreateNew($event, 'create')"
+          (duplicateSelected)="onCreatureLoad($event, 'duplicate')"
+          (editSelected)="onCreatureLoad($event, 'edit')"
         >
         </app-create>
 
@@ -85,7 +87,9 @@
         <app-submit
           *ngIf="activeView === 10"
           [type]="newAsset.assetType"
-          (submit)="onSubmit($event)">
+          [actionType]="actionType"
+          (submit)="onSubmit($event)"
+          (update)="onUpdate($event)">
         </app-submit>
       </form>
     

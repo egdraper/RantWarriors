@@ -39,8 +39,8 @@
          <div
            *ngFor="let enemy of activeEnemies"
            class="attack-selector"
-           [class.attack-selector-selected]="enemy === selectedEnemy"
-           (click)="onEnemySelect(enemy)">
+           [class.attack-selector-selected]="enemy.name === asset.selectedAggressor?.name"
+           (click)="onEnemySelect(asset, enemy)">
            <h4>{{ enemy.name }}</h4>
           </div>
        </div>
@@ -66,20 +66,19 @@
       <div class="display-area">
 
         <div class="quick-dice">
-          <app-action-button diceEquation="d100"></app-action-button>
-          <app-action-button diceEquation="d20"></app-action-button>
-          <app-action-button diceEquation="d12"></app-action-button>
-          <app-action-button diceEquation="d10"></app-action-button>
-          <app-action-button diceEquation="d8"></app-action-button>
-          <app-action-button diceEquation="d6"></app-action-button>
-          <app-action-button diceEquation="d4"></app-action-button>
-          <app-action-button diceEquation="d2"></app-action-button>
+          <app-action-button label="Roll" diceEquation="d100"></app-action-button>
+          <app-action-button label="Roll" diceEquation="d20"></app-action-button>
+          <app-action-button label="Roll" diceEquation="d12"></app-action-button>
+          <app-action-button label="Roll" diceEquation="d10"></app-action-button>
+          <app-action-button label="Roll" diceEquation="d8"></app-action-button>
+          <app-action-button label="Roll" diceEquation="d6"></app-action-button>
+          <app-action-button label="Roll" diceEquation="d4"></app-action-button>
         </div>
         <app-stats-panel 
         (damage)="takeDamage($event)"
         (heal)="takeDamage($event)"
         [asset]="asset"
-        [selectedAsset]="selectedEnemy">
+        [selectedAsset]="asset.selectedAggressor">
       </app-stats-panel>
     </div>
     </div>

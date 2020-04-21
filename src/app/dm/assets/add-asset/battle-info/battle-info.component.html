@@ -107,10 +107,26 @@
       <div>{{ action.dice }}</div>
     </div>
     <div>
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="mid-width">
+        <mat-label>Range</mat-label>
+        <mat-select
+          placeholder="Range"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="reachSelection"
+          (selectionChange)="onRangeChange(action, reachSelection)"
+        >
+          <mat-option
+            *ngFor="let reachDistance of reach"
+            [value]="reachDistance"
+          >
+            {{ reachDistance }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field *ngIf="reachSelection === 'Range'" class="example-full-width">
         <input
           matInput
-          placeholder="Range (ex: 5 or 20/80)"
+          placeholder="Range (ex: 20/80)"
           name="range"
           [ngModelOptions]="{ standalone: true }"
           [(ngModel)]="action.range"

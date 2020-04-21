@@ -1,7 +1,7 @@
 <mat-form-field>
     <mat-select
       placeholder="Create New"
-      (selectionChange)="onTypeSelected($event)">
+      (selectionChange)="onCreateNew($event)">
       <mat-option value="Creature"> Creature </mat-option>
       <mat-option value="Npc"> Npc </mat-option>
       <mat-option value="Player"> Player </mat-option>
@@ -12,14 +12,30 @@
 
   <mat-form-field>
     <mat-select
-      [placeholder]="'Edit Existing'"
-      (selectionChange)="onAssetChange($event)"
+      [placeholder]="'Duplicate Existing'"
+      (selectionChange)="onAssetDuplicate($event)"
     >
       <mat-option
         *ngFor="let creature of dbSession.creatureSelectionList"
-        [value]="creature"
-      >
+        [value]="creature" >
         {{ creature }}
       </mat-option>
     </mat-select>
   </mat-form-field>
+
+<div>
+  <h3>OR</h3>
+  
+  <mat-form-field>
+    <mat-select
+      [placeholder]="'Edit Existing'"
+      (selectionChange)="onAssetEdit($event)">
+      <mat-option
+        *ngFor="let creature of editableAssets"    
+        [value]="creature.name">
+        {{ creature.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+

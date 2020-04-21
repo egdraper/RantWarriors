@@ -47,13 +47,13 @@ export class StatsComponent {
     asset.hasDisadvantage = false;
   }
 
-  public onEnemySelect(enemy: Creature): void {
-    if (this.selectedEnemy === enemy) {
-      this.selectedEnemy = undefined;
+  public onEnemySelect(selector: Asset, enemy: Creature): void {
+    if (selector.selectedAggressor === enemy) {
+      selector = undefined;
       return;
     }
 
-    this.selectedEnemy = enemy;
+    selector.selectedAggressor = enemy;
   }
 
   public onSelect(index: number): void {

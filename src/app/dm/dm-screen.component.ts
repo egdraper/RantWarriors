@@ -4,6 +4,7 @@ import { AngularFireDatabase } from "@angular/fire/database";
 import { DbSessionService } from "./assets/dbSession";
 import { ActivatedRoute, Router } from "@angular/router";
 import { DbService } from "./assets/dbService";
+import { Asset } from "./assets/add-asset/asset";
 
 @Component({
   selector: "dm-screen",
@@ -12,7 +13,7 @@ import { DbService } from "./assets/dbService";
 })
 export class DmScreenComponent {
   constructor(
-    private dbSessionService: DbSessionService,
+    public dbSessionService: DbSessionService,
     private dbService: DbService,
     private activatedRoute: ActivatedRoute,
     private router: Router
@@ -21,6 +22,9 @@ export class DmScreenComponent {
       const gameName = params["game"];
       this.dbSessionService.loadGameSession(gameName);
     });
+    // const bob = new Asset();
+    // bob.name = "Bob";
+    // this.dbSessionService.addToCreatureList(bob, "Creature");
   }
 
   public logOut(): void {

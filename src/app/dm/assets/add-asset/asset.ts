@@ -1,20 +1,13 @@
-import {
-  Creature,
-  Abilities,
-  Action,
-  Trait,
-  Checks,
-  Sense
-} from "../creature.model";
+import { Creature, Abilities, Action, Trait, Checks, Sense } from "../creature.model";
 import { Constants } from "./constants";
 import { remove } from "lodash";
-import { Subject, BehaviorSubject } from "rxjs";
+import { BehaviorSubject } from "rxjs";
 
-export class Asset {
+export class Asset implements Creature {
   public abilities: Abilities = new Abilities();
   public abilityRoll?: number;
   public actions?: Action[] = [];
-  public additionalArmor?: number;
+  public additionalArmor = 0;
   public alignment = "Chaotic Evil";
   public armorClass = 10;
   public armorType = "Natural";
@@ -23,10 +16,10 @@ export class Asset {
   public challenge = "1/8";
   public conditionImmunities: string[] = [];
   public creatureType = "Monstrosity";
-  public currentHitPoints: number;
+  public currentHitPoints = 2;
   public editing = true;
   public experience = 25;
-  public flySpeed?: number;
+  public globalAsset = false;
   public hasAdvantage = false;
   public hasDisadvantage = false;
   public hasLegendaryActions?: boolean;
@@ -41,7 +34,7 @@ export class Asset {
   public legendaryActionsInfo?: string;
   public level = 1;
   public link: string;
-  public maxHitPoints = 0;
+  public maxHitPoints = 2;
   public multiAttack = false;
   public name = "";
   public numberOfActions = 1;
@@ -50,6 +43,7 @@ export class Asset {
   public proficiency = 2;
   public resistances: string[] = [];
   public savingThrows: Checks[] = [];
+  public selectedAggressor: Creature;
   public senses: Sense[] = [];
   public size = "Medium";
   public skillProficiencies: Checks[] = [];
@@ -80,7 +74,7 @@ export class Asset {
       this.currentHitPoints = creature.currentHitPoints;
       this.editing = creature.editing;
       this.experience = creature.experience;
-      this.flySpeed = creature.flySpeed;
+      this.globalAsset = creature.globalAsset;
       this.hasAdvantage = creature.hasAdvantage;
       this.hasDisadvantage = creature.hasDisadvantage;
       this.hasLegendaryActions = creature.hasLegendaryActions;
@@ -102,6 +96,7 @@ export class Asset {
       this.page = creature.page;
       this.passivePerception = creature.passivePerception;
       this.proficiency = creature.proficiency;
+      this.selectedAggressor = creature.selectedAggressor
       this.resistances = creature.resistances;
       this.savingThrows = creature.savingThrows;
       this.senses = creature.senses;
@@ -140,6 +135,7 @@ export class Asset {
     if (ability === "WIS") {
       this.updateSavingThrows(ability);
       this.updateSkillProficiency();
+      this.updatePassivePerception();
     }
     if (ability === "INT") {
       this.updateSavingThrows(ability);
@@ -171,6 +167,7 @@ export class Asset {
     });
 
     this.updateSkillProficiency();
+    this.updatePassivePerception();
   }
 
   public updateAttackDice(action: Action): void {
@@ -215,14 +212,16 @@ export class Asset {
       value: newValue + this.proficiency,
       ability: skill
     });
+
+    this.updateSkillProficiency()
+    if(skill === "Perception") { this.updatePassivePerception() }
   }
 
   public updateSkillProficiency(): void {
     this.skillProficiencies.forEach(s => {
       const ability = Constants.getAbilityBySkill(s.ability);
-      s.value =
-        Constants.getAbilityModifier(this.abilities[ability]) +
-        this.proficiency;
+      s.value = Constants.getAbilityModifier(this.abilities[ability]) + this.proficiency;
+      if(s.ability === "Perception") { this.updatePassivePerception() }
     });
   }
 
@@ -276,6 +275,11 @@ export class Asset {
     }
   }
 
+  public updatePassivePerception(): void {
+    const proficient = this.skillProficiencies.find(proficiency => proficiency.ability === "Perception" )
+    this.passivePerception = 10 + Constants.getAbilityModifier(this.abilities.WIS) + (proficient ? this.proficiency: 0)
+  }
+
   public ModifyAction(eventAction: string, action: Action): void {
     if (eventAction === "delete") {
       remove(this.actions, a => action.name === a.name);
@@ -316,6 +320,7 @@ export class Asset {
 
   public removeProficiency(proficiency: Checks): void {
     remove(this.skillProficiencies, l => l.ability === proficiency.ability);
+    if(proficiency.ability === "Perception") { this.updatePassivePerception() }
   }
 
   public removeVulnerability(vulnerability: string): void {

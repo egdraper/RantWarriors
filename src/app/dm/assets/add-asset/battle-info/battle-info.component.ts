@@ -18,6 +18,8 @@ export class BattleInfoComponent {
   public dice = Constants.dice;
   public damageTypes = Constants.damageTypes;
   public abilities = Constants.abilities;
+  public reach = Constants.reach;
+  public reachSelection = "" 
 
   public actionSubscription: Subscription;
 
@@ -42,6 +44,7 @@ export class BattleInfoComponent {
     this.buttonAction = "ADD";
     this.action = new Action();
     this.action.hasBonusDamage = false;
+    this.reachSelection = ""
   }
 
   public onAttackUses(): void {
@@ -52,5 +55,15 @@ export class BattleInfoComponent {
 
   public onDamageDiceChange(): void {
     this.asset.updateDamageDice(this.action);
+  }
+
+  public onRangeChange(action: Action, selection: string): void {
+    if(selection === "Range") { 
+      action.rangeType = "Range"
+      return 
+    }
+
+    action.rangeType = "Melee"
+    action.range = selection.split(" ")[1]
   }
 }

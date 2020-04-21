@@ -1,1 +1,11 @@
-<button (click)="onSubmit()">Submit {{ type }}</button>
+<button 
+  *ngIf="actionType === 'create' || actionType === 'duplicate'"
+  (click)="onSubmit()">
+  Submit {{ type }}
+</button>
+
+<button
+  *ngIf="actionType === 'edit'"
+  (click)="onUpdate()">
+  Update {{ type }}
+</button>

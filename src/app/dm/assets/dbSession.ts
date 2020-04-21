@@ -11,22 +11,18 @@ import { Asset } from "./add-asset/asset";
 export class DbSessionService {
   public admin = false;
   public currentGame: string;
-  public creatureList: Creature[] = [];
-  public playersList: Creature[] = [];
-  public npcList: Creature[] = [];
-  public activeCreatureList: Creature[] = [];
-  public activePlayersList: Creature[] = [];
-  public activeNpcList: Creature[] = [];
-  public npcs$ = new BehaviorSubject<Creature[]>(this.activeNpcList);
-  public creatures$ = new BehaviorSubject<Creature[]>(this.activeCreatureList);
-  public players$ = new BehaviorSubject<Creature[]>(this.activeCreatureList);
-  public activeNpcs = new BehaviorSubject<Creature[]>(this.activeNpcList);
-  public activeCreatures = new BehaviorSubject<Creature[]>(
-    this.activeCreatureList
-  );
-  public activePlayers = new BehaviorSubject<Creature[]>(
-    this.activeCreatureList
-  );
+  public creatureList: Asset[] = [];
+  public playersList: Asset[] = [];
+  public npcList: Asset[] = [];
+  public activeCreatureList: Asset[] = [];
+  public activePlayersList: Asset[] = [];
+  public activeNpcList: Asset[] = [];
+  public npcs$ = new BehaviorSubject<Asset[]>(this.activeNpcList);
+  public creatures$ = new BehaviorSubject<Asset[]>(this.activeCreatureList);
+  public players$ = new BehaviorSubject<Asset[]>(this.activeCreatureList);
+  public activeNpcs = new BehaviorSubject<Asset[]>(this.activeNpcList);
+  public activeCreatures = new BehaviorSubject<Asset[]>(this.activeCreatureList);
+  public activePlayers = new BehaviorSubject<Asset[]>(this.activeCreatureList);
   public creatureSelectionList: string[] = [];
   public playerSelectionList: string[] = [];
   public npcSelectionList: string[] = [];
@@ -57,6 +53,10 @@ export class DbSessionService {
   }
 
   public initCreatureList(): void {
+    if (this.useGenericCreatures) {
+      this.getGenericCreatures();
+    }
+
     this.firestore
       .collection("users")
       .doc(`${this.fireAuth.auth.currentUser.uid}`)
@@ -64,14 +64,11 @@ export class DbSessionService {
       .get()
       .subscribe(querySnapshot => {
         querySnapshot.forEach(doc => {
-          this.creatureList.push(doc.data() as Creature);
+          this.creatureList.push(new Asset(doc.data()));
         });
         this.creatureList = sortBy(this.creatureList, ["name"], ["asc"]);
         this.creatures$.next(this.creatureList);
 
-        if (this.useGenericCreatures) {
-          this.getGenericCreatures();
-        }
       });
   }
 
@@ -81,10 +78,9 @@ export class DbSessionService {
       .get()
       .subscribe(snapshot => {
         snapshot.forEach(doc => {
-          this.creatureList.push(doc.data() as Creature);
+          this.creatureList.push(new Asset(doc.data()));
         });
         this.creatureList = sortBy(this.creatureList, ["name"], ["asc"]);
-        this.creatures$.next(this.creatureList);
       });
   }
 
@@ -96,7 +92,7 @@ export class DbSessionService {
       .get()
       .subscribe(querySnapshot => {
         querySnapshot.forEach(doc => {
-          this.playersList.push(doc.data() as Creature);
+          this.playersList.push(new Asset(doc.data()));
         });
         this.playersList = sortBy(this.playersList, ["name"], ["asc"]);
         this.players$.next(this.playersList);
@@ -104,6 +100,10 @@ export class DbSessionService {
   }
 
   public initNpcList(): void {
+    if (this.useGenericNpcs) {
+      this.getGenericNpcList();
+    }
+
     this.firestore
       .collection("users")
       .doc(`${this.fireAuth.auth.currentUser.uid}`)
@@ -111,15 +111,11 @@ export class DbSessionService {
       .get()
       .subscribe(querySnapshot => {
         querySnapshot.forEach(doc => {
-          this.npcList.push(doc.data() as Creature);
+          this.npcList.push(new Asset(doc.data()));
         });
         this.npcList = sortBy(this.npcList, ["name"], ["asc"]);
         this.npcs$.next(this.npcList);
       });
-
-    if (this.useGenericNpcs) {
-      this.getGenericNpcList();
-    }
   }
 
   public getGenericNpcList(): void {
@@ -128,10 +124,9 @@ export class DbSessionService {
       .get()
       .subscribe(querySnapshot => {
         querySnapshot.forEach(doc => {
-          this.npcList.push(doc.data() as Creature);
+          this.npcList.push(new Asset(doc.data()));
         });
         this.npcList = sortBy(this.npcList, ["name"], ["asc"]);
-        this.npcs$.next(this.npcList);
       });
   }
 
@@ -154,7 +149,6 @@ export class DbSessionService {
   }
 
   public addToCreatureList(asset: Asset, type: string): void {
-    debugger
     switch (type) {
       case "Creature":
         this.creatureList.push(asset);
@@ -176,6 +170,7 @@ export class DbSessionService {
 
   public async loadGameSession(gameName: string): Promise<void> {
     this.currentGame = gameName;
+    this.clearCurrentGameSession();
 
     return new Promise(resolve => {
       this.firestore
@@ -203,6 +198,18 @@ export class DbSessionService {
     });
   }
 
+  public clearCurrentGameSession(): void {
+    this.creatureList = [];
+    this.playersList = [];
+    this.npcList = [];
+    this.activeCreatureList = [];
+    this.activePlayersList = [];
+    this.activeNpcList = [];
+    this.creatureSelectionList = [];
+    this.playerSelectionList = [];
+    this.npcSelectionList = [];
+  }
+
   public remove(index: number, type: string): void {
     switch (type) {
       case "creatures":
@@ -227,7 +234,7 @@ export class DbSessionService {
     this.updateSession();
   }
 
-  public add(creature: Creature, type: string): void {
+  public add(creature: Asset, type: string): void {
     switch (type) {
       case "creatures":
         this.activeCreatureList.push(creature);

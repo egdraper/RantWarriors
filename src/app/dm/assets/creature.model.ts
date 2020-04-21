@@ -1,4 +1,4 @@
-export class  Action {
+export class Action {
   public isAttackAction: boolean;
   public isRollableAction: boolean;
   public isNonRollableAction: boolean;
@@ -19,6 +19,7 @@ export class  Action {
   public attackRoll?: number;
   public damageRoll?: number;
   public moreInfo?: boolean;
+  public rangeType?: string;
   public numberOfAttacksAllowed = 1;
 }
 
@@ -47,51 +48,52 @@ export class Sense {
 }
 
 export class Creature {
-  public abilities: Abilities = new Abilities();
+  public abilities?: Abilities;
   public abilityRoll?: number;
-  public actions?: Action[] = [];
-  public alignment = "Chaotic Evil";
-  public armorClass = 10;
-  public armorType? = "Natural";
+  public actions?: Action[]
+  public alignment?: string;
+  public armorClass?: number;
+  public armorType?: string;
   public assetType?: string;
   public additionalArmor?: number;
   public attackNotes?: string;
-  public challenge = "1/8";
-  public creatureType = "Monstrosity";
+  public challenge?: string;
+  public creatureType?: string;
   public humanoidType?: string;
-  public conditionImmunities: string[] = [];
-  public currentHitPoints: number;
-  public experience: number;
-  public flySpeed?: number;
-  public hasAdvantage?: boolean = false;
-  public hasDisadvantage?: boolean = false;
-  public hitDice = "d4";
+  public conditionImmunities?: string[];
+  public currentHitPoints?: number;
+  public experience?: number;
+  public globalAsset?: boolean;
+  public hasAdvantage?: boolean;
+  public hasDisadvantage?: boolean;
+  public hitDice?: string;
   public hitDiceModifier?: number;
   public imgUrl?: string;
-  public immunities: string[] = [];
-  public languages: string[] = [];
-  public lastDamageTaken?: number = 0;
-  public legendaryActions: Trait[] = [];
+  public immunities?: string[];
+  public languages?: string[];
+  public lastDamageTaken?: number;
+  public legendaryActions?: Trait[];
   public legendaryActionsInfo?: string;
-  public level? = 1;
-  public link: string;
-  public maxHitPoints = 0;
-  public name = "";
-  public numberOfActions = 1;
-  public page: number;
-  public passivePerception = 10;
-  public proficiency = 2;
-  public resistances: string[] = [];
-  public savingThrows: Checks[] = [];
-  public senses: Sense[] = [];
-  public size = "Medium";
-  public skillProficiencies: Checks[] = [];
-  public speed = "30ft";
-  public traits: Trait[] = [];
-  public vulnerabilities: string[] = [];
-  public multiAttack? = false;
+  public level?: number;
+  public link?: string;
+  public maxHitPoints?: number;
+  public name?: string;
+  public numberOfActions?: number;
+  public page?: number;
+  public passivePerception?: number;
+  public proficiency?: number;
+  public selectedAggressor?: any
+  public resistances?: string[];
+  public savingThrows?: Checks[];
+  public senses?: Sense[];
+  public size?: string;
+  public skillProficiencies?: Checks[];
+  public speed?: string;
+  public traits?: Trait[];
+  public vulnerabilities?: string[];
+  public multiAttack?: boolean;
   public hasLegendaryActions?: boolean;
-  public editing = true;
+  public editing?: boolean;
 }
 
 export class CreatureDB {

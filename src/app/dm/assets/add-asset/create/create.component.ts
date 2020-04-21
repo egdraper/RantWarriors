@@ -1,5 +1,6 @@
-import { Component, Output, EventEmitter } from "@angular/core";
+import { Component, Output, EventEmitter, Input } from "@angular/core";
 import { DbSessionService } from "../../dbSession";
+import { Asset } from "../asset";
 
 @Component({
   selector: "app-create",
@@ -7,17 +8,38 @@ import { DbSessionService } from "../../dbSession";
   styleUrls: ["./create.component.scss"]
 })
 export class CreateComponent {
-  @Output() public selected = new EventEmitter();
-  @Output() public assetSelected = new EventEmitter();
+  @Input() public globalAsset = false;
+  @Output() public createNewSelected = new EventEmitter();
+  @Output() public duplicateSelected = new EventEmitter();
+  @Output() public editSelected = new EventEmitter();
+
+  public editableAssets: Asset[] = []
+
   constructor(
     public dbSession: DbSessionService
   ) { }
 
-  public onTypeSelected(type: any): void {
-    this.selected.emit(type.value);
+  public ngOnInit(): void {
+    this.dbSession.creatures$.subscribe(creatures => {
+      if (creatures.length === 0) { return; }
+      if ( this. globalAsset ) {
+        this.editableAssets = this.dbSession.creatureList.filter(asset => asset.globalAsset);
+      } else {
+        this.editableAssets = this.dbSession.creatureList.filter(asset => !asset.globalAsset);
+      }
+    });
   }
 
-  public onAssetChange(asset: any): void {
-    this.assetSelected.emit(asset.value);
+  public onCreateNew(type: any): void {
+    this.createNewSelected.emit(type.value);
   }
+
+  public onAssetDuplicate(type: any): void {
+    this.duplicateSelected.emit(type.value);
+  }
+
+  public onAssetEdit(asset: any): void {
+    this.editSelected.emit(asset.value);
+  }
+
 }

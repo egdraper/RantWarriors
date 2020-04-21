@@ -59,7 +59,6 @@ export class DbService {
     .doc("pendingAsset")
     .get()
     .subscribe(querySnapshot => {
-      debugger
       if (!querySnapshot.data()) {
 
         this.firestore
@@ -99,6 +98,7 @@ export class DbService {
   }
 
   public addCreature(asset: Asset, type: string): void {
+    asset.globalAsset = false;
     const cleanType = type.toLowerCase() + "s";
     const blankCreature = this.convertToCreature(asset);
     const cleanCreature = JSON.parse(JSON.stringify(blankCreature));
@@ -113,19 +113,21 @@ export class DbService {
     this.sessionService.addToCreatureList(asset, type);
   }
 
-  public updateCreature(asset: Asset, type: string): void {
+  public updateAsset(asset: Asset, type: string): void {
+    const cleanType = type.toLowerCase() + "s";
     const blankCreature = this.convertToCreature(asset);
     const cleanCreature = JSON.parse(JSON.stringify(blankCreature));
 
     this.firestore
     .collection("users")
     .doc(`${this.fireAuth.auth.currentUser.uid}`)
-    .collection("creatures")
+    .collection(cleanType)
     .doc(cleanCreature.name)
     .update(cleanCreature);
   }
 
-  public addAdminCreature(asset: Asset, type: string): void {
+  public addGlobalCreature(asset: Asset, type: string): void {
+    asset.globalAsset = true;
     const cleanType = type.toLowerCase() + "s";
     const blankCreature = this.convertToCreature(asset);
     const cleanCreature = JSON.parse(JSON.stringify(blankCreature));
@@ -140,12 +142,13 @@ export class DbService {
     }
   }
 
-  public updateAdminCreature(asset: Asset, type: string): void {
+  public updateGlobalAsset(asset: Asset, type: string): void {
+    const cleanType = type.toLowerCase() + "s";
     const blankCreature = this.convertToCreature(asset);
     const cleanCreature = JSON.parse(JSON.stringify(blankCreature));
 
     this.firestore
-    .collection(type)
+    .collection(cleanType)
     .doc(cleanCreature.name)
     .update(cleanCreature);
   }
@@ -167,7 +170,6 @@ export class DbService {
       currentHitPoints: asset.currentHitPoints,
       editing: asset.editing,
       experience: asset.experience,
-      flySpeed: asset.flySpeed,
       hasAdvantage: asset.hasAdvantage,
       hasDisadvantage: asset.hasDisadvantage,
       hasLegendaryActions: asset.hasLegendaryActions,
@@ -190,6 +192,7 @@ export class DbService {
       passivePerception: asset.passivePerception,
       proficiency: asset.proficiency,
       resistances: asset.resistances,
+      selectedAggressor: asset.selectedAggressor,
       savingThrows: asset.savingThrows,
       senses: asset.senses,
       size: asset.size,

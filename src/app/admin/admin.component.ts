@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
+import { DbSessionService } from "../dm/assets/dbSession";
 
 @Component({
   selector: 'app-admin',
@@ -7,10 +8,19 @@ import { Router } from "@angular/router";
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
+  public globalAssets = true;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private dbSession: DbSessionService,
+  ) { }
 
-  ngOnInit() {
+  public ngOnInit() {
+    this.dbSession.useGenericCreatures = true;
+    this.dbSession.useGenericNpcs = true;
+    this.dbSession.initCreatureList();
+    this.dbSession.initNpcList();
+    this.dbSession.initPlayersList();
   }
 
   public onHomeClick(): void {

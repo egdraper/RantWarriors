@@ -17,6 +17,59 @@ export class Constants {
     { name: "Splint", acBonus: 17 }
   ];
 
+  public weapons = [
+    
+    {name: "Claw", damageType: "Slashing"},
+    {name: "Club", damageType: "Bludgeoning"},
+    {name: "Dagger", damageType: "Piercing"},
+    {name: "Creatclub", damageType: "Bludgeoning"},
+    {name: "Bite", damageType: "Piercing"},
+    {name: "Tail", damageType: "Bludgeoning"},
+    {name: "", damageType: ""},
+    {name: "", damageType: ""},
+    {name: "", damageType: ""},
+    {name: "", damageType: ""},
+    {name: "", damageType: ""},
+    {name: "", damageType: ""},
+    {name: "", damageType: ""},
+    {name: "", damageType: ""},
+    {name: "", damageType: ""},
+    {name: "", damageType: ""},
+    {name: "", damageType: ""},
+  ]
+
+  public static languages = [
+    "Abyssal",
+    "Aquan",
+    "Celestial",
+    "Common",
+    "Deep Speech",
+    "Draconic",
+    "Druidic",
+    "Dwarvish",
+    "Elvish",
+    "Giant",
+    "Gnomish",
+    "Goblin",
+    "Halfling",
+    "Ignan",
+    "Infernal",
+    "Orc",
+    "Primodial",
+    "Sylvan",
+    "Terran",
+    "Thieves Cant",
+    "Undercommon",
+  ]
+
+  public static reach = [
+    "Range",
+    "Melee 5ft",
+    "Melee 10ft",
+    "Melee 15ft",
+    "Melee 20ft"
+  ]
+
   public static hitDice;
 
   public static alignments = [
