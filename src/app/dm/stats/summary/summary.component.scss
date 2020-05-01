@@ -6,14 +6,65 @@ img {
 
 .summary-stats {
   display: flex;
-  
-
 }
 
 .summary-panel {
-    width: auto;
-    border-radius: 10px;
-    margin: 7px;
-    padding: 0px 8px 0px 10px;
-    background-color: aliceblue;
+  width: 157px;
+  height: 122px;
+  background-color: aliceblue;
+}
+
+.summary-panel, .player-panel {
+  border-radius: 10px;
+  margin: 7px;
+  padding: 0px 8px 0px 10px;
+}
+
+.player-panel {
+  width: 157px;
+  min-height: 300px;
+  height: fit-content;
+  background-color: #778a9a;
+}
+
+.flex-it-container {
+  width: 650px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-it {
+  min-width: 172px;
+  height: 134px;
+}
+
+.drop-area {
+  margin: 18px 0px;
+  width: 155px;
+  height: fit-content;
+  min-height: 144px;
+  border-style: dashed;
+  border-width: thin;
+  padding-top: 2px;
+}
+
+.assigned-panel {
+  background-color: aliceblue;
+  margin: 6px;
+  border-radius: 10px;
+  
+  img {
+    padding: 5px;
+    height: 31px;
+    cursor: pointer;
+  }
+
+  .assigned-summary {
+    margin-top: 5px;
+
+    h5 {
+      margin-top: 0px;
+    }
+  }
+  
 }

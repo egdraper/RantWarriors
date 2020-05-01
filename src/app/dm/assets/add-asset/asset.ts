@@ -51,6 +51,8 @@ export class Asset implements Creature {
   public traits: Trait[] = [];
   public vulnerabilities: string[] = [];
 
+  public attackers: Asset[] = [];
+
   // subscriptions
 
   public traitChange = new BehaviorSubject<Trait>(null);

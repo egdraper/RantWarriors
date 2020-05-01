@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { cloneDeep } from "lodash";
 import { DbService } from "../assets/dbService";
 import { DbSessionService } from "../assets/dbSession";
+import { Asset } from "../assets/add-asset/asset";
 
 @Component({
   selector: "app-player",
@@ -21,11 +22,11 @@ export class PlayerComponent {
   }
 
   public addPlayer(): void {
-    const chosenPlayer = cloneDeep(
+    const chosenPlayer = new Asset(cloneDeep(
       this.dbSessionService.playersList.find(
         player => player.name === this.selectedPlayer
       )
-    );
+    ));
     chosenPlayer.name = `${chosenPlayer.name} ${this.dbSessionService
       .activePlayersList.length + 1}`;
     this.dbSessionService.add(chosenPlayer, "players");

@@ -14,10 +14,11 @@ import { SkillStatsComponent } from "./skill-stats/skill-stats.component";
 import { ActionButtonComponent } from "./action-button/action-button.component";
 import { StatsPanelComponent } from "./stats-panel/stats-panel.component";
 import { LegendaryActionsStatsComponent } from "./legendary-actions/legendary-actions-stats.component";
-import { SummaryComponent } from './summary/summary.component';
-import { ValueModifierComponent } from './value-modifier/value-modifier.component';
+import { SummaryComponent } from "./summary/summary.component";
+import { ValueModifierComponent } from "./value-modifier/value-modifier.component";
 import { AbilityScoreModifierPipe } from "./skill-stats/ability.pipe";
-import { EditorToolbarComponent } from './editor-toolbar/editor-toolbar.component';
+import { EditorToolbarComponent } from "./editor-toolbar/editor-toolbar.component";
+import { DragDropModule } from "@angular/cdk/drag-drop";
 
 @NgModule({
   declarations: [

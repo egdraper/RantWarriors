@@ -11,7 +11,7 @@ import { Asset } from "../assets/add-asset/asset";
 export class StatsComponent {
   @Output() public remove = new EventEmitter<number>();
   @Input() public activeAssets: Asset[] = [];
-  @Input() public activeEnemies: Asset[] = [];
+  @Input() public activePlayers: Asset[] = [];
 
   public selectedEnemy;
   public damageNumbers = [];

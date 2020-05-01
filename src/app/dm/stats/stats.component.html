@@ -1,7 +1,9 @@
 <mat-tab-group [(selectedIndex)]="assetSelectedIndex">
   <mat-tab label="Summary">
-    <app-summary (select)="onSelect($event)"
-      [activeAssets]="activeAssets" 
+    <app-summary 
+      (select)="onSelect($event)"
+      [activeAssets]="activeAssets"
+      [activePlayers]="activePlayers" 
     ></app-summary> 
   </mat-tab>
   <mat-tab *ngFor="let asset of activeAssets; let i = index"
@@ -37,7 +39,7 @@
        <div class="attack-selector-container">
          <h6>Players/NPC's:</h6>
          <div
-           *ngFor="let enemy of activeEnemies"
+           *ngFor="let enemy of activePlayers"
            class="attack-selector"
            [class.attack-selector-selected]="enemy.name === asset.selectedAggressor?.name"
            (click)="onEnemySelect(asset, enemy)">

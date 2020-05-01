@@ -3,6 +3,7 @@ import { cloneDeep } from "lodash";
 import { DbService } from "../assets/dbService";
 import { DbSessionService } from "../assets/dbSession";
 import { Constants } from "../assets/add-asset/constants";
+import { Asset } from "../assets/add-asset/asset";
 
 @Component({
   selector: "creature",
@@ -25,11 +26,11 @@ export class CreatureComponent {
   }
 
   public addCreature(): void {
-    const chosenCreature = cloneDeep(
+    const chosenCreature = new Asset(cloneDeep(
       this.dbSessionService.creatureList.find(
         npc => npc.name === this.selectedCreature
       )
-    );
+    ));
     chosenCreature.name = `${chosenCreature.name} ${this.dbSessionService
       .activeCreatureList.length + 1}`;
     this.dbSessionService.add(chosenCreature, "creatures");
