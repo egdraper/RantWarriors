@@ -7,7 +7,7 @@
       "source": "**",
       "destination": "/index.html"
     } ],
-    "public": "dist/rantWarriors",
+    "public": "dist/apps/rant-warriors",
     "ignore": [
       "firebase.json",
       "**/.*",

@@ -1,0 +1,84 @@
+<div
+  [style.display]="'flex'"
+  (ondrop)="onDragDrop($event)"
+  (ondragover)="onDragOver($event)"
+  cdkDropListGroup
+>
+  <div
+    cdkDropList
+    class="flex-it-container"
+    [cdkDropListData]="activeAssets"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <div
+      cdkDrag
+      class="summary-panel flex-it"
+      *ngFor="let asset of activeAssets; let i = index"
+    >
+      <h4>{{ asset.name }}</h4>
+      <div class="summary-stats">
+        <img (click)="onSelect(i + 1)" src="{{ asset.imgUrl }}" />
+        <div>
+          <h5>AC:{{ asset.armorClass }}</h5>
+          <h5>HP:{{ asset.currentHitPoints }}/{{ asset.maxHitPoints }}</h5>
+        </div>
+      </div>
+    </div>
+    <h2>{{totalDamageTaken}}</h2>
+  </div>
+
+  <div [style.display]="'flex'">
+    <div
+  
+      class="player-panel"
+      *ngFor="let asset of activePlayers; let i = index"
+    >
+      <h4>{{ asset.name }}</h4>
+      <div class="summary-stats">
+        <img (click)="onSelect(i + 1)" src="{{ asset.imgUrl }}" />
+        <div>
+          <h5>AC:{{ asset.armorClass }}</h5>
+          <h5>HP:{{ asset.currentHitPoints }}/{{ asset.maxHitPoints }}</h5>
+        </div>
+      </div>
+      <button (click)="autoAttackAll(asset)">Auto Attack All</button>
+      <div class="drop-area"
+        cdkDropList
+        [cdkDropListData]="asset.attackers"
+        (cdkDropListDropped)="drop($event)">
+        <div
+          cdkDrag
+          class="assigned-panel"
+          *ngFor="let attackingPlayer of asset.attackers"
+        >
+          <div class="summary-stats">
+            <img (click)="onSelect(i + 1)" src="{{ attackingPlayer.imgUrl }}" />
+            <div class="assigned-summary">
+              <h5>{{ attackingPlayer.name }}</h5>
+              <h5>
+                HP:{{ attackingPlayer.currentHitPoints }}/{{
+                  attackingPlayer.maxHitPoints
+                }}
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div *ngFor="let action of asset.actions">
+      <hr />
+      <app-action-button
+        label="Hit"
+        diceEquation="{{ 'd20+' + action.attackModifier }}"
+        [minimumForSuccess]="asset?.armorClass"
+        [advantage]="asset.hasAdvantage"
+        [disadvantage]="asset.hasDisadvantage"
+        [asterisk]="action.allowedInMultipleAttacks"
+      >
+      </app-action-button>
+      <app-action-button [label]="action.name" [diceEquation]="action.dice">
+      </app-action-button>
+    </div> -->

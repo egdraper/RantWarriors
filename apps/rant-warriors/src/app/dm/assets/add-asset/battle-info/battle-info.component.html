@@ -1,0 +1,303 @@
+<div class="form-group">
+  <h2>Actions</h2>
+  <div class="select-checkbox" *ngIf="!action.isNonRollableAction && !action.isRollableAction">
+    <mat-checkbox
+      [(ngModel)]="action.isAttackAction"
+      value="newAction.isAttackAction"
+      [ngModelOptions]="{ standalone: true }"
+    >
+      Is this Action an Attack?
+    </mat-checkbox>
+  </div>
+  <div class="select-checkbox" *ngIf="!action.isAttackAction && !action.isNonRollableAction">
+    <mat-checkbox
+      [(ngModel)]="action.isRollableAction"
+      value="newAction.isAttackAction"
+      [ngModelOptions]="{ standalone: true }"
+    >
+      Is this Rollable Action?
+    </mat-checkbox>
+  </div>
+  <div class="select-checkbox" *ngIf="!action.isAttackAction && !action.isRollableAction">
+    <mat-checkbox
+      [(ngModel)]="action.isNonRollableAction"
+      value="newAction.isAttackAction"
+      [ngModelOptions]="{ standalone: true }"
+    >
+      Is this Non Rolling action?
+    </mat-checkbox>
+  </div>
+
+  <!-- IS ATTACK ACTION -->
+
+  <div *ngIf="action.isAttackAction">
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Weapon (ex: Longbow)"
+          name="name"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="action.name"
+        />
+        <mat-autocomplete #autoGroup="matAutocomplete">
+          <mat-option *ngFor="let weapon of weapons" [value]="weapon.name">
+            {{ weapon.name }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Attack Uses</mat-label>
+        <mat-select
+          [placeholder]="'Attack Type (ex: Slashing)'"
+          [(ngModel)]="action.attackUses"
+          (selectionChange)="onAttackUses()"
+        >
+          <mat-option *ngFor="let ability of abilities" [value]="ability">
+            {{ ability }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Damage Type</mat-label>
+        <mat-select
+          [placeholder]="'Attack Type (ex: Slashing)'"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="action.attackType"
+        >
+          <mat-option
+            *ngFor="let damageType of damageTypes"
+            [value]="damageType"
+          >
+            {{ damageType }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="dice">
+      <div>
+        <mat-form-field class="min-width">
+          <input
+            matInput
+            name="damageDice"
+            type="number"
+            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="action.numberOfRoll"
+            (change)="onDamageDiceChange()"
+          />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="mid-width">
+          <mat-label>Dice</mat-label>
+          <mat-select
+            placeholder="Dice"
+            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="action.numberOfDiceSides"
+            (selectionChange)="onDamageDiceChange()"
+          >
+            <mat-option
+              *ngFor="let diceSelection of dice"
+              [value]="diceSelection"
+            >
+              {{ diceSelection }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>{{ action.dice }}</div>
+    </div>
+    <div>
+      <mat-form-field class="mid-width">
+        <mat-label>Range</mat-label>
+        <mat-select
+          placeholder="Range"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="reachSelection"
+          (selectionChange)="onRangeChange(action, reachSelection)"
+        >
+          <mat-option
+            *ngFor="let reachDistance of reach"
+            [value]="reachDistance"
+          >
+            {{ reachDistance }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field *ngIf="reachSelection === 'Range'" class="example-full-width">
+        <input
+          matInput
+          placeholder="Range (ex: 20/80)"
+          name="range"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="action.range"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <mat-label>Attack Info</mat-label>
+        <textarea
+          matInput
+          placeholder="Bonus Information"
+          [(ngModel)]="action.actionBonusInfo"
+        >
+        </textarea>
+      </mat-form-field>
+    </div>
+    <div class="select-checkbox">
+      <mat-checkbox
+        [(ngModel)]="action.hasBonusDamage"
+        value="hasBonusDamage"
+        [ngModelOptions]="{ standalone: true }"
+      >
+        Attack have Additional damage?
+      </mat-checkbox>
+    </div>
+
+    <div *ngIf="action.hasBonusDamage">
+      <div>
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            placeholder="Bonus Damage (ex: 1d8)"
+            name="bonusDamage"
+            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="action.bonusDamageDice"
+          />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Bonus Damage Type</mat-label>
+          <mat-select
+            [placeholder]="'Bonus Damage Type (ex: Poison)'"
+            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="action.bonusDamageType"
+          >
+            <mat-option *ngFor="let actions of damageTypes" [value]="actions">
+              {{ actions }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="select-checkbox" *ngIf="asset.numberOfActions > 1">
+      <mat-checkbox
+        [(ngModel)]="action.allowedInMultipleAttacks"
+        value="newAction.allowedInMultipleAttacks"
+        [ngModelOptions]="{ standalone: true }"
+      >
+        Allowed In Multiple Attack
+      </mat-checkbox>
+    </div>
+    <div *ngIf="action.allowedInMultipleAttacks">
+      <mat-form-field class="min-width">
+        <input
+          matInput
+          placeholder="Number Of Attacks Allowed"
+          name="damageDice"
+          type="number"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="action.numberOfAttacksAllowed"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- ROLLABLE ACTION -->
+
+  <div *ngIf="action.isRollableAction">
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Action Name"
+          name="name"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="action.name"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Range (ex: 5 or 20/80)"
+          name="range"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="action.range"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Roll Title (For Dice)"
+          name="name"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="action.attackType"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="min-width">
+        <input
+          matInput
+          placeholder="Dice (ex: 2d10+4)"
+          name="damageDice"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="action.dice"
+          (change)="onDamageDiceChange()"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <mat-label>Action Info</mat-label>
+        <textarea
+          matInput
+          placeholder="Bonus Information"
+          [(ngModel)]="action.actionBonusInfo"
+        >
+        </textarea>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Non ROLLABLE ACTION -->
+  <div *ngIf="action.isNonRollableAction">
+    <div>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Name"
+          name="name"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="action.name"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <mat-label>Action Info</mat-label>
+        <textarea
+          matInput
+          placeholder="Bonus Information"
+          [(ngModel)]="action.actionBonusInfo"
+        >
+        </textarea>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+<div *ngIf="action.isNonRollableAction || action.isRollableAction || action.isAttackAction">
+  <div class="add-button">
+    <button mat-button (click)="addAttackAction()">{{buttonAction}}</button>
+  </div>
+</div>

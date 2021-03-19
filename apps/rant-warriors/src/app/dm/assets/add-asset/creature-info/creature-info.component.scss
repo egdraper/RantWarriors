@@ -1,0 +1,27 @@
+.creature-info-area {
+    display: flex;
+
+    .sense {
+        width: 125px;
+    }
+
+    .range {
+        width: 50px;
+        padding-left: 10px;
+    }
+}
+
+.mat-icon {
+    cursor: pointer;
+    font-size: 15px;
+
+    &:hover {
+      color: maroon
+    }
+
+    &:active {
+      font-size: 18px;
+    }
+  }
+
+
