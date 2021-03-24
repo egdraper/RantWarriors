@@ -1,7 +1,7 @@
 import { Router } from "@angular/router";
 import { Component, OnInit } from "@angular/core";
-import { DbService } from "../../../dm/assets/dbService";
-import { DbSessionService } from "../../../dm/assets/dbSession";
+import { DbService } from "../../../utils/dbService";
+import { DbSessionService } from "../../../utils/dbSession";
 
 
 @Component({

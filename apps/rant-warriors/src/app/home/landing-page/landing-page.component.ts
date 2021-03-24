@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { AngularFireAuth } from "@angular/fire/auth";
-import { AdminService } from "../../dm/assets/admin.service";
+import { AdminService } from "../../utils/admin.service";
 
 @Component({
   selector: "app-landing-page",

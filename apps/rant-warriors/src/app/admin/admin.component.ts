@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { DbSessionService } from "../dm/assets/dbSession";
+import { DbSessionService } from '../utils/dbSession';
 
 @Component({
   selector: 'app-admin',

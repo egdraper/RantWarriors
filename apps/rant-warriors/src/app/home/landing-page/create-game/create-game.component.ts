@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import { Asset } from "../../../dm/assets/add-asset/asset";
-import { DbService } from "../../../dm/assets/dbService";
+import { Asset } from "../../../utils/asset";
+import { DbService } from "../../../utils/dbService";
 
 @Component({
   selector: "app-create-game",
