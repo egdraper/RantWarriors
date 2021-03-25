@@ -105,3 +105,16 @@ export class RatingModel {
   public display: string;
   public selected: boolean;
 }
+
+export class WeaponsModel {
+  public name: string
+  public cost: string
+  public damage: string
+  public damageType: string
+  public range: string
+  public reach: number
+  public weight: string
+  public attributes: string[]
+  public weaponClass: string
+  public usesAbility: string | string[]
+}

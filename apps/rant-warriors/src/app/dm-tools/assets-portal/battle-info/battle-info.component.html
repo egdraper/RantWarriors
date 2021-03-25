@@ -39,9 +39,12 @@
           name="name"
           [ngModelOptions]="{ standalone: true }"
           [(ngModel)]="action.name"
+          [matAutocomplete]="autoGroup"
         />
-        <mat-autocomplete #autoGroup="matAutocomplete">
-          <mat-option *ngFor="let weapon of weapons" [value]="weapon.name">
+        <mat-autocomplete
+          (optionSelected)="onWeaponSelected($event)"
+          #autoGroup="matAutocomplete">
+          <mat-option *ngFor="let weapon of weapons" [value]="weapon">
             {{ weapon.name }}
           </mat-option>
         </mat-autocomplete>
@@ -128,7 +131,9 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-form-field *ngIf="reachSelection === 'Range'" class="example-full-width">
+      <mat-form-field 
+        *ngIf="reachSelection === 'Range' || reachSelection === 'Thrown'" 
+        class="example-full-width">
         <input
           matInput
           placeholder="Range (ex: 20/80)"

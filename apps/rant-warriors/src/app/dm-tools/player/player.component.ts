@@ -5,7 +5,7 @@ import { DbSessionService } from "../../utils/dbSession";
 import { Asset } from "../../utils/asset";
 
 @Component({
-  selector: "app-player",
+  selector: "player",
   styleUrls: ["./player.component.scss"],
   templateUrl: "./player.component.html"
 })

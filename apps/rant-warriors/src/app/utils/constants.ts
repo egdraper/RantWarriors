@@ -64,6 +64,7 @@ export class Constants {
 
   public static reach = [
     "Range",
+    "Thrown",
     "Melee 5ft",
     "Melee 10ft",
     "Melee 15ft",
@@ -230,7 +231,8 @@ export class Constants {
       range: "",
       weight: "2 lb",
       attributes: ["Light"],
-      weaponClass: "Simple Melee Weapons"
+      weaponClass: "Simple Melee Weapons",
+      usesAbility: "STR"
     },
     {
       name: "Dagger",
@@ -240,7 +242,8 @@ export class Constants {
       range: "20/60",
       weight: "1 lb",
       attributes: ["Finesse", "Light", "Thrown"],
-      weaponClass: "Simple Melee Weapons"
+      weaponClass: "Simple Melee Weapons",
+      usesAbility: ["STR", "DEX"]
     },
     {
       name: "Greatclub",
@@ -250,7 +253,8 @@ export class Constants {
       range: "",
       weight: "10 lb",
       attributes: ["Two-handed"],
-      weaponClass: "Simple Melee Weapons"
+      weaponClass: "Simple Melee Weapons",
+      usesAbility: "STR"
     },
     {
       name: "Handaxe",
@@ -260,7 +264,8 @@ export class Constants {
       range: "20/60",
       weight: "2 lb",
       attributes: ["Light", "Thrown"],
-      weaponClass: "Simple Melee Weapons"
+      weaponClass: "Simple Melee Weapons",
+      usesAbility: "STR"
     },
     {
       name: "Javelin",
@@ -270,7 +275,8 @@ export class Constants {
       range: "30/120",
       weight: "2 lb",
       attributes: ["Thrown"],
-      weaponClass: "Simple Melee Weapons"
+      weaponClass: "Simple Melee Weapons",
+      usesAbility: "STR"
     },
     {
       name: "Light hammer",
@@ -280,7 +286,8 @@ export class Constants {
       range: "20/60",
       weight: "2 lb",
       attributes: ["Light", "Thrown"],
-      weaponClass: "Simple Melee Weapons"
+      weaponClass: "Simple Melee Weapons",
+      usesAbility: "STR"
     },
     {
       name: "Mace",
@@ -290,7 +297,8 @@ export class Constants {
       range: "",
       weight: "4",
       attributes: [],
-      weaponClass: "Simple Melee Weapons"
+      weaponClass: "Simple Melee Weapons",
+      usesAbility: "STR"
     },
     {
       name: "Quarterstaf",
@@ -300,7 +308,8 @@ export class Constants {
       range: "",
       weight: "4 lb",
       attributes: [],
-      weaponClass: "Simple Melee Weapons"
+      weaponClass: "Simple Melee Weapons",
+      usesAbility: "STR"
     },
     {
       name: "Sickle",
@@ -310,7 +319,8 @@ export class Constants {
       range: "",
       weight: "2 lb",
       attributes: ["Light"],
-      weaponClass: "Simple Melee Weapons"
+      weaponClass: "Simple Melee Weapons",
+      usesAbility: "STR"
     },
     {
       name: "Spear",
@@ -321,7 +331,8 @@ export class Constants {
       weight: "",
       attributes: ["Thrown", "Versatile"],
       versatileDamage: "1d8",
-      weaponClass: "Simple Melee Weapons"
+      weaponClass: "Simple Melee Weapons",
+      usesAbility: "STR"
     },
     {
       name: "Crossbow, light",
@@ -331,7 +342,8 @@ export class Constants {
       range: "80/320",
       weight: "5 lb",
       attributes: ["Ammunition", "Loading", "Two Handed"],
-      weaponClass: "Simple Ranged Weapons"
+      weaponClass: "Simple Ranged Weapons",
+      usesAbility: "DEX"
     },
     {
       name: "Dart",
@@ -341,7 +353,8 @@ export class Constants {
       range: "20/60",
       weight: "1/4 lb",
       attributes: ["Finesse", "Thrown"],
-      weaponClass: "Simple Ranged Weapons"
+      weaponClass: "Simple Ranged Weapons",
+      usesAbility: "DEX"
     },
     {
       name: "Shortbow",
@@ -351,7 +364,8 @@ export class Constants {
       range: "80/320",
       weight: "2",
       attributes: ["Ammunition",  "Two handed"],
-      weaponClass: "Simple Ranged Weapons"
+      weaponClass: "Simple Ranged Weapons",
+      usesAbility: "DEX"
     },
     {
       name: "Sling",
@@ -361,7 +375,8 @@ export class Constants {
       range: "30/120",
       weight: "",
       attributes: ["Ammunition"],
-      weaponClass: "Simple Ranged Weapons"
+      weaponClass: "Simple Ranged Weapons",
+      usesAbility: "DEX"
     },
     {
       name: "Battleaxe",
@@ -372,7 +387,8 @@ export class Constants {
       weight: "4 lb",
       attributes: ["Versatile"],
       versatileDamage: "1d10",
-      weaponClass: "Martial Weapons"
+      weaponClass: "Martial Melee Weapons",
+      usesAbility: "STR"
     },
     {
       name: "Flail",
@@ -382,7 +398,8 @@ export class Constants {
       range: "",
       weight: "2 lb",
       attributes: [""],
-      weaponClass: "Martial Weapons"
+      weaponClass: "Martial Melee Weapons",
+      usesAbility: "STR"
     },
     {
       name: "Glaive",
@@ -390,9 +407,11 @@ export class Constants {
       damage: "1d10",
       damageType: "Slashing",
       range: "",
+      reach: 10,
       weight: "6 lb",
       attributes: ["Heavy", "Reach", "Two-handed"],
-      weaponClass: "Martial Weapons"
+      weaponClass: "Martial Melee Weapons",
+      usesAbility: "STR"
     },
     {
       name: "Greataxe",
@@ -402,7 +421,8 @@ export class Constants {
       range: "",
       weight: "7 lb",
       attributes: ["Heavy", "Two-handed"],
-      weaponClass: "Martial Weapons"
+      weaponClass: "Martial Melee Weapons",
+      usesAbility: "STR"
     },
     {
       name: "Greatsword",
@@ -412,7 +432,8 @@ export class Constants {
       range: "",
       weight: "6 lb",
       attributes: ["Heavy", "Two-handed"],
-      weaponClass: "Martial Weapons"
+      weaponClass: "Martial Melee Weapons",
+      usesAbility: "STR"
     },
     {
       name: "Halberd",
@@ -420,9 +441,11 @@ export class Constants {
       damage: "1d10",
       damageType: "Slashing",
       range: "",
+      reach: 10,
       weight: "6 lb",
       attributes: ["Heavy", "Reach", "Two-handed"],
-      weaponClass: "Martial Weapons"
+      weaponClass: "Martial Melee Weapons",
+      usesAbility: "STR"
     },
     {
       name: "Lance",
@@ -430,9 +453,11 @@ export class Constants {
       damage: "1d12",
       damageType: "Piercing",
       range: "",
+      reach: 10,
       weight: "6 lb",
       attributes: ["Reach", "Special"],
-      weaponClass: "Martial Weapons"
+      weaponClass: "Martial Melee Weapons",
+      usesAbility: "STR"
     },
     {
       name: "Longsword",
@@ -443,7 +468,8 @@ export class Constants {
       weight: "3 lb",
       attributes: ["Versatile"],
       versatileDamage: "1d10",
-      weaponClass: "Martial Weapons"
+      weaponClass: "Martial Melee Weapons",
+      usesAbility: "STR"
     },
     {
       name: "Maul",
@@ -453,7 +479,8 @@ export class Constants {
       range: "",
       weight: "10 lb",
       attributes: ["Heavy", "Two-handed"],
-      weaponClass: "Martial Weapons"
+      weaponClass: "Martial Melee Weapons",
+      usesAbility: "STR"
     },
     {
       name: "Morningstar",
@@ -463,7 +490,8 @@ export class Constants {
       range: "",
       weight: "4 lb",
       attributes: [],
-      weaponClass: "Martial Weapons"
+      weaponClass: "Martial Melee Weapons",
+      usesAbility: "STR"
     },
     {
       name: "Pike",
@@ -471,9 +499,11 @@ export class Constants {
       damage: "1d10",
       damageType: "Piercing",
       range: "",
+      reach: 10,
       weight: "18 lb",
       attributes: ["Heavy", "Reach", "Two-handed"],
-      weaponClass: "Martial Weapons"
+      weaponClass: "Martial Melee Weapons",
+      usesAbility: "STR"
     },
     {
       name: "Rapier",
@@ -483,7 +513,8 @@ export class Constants {
       range: "",
       weight: "2 lb",
       attributes: ["Finesse"],
-      weaponClass: "Martial Weapons"
+      weaponClass: "Martial Melee Weapons",
+      usesAbility: ["STR", "DEX"]
     },
     {
       name: "Scimitar",
@@ -493,7 +524,8 @@ export class Constants {
       range: "",
       weight: "3 lb",
       attributes: ["Finesse", "Light"],
-      weaponClass: "Martial Weapons"
+      weaponClass: "Martial Melee Weapons",
+      usesAbility: ["STR", "DEX"]
     },
     {
       name: "Shortsword",
@@ -503,7 +535,8 @@ export class Constants {
       range: "",
       weight: "2 lb",
       attributes: ["Finesse", "Light"],
-      weaponClass: "Martial Weapons"
+      weaponClass: "Martial Melee Weapons",
+      usesAbility: ["STR", "DEX"]
     },
     {
       name: "Trident",
@@ -513,7 +546,8 @@ export class Constants {
       range: "20/60",
       weight: "4",
       attributes: ["Thrown",  "Versatile"],
-      weaponClass: "Martial Weapons"
+      weaponClass: "Martial Melee/Ranged Weapons",
+      usesAbility: "STR"
     },
     {
       name: "War pick",
@@ -522,8 +556,9 @@ export class Constants {
       damageType: "Piercing",
       range: "",
       weight: "2",
-      attributes: [""],
-      weaponClass: "Martial Weapons"
+      attributes: [],
+      weaponClass: "Martial Melee Weapons",
+      usesAbility: "STR"
     },
     {
       name: "Warhammer",
@@ -533,7 +568,8 @@ export class Constants {
       range: "",
       weight: "2 lb",
       attributes: ["Versatile"],
-      weaponClass: "Martial Weapons"
+      weaponClass: "Martial Melee Weapons",
+      usesAbility: "STR"
     },
     {
       name: "Whip",
@@ -541,9 +577,11 @@ export class Constants {
       damage: "1d4",
       damageType: "slashing",
       range: "",
+      reach: 10,
       weight: "2 lb",
       attributes: ["Finesse", "Reach"],
-      weaponClass: "Martial Weapons"
+      weaponClass: "Martial Melee Weapons",
+      usesAbility: ["STR", "DEX"]
     },
     {
       name: "Blowgun",
@@ -553,7 +591,8 @@ export class Constants {
       range: "25/100",
       weight: "1",
       attributes: ["Ammunition", "Loading"],
-      weaponClass: "Martial Weapons"
+      weaponClass: "Martial Ranged Weapons",
+      usesAbility: "DEX"
     },
     {
       name: "Crossbow, hand",
@@ -563,7 +602,8 @@ export class Constants {
       range: "",
       weight: "3 lb",
       attributes: ["Ammunition", "Light", "Loading"],
-      weaponClass: "Martial Weapons"
+      weaponClass: "Martial Ranged Weapons",
+      usesAbility: "DEX"
     },
     {
       name: "Crossbow, heavy",
@@ -573,7 +613,8 @@ export class Constants {
       range: "",
       weight: "100/400",
       attributes: ["Ammunition", "heavy", "Two-handed", "Special"],
-      weaponClass: "Martial Weapons"
+      weaponClass: "Martial Ranged Weapons",
+      usesAbility: "DEX"
     },
     {
       name: "Longbow",
@@ -583,7 +624,8 @@ export class Constants {
       range: "150/600",
       weight: "2",
       attributes: ["Ammunition", "Heavy", "Two-handed"],
-      weaponClass: "Martial Weapons"
+      weaponClass: "Martial Ranged Weapons",
+      usesAbility: "DEX"
     },
     {
       name: "Net",
@@ -593,7 +635,8 @@ export class Constants {
       range: "5/15",
       weight: "3 lb",
       attributes: ["Thrown", "Special"],
-      weaponClass: "Martial Weapons"
+      weaponClass: "Martial Ranged Weapons",
+      usesAbility: "DEX"
     }
   ]
 

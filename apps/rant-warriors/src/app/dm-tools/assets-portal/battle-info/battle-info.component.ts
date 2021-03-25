@@ -3,7 +3,7 @@ import { cloneDeep } from "lodash";
 import { Subscription } from "rxjs";
 import { Asset } from "../../../utils/asset";
 import { Constants } from "../../../utils/constants";
-import { Action } from "../../../utils/creature.model";
+import { Action, WeaponsModel } from "../../../utils/creature.model";
 
 @Component({
   selector: "app-battle-info",
@@ -64,7 +64,49 @@ export class BattleInfoComponent {
       return 
     }
 
+    if(selection.includes("Thrown")) {
+      action.rangeType = "Thrown"
+      action.range = `${selection.split(" ")[1]}`
+      return
+    }
+
     action.rangeType = "Melee"
     action.range = selection.split(" ")[1]
   }
+
+  public onWeaponSelected(event): void {
+    const weapon = event.option.value as WeaponsModel
+    const dice = weapon.damage.split("d")
+   
+    this.action.name = weapon.name
+    this.action.numberOfDiceSides = `d${dice[1]}`
+    this.action.numberOfRoll = +dice[0]
+    this.action.dice = weapon.damage
+    this.action.attackType = weapon.damageType
+    this.action.range = weapon.range
+    if (Array.isArray(weapon.usesAbility)){
+      this.action.attackUses = this.asset.abilities.STR >= this.asset.abilities.DEX ? "STR" : "DEX"
+    } else {
+      this.action.attackUses = weapon.usesAbility
+    }
+    
+    if (weapon.reach) {
+      this.reachSelection = "Melee 10ft"
+      this.onRangeChange(this.action, "Melee 10ft")
+    } else if (weapon.range && weapon.attributes.find(attribute => attribute === "Thrown")) {
+      this.reachSelection = "Thrown"
+      this.onRangeChange(this.action, `Thrown ${weapon.range}`)
+    } else if (weapon.range) {
+      this.reachSelection = "Range"
+      this.onRangeChange(this.action, "Range")
+      this.action.range = `${weapon.range}`
+    } else {
+      this.reachSelection = "Melee 5ft"
+      this.onRangeChange(this.action, "Melee 5ft")
+    }
+
+    this.asset.updateDamageDice(this.action);
+    this.asset.updateAttackDice(this.action);
+  }
+
 }
