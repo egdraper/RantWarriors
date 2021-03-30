@@ -26,19 +26,33 @@
         <h5>Skill Proficiencies</h5>
         <div *ngFor="let proficiency of asset.skillProficiencies">   
           <app-editor-toolbar
-          *ngIf="asset.editing"
-          [tools]="tools"
-          (optionClick)="asset.removeProficiency(proficiency)">
-        </app-editor-toolbar>
-            <app-action-button
-              [label]="proficiency.ability"
-              diceEquation="{{ 'd20+' + proficiency.value }}"
-              [advantage]="asset.hasAdvantage"
-              [disadvantage]="asset.hasDisadvantage">
-            </app-action-button>
-          </div>
+            *ngIf="asset.editing"
+            [tools]="tools"
+            (optionClick)="asset.removeProficiency(proficiency)">
+          </app-editor-toolbar>
+          <app-action-button
+            [label]="proficiency.ability"
+            diceEquation="{{ 'd20+' + proficiency.value }}"
+            [advantage]="asset.hasAdvantage"
+            [disadvantage]="asset.hasDisadvantage">
+          </app-action-button>
+        </div>
+        <h5 *ngIf="asset.skillExpertise && asset.skillExpertise.length > 0">Skill Expertise</h5>
+        <div *ngFor="let expertise of asset.skillExpertise">   
+          <app-editor-toolbar
+            *ngIf="asset.editing"
+            [tools]="tools"
+            (optionClick)="asset.removeExpertise(expertise)">
+          </app-editor-toolbar>
+          <app-action-button
+            [label]="expertise.ability"
+            diceEquation="{{ 'd20+' + expertise.value }}"
+            [advantage]="asset.hasAdvantage"
+            [disadvantage]="asset.hasDisadvantage">
+          </app-action-button>
         </div>
       </div>
     </div>
   </div>
+</div>
 

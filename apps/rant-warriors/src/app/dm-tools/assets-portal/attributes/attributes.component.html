@@ -17,6 +17,16 @@
     </mat-autocomplete>
   </mat-form-field>
 
+  <div class="select-checkbox">
+    <mat-checkbox
+      value="asset.shield"
+      [(ngModel)]="asset.shield"
+      [ngModelOptions]="{ standalone: true }"
+    >
+      Shield?
+    </mat-checkbox>
+  </div>
+
   <div *ngIf="asset.armorType === 'Natural'">
     <mat-form-field class="example-full-width">
       <input

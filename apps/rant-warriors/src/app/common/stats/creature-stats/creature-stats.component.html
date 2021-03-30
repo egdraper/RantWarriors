@@ -1,7 +1,7 @@
 <h1 class="defense-title">Attributes</h1>
 <div class="attribute-line">
   <h4 class="creature-stat">
-    AC: {{ asset.armorClass }} ({{ asset.armorType || "natural" }})
+    AC: {{ asset.shield ? asset.armorClass + 2 : asset.armorClass }} ({{ asset.armorType + (asset.shield ? ": Shield" : "" )}})
   </h4>
 </div>
 <h4 class="creature-stat">Speed: {{ asset.speed }}</h4>

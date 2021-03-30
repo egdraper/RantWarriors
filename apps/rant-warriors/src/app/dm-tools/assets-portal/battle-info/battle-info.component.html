@@ -40,6 +40,8 @@
           [ngModelOptions]="{ standalone: true }"
           [(ngModel)]="action.name"
           [matAutocomplete]="autoGroup"
+          #trigger="matAutocompleteTrigger"
+          (keydown.enter)="$event.target.blur(); trigger.closePanel()"
         />
         <mat-autocomplete
           (optionSelected)="onWeaponSelected($event)"
@@ -54,9 +56,10 @@
       <mat-form-field>
         <mat-label>Attack Uses</mat-label>
         <mat-select
+          #attackUsesa
           [placeholder]="'Attack Type (ex: Slashing)'"
           [(ngModel)]="action.attackUses"
-          (selectionChange)="onAttackUses()"
+          (selectionChange)="onAttackUses(attackUsesa)"
         >
           <mat-option *ngFor="let ability of abilities" [value]="ability">
             {{ ability }}
@@ -90,7 +93,7 @@
             type="number"
             [ngModelOptions]="{ standalone: true }"
             [(ngModel)]="action.numberOfRoll"
-            (change)="onDamageDiceChange()"
+            (change)="onNumberOfRollChange()"
           />
         </mat-form-field>
       </div>
@@ -101,7 +104,7 @@
             placeholder="Dice"
             [ngModelOptions]="{ standalone: true }"
             [(ngModel)]="action.numberOfDiceSides"
-            (selectionChange)="onDamageDiceChange()"
+            (selectionChange)="onDamageDiceChange($event)"
           >
             <mat-option
               *ngFor="let diceSelection of dice"
@@ -303,6 +306,6 @@
 </div>
 <div *ngIf="action.isNonRollableAction || action.isRollableAction || action.isAttackAction">
   <div class="add-button">
-    <button mat-button (click)="addAttackAction()">{{buttonAction}}</button>
+    <button mat-button type="button" (click)="addAttackAction($event)">{{buttonAction}}</button>
   </div>
 </div>

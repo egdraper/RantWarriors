@@ -7,6 +7,10 @@ export class Dice {
   public withDisadvantage = false;
 
   public roll(diceEquation: string): Roll {
+    if(this.isStaticRoll(diceEquation)) {
+      return this.getStaticValue(diceEquation)
+    }
+
     this.parseEquation(diceEquation);
 
     if (diceEquation.startsWith("d20")) {
@@ -49,6 +53,25 @@ export class Dice {
     return roll;
   }
 
+  private getStaticValue(diceEquation: string): Roll {
+    const roll = new Roll();
+    
+    if(diceEquation.includes("+")){
+      const split = diceEquation.split("+")
+      roll.actualRollValue = Number(split[0])
+      roll.modifiedRollValue = Number(split[0]) + Number(split[1])
+    } else if(diceEquation.includes("-")){
+      const split = diceEquation.split("-")
+      roll.actualRollValue = Number(split[0])
+      roll.modifiedRollValue = Number(split[0]) - Number(split[1])
+    } else {
+      roll.actualRollValue = Number(diceEquation)
+      roll.modifiedRollValue = Number(diceEquation)
+    }
+
+    return roll
+  }
+
   private getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max) + 1);
   }
@@ -85,5 +108,9 @@ export class Dice {
     if (roll.actualRollValue === 1) {
       roll.criticalFail = true;
     }
+  }
+
+  private isStaticRoll(diceEquation): boolean {
+    return !diceEquation.includes("d")
   }
 }

@@ -43,13 +43,12 @@ export class AuthService {
         .doc(user.uid)
         .get()
         .subscribe(snapshot => {
-          debugger
-          // if (snapshot.data.admin) {
-          //   resolve(true);
-          // } else {
-          //   this.router.navigate(["/landing"])
-          //   resolve(false);
-          // }
+          if ((snapshot.data() as any).admin) {
+            resolve(true);
+          } else {
+            this.router.navigate(["/landing"])
+            resolve(false);
+          }
         });
     });
   }

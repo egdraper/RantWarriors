@@ -13,13 +13,20 @@ export class ProficiencyInfoComponent  {
   public skills = Constants.skills;
   public newSavingThrow = "";
   public newProficiency = "";
+  public newExpertise = "";
 
   public addNewSavingThrow(): void {
     this.asset.addSavingThrows(this.newSavingThrow);
     this.newSavingThrow = "";
   }
+
   public addNewProficiency(): void {
     this.asset.addSkillProficiency(this.newProficiency);
+    this.newProficiency = "";
+  }
+
+  public addNewExpertise(): void {
+    this.asset.addSkillExpertise(this.newExpertise);
     this.newProficiency = "";
   }
 }

@@ -88,12 +88,14 @@ export class Creature {
   public senses?: Sense[];
   public size?: string;
   public skillProficiencies?: Checks[];
+  public skillExpertise?: Checks[];
   public speed?: string;
   public traits?: Trait[];
   public vulnerabilities?: string[];
   public multiAttack?: boolean;
   public hasLegendaryActions?: boolean;
   public editing?: boolean;
+  public shield?: boolean
 }
 
 export class CreatureDB {

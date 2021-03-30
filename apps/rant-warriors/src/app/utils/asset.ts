@@ -47,9 +47,11 @@ export class Asset implements Creature {
   public senses: Sense[] = [];
   public size = "Medium";
   public skillProficiencies: Checks[] = [];
+  public skillExpertise: Checks[] = []
   public speed = "30ft";
   public traits: Trait[] = [];
   public vulnerabilities: string[] = [];
+  public shield: boolean = false
 
   public attackers: Asset[] = [];
 
@@ -104,6 +106,7 @@ export class Asset implements Creature {
       this.senses = creature.senses;
       this.size = creature.size;
       this.skillProficiencies = creature.skillProficiencies;
+      this.skillExpertise = creature.skillExpertise;
       this.speed = creature.speed;
       this.traits = creature.traits;
       this.vulnerabilities = creature.vulnerabilities;
@@ -152,8 +155,8 @@ export class Asset implements Creature {
   public updateDamageDice(action: Action): void {
     const ability = action.attackUses;
     const modifier = Constants.getAbilityModifier(this.abilities[ability]);
-    const attackModifier = modifier ? `+${modifier}` : "";
-    action.dice = `${action.numberOfRoll}${action.numberOfDiceSides}${attackModifier}`;
+    const damageModifier = modifier ? `+${modifier}` : "";
+    action.dice = `${action.numberOfRoll}${action.numberOfDiceSides}${damageModifier}`;
   }
 
   public updateChallengeRating(): void {
@@ -221,6 +224,33 @@ export class Asset implements Creature {
 
   public updateSkillProficiency(): void {
     this.skillProficiencies.forEach(s => {
+      const ability = Constants.getAbilityBySkill(s.ability);
+      s.value = Constants.getAbilityModifier(this.abilities[ability]) + this.proficiency;
+      if(s.ability === "Perception") { this.updatePassivePerception() }
+    });
+  }
+
+  public addSkillExpertise(skill: string): void {
+    debugger
+    if (this.skillExpertise.find(s => s.ability === skill)) {
+      return;
+    }
+
+    const newValue = Constants.getAbilityModifier(
+      this.abilities[Constants.getAbilityBySkill(skill)]
+    );
+
+    this.skillExpertise.push({
+      value: newValue + this.proficiency + this.proficiency,
+      ability: skill
+    });
+
+    this.updateSkillExpertise()
+    if(skill === "Perception") { this.updatePassivePerception() }
+  }
+
+  public updateSkillExpertise(): void {
+    this.skillExpertise.forEach(s => {
       const ability = Constants.getAbilityBySkill(s.ability);
       s.value = Constants.getAbilityModifier(this.abilities[ability]) + this.proficiency;
       if(s.ability === "Perception") { this.updatePassivePerception() }
@@ -322,6 +352,11 @@ export class Asset implements Creature {
 
   public removeProficiency(proficiency: Checks): void {
     remove(this.skillProficiencies, l => l.ability === proficiency.ability);
+    if(proficiency.ability === "Perception") { this.updatePassivePerception() }
+  }
+
+  public removeExpertise(proficiency: Checks): void {
+    remove(this.skillExpertise, l => l.ability === proficiency.ability);
     if(proficiency.ability === "Perception") { this.updatePassivePerception() }
   }
 

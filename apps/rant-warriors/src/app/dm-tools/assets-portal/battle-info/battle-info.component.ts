@@ -37,7 +37,9 @@ export class BattleInfoComponent {
     this.actionSubscription.unsubscribe();
   }
 
-  public addAttackAction(): void {
+  public addAttackAction(event): void {
+    if(event.currentTarget.type === "submit") { return }
+
     if (this.buttonAction === "ADD" || this.buttonAction === "Duplicate") {
       this.asset.actions.push(cloneDeep(this.action));
     }
@@ -48,13 +50,20 @@ export class BattleInfoComponent {
     this.reachSelection = ""
   }
 
-  public onAttackUses(): void {
+  public onAttackUses(element): void {
     this.action.attackModifier = this.asset.proficiency + Constants.getAbilityModifier(this.action.attackUses);
     this.asset.updateDamageDice(this.action);
     this.asset.updateAttackDice(this.action);
   }
 
-  public onDamageDiceChange(): void {
+  public onDamageDiceChange(event): void {
+    if(event.value = "None") {
+      this.action.numberOfDiceSides = "" 
+    }
+    this.asset.updateDamageDice(this.action);
+  }
+
+  public onNumberOfRollChange(): void {
     this.asset.updateDamageDice(this.action);
   }
 

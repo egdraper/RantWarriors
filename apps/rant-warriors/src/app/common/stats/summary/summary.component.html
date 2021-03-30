@@ -19,7 +19,7 @@
       <div class="summary-stats">
         <img (click)="onSelect(i + 1)" src="{{ asset.imgUrl }}" />
         <div>
-          <h5>AC:{{ asset.armorClass }}</h5>
+          <h5>AC:{{ asset.shield ? asset.armorClass + 2 : asset.armorClass }}</h5>
           <h5>HP:{{ asset.currentHitPoints }}/{{ asset.maxHitPoints }}</h5>
         </div>
       </div>
@@ -37,7 +37,7 @@
       <div class="summary-stats">
         <img (click)="onSelect(i + 1)" src="{{ asset.imgUrl }}" />
         <div>
-          <h5>AC:{{ asset.armorClass }}</h5>
+          <h5>AC:{{ asset.shield ? asset.armorClass + 2 : asset.armorClass }}</h5>
           <h5>HP:{{ asset.currentHitPoints }}/{{ asset.maxHitPoints }}</h5>
         </div>
       </div>

@@ -209,6 +209,7 @@ export class DbService {
       speed: asset.speed,
       traits: asset.traits,
       vulnerabilities: asset.vulnerabilities,
+      shield: asset.shield,
     }
   }
 }
