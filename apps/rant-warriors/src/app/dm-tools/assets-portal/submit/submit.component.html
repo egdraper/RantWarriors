@@ -1,5 +1,5 @@
 <button 
-  *ngIf="actionType === 'create' || actionType === 'duplicate'"
+  *ngIf="actionType !== 'edit'"
   (click)="onSubmit()">
   Submit {{ type }}
 </button>

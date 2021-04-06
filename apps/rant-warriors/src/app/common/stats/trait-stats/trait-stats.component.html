@@ -2,13 +2,23 @@
     <h1>Traits</h1>
     <div *ngFor="let trait of asset?.traits">
       <div class="action-group">
-        <app-editor-toolbar
-          *ngIf="asset.editing"
-          [tools]="tools"
-          (optionClick)="asset.modifyTrait($event, trait)">
-        </app-editor-toolbar>
-        <h4 class="hit-text">{{ trait.name }}</h4>
-        <h6><i>{{ trait.info }}</i></h6>
+        <span class="action-button">
+          <app-action-button
+            *ngIf="trait.dice"
+            [label]="trait.name"
+            [diceEquation]="trait.dice">
+           </app-action-button> 
+        </span>
+        <span class="trait-info">
+          <app-editor-toolbar
+            *ngIf="asset.editing"
+            [tools]="tools"
+            (optionClick)="asset.modifyTrait($event, trait)">
+          </app-editor-toolbar>
+          <h4 *ngIf="!trait.dice" class="hit-text">{{ trait.name }}       
+          </h4>
+          <h6><i>{{ trait.info }}</i></h6>
+        </span>
       </div>
       <hr>
     </div>

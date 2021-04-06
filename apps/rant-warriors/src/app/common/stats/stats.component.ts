@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { Asset } from "../../utils/asset";
+import { Constants } from "../../utils/constants";
 import { Creature } from "../../utils/creature.model";
 import { DbSessionService } from "../../utils/dbSession";
 
@@ -17,6 +18,7 @@ export class StatsComponent {
   public damageNumbers = [];
   public dead = "X";
   public assetSelectedIndex = 0;
+  public abilities = Constants.getAbilityInfo()
 
   constructor(private dbSessionService: DbSessionService) {
     this.setDamageNumbers();

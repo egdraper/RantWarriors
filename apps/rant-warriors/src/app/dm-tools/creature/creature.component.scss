@@ -7,10 +7,6 @@
     height: 100%;
     background-color: #ececec;
     margin: -15px 17px -12px -15px;
-    
-    .creature-add {
-      
-    }
   }
 
   .creature-active-area {
@@ -19,3 +15,66 @@
 
 }
 
+img {
+  height: 65px;
+}
+
+.image-list {
+  display: flex;
+  overflow: auto;
+}
+
+.image-block {
+  cursor: pointer;
+}
+
+
+mat-checkbox{
+    margin-left: 25px;
+}
+
+.hovered-asset-block {
+  position: absolute;
+  background-color: aliceblue;
+  border-radius: 10px;
+  padding: 15px;
+  z-index: 1000;
+
+  h1 {
+    margin-top: 10px;
+    margin-bottom: 0px;
+  }
+
+  h4 {
+    margin-top: 2px;
+  }
+
+  .hovered-asset-info {
+    display: flex;
+
+    img {
+      height: 120px;
+      margin-left: 20px;
+    }
+
+  }
+  
+  .hovered-traits,
+  .hovered-actions {
+    h3 {
+      padding-bottom: 0px;
+      margin-bottom: 0px;
+      margin-top: 7px;
+    }
+
+    > div {
+     padding-left: 10px; 
+    }
+
+    .trait-info {
+      padding-left: 5px;
+      font-size: 12px;
+      max-width: 400px;
+    }
+  }
+}

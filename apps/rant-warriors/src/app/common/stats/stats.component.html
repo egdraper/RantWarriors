@@ -68,13 +68,19 @@
       <div class="display-area">
 
         <div class="quick-dice">
-          <app-action-button label="Roll" diceEquation="d100"></app-action-button>
-          <app-action-button label="Roll" diceEquation="d20"></app-action-button>
+          <div class="quick-ability" *ngFor="let ability of abilities">
+            {{ability.name}}
+            <div class="quick-skill" *ngFor="let skill of ability.skills">
+              {{skill}}
+            </div>
+          </div>
+          <!-- <app-action-button label="Acro" diceEquation="d100"></app-action-button>
+          <app-action-button label="" diceEquation="d20"></app-action-button>
           <app-action-button label="Roll" diceEquation="d12"></app-action-button>
           <app-action-button label="Roll" diceEquation="d10"></app-action-button>
           <app-action-button label="Roll" diceEquation="d8"></app-action-button>
           <app-action-button label="Roll" diceEquation="d6"></app-action-button>
-          <app-action-button label="Roll" diceEquation="d4"></app-action-button>
+          <app-action-button label="Roll" diceEquation="d4"></app-action-button> -->
         </div>
         <app-stats-panel 
         (damage)="takeDamage($event)"

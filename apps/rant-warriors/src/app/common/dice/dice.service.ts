@@ -44,9 +44,12 @@ export class Dice {
     const roll = new Roll();
     this.savedRoll.forEach(sr => {
       for (let i = 0; i < sr.numberOfRolls; i++) {
-        roll.actualRollValue = this.getRandomInt(sr.numberOfSides);
-        roll.modifiedRollValue += roll.actualRollValue;
+        const actualRollValue = this.getRandomInt(sr.numberOfSides);
+        roll.rollHistory.push(actualRollValue)
+        roll.actualRollValue += actualRollValue;
       }
+      roll.modifier = sr.rollModifier
+      roll.modifiedRollValue = roll.actualRollValue
       roll.modifiedRollValue += sr.rollModifier;
     });
 

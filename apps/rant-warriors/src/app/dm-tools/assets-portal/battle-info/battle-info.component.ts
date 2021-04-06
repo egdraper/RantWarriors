@@ -57,7 +57,7 @@ export class BattleInfoComponent {
   }
 
   public onDamageDiceChange(event): void {
-    if(event.value = "None") {
+    if(event.value === "None") {
       this.action.numberOfDiceSides = "" 
     }
     this.asset.updateDamageDice(this.action);

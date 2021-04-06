@@ -10,7 +10,10 @@
   <div class="hit-number">
     <h2 class="hit-roll">{{ rollResult || "-" }}</h2>
   </div>
-  <div>
+  <div
+    [matTooltip]="allRolls"  
+  >
+
     <h3 class="hit-text">{{ label }}</h3>
     <h6 class="hit-dice">
       <i> {{ diceEquation }} </i>

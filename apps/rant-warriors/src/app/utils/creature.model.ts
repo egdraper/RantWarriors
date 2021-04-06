@@ -24,8 +24,9 @@ export class Action {
 }
 
 export class Trait {
-  public name = "";
-  public info = "";
+  public name: string = "";
+  public info: string = "";
+  public dice?: string = "";
 }
 
 export class Abilities {

@@ -14,6 +14,8 @@ export class ActionButtonComponent {
   @Input() public disadvantage = false;
   @Input() public minimumForSuccess;
   @Input() public set asterisk(value) { this._asterisk = Array(value).fill(value); }
+  
+  public allRolls
   public get asterisk() { return this._asterisk; }
 
   @Output() public result = new EventEmitter();
@@ -33,7 +35,8 @@ export class ActionButtonComponent {
     this.updateHitStatus(roll);
     this.rollResult = roll.modifiedRollValue;
     this.result.emit(this.rollResult);
-
+    this.allRolls = `${roll.rollHistory.join(" + ")} + (${roll.modifier})`
+    
   }
 
   public updateHitStatus(roll: Roll): void {

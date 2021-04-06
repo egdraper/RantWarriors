@@ -675,6 +675,28 @@ export class Constants {
     }
   }
 
+  public static getAbility(): string []
+  {
+    return [
+      "STR",
+      "DEX",
+      "INT",
+      "CON",
+      "WIS",
+      "CHA"
+    ]
+  }
+
+  public static getAbilityInfo(): any {
+    return [
+      { name: "STR", skills: ["Athletics"] },
+      { name: "DEX", skills: ["Acrobatics", "Sleight of Hand", "Stealth"] },
+      { name: "INT", skills: ["Arcana", "History", "Investigation", "Nature", "Religion"] },
+      { name: "WIS", skills: ["Animal Handling", "Insight", "Medicine", "Perception", "Survival"] },
+      { name: "CHA", skills: ["Deception", "Intimidation", "Performance", "Persuasion"] }
+    ]
+  }
+
   public static getSkillByAbility(skill): string[] {
     switch (skill) {
       case "STR":

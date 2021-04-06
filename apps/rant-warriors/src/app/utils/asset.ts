@@ -47,7 +47,7 @@ export class Asset implements Creature {
   public senses: Sense[] = [];
   public size = "Medium";
   public skillProficiencies: Checks[] = [];
-  public skillExpertise: Checks[] = []
+  public skillExpertise: Checks[] = [];
   public speed = "30ft";
   public traits: Trait[] = [];
   public vulnerabilities: string[] = [];
@@ -127,11 +127,13 @@ export class Asset implements Creature {
     if (ability === "STR") {
       this.updateSavingThrows(ability);
       this.updateSkillProficiency();
+      this.updateSkillExpertise();
     }
     if (ability === "DEX") {
       this.updateSavingThrows(ability);
       this.updateSkillProficiency();
       this.updateArmorClass();
+      this.updateSkillExpertise();
     }
     if (ability === "CON") {
       this.createHitDice();
@@ -141,14 +143,17 @@ export class Asset implements Creature {
       this.updateSavingThrows(ability);
       this.updateSkillProficiency();
       this.updatePassivePerception();
+      this.updateSkillExpertise();
     }
     if (ability === "INT") {
       this.updateSavingThrows(ability);
       this.updateSkillProficiency();
+      this.updateSkillExpertise();
     }
     if (ability === "CHA") {
       this.updateSavingThrows(ability);
       this.updateSkillProficiency();
+      this.updateSkillExpertise();
     }
   }
 
@@ -252,7 +257,7 @@ export class Asset implements Creature {
   public updateSkillExpertise(): void {
     this.skillExpertise.forEach(s => {
       const ability = Constants.getAbilityBySkill(s.ability);
-      s.value = Constants.getAbilityModifier(this.abilities[ability]) + this.proficiency;
+      s.value = Constants.getAbilityModifier(this.abilities[ability]) + (this.proficiency * 2);
       if(s.ability === "Perception") { this.updatePassivePerception() }
     });
   }

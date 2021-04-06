@@ -28,3 +28,9 @@ h3 {
 .select-checkbox {
   margin-bottom: 15px;
 }
+
+dm-screen {
+ .mat-tab-body-content {
+    height: calc(100vh - 65px);
+  } 
+}

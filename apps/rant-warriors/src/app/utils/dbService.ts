@@ -206,6 +206,7 @@ export class DbService {
       senses: asset.senses,
       size: asset.size,
       skillProficiencies: asset.skillProficiencies,
+      skillExpertise: asset.skillExpertise,
       speed: asset.speed,
       traits: asset.traits,
       vulnerabilities: asset.vulnerabilities,

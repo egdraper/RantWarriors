@@ -1,4 +1,16 @@
-
+<div>
+  <div>
+    <span>
+      <mat-checkbox
+        (change)="onRatingChange(challengeRating)"
+        *ngFor="let challengeRating of challengeRatings"
+        [(ngModel)]="challengeRating.selected"
+      >
+        {{ challengeRating.display }}
+      </mat-checkbox>
+    </span>
+  </div>
+  <!-- <div>
     <mat-form-field>
       <mat-select
         [placeholder]="'Select Creature'"
@@ -13,23 +25,63 @@
       </mat-select>
     </mat-form-field>
 
-      <button mat-button (click)="addCreature()">Add</button>
+    <button mat-button (click)="addCreature()">Add</button>
+  </div> -->
+      
+    
+  <div *ngIf="selectableAssets.length > 0" class="image-list">
+    <div 
+      *ngFor="let asset of selectableAssets"
+      class="image-block" 
+      (mouseover)="onMouseOver(asset, $event)"
+      (mouseout)="onMouseOut(asset, $event)"
+      (click)="addCreature(asset)" 
+      [matTooltip]="asset.name + ' (CR ' + asset.challenge +')' "
+    >
+        <img  src="{{ asset.imgUrl }}" />
+    </div>
+  </div>
+
 
     <stats
       [activePlayers]="dbSessionService.activePlayersList"
       [activeAssets]="dbSessionService.activeCreatureList"
       (remove)="onRemove($event)">
     </stats>
+</div>
+  
+<div 
+  class="hovered-asset-block"
+  *ngIf="hoveredAsset"
+  [style.left.px]="hoveredLocX"
+  [style.top.px]="hoveredLocY + 40"
+  >
+  <h1>{{ hoveredAsset.name }}</h1>
+  <h4>Type: {{ hoveredAsset.creatureType }}</h4>
+  <div class="hovered-asset-info">
+    <div>
+      <div>CR: {{ hoveredAsset.challenge }}</div>
+      <div>AC: {{ hoveredAsset.armorClass }} </div>
+      <div>HP: {{ hoveredAsset.maxHitPoints }} </div>
 
-  <!-- <div>
-    <span>
-      <mat-checkbox
-        (change)="onRatingChange(challengeRating)"
-        *ngFor="let challengeRating of challengeRatings"
-        [(ngModel)]="challengeRating.selected"
-      >
-        {{ challengeRating.display }}
-      </mat-checkbox>
-    </span>
-  </div> -->
-
+      <div></div>  
+    </div>
+    <div>
+      <img  src="{{ hoveredAsset.imgUrl }}" />
+    </div>
+  </div>
+  <div class="hovered-actions">
+    <h3> Actions: <small>(Attack Count: {{ hoveredAsset.numberOfActions }})</small></h3>
+    <div *ngFor="let action of hoveredAsset.actions">
+      <strong>{{ action.name }}:</strong> {{ action.dice }}
+      <div class="trait-info">{{ action.actionBonusInfo }}</div>
+    </div>
+  </div>
+  <div class="hovered-traits" *ngIf="hoveredAsset.traits.length > 0">
+    <h3> Traits: </h3>
+    <div *ngFor="let trait of hoveredAsset.traits">
+      <strong>{{ trait.name }}:</strong> {{ trait.dice }}
+      <div class="trait-info">{{ trait.info }}</div>
+    </div>
+  </div>
+</div>
