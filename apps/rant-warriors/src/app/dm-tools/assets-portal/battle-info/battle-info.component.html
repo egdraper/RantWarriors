@@ -84,6 +84,30 @@
         </mat-select>
       </mat-form-field>
     </div>
+    <div>
+      <mat-form-field>
+      <input
+        matInput
+        name="damageDice"
+        type="number"
+        placeholder="Attack Modifier"
+        [ngModelOptions]="{ standalone: true }"
+        [(ngModel)]="action.attackModifier"
+      />
+    </mat-form-field>
+    <mat-icon 
+      *ngIf="proficiencyDisabled"
+      matTooltip="This is a calculated field, by default is not edited" 
+      (click)="onAttackModifierEditClicked()">
+      edit
+    </mat-icon>
+    <mat-icon 
+      *ngIf="!proficiencyDisabled"
+      matTooltip="This is a calculated field, by default is not edited" 
+      (click)="onAttackModifierEditClicked()">
+      refresh
+    </mat-icon>
+    </div>
     <div class="dice">
       <div>
         <mat-form-field class="min-width">

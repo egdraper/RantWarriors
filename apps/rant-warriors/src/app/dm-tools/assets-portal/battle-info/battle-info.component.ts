@@ -21,6 +21,7 @@ export class BattleInfoComponent {
   public abilities = Constants.abilities;
   public reach = Constants.reach;
   public reachSelection = "" 
+  public attackModifierDisabled = true
 
   public actionSubscription: Subscription;
 
@@ -116,6 +117,18 @@ export class BattleInfoComponent {
 
     this.asset.updateDamageDice(this.action);
     this.asset.updateAttackDice(this.action);
+  }
+
+  public onAttackModifierEditClicked(): void {
+    this.attackModifierDisabled = !this.attackModifierDisabled
+
+    if(this.attackModifierDisabled) {
+      this.action.attackModifier = this.getAttackModifier(this.action.attackUses as any);
+    }
+  }
+
+  public getAttackModifier(attackAbility: "STR"| "DEX" | "WIS" | "INT" | "CHA") {
+    return this.asset.proficiency + Constants.getAbilityModifier(attackAbility);
   }
 
 }

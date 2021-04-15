@@ -49,4 +49,11 @@ export class AttributesComponent implements OnInit {
     this.asset.additionalArmor = Number(number);
     this.asset.updateArmorClass();
   }
+
+
+  public onLevelChange(): void {
+    if (this.asset.level < 0 ) { this.asset.level = 0; }
+
+    this.asset.createHitDice();
+  }
 }

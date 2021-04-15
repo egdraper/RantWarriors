@@ -94,4 +94,18 @@
     </mat-form-field>
     <button mat-button (click)="addLanguage()">Add</button>
   </div>
+  <div>
+    <mat-form-field class="example-full-width">
+      <mat-label>Level (Used for Hitdice)</mat-label>
+      <input
+        matInput
+        placeholder="Level"
+        name="maxHitPoints"
+        type="number"
+        [ngModelOptions]="{ standalone: true }"
+        [(ngModel)]="asset.level" 
+        (change)="onLevelChange()"
+      />
+    </mat-form-field>
+  </div>
 </div>

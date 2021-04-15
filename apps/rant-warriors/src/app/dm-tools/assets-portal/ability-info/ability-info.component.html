@@ -72,4 +72,30 @@
         />
       </mat-form-field>
     </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <mat-label>Proficiency</mat-label>
+        <input
+          matInput
+          [disabled]="proficiencyDisabled"
+          placeholder="Proficiency"
+          name="proficiency"
+          type="number"
+          [ngModelOptions]="{ standalone: true }"
+          [(ngModel)]="asset.proficiency" 
+        />
+      </mat-form-field>
+      <mat-icon 
+        *ngIf="proficiencyDisabled"
+        matTooltip="This is a calculated field, by default is not edited" 
+        (click)="onProficiencyEditClicked()">
+        edit
+      </mat-icon>
+      <mat-icon 
+        *ngIf="!proficiencyDisabled"
+        matTooltip="This is a calculated field, by default is not edited" 
+        (click)="onProficiencyEditClicked()">
+        refresh
+      </mat-icon>
+    </div>
   </div>

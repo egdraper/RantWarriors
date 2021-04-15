@@ -33,18 +33,4 @@ export class CreatureInfoComponent implements OnInit {
     this.asset.size = Constants.sizes.find(s => selection.value === s.name).name;
     this.asset.createHitDice();
   }
-
-  public onProficiencyEditClicked(): void {
-    this.proficiencyDisabled = !this.proficiencyDisabled
-
-    if(this.proficiencyDisabled) {
-      this.asset.proficiency = Constants.getProficiency(this.asset.challenge);
-    }
-  }
-
-  public onLevelChange(): void {
-    if (this.asset.level < 0 ) { this.asset.level = 0; }
-
-    this.asset.createHitDice();
-  }
 }

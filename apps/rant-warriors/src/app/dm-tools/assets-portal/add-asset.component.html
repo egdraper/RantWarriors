@@ -28,19 +28,20 @@
         >
         </app-create>
 
-        <app-ability-info
+
+        <app-creature-info
           *ngIf="activeView === 1"
+          [asset]="newAsset"
+          [creatureType]="newAsset.creatureType"
+        >
+        </app-creature-info>        
+
+        <app-ability-info
+          *ngIf="activeView === 2"
           [asset]="newAsset"
         >
         </app-ability-info>
 
-        <app-creature-info
-          *ngIf="activeView === 2"
-          [asset]="newAsset"
-          [creatureType]="newAsset.creatureType"
-        >
-        </app-creature-info>
-        
         <app-attributes
           *ngIf="activeView === 3"
           [asset]="newAsset"

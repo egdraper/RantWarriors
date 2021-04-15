@@ -116,7 +116,7 @@ export class Constants {
     "Blinded"
   ]
 
-  public static dice = ["None", "d4", "d6", "d8", "d10", "d12", "d20"];
+  public static dice = ["None", "d4", "d6", "d8", "d10", "d12", "d20", "d100"];
 
   public static abilities = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
 
