@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { CreatureInfoComponent } from "./creature-info/creature-info.component";
-import { BattleInfoComponent } from "./battle-info/battle-info.component";
+import { ActionInfoComponent } from "./action-info/action-info.component";
 import { TraitInfoComponent } from "./trait-info/trait-info.component";
 import { ProficiencyInfoComponent } from "./proficiency-info/proficiency-info.component";
 import { AbilityInfoComponent } from "./ability-info/ability-info.component";
@@ -22,7 +22,7 @@ import { AddPlayerComponent } from './add-player/add-player/add-player.component
 @NgModule({
   declarations: [
     CreatureInfoComponent,
-    BattleInfoComponent,
+    ActionInfoComponent,
     TraitInfoComponent,
     ProficiencyInfoComponent,
     AbilityInfoComponent,

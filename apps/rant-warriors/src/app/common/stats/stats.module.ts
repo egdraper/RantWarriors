@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { DemoMaterialModule } from "../../utils/material.module";
 import { CreatureStatsComponent } from "./creature-stats/creature-stats.component";
 import { AbilityStatsComponent } from "./ability-stats/ability-stats.component";
-import { BattleStatsComponent } from "./battle-stats/battle-stats.component";
+import { ActionStatsComponent } from "./actions-stats/action-stats.component";
 import { ImmunityVulnerabilityStatsComponent } from "./immunity-vulnerability-stats/immunity-vulnerability-stats.component";
 import { ProficiencyStatsComponent } from "./proficiency-stats/proficiency-stats.component";
 import { TraitStatsComponent } from "./trait-stats/trait-stats.component";
@@ -18,7 +18,6 @@ import { SummaryComponent } from "./summary/summary.component";
 import { ValueModifierComponent } from "./value-modifier/value-modifier.component";
 import { AbilityScoreModifierPipe } from "./skill-stats/ability.pipe";
 import { EditorToolbarComponent } from "./editor-toolbar/editor-toolbar.component";
-import { DragDropModule } from "@angular/cdk/drag-drop";
 
 @NgModule({
   declarations: [
@@ -28,7 +27,7 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
     StatsComponent,
     CreatureStatsComponent,
     AbilityStatsComponent,
-    BattleStatsComponent,
+    ActionStatsComponent,
     ImmunityVulnerabilityStatsComponent,
     ProficiencyStatsComponent,
     TraitStatsComponent,
@@ -45,7 +44,7 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
     StatsComponent,
     CreatureStatsComponent,
     AbilityStatsComponent,
-    BattleStatsComponent,
+    ActionStatsComponent,
     ImmunityVulnerabilityStatsComponent,
     ProficiencyStatsComponent,
     TraitStatsComponent,

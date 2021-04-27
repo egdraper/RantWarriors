@@ -91,18 +91,19 @@
         name="damageDice"
         type="number"
         placeholder="Attack Modifier"
+        [disabled]="attackModifierDisabled"
         [ngModelOptions]="{ standalone: true }"
         [(ngModel)]="action.attackModifier"
       />
     </mat-form-field>
     <mat-icon 
-      *ngIf="proficiencyDisabled"
+      *ngIf="attackModifierDisabled"
       matTooltip="This is a calculated field, by default is not edited" 
       (click)="onAttackModifierEditClicked()">
       edit
     </mat-icon>
     <mat-icon 
-      *ngIf="!proficiencyDisabled"
+      *ngIf="!attackModifierDisabled"
       matTooltip="This is a calculated field, by default is not edited" 
       (click)="onAttackModifierEditClicked()">
       refresh

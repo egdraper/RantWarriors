@@ -17,27 +17,6 @@ export class Constants {
     { name: "Splint", acBonus: 17 }
   ];
 
-  public weapons = [
-    
-    {name: "Claw", damageType: "Slashing"},
-    {name: "Club", damageType: "Bludgeoning"},
-    {name: "Dagger", damageType: "Piercing"},
-    {name: "Creatclub", damageType: "Bludgeoning"},
-    {name: "Bite", damageType: "Piercing"},
-    {name: "Tail", damageType: "Bludgeoning"},
-    {name: "", damageType: ""},
-    {name: "", damageType: ""},
-    {name: "", damageType: ""},
-    {name: "", damageType: ""},
-    {name: "", damageType: ""},
-    {name: "", damageType: ""},
-    {name: "", damageType: ""},
-    {name: "", damageType: ""},
-    {name: "", damageType: ""},
-    {name: "", damageType: ""},
-    {name: "", damageType: ""},
-  ]
-
   public static languages = [
     "Abyssal",
     "Aquan",

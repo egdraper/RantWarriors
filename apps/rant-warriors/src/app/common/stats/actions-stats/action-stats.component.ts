@@ -4,11 +4,11 @@ import { Dice } from "../../dice/dice.service";
 import { ActionButtonComponent } from "../action-button/action-button.component";
 
 @Component({
-  selector: "app-battle-stats",
-  templateUrl: "./battle-stats.component.html",
-  styleUrls: ["./battle-stats.component.scss"]
+  selector: "app-action-stats",
+  templateUrl: "./action-stats.component.html",
+  styleUrls: ["./action-stats.component.scss"]
 })
-export class BattleStatsComponent {
+export class ActionStatsComponent {
   @ViewChildren(ActionButtonComponent) actionButton: ActionButtonComponent[];
   @Input() asset: Asset;
   @Input() selectedAsset: Asset;

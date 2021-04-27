@@ -6,11 +6,11 @@ import { Constants } from "../../../utils/constants";
 import { Action, WeaponsModel } from "../../../utils/creature.model";
 
 @Component({
-  selector: "app-battle-info",
-  templateUrl: "./battle-info.component.html",
-  styleUrls: ["./battle-info.component.scss"]
+  selector: "app-action-info",
+  templateUrl: "./action-info.component.html",
+  styleUrls: ["./action-info.component.scss"]
 })
-export class BattleInfoComponent {
+export class ActionInfoComponent {
   @Input() public asset: Asset;
   public action = new Action();
   public buttonAction = "ADD";
@@ -52,7 +52,6 @@ export class BattleInfoComponent {
   }
 
   public onAttackUses(element): void {
-    this.action.attackModifier = this.asset.proficiency + Constants.getAbilityModifier(this.action.attackUses);
     this.asset.updateDamageDice(this.action);
     this.asset.updateAttackDice(this.action);
   }
@@ -123,12 +122,13 @@ export class BattleInfoComponent {
     this.attackModifierDisabled = !this.attackModifierDisabled
 
     if(this.attackModifierDisabled) {
-      this.action.attackModifier = this.getAttackModifier(this.action.attackUses as any);
+      this.asset.updateAttackDice(this.action);
     }
   }
 
-  public getAttackModifier(attackAbility: "STR"| "DEX" | "WIS" | "INT" | "CHA") {
-    return this.asset.proficiency + Constants.getAbilityModifier(attackAbility);
-  }
+  // public getAttackModifier(attackAbility: "STR"| "DEX" | "WIS" | "INT" | "CHA") {
+  //   const a = Constants
+  //   return this.asset.proficiency + Constants.getAbilityModifier(attackAbility);
+  // }
 
 }
